@@ -128,7 +128,7 @@
                     │            │ Score POIs       │
                     │            │ - User prefs     │
                     │            │ - Popularity     │
-                    │            │ - Collaborative  │
+                    │            │ - Content-based  │
                     │            └──────────────────┘
                     │                       │
                     │                       ▼
@@ -664,6 +664,9 @@ NOTE: Traffic and crowd density monitoring NOT implemented.
       │ Accept Route │      │ Repair or    │
       │              │      │ Reject       │
       └──────────────┘      └──────────────┘
+
+NOTE: Traffic and crowd density monitoring NOT implemented per project scope.
+      Dynamic constraints focus on weather and events only.
 ```
 
 ---
