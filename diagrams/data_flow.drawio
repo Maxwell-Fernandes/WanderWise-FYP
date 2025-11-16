@@ -1,0 +1,136 @@
+<!-- DIAGRAM 7: DATA FLOW -->
+<mxfile host="app.diagrams.net">
+  <diagram name="Data Flow" id="diagram-7">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1400">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="phase1" value="DATA COLLECTION PHASE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="1000" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="google-api" value="Google Places API&#xa;- Basic info&#xa;- Reviews&#xa;- Photos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="140" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="manual" value="Manual Curation&#xa;- Validation&#xa;- Enhancements&#xa;- Local knowledge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="680" y="140" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="phase2" value="DATA PROCESSING PHASE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="1000" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="geocoding" value="Geocoding&#xa;- Coordinates&#xa;- Address" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="200" y="380" width="160" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="categorization" value="Categorization&#xa;- Tags&#xa;- Themes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="460" y="380" width="160" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="enrichment" value="Enrichment&#xa;- Duration&#xa;- Best time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="720" y="380" width="160" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="phase3" value="STORAGE PHASE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="510" width="1000" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="postgres" value="PostgreSQL + PostGIS&#xa;- Spatial indexing&#xa;- JSONB fields&#xa;- Full-text search" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="360" y="610" width="360" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="phase4" value="PRE-COMPUTATION PHASE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="750" width="1000" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="distance" value="Distance&#xa;Matrix&#xa;(N x N)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="200" y="850" width="160" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="travel-time" value="Travel Time&#xa;Matrix&#xa;(time-dep)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="460" y="850" width="160" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="clusters" value="POI Clusters&#xa;- Geographic&#xa;- Thematic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="720" y="850" width="160" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="phase5" value="OPTIMIZATION PHASE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="980" width="1000" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="algo-selection" value="Algorithm Selection&#xa;&amp; Execution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="410" y="1080" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="phase6" value="RESULT DELIVERY PHASE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b3d9ff;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1200" width="1000" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="phase1" target="google-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase1" target="manual">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="google-api" target="phase2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="manual" target="phase2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase2" target="geocoding">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase2" target="categorization">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase2" target="enrichment">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="geocoding" target="phase3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="categorization" target="phase3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="enrichment" target="phase3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase3" target="postgres">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="postgres" target="phase4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase4" target="distance">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase4" target="travel-time">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase4" target="clusters">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="distance" target="phase5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="travel-time" target="phase5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="clusters" target="phase5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="phase5" target="algo-selection">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="algo-selection" target="phase6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,121 @@
+<mxfile host="Electron">
+  <diagram name="Itinerary Generation">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Itinerary Generation Flow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="start" value="START" style="ellipse;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="80" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="input" value="User Input&lt;br&gt;• Days&lt;br&gt;• Budget&lt;br&gt;• Preferences&lt;br&gt;• Constraints" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="520" y="180" width="160" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="cache-check" value="Check Cache&lt;br&gt;(Similar requests?)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="320" width="160" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="cache-hit" value="Cache HIT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="460" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="cache-miss" value="Cache MISS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="460" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="return-cached" value="Return Cached&lt;br&gt;Itinerary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="560" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="fetch-pois" value="Fetch POIs&lt;br&gt;from Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="760" y="560" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="apply-filters" value="Apply Filters&lt;br&gt;• Category&lt;br&gt;• Region&lt;br&gt;• Budget&lt;br&gt;• Opening Hours" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="760" y="660" width="140" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="score-pois" value="Score POIs&lt;br&gt;• User prefs&lt;br&gt;• Popularity&lt;br&gt;• Collaborative" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="760" y="800" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="select-algo" value="Select Algorithm&lt;br&gt;• Problem size&lt;br&gt;• Constraints&lt;br&gt;• Time limit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="760" y="920" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="run-opt" value="Run Optimization&lt;br&gt;• POI selection&lt;br&gt;• Sequencing&lt;br&gt;• Scheduling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1040" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="validate" value="Validate Route&lt;br&gt;• Constraints OK?&lt;br&gt;• Feasible?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1160" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="alternatives" value="Generate&lt;br&gt;Alternatives&lt;br&gt;(Top 3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1270" width="120" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="enrich" value="Enrich Itinerary&lt;br&gt;• Travel times&lt;br&gt;• Directions&lt;br&gt;• Photos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1380" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="cache-result" value="Cache Result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="770" y="1500" width="120" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="merge" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="590" y="1510" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="return-final" value="Return Itinerary&lt;br&gt;• Main route&lt;br&gt;• Alternatives&lt;br&gt;• Statistics&lt;br&gt;• Map data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1570" width="160" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="end" value="END" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1710" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a1" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="input">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a2" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="input" target="cache-check">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a3" value="HIT" style="endArrow=classic;html=1;strokeWidth=2;exitX=0;exitY=0.5;entryX=0.5;entryY=0;strokeColor=#60a917;" edge="1" parent="1" source="cache-check" target="cache-hit">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a4" value="MISS" style="endArrow=classic;html=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=0;strokeColor=#e51400;" edge="1" parent="1" source="cache-check" target="cache-miss">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a5" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="cache-hit" target="return-cached">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a6" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="cache-miss" target="fetch-pois">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a7" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="fetch-pois" target="apply-filters">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a8" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="apply-filters" target="score-pois">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a9" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="score-pois" target="select-algo">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a10" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="select-algo" target="run-opt">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a11" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="run-opt" target="validate">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a12" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="validate" target="alternatives">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a13" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="alternatives" target="enrich">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a14" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="enrich" target="cache-result">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a15" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="cache-result" target="merge">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a16" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="return-cached" target="merge">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a17" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="merge" target="return-final">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+        <mxCell id="a18" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="return-final" target="end">
+          <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="600" y="400" as="sourcePoint"/><mxPoint x="650" y="350" as="targetPoint"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
