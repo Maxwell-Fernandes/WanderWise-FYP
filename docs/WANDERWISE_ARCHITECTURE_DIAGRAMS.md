@@ -34,6 +34,10 @@
 │  │ Optimization │  │Recommendation│  │  Map Service │                  │
 │  │   Service    │  │   Service    │  │              │                  │
 │  └──────────────┘  └──────────────┘  └──────────────┘                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                  │
+│  │  Distance    │  │   Weather    │  │ Notification │                  │
+│  │ Calculator   │  │   Monitor    │  │   Service    │                  │
+│  └──────────────┘  └──────────────┘  └──────────────┘                  │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │
 ┌────────────────────────────────┴────────────────────────────────────────┐
@@ -55,8 +59,10 @@
 │                          CACHING LAYER (Redis)                           │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                  │
 │  │   L1 Cache   │  │   L2 Cache   │  │   L3 Cache   │                  │
-│  │  (Routes)    │  │(POI Metadata)│  │(User Prefs)  │                  │
-│  └──────────────┘  └──────────────┘  └──────────────┘                  │
+│  │  (Routes)    │  │(POI Metadata)│  │  (Distance   │                  │
+│  │   1hr TTL    │  │   24hr TTL   │  │   Matrix)    │                  │
+│  └──────────────┘  └──────────────┘  │   7day TTL   │                  │
+│                                       └──────────────┘                  │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │
 ┌────────────────────────────────┴────────────────────────────────────────┐
@@ -135,6 +141,15 @@
                     │                       │
                     │                       ▼
                     │            ┌──────────────────┐
+                    │            │ Build Distance   │
+                    │            │ Matrix           │
+                    │            │ - Check L3 Cache │
+                    │            │ - Query DB       │
+                    │            │ - Calculate gaps │
+                    │            └──────────────────┘
+                    │                       │
+                    │                       ▼
+                    │            ┌──────────────────┐
                     │            │ Run Optimization │
                     │            │ - POI selection  │
                     │            │ - Sequencing     │
@@ -158,9 +173,10 @@
                     │                       ▼
                     │            ┌──────────────────┐
                     │            │ Enrich Itinerary │
-                    │            │ - Travel times   │
-                    │            │ - Directions     │
-                    │            │ - Photos         │
+                    │            │ - Map Service    │
+                    │            │ - Directions API │
+                    │            │ - Route geometry │
+                    │            │ - POI photos     │
                     │            └──────────────────┘
                     │                       │
                     │                       ▼
@@ -794,6 +810,140 @@ NOTE: Uses content-based personalization only (no collaborative filtering).
 
 ---
 
+## DIAGRAM 11: COMPLETE SERVICE INTERACTION MAP
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         USER REQUEST                                 │
+│                     (Generate 3-day itinerary)                       │
+└────────────────────────────────┬────────────────────────────────────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+                    ▼                         ▼
+        ┌──────────────────┐      ┌──────────────────┐
+        │  Route Service   │      │  User Service    │
+        │  - Validate req  │      │  - Get user prefs│
+        └──────────────────┘      └──────────────────┘
+                    │                         │
+                    └────────────┬────────────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+                    ▼                         ▼
+        ┌──────────────────┐      ┌──────────────────┐
+        │ Redis L1 Cache   │      │ POI Service      │
+        │ Check cached     │      │ Fetch candidates │
+        │ route            │      │                  │
+        └──────────────────┘      └──────────────────┘
+                    │                         │
+                   HIT                       ▼
+                    │              ┌──────────────────┐
+                    │              │ Redis L2 Cache   │
+                    │              │ POI Metadata     │
+                    │              └──────────────────┘
+                    │                         │
+                    │                        MISS
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ PostgreSQL + PG  │
+                    │              │ Query goa_places │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ Recommendation   │
+                    │              │ Service          │
+                    │              │ - Score POIs     │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ Distance         │
+                    │              │ Calculator       │
+                    │              │ - Check L3       │
+                    │              │ - Query DB       │
+                    │              │ - Haversine      │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ Redis L3 Cache   │
+                    │              │ Distance Matrix  │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ Optimization     │
+                    │              │ Service          │
+                    │              │ - Select algo    │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ Algorithm Layer  │
+                    │              │ - GA / SA / TS   │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         ▼
+                    │              ┌──────────────────┐
+                    │              │ Map Service      │
+                    │              │ - Get directions │
+                    │              │ - Route geometry │
+                    │              └──────────────────┘
+                    │                         │
+                    │                         │
+                    └────────────┬────────────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+                    ▼                         ▼
+        ┌──────────────────┐      ┌──────────────────┐
+        │ Save to          │      │ Cache in Redis   │
+        │ user_routes      │      │ L1 (1hr TTL)     │
+        │ table            │      │                  │
+        └──────────────────┘      └──────────────────┘
+                    │                         │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌───────────────────────┐
+                    │  Return Itinerary     │
+                    │  - 3-day route        │
+                    │  - Map data           │
+                    │  - Statistics         │
+                    └───────────────────────┘
+
+
+EXTERNAL INTEGRATION POINTS:
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│  Google Places API ←── POI Service (data collection)      │
+│                                                            │
+│  Google Maps API ←──── Distance Calculator (fallback)     │
+│                   └──── Map Service (directions)           │
+│                                                            │
+│  OpenWeather API ←──── Weather Monitor (every 30min)      │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+
+
+BACKGROUND PROCESSES:
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│  Weather Monitor (polling) → Adaptation Trigger           │
+│         ↓                                                  │
+│  Notification Service → WebSocket/Push/Email              │
+│                                                            │
+│  Cache Warmer (on startup) → Redis L1/L2/L3              │
+│                                                            │
+│  Materialized View Refresh (daily) → PostgreSQL           │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## TECHNICAL SPECIFICATIONS
 
 ### Performance Metrics
@@ -884,6 +1034,12 @@ These diagrams synthesize findings from:
 
 ---
 
-**Document Version**: 1.0
+**Document Version**: 2.0
 **Last Updated**: November 16, 2025
-**Total Diagrams**: 10
+**Total Diagrams**: 11
+**Changes in v2.0**:
+- Added Distance Calculator, Weather Monitor, Notification Service to Application Layer
+- Updated L3 Cache to show Distance Matrix explicitly with TTL
+- Added distance matrix building step to Itinerary Generation Flow
+- Updated Enrich Itinerary to show Map Service integration
+- Added Diagram 11: Complete Service Interaction Map with all components
