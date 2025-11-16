@@ -1,0 +1,92 @@
+<!-- DIAGRAM 9: CACHING STRATEGY -->
+<mxfile host="app.diagrams.net">
+  <diagram name="Caching Strategy" id="diagram-9">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1200">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="request" value="USER REQUEST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l1-cache" value="L1: Route Cache&#xa;(Redis - In Memory)&#xa;TTL: 1 hour&#xa;Hit Rate: 40-50%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="420" y="150" width="320" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l1-hit" value="Return&#xa;Cached&#xa;Route" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="180" y="280" width="120" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l2-cache" value="L2: POI Metadata&#xa;(Redis)&#xa;TTL: 24 hours&#xa;Hit Rate: 30-40%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="420" y="280" width="320" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l2-compute" value="Compute&#xa;Route&#xa;Using&#xa;Cached&#xa;POIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="820" y="400" width="120" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l3-cache" value="L3: Distance Matrix&#xa;(Redis + PostgreSQL)&#xa;TTL: 7 days&#xa;Hit Rate: 80-90%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="420" y="400" width="320" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l3-compute" value="Compute&#xa;Using&#xa;Cached&#xa;Distances" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="820" y="540" width="120" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fetch-api" value="Fetch&#xa;from&#xa;APIs &amp;&#xa;Compute" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="420" y="540" width="120" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cache-result" value="Cache Result&#xa;in All Layers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="480" y="660" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="return" value="Return to&#xa;User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b3d9ff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="480" y="760" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="stats" value="CACHE STATISTICS TARGET:&#xa;- Overall Hit Rate: &gt;70%&#xa;- L1 Response Time: &lt;10ms&#xa;- L2 Response Time: &lt;50ms&#xa;- L3 Response Time: &lt;100ms&#xa;- Cache Miss (Full Compute): &lt;5 seconds" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;" vertex="1" parent="1">
+          <mxGeometry x="80" y="880" width="1000" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="request" target="l1-cache">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell value="HIT" edge="1" parent="1" source="l1-cache" target="l1-hit">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell value="MISS" edge="1" parent="1" source="l1-cache" target="l2-cache">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell value="HIT" edge="1" parent="1" source="l2-cache" target="l2-compute">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell value="MISS" edge="1" parent="1" source="l2-cache" target="l3-cache">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell value="HIT" edge="1" parent="1" source="l3-cache" target="l3-compute">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell value="MISS" edge="1" parent="1" source="l3-cache" target="fetch-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="l2-compute" target="cache-result">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="l3-compute" target="cache-result">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="fetch-api" target="cache-result">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="cache-result" target="return">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell edge="1" parent="1" source="l1-hit" target="return">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
