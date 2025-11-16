@@ -384,28 +384,27 @@
                     │   - Category          │
                     │   - Location          │
                     │   - Reviews           │
+                    │   - Google rating     │
                     └───────────────────────┘
                                 │
-                ┌───────────────┴───────────────┐
-                │                               │
-                ▼                               ▼
-    ┌────────────────────┐         ┌────────────────────┐
-    │ Content-Based      │         │ Collaborative      │
-    │ Filtering          │         │ Filtering          │
-    │                    │         │                    │
-    │ - Category match   │         │ - User similarity  │
-    │ - Tag matching     │         │ - Item similarity  │
-    │ - Text similarity  │         │ - Matrix fact.     │
-    └────────────────────┘         └────────────────────┘
-                │                               │
-                └───────────────┬───────────────┘
+                                ▼
+                    ┌───────────────────────┐
+                    │ Content-Based         │
+                    │ Filtering             │
+                    │                       │
+                    │ - Category match      │
+                    │ - Tag matching        │
+                    │ - Text similarity     │
+                    │ - User preference fit │
+                    └───────────────────────┘
                                 │
                                 ▼
                     ┌───────────────────────┐
                     │  Popularity Score     │
                     │  - Avg rating         │
                     │  - Review count       │
-                    │  - Recent popularity  │
+                    │  - Google popularity  │
+                    │  - Visit frequency    │
                     └───────────────────────┘
                                 │
                                 ▼
@@ -430,9 +429,9 @@
                     ┌───────────────────────┐
                     │  Weighted Score       │
                     │  = w1*Content         │
-                    │  + w2*Collaborative   │
-                    │  + w3*Popularity      │
-                    │  + w4*Context         │
+                    │  + w2*Popularity      │
+                    │  + w3*Context         │
+                    │  - Constraint penalty │
                     └───────────────────────┘
                                 │
                                 ▼
@@ -446,6 +445,9 @@
                     │  Ranking & Selection  │
                     │  for Optimization     │
                     └───────────────────────┘
+
+NOTE: Collaborative filtering NOT implemented (requires user interaction data).
+      Using content-based + popularity-based hybrid approach instead.
 ```
 
 ---
@@ -453,14 +455,15 @@
 ## DIAGRAM 6: REAL-TIME ADAPTATION FLOW
 
 ```
-                      REAL-TIME MONITORING
+                      ADAPTATION TRIGGERS
                                 │
             ┌───────────────────┼───────────────────┐
             │                   │                   │
             ▼                   ▼                   ▼
   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-  │   Traffic    │    │   Weather    │    │    Crowd     │
-  │   Updates    │    │   Changes    │    │   Density    │
+  │   Weather    │    │    User      │    │   Manual     │
+  │   Changes    │    │  Feedback    │    │   Trigger    │
+  │ (OpenWeather)│    │  (In-app)    │    │  (Button)    │
   └──────────────┘    └──────────────┘    └──────────────┘
             │                   │                   │
             └───────────────────┼───────────────────┘
@@ -468,9 +471,10 @@
                                 ▼
                     ┌───────────────────────┐
                     │  Event Detection      │
-                    │  - Traffic jam?       │
                     │  - Rain started?      │
-                    │  - Attraction crowded?│
+                    │  - Too hot/cold?      │
+                    │  - User wants change? │
+                    │  - Manual re-optimize?│
                     └───────────────────────┘
                                 │
                                 ▼
@@ -495,9 +499,9 @@
                               ┌──────────────────┐
                               │ Generate         │
                               │ Alternatives     │
-                              │ - Skip POI       │
-                              │ - Reorder        │
-                              │ - Replace        │
+                              │ - Skip outdoor   │
+                              │ - Suggest indoor │
+                              │ - Reorder POIs   │
                               └──────────────────┘
                                           │
                                           ▼
@@ -513,6 +517,9 @@
                               │ - New route      │
                               │ - New timing     │
                               └──────────────────┘
+
+NOTE: Traffic and crowd density monitoring NOT implemented.
+      Focus on weather adaptation and user-initiated re-optimization.
 ```
 
 ---
@@ -731,7 +738,7 @@ CACHE STATISTICS TARGET:
    │              │  │              │  │              │
    │ - Categories │  │ - Click      │  │ - Stars      │
    │ - Budget     │  │ - Time spent │  │ - Comments   │
-   │ - Activity   │  │ - Bookmarks  │  │ - Share      │
+   │ - Activity   │  │ - Bookmarks  │  │ - Favorites  │
    └──────────────┘  └──────────────┘  └──────────────┘
             │               │               │
             └───────────────┴───────────────┘
@@ -739,9 +746,10 @@ CACHE STATISTICS TARGET:
                             ▼
               ┌───────────────────────┐
               │   Feature Extraction  │
-              │   - User vectors      │
-              │   - Item vectors      │
-              │   - Interaction matrix│
+              │   - Category weights  │
+              │   - Budget ranges     │
+              │   - Activity level    │
+              │   - POI attributes    │
               └───────────────────────┘
                             │
             ┌───────────────┴───────────────┐
@@ -751,9 +759,9 @@ CACHE STATISTICS TARGET:
    │ Short-term Model │         │ Long-term Model  │
    │ (Session-based)  │         │ (Profile-based)  │
    │                  │         │                  │
-   │ - Current trip   │         │ - Historical     │
+   │ - Current trip   │         │ - Saved prefs    │
    │ - Real-time adj  │         │ - Demographics   │
-   │ - Context-aware  │         │ - Patterns       │
+   │ - Context-aware  │         │ - History        │
    └──────────────────┘         └──────────────────┘
             │                               │
             └───────────────┬───────────────┘
@@ -763,19 +771,25 @@ CACHE STATISTICS TARGET:
               │  Preference Fusion    │
               │  - Weighted average   │
               │  - Context adaptation │
+              │  - Recency weighting  │
               └───────────────────────┘
                             │
                             ▼
               ┌───────────────────────┐
               │  POI Score Adjustment │
-              │  - Personalized ranks │
-              │  - Dynamic weights    │
+              │  - Content matching   │
+              │  - Popularity boost   │
+              │  - Context factors    │
               └───────────────────────┘
                             │
                             ▼
               ┌───────────────────────┐
               │  Optimization Input   │
+              │  (Personalized scores)│
               └───────────────────────┘
+
+NOTE: Uses content-based personalization only (no collaborative filtering).
+      User preferences mapped to POI attributes for scoring.
 ```
 
 ---
