@@ -7,20 +7,23 @@
         <mxCell id="title" value="Real-Time Adaptation Flow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="250" y="20" width="500" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="monitor" value="REAL-TIME MONITORING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="monitor" value="ADAPTATION TRIGGERS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;fontStyle=1;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="300" y="100" width="400" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="traffic" value="Traffic&lt;br&gt;Updates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="200" y="200" width="120" height="60" as="geometry"/>
+        <mxCell id="weather" value="Weather&lt;br&gt;Changes&lt;br&gt;(OpenWeather)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="240" y="200" width="140" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="weather" value="Weather&lt;br&gt;Changes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="440" y="200" width="120" height="60" as="geometry"/>
+        <mxCell id="userfeedback" value="User&lt;br&gt;Feedback&lt;br&gt;(In-app)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="430" y="200" width="140" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="crowd" value="Crowd&lt;br&gt;Density" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="680" y="200" width="120" height="60" as="geometry"/>
+        <mxCell id="manual" value="Manual&lt;br&gt;Trigger&lt;br&gt;(Button)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="620" y="200" width="140" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="detect" value="Event Detection&lt;br&gt;• Traffic jam?&lt;br&gt;• Rain started?&lt;br&gt;• Attraction crowded?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="380" y="320" width="240" height="80" as="geometry"/>
+        <mxCell id="detect" value="Event Detection&lt;br&gt;• Rain started?&lt;br&gt;• Too hot/cold?&lt;br&gt;• User wants change?&lt;br&gt;• Manual re-optimize?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="350" y="320" width="300" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="NOTE: Traffic and crowd density monitoring NOT implemented per project scope." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;size=20;fontSize=11;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="200" height="100" as="geometry"/>
         </mxCell>
         <mxCell id="assess" value="Severity Assessment&lt;br&gt;• Minor: Log only&lt;br&gt;• Major: Adapt route&lt;br&gt;• Critical: Alert" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="380" y="450" width="240" height="80" as="geometry"/>
@@ -46,13 +49,13 @@
         <mxCell id="update" value="Update Itinerary&lt;br&gt;• New route&lt;br&gt;• New timing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="680" y="1050" width="140" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="a1" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.2;entryY=0;" edge="1" parent="1" source="traffic" target="detect">
+        <mxCell id="a1" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.2;entryY=0;" edge="1" parent="1" source="weather" target="detect">
           <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="400" y="600" as="sourcePoint"/><mxPoint x="450" y="550" as="targetPoint"/></mxGeometry>
         </mxCell>
-        <mxCell id="a2" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="weather" target="detect">
+        <mxCell id="a2" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="userfeedback" target="detect">
           <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="400" y="600" as="sourcePoint"/><mxPoint x="450" y="550" as="targetPoint"/></mxGeometry>
         </mxCell>
-        <mxCell id="a3" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.8;entryY=0;" edge="1" parent="1" source="crowd" target="detect">
+        <mxCell id="a3" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.8;entryY=0;" edge="1" parent="1" source="manual" target="detect">
           <mxGeometry width="50" height="50" relative="1" as="geometry"><mxPoint x="400" y="600" as="sourcePoint"/><mxPoint x="450" y="550" as="targetPoint"/></mxGeometry>
         </mxCell>
         <mxCell id="a4" value="" style="endArrow=classic;html=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="detect" target="assess">
