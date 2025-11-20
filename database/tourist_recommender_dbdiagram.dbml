@@ -1,0 +1,429 @@
+// ============================================
+// TOURIST RECOMMENDER SYSTEM - DATABASE SCHEMA
+// Based on: "Improving Itinerary Recommendations for Tourists Through Metaheuristic Algorithms"
+// Format: DBML for dbdiagram.io
+// ============================================
+
+// ============================================
+// 1. USER MANAGEMENT
+// ============================================
+
+Table users {
+  user_id varchar(50) [primary key]
+  email varchar(100) [unique, not null]
+  username varchar(50) [not null]
+  password_hash varchar(255) [not null]
+  first_name varchar(50)
+  last_name varchar(50)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  last_login timestamp
+  is_active boolean [default: true]
+}
+
+Table user_preferences {
+  preference_id int [primary key, increment]
+  user_id varchar(50) [not null]
+  category varchar(50) [not null, note: 'museum, park, restaurant, church, etc.']
+  preference_weight decimal(3,2) [default: 1.0, note: '0.0 to 1.0']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table user_interests {
+  interest_id int [primary key, increment]
+  user_id varchar(50) [not null]
+  interest_type varchar(50) [not null, note: 'adventure, cultural, shopping, etc.']
+  confidence_score decimal(3,2) [note: '0.0 to 1.0 from NLC']
+  source varchar(20) [note: 'manual, survey, nlc, behavior']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+// ============================================
+// 2. POINTS OF INTEREST (POIs)
+// ============================================
+
+Table pois {
+  poi_id varchar(100) [primary key, note: 'Google Place ID']
+  name varchar(255) [not null]
+  place_type varchar(50) [note: 'museum, restaurant, park, etc.']
+  formatted_address text
+  latitude decimal(10,8) [not null]
+  longitude decimal(11,8) [not null]
+  phone_number varchar(50)
+  website varchar(255)
+  rating decimal(2,1) [note: '0.0 to 5.0']
+  user_ratings_total int
+  price_level int [note: '0 to 4 (Google Places)']
+  icon_url varchar(255)
+  google_url varchar(500)
+  expected_visit_duration int [note: 'in minutes (estimated)']
+  popularity_score decimal(3,2) [note: 'calculated from Module II (Twitter/big data)']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (latitude, longitude) [name: 'idx_poi_location']
+    rating [name: 'idx_poi_rating']
+    place_type [name: 'idx_poi_type']
+  }
+}
+
+Table poi_categories {
+  category_id int [primary key, increment]
+  poi_id varchar(100) [not null]
+  category varchar(50) [not null, note: 'mapping Google types to our categories']
+}
+
+Table poi_opening_hours {
+  opening_hours_id int [primary key, increment]
+  poi_id varchar(100) [not null]
+  day_of_week tinyint [not null, note: '0=Sunday, 1=Monday, ..., 6=Saturday']
+  open_time time
+  close_time time
+  is_closed boolean [default: false, note: 'if closed on that day']
+}
+
+Table poi_time_windows {
+  window_id int [primary key, increment]
+  opening_hours_id int [not null]
+  open_time time [not null]
+  close_time time [not null]
+
+  Note: 'Multiple time windows for POIs (if they close for lunch, etc.)'
+}
+
+Table poi_photos {
+  photo_id int [primary key, increment]
+  poi_id varchar(100) [not null]
+  photo_reference varchar(500)
+  photo_url varchar(500)
+  width int
+  height int
+}
+
+// ============================================
+// 3. TRAVEL TIMES / DISTANCE MATRIX
+// ============================================
+
+Table travel_times {
+  travel_time_id int [primary key, increment]
+  origin_poi_id varchar(100) [not null]
+  destination_poi_id varchar(100) [not null]
+  distance_meters int
+  duration_seconds int [note: 'travel time']
+  travel_mode varchar(20) [default: 'walking', note: 'walking, driving, transit']
+  last_updated timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (origin_poi_id, destination_poi_id, travel_mode) [unique, name: 'unique_travel_route']
+    origin_poi_id [name: 'idx_travel_origin']
+    destination_poi_id [name: 'idx_travel_destination']
+  }
+
+  Note: 'Pre-calculated travel times between POIs - Matrix from Figure 7 in paper'
+}
+
+// ============================================
+// 4. TOURIST DESTINATIONS / CITIES
+// ============================================
+
+Table destinations {
+  destination_id int [primary key, increment]
+  city_name varchar(100) [not null]
+  country varchar(100) [not null]
+  latitude decimal(10,8)
+  longitude decimal(11,8)
+  timezone varchar(50)
+  description text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+// ============================================
+// 5. TRIP PLANNING
+// ============================================
+
+Table trips {
+  trip_id int [primary key, increment]
+  user_id varchar(50) [not null]
+  destination_id int [not null]
+  trip_name varchar(100)
+  start_date date [not null]
+  end_date date [not null]
+  number_of_days int [not null]
+  daily_start_time time [default: '09:00:00']
+  daily_end_time time [default: '18:00:00']
+  lunch_start_time time [default: '13:00:00']
+  lunch_end_time time [default: '14:00:00']
+  accommodation_poi_id varchar(100) [note: 'hotel location']
+  accommodation_latitude decimal(10,8)
+  accommodation_longitude decimal(11,8)
+  status varchar(20) [default: 'planning', note: 'planning, active, completed']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (user_id, status) [name: 'idx_trip_user']
+    (start_date, end_date) [name: 'idx_trip_dates']
+  }
+}
+
+// ============================================
+// 6. K-MEANS CLUSTERING (Module III)
+// ============================================
+
+Table clusters {
+  cluster_id int [primary key, increment]
+  trip_id int [not null]
+  day_number int [not null, note: 'which day of the trip (1, 2, 3, etc.)']
+  centroid_latitude decimal(10,8)
+  centroid_longitude decimal(11,8)
+  cluster_size int [note: 'number of POIs in this cluster']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (trip_id, day_number) [unique, name: 'unique_trip_day']
+    (trip_id, day_number) [name: 'idx_cluster_trip']
+  }
+
+  Note: 'Clusters generated by k-means algorithm for each trip'
+}
+
+Table cluster_pois {
+  cluster_poi_id int [primary key, increment]
+  cluster_id int [not null]
+  poi_id varchar(100) [not null]
+  distance_to_centroid decimal(10,2) [note: 'in meters']
+
+  Indexes {
+    cluster_id [name: 'idx_cluster_pois_cluster']
+  }
+
+  Note: 'POIs assigned to each cluster'
+}
+
+// ============================================
+// 7. GENETIC ALGORITHM - ITINERARY OPTIMIZATION (Module IV)
+// ============================================
+
+Table itineraries {
+  itinerary_id int [primary key, increment]
+  trip_id int [not null]
+  day_number int [not null]
+  cluster_id int
+  fitness_score decimal(10,4) [note: 'from GA fitness function']
+  total_duration_minutes int
+  total_distance_meters int
+  invaded_lunch_time_minutes int [default: 0, note: 'penalty metric']
+  generation_number int [note: 'which GA generation produced this']
+  is_selected boolean [default: false, note: 'if user selected this itinerary']
+  is_best_solution boolean [default: false, note: "if this was the GA's best solution"]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (trip_id, day_number) [name: 'idx_itinerary_trip']
+    (trip_id, is_best_solution) [name: 'idx_itinerary_best']
+  }
+
+  Note: 'Optimized itineraries generated by GA'
+}
+
+Table itinerary_pois {
+  itinerary_poi_id int [primary key, increment]
+  itinerary_id int [not null]
+  poi_id varchar(100) [not null]
+  visit_order int [not null, note: 'sequence in the itinerary (gene position)']
+  arrival_time time
+  departure_time time
+  visit_duration_minutes int
+  penalties_minutes int [default: 0, note: 'if arriving outside opening hours']
+
+  Indexes {
+    (itinerary_id, visit_order) [name: 'idx_itinerary_pois_order']
+  }
+
+  Note: 'POIs in the optimized itinerary with visit order (chromosome representation)'
+}
+
+Table itinerary_restaurants {
+  itinerary_restaurant_id int [primary key, increment]
+  itinerary_id int [not null]
+  poi_id varchar(100) [not null]
+  suggested_time time
+
+  Note: 'Restaurants suggested during lunch time in the itinerary'
+}
+
+// ============================================
+// 8. GA EXECUTION LOGS (for analysis)
+// ============================================
+
+Table ga_executions {
+  execution_id int [primary key, increment]
+  trip_id int [not null]
+  day_number int [not null]
+  population_size int
+  number_of_generations int
+  crossover_probability decimal(3,2)
+  mutation_probability decimal(3,2)
+  best_fitness_score decimal(10,4)
+  execution_time_seconds decimal(10,2)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'Track GA parameters and execution'
+}
+
+// ============================================
+// 9. USER FEEDBACK AND RATINGS
+// ============================================
+
+Table poi_user_ratings {
+  rating_id int [primary key, increment]
+  user_id varchar(50) [not null]
+  poi_id varchar(100) [not null]
+  trip_id int
+  rating int [note: 'CHECK: rating BETWEEN 1 AND 5']
+  visited boolean [default: false]
+  visit_date date
+  comments text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'User ratings on recommended POIs (for evaluation - Table 4 in paper)'
+}
+
+Table itinerary_feedback {
+  feedback_id int [primary key, increment]
+  user_id varchar(50) [not null]
+  itinerary_id int [not null]
+
+  // Survey questions from Table 4 (P1-P16)
+  understand_me_p1 int [note: 'CHECK: 1-5']
+  understand_me_p2 int [note: 'CHECK: 1-5']
+  satisfaction_p3 int [note: 'CHECK: 1-5']
+  accuracy_p4 int [note: 'CHECK: 1-5']
+  accuracy_p5 int [note: 'CHECK: 1-5']
+  accuracy_p6 int [note: 'CHECK: 1-5']
+  accuracy_p7 int [note: 'CHECK: 1-5']
+  accuracy_p8 int [note: 'CHECK: 1-5']
+  accuracy_p9 int [note: 'CHECK: 1-5']
+  accuracy_p10 int [note: 'CHECK: 1-5']
+  novelty_p11 int [note: 'CHECK: 1-5']
+  novelty_p12 int [note: 'CHECK: 1-5']
+  novelty_p13 int [note: 'CHECK: 1-5']
+  novelty_p14 int [note: 'CHECK: 1-5']
+  attitude_p15 int [note: 'CHECK: 1-5']
+  attitude_p16 int [note: 'CHECK: 1-5']
+
+  overall_feedback text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'User feedback on itinerary recommendations (for Table 4 survey metrics)'
+}
+
+// ============================================
+// 10. CACHING AND PERFORMANCE
+// ============================================
+
+Table api_cache {
+  cache_id int [primary key, increment]
+  cache_key varchar(255) [unique, not null]
+  cache_value longtext [note: 'JSON response']
+  api_type varchar(50) [note: 'places, distance_matrix, etc.']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  expires_at timestamp
+
+  Indexes {
+    cache_key [name: 'idx_cache_key']
+    expires_at [name: 'idx_expires']
+  }
+
+  Note: 'Cache Google Places API responses to reduce API calls'
+}
+
+// ============================================
+// RELATIONSHIPS / FOREIGN KEYS
+// ============================================
+
+// User relationships
+Ref: user_preferences.user_id > users.user_id [delete: cascade]
+Ref: user_interests.user_id > users.user_id [delete: cascade]
+
+// POI relationships
+Ref: poi_categories.poi_id > pois.poi_id [delete: cascade]
+Ref: poi_opening_hours.poi_id > pois.poi_id [delete: cascade]
+Ref: poi_time_windows.opening_hours_id > poi_opening_hours.opening_hours_id [delete: cascade]
+Ref: poi_photos.poi_id > pois.poi_id [delete: cascade]
+
+// Travel times relationships
+Ref: travel_times.origin_poi_id > pois.poi_id [delete: cascade]
+Ref: travel_times.destination_poi_id > pois.poi_id [delete: cascade]
+
+// Trip relationships
+Ref: trips.user_id > users.user_id [delete: cascade]
+Ref: trips.destination_id > destinations.destination_id
+
+// Clustering relationships
+Ref: clusters.trip_id > trips.trip_id [delete: cascade]
+Ref: cluster_pois.cluster_id > clusters.cluster_id [delete: cascade]
+Ref: cluster_pois.poi_id > pois.poi_id [delete: cascade]
+
+// Itinerary relationships
+Ref: itineraries.trip_id > trips.trip_id [delete: cascade]
+Ref: itineraries.cluster_id > clusters.cluster_id
+Ref: itinerary_pois.itinerary_id > itineraries.itinerary_id [delete: cascade]
+Ref: itinerary_pois.poi_id > pois.poi_id [delete: cascade]
+Ref: itinerary_restaurants.itinerary_id > itineraries.itinerary_id [delete: cascade]
+Ref: itinerary_restaurants.poi_id > pois.poi_id [delete: cascade]
+
+// GA execution relationships
+Ref: ga_executions.trip_id > trips.trip_id [delete: cascade]
+
+// User feedback relationships
+Ref: poi_user_ratings.user_id > users.user_id [delete: cascade]
+Ref: poi_user_ratings.poi_id > pois.poi_id [delete: cascade]
+Ref: poi_user_ratings.trip_id > trips.trip_id
+Ref: itinerary_feedback.user_id > users.user_id [delete: cascade]
+Ref: itinerary_feedback.itinerary_id > itineraries.itinerary_id [delete: cascade]
+
+// ============================================
+// NOTES
+// ============================================
+
+Note tourist_system {
+  '''
+  # Tourist Recommender System Database
+
+  ## Architecture Overview
+  - **Module I**: Natural Language Classifier (NLC) / Watson for user interests
+  - **Module II**: Twitter/Big Data analysis for POI popularity scoring
+  - **Module III**: K-means clustering to group POIs by geographic location for each day
+  - **Module IV**: Genetic Algorithm (GA) to optimize itinerary for each cluster
+
+  ## Key Tables
+  1. **users, user_preferences, user_interests**: User management and preference learning
+  2. **pois**: Points of Interest with Google Places data
+  3. **travel_times**: Pre-calculated distance matrix (N x N) for optimization
+  4. **trips**: User trip plans with time constraints
+  5. **clusters**: K-means clustering results (one cluster per day)
+  6. **itineraries**: GA-optimized routes with fitness scores
+  7. **itinerary_pois**: Chromosome representation (gene = POI visit order)
+
+  ## TTDP/OPTW Problem
+  This schema supports the Team Orienteering Problem with Time Windows (TOPTW):
+  - Time windows: poi_opening_hours, poi_time_windows
+  - Travel times: travel_times table
+  - Visit duration: expected_visit_duration
+  - Lunch constraints: trips.lunch_start_time, lunch_end_time
+  - Multi-day: clusters.day_number
+
+  ## Genetic Algorithm Components
+  - **Population**: Multiple itineraries per generation
+  - **Chromosome**: itinerary_pois.visit_order sequence
+  - **Fitness**: itineraries.fitness_score (considers satisfaction, distance, time, lunch invasion)
+  - **Constraints**: Hard (opening hours) and soft (preferences)
+
+  ## Evaluation Metrics (Table 4 in paper)
+  - Survey questions P1-P16 in itinerary_feedback
+  - User ratings in poi_user_ratings
+  - GA performance in ga_executions
+  '''
+}
