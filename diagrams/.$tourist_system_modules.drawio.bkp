@@ -1,0 +1,279 @@
+<mxfile host="app.diagrams.net" modified="2024-11-20T12:00:00.000Z" agent="5.0" version="21.0.0" etag="abc123" type="device">
+  <diagram name="Tourist Recommender System" id="tourist-system">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="TOURIST RECOMMENDER SYSTEM - MODULE ARCHITECTURE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="580" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- MODULE I: User Profile & Interests -->
+        <mxCell id="module1" value="&lt;b&gt;MODULE I&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;User Profile &amp;amp; Interests&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;(Natural Language Classification)&lt;/i&gt;&lt;br&gt;&lt;br&gt;• Analyze user preferences&lt;br&gt;• Detect interests from text&lt;br&gt;• Build user profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4F8;strokeColor=#4A90E2;strokeWidth=3;fontSize=12;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="200" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- MODULE II: POI Popularity -->
+        <mxCell id="module2" value="&lt;b&gt;MODULE II&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;POI Popularity Analysis&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;(Google Reviews API)&lt;/i&gt;&lt;br&gt;&lt;br&gt;• Fetch POI ratings&lt;br&gt;• Analyze user reviews&lt;br&gt;• Calculate popularity scores" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4E6;strokeColor=#F39C12;strokeWidth=3;fontSize=12;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="320" y="120" width="200" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- MODULE III: K-Means Clustering -->
+        <mxCell id="module3" value="&lt;b&gt;MODULE III&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;K-Means Clustering&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;(Geographical Grouping)&lt;/i&gt;&lt;br&gt;&lt;br&gt;• Group POIs by location&lt;br&gt;• One cluster per day&lt;br&gt;• Minimize travel distance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8E8F4;strokeColor=#9B59B6;strokeWidth=3;fontSize=12;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="560" y="120" width="200" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- MODULE IV: Genetic Algorithm -->
+        <mxCell id="module4" value="&lt;b&gt;MODULE IV&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Genetic Algorithm&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;(TTDP/OPTW Optimization)&lt;/i&gt;&lt;br&gt;&lt;br&gt;• Optimize visit sequence&lt;br&gt;• Respect time windows&lt;br&gt;• Maximize fitness score" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE8E8;strokeColor=#E74C3C;strokeWidth=3;fontSize=12;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="800" y="120" width="200" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- MODULE V: Evaluation -->
+        <mxCell id="module5" value="&lt;b&gt;EVALUATION MODULE&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;User Feedback &amp;amp; Metrics&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;(Survey Analysis)&lt;/i&gt;&lt;br&gt;&lt;br&gt;• P1-P16 survey questions&lt;br&gt;• User satisfaction ratings&lt;br&gt;• System evaluation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8F0;strokeColor=#16A085;strokeWidth=3;fontSize=12;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="200" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- Database: User Data -->
+        <mxCell id="db_user" value="&lt;b&gt;USER DATABASE&lt;/b&gt;&lt;br&gt;&lt;br&gt;• users&lt;br&gt;• user_preferences&lt;br&gt;• user_interests&lt;br&gt;• trips" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E8F4F8;strokeColor=#4A90E2;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="350" width="140" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Database: POI Data -->
+        <mxCell id="db_poi" value="&lt;b&gt;POI DATABASE&lt;/b&gt;&lt;br&gt;&lt;br&gt;• pois&lt;br&gt;• poi_categories&lt;br&gt;• poi_opening_hours&lt;br&gt;• poi_photos" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFF4E6;strokeColor=#F39C12;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="350" width="140" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Database: Travel Matrix -->
+        <mxCell id="db_travel" value="&lt;b&gt;TRAVEL MATRIX&lt;/b&gt;&lt;br&gt;&lt;br&gt;• travel_times&lt;br&gt;• distance_meters&lt;br&gt;• duration_seconds" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F5F5F5;strokeColor=#7F8C8D;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="350" width="140" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Database: Clusters -->
+        <mxCell id="db_cluster" value="&lt;b&gt;CLUSTER DATA&lt;/b&gt;&lt;br&gt;&lt;br&gt;• clusters&lt;br&gt;• cluster_pois" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8E8F4;strokeColor=#9B59B6;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="590" y="350" width="140" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- External API: Google Places -->
+        <mxCell id="api_google" value="&lt;b&gt;GOOGLE PLACES API&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Place Details&lt;br&gt;• Distance Matrix&lt;br&gt;• Photos" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FFFFFF;strokeColor=#34495E;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="30" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- External API: Google Reviews -->
+        <mxCell id="api_reviews" value="&lt;b&gt;GOOGLE REVIEWS API&lt;/b&gt;&lt;br&gt;&lt;br&gt;• User Reviews&lt;br&gt;• Ratings&lt;br&gt;• Popularity Data" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FFFFFF;strokeColor=#F39C12;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="560" y="30" width="200" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Flow Arrows -->
+        
+        <!-- User to Module 1 -->
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#4A90E2;" edge="1" parent="1" source="db_user" target="module1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label1" value="User Profile" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#4A90E2;" vertex="1" connectable="0" parent="arrow1">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Module 1 to POI DB -->
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#4A90E2;" edge="1" parent="1" source="module1" target="db_poi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label2" value="Filter POIs by Interests" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#4A90E2;" vertex="1" connectable="0" parent="arrow2">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="20" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Google Places API to POI DB -->
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#34495E;dashed=1;" edge="1" parent="1" source="api_google" target="db_poi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="110" />
+              <mxPoint x="420" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label3" value="Fetch POI Data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#34495E;" vertex="1" connectable="0" parent="arrow3">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Google Reviews API to Module 2 -->
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#F39C12;dashed=1;" edge="1" parent="1" source="api_reviews" target="module2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="110" />
+              <mxPoint x="420" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label4" value="Reviews &amp; Ratings" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#F39C12;" vertex="1" connectable="0" parent="arrow4">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Module 2 to POI DB -->
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#F39C12;" edge="1" parent="1" source="module2" target="db_poi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label5" value="Update Popularity Scores" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#F39C12;" vertex="1" connectable="0" parent="arrow5">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- POI DB to Module 3 -->
+        <mxCell id="arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#9B59B6;" edge="1" parent="1" source="db_poi" target="module3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="410" />
+              <mxPoint x="520" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label6" value="Selected POIs" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#9B59B6;" vertex="1" connectable="0" parent="arrow6">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Module 3 to Cluster DB -->
+        <mxCell id="arrow7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#9B59B6;" edge="1" parent="1" source="module3" target="db_cluster">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label7" value="Daily Clusters" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#9B59B6;" vertex="1" connectable="0" parent="arrow7">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Cluster DB to Module 4 -->
+        <mxCell id="arrow8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#E74C3C;" edge="1" parent="1" source="db_cluster" target="module4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="400" />
+              <mxPoint x="740" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label8" value="Cluster POIs" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#E74C3C;" vertex="1" connectable="0" parent="arrow8">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Travel Matrix to Module 4 -->
+        <mxCell id="arrow9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#7F8C8D;" edge="1" parent="1" source="db_travel" target="module4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label9" value="Travel Times" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#7F8C8D;" vertex="1" connectable="0" parent="arrow9">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Module 4 to Evaluation -->
+        <mxCell id="arrow10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#E74C3C;" edge="1" parent="1" source="module4" target="module5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="320" />
+              <mxPoint x="540" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label10" value="&lt;b&gt;Optimized Itinerary&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#E74C3C;" vertex="1" connectable="0" parent="arrow10">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Evaluation to User DB (Feedback Loop) -->
+        <mxCell id="arrow11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#16A085;dashed=1;" edge="1" parent="1" source="module5" target="db_user">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="600" />
+              <mxPoint x="280" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label11" value="Feedback Loop" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#16A085;" vertex="1" connectable="0" parent="arrow11">
+          <mxGeometry x="-0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Legend Box -->
+        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="340" height="160" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend_title" value="&lt;b&gt;DATABASE TABLES BY MODULE&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="530" width="280" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend1" value="&lt;b&gt;Module I:&lt;/b&gt; users, user_preferences, user_interests" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="555" width="320" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend2" value="&lt;b&gt;Module II:&lt;/b&gt; pois, poi_categories, poi_opening_hours, poi_photos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="575" width="320" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend3" value="&lt;b&gt;Module III:&lt;/b&gt; clusters, cluster_pois" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="595" width="320" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend4" value="&lt;b&gt;Module IV:&lt;/b&gt; itineraries, itinerary_pois, ga_executions, travel_times" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="615" width="320" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend5" value="&lt;b&gt;Evaluation:&lt;/b&gt; poi_user_ratings, itinerary_feedback" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="635" width="320" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend6" value="&lt;b&gt;Core:&lt;/b&gt; trips, destinations, api_cache" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="655" width="320" height="15" as="geometry" />
+        </mxCell>
+        
+        <!-- Notes -->
+        <mxCell id="note_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E6;strokeColor=#F39C12;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="520" width="290" height="160" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note_title" value="&lt;b&gt;KEY ALGORITHMS&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="720" y="530" width="260" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note1" value="• &lt;b&gt;K-Means:&lt;/b&gt; Groups POIs geographically for each day" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="555" width="270" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note2" value="• &lt;b&gt;Genetic Algorithm:&lt;/b&gt; Optimizes visit sequence" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="575" width="270" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note3" value="• &lt;b&gt;TTDP:&lt;/b&gt; Time-Dependent Team Orienteering" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="595" width="270" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note4" value="• &lt;b&gt;OPTW:&lt;/b&gt; Orienteering Problem with Time Windows" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="615" width="270" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note5" value="• &lt;b&gt;Fitness Function:&lt;/b&gt; Considers time, distance, ratings" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="635" width="270" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note6" value="• &lt;b&gt;Constraints:&lt;/b&gt; Opening hours, lunch time, daily limits" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="655" width="270" height="15" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

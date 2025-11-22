@@ -1,0 +1,393 @@
+<!-- TOURIST RECOMMENDER SYSTEM - FULL ARCHITECTURE DIAGRAM -->
+<mxfile host="app.diagrams.net">
+  <diagram name="Full System Architecture" id="full-architecture">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1200">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="TOURIST RECOMMENDER SYSTEM - COMPLETE ARCHITECTURE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="10" width="1000" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- LAYER 1: PRESENTATION LAYER (Frontend) -->
+        <!-- ===================================== -->
+        <mxCell id="layer1_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="1320" height="140" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="layer1_label" value="LAYER 1: PRESENTATION LAYER (Frontend)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#1a5490;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="400" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Web Application -->
+        <mxCell id="web_app" value="WEB APPLICATION&#xa;&#xa;React.js / Vue.js&#xa;&#xa;• Trip Planning Forms&#xa;• Interactive Maps&#xa;• Itinerary Display&#xa;• User Dashboard&#xa;• POI Details &amp; Photos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a5490;strokeWidth=2;fontSize=11;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Mobile Application -->
+        <mxCell id="mobile_app" value="MOBILE APP&#xa;&#xa;React Native / Flutter&#xa;&#xa;• GPS Integration&#xa;• Real-time Navigation&#xa;• Camera &amp; Photos&#xa;• Offline Maps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a5490;strokeWidth=2;fontSize=11;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="120" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- User Icon -->
+        <mxCell id="user_icon" value="TOURIST&#xa;&#xa;End User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#1a5490;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="660" y="130" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- LAYER 2: APPLICATION LAYER (Backend) -->
+        <!-- ===================================== -->
+        <mxCell id="layer2_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="1320" height="400" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="layer2_label" value="LAYER 2: APPLICATION LAYER (Backend Services)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#b88a00;" vertex="1" parent="1">
+          <mxGeometry x="60" y="250" width="500" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- API Gateway -->
+        <mxCell id="api_gateway" value="API GATEWAY&#xa;&#xa;REST API&#xa;&#xa;• JWT Authentication&#xa;• Rate Limiting&#xa;• Request Routing&#xa;• CORS Handling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b88a00;strokeWidth=3;fontSize=11;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="290" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Core Services Row 1 -->
+        <mxCell id="user_service" value="USER SERVICE&#xa;&#xa;• Registration/Login&#xa;• Profile Management&#xa;• Preferences&#xa;• Interest Detection&#xa;(Module I - NLC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1a5490;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="400" width="180" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="poi_service" value="POI SERVICE&#xa;&#xa;• Fetch from APIs&#xa;• Cache Management&#xa;• Popularity Analysis&#xa;• Reviews Processing&#xa;(Module II - Reviews)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b88a00;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="400" width="180" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="trip_service" value="TRIP SERVICE&#xa;&#xa;• Trip CRUD&#xa;• Constraints&#xa;• Date Management&#xa;• Status Tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#60a917;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="400" width="180" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Algorithm Services Row 2 -->
+        <mxCell id="clustering_service" value="K-MEANS SERVICE&#xa;&#xa;• Geographical Clustering&#xa;• Daily POI Groups&#xa;• Centroid Calculation&#xa;(Module III)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="520" width="180" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ga_service" value="GA OPTIMIZATION&#xa;&#xa;• Genetic Algorithm&#xa;• Fitness Calculation&#xa;• Route Optimization&#xa;• TTDP/OPTW Solver&#xa;(Module IV)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e51400;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="520" width="180" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="recommendation_service" value="RECOMMENDATION&#xa;&#xa;• Itinerary Generation&#xa;• Restaurant Suggestions&#xa;• Alternative Routes&#xa;• Personalization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0c8599;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="520" width="180" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Technology Stack Box -->
+        <mxCell id="tech_stack_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#b88a00;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="400" width="260" height="220" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tech_stack_label" value="BACKEND TECHNOLOGY" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="410" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tech_stack_content" value="Language: Python 3.8+&#xa;Framework: Flask / FastAPI&#xa;Auth: JWT&#xa;&#xa;Algorithms:&#xa;• scikit-learn (K-means)&#xa;• DEAP (Genetic Algorithm)&#xa;• pandas, numpy&#xa;• geopy&#xa;&#xa;Task Queue: Celery&#xa;Message Broker: Redis" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="730" y="440" width="220" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- API Endpoints Box -->
+        <mxCell id="api_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5e1;strokeColor=#60a917;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="290" width="340" height="330" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="api_label" value="REST API ENDPOINTS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="300" width="320" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="api_content" value="Authentication:&#xa;POST /api/auth/register&#xa;POST /api/auth/login&#xa;GET /api/auth/profile&#xa;&#xa;POI Management:&#xa;GET /api/pois&#xa;GET /api/pois/{poi_id}&#xa;GET /api/pois/search?query=...&#xa;GET /api/pois/nearby?lat=...&amp;lng=...&#xa;POST /api/pois/{poi_id}/rate&#xa;&#xa;Trip Management:&#xa;POST /api/trips&#xa;GET /api/trips&#xa;GET /api/trips/{trip_id}&#xa;PUT /api/trips/{trip_id}&#xa;DELETE /api/trips/{trip_id}&#xa;&#xa;Itinerary Generation:&#xa;POST /api/trips/{trip_id}/generate-itinerary&#xa;GET /api/trips/{trip_id}/itinerary/{day}&#xa;POST /api/itineraries/{itinerary_id}/feedback" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=9;fontFamily=Courier New;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="330" width="300" height="280" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- LAYER 3: DATA LAYER (Database) -->
+        <!-- ===================================== -->
+        <mxCell id="layer3_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="670" width="1320" height="140" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="layer3_label" value="LAYER 3: DATA LAYER (Databases &amp; Storage)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#508d50;" vertex="1" parent="1">
+          <mxGeometry x="60" y="680" width="500" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- MySQL Database -->
+        <mxCell id="mysql_db" value="MySQL DATABASE&#xa;&#xa;20 Tables:&#xa;• users, user_preferences, user_interests&#xa;• pois, poi_categories, poi_opening_hours&#xa;• trips, destinations&#xa;• clusters, cluster_pois&#xa;• itineraries, itinerary_pois&#xa;• poi_user_ratings, itinerary_feedback&#xa;• travel_times, api_cache" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="720" width="340" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Redis Cache -->
+        <mxCell id="redis_cache" value="REDIS CACHE&#xa;&#xa;• API Responses&#xa;• Session Data&#xa;• Temporary Results&#xa;• TTL Management" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffffff;strokeColor=#e51400;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="720" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- File Storage -->
+        <mxCell id="file_storage" value="FILE STORAGE&#xa;&#xa;• POI Photos&#xa;• User Uploads&#xa;• Generated Maps&#xa;&#xa;(S3 / GCS)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffffff;strokeColor=#9673a6;strokeWidth=2;fontSize=10;align=center;verticalAlign=top;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="720" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- LAYER 4: EXTERNAL SERVICES -->
+        <!-- ===================================== -->
+        <mxCell id="layer4_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=3;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="680" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="layer4_label" value="LAYER 4: EXTERNAL SERVICES (APIs)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="850" width="500" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Google APIs -->
+        <mxCell id="google_places" value="Google Places API&#xa;&#xa;• POI Data&#xa;• Place Details&#xa;• Photos" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="880" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="google_reviews" value="Google Reviews API&#xa;&#xa;• User Reviews&#xa;• Ratings&#xa;• Popularity" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="880" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="google_distance" value="Distance Matrix API&#xa;&#xa;• Travel Times&#xa;• Distances&#xa;• Routes" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="880" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="google_maps" value="Google Maps API&#xa;&#xa;• Map Display&#xa;• Directions&#xa;• Geocoding" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="880" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- LAYER 5: INFRASTRUCTURE -->
+        <!-- ===================================== -->
+        <mxCell id="layer5_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=3;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="840" width="600" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="layer5_label" value="LAYER 5: INFRASTRUCTURE &amp; DEPLOYMENT" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="780" y="850" width="500" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Infrastructure Components -->
+        <mxCell id="web_server" value="Web Server&#xa;&#xa;• Nginx&#xa;• Load Balancer&#xa;• SSL/HTTPS" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;fillColor=#ffffff;strokeColor=#666666;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="880" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="app_server" value="App Server&#xa;&#xa;• Gunicorn&#xa;• Docker&#xa;• Python/Flask" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;fillColor=#ffffff;strokeColor=#666666;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="880" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="monitoring" value="Monitoring&#xa;&#xa;• Logs&#xa;• Performance&#xa;• Error Tracking" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;fillColor=#ffffff;strokeColor=#666666;strokeWidth=2;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="880" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- MODULE FLOW INDICATORS -->
+        <!-- ===================================== -->
+        <mxCell id="module1_indicator" value="MODULE I" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#1a5490;strokeWidth=2;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="375" width="70" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="module2_indicator" value="MODULE II" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#b88a00;strokeWidth=2;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="375" width="70" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="module3_indicator" value="MODULE III" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="495" width="75" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="module4_indicator" value="MODULE IV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#e51400;strokeWidth=2;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="495" width="75" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ===================================== -->
+        <!-- ARROWS AND CONNECTIONS -->
+        <!-- ===================================== -->
+
+        <!-- Frontend to API Gateway -->
+        <mxCell edge="1" parent="1" source="web_app" target="api_gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#1a5490;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="220"/>
+              <mxPoint x="650" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="mobile_app" target="api_gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#1a5490;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="220"/>
+              <mxPoint x="650" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- API Gateway to Services -->
+        <mxCell edge="1" parent="1" source="api_gateway" target="user_service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#b88a00;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="api_gateway" target="poi_service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#b88a00;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="api_gateway" target="trip_service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#b88a00;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Service to Service Flow -->
+        <mxCell edge="1" parent="1" source="trip_service" target="clustering_service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#9673a6;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="510"/>
+              <mxPoint x="170" y="510"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="clustering_service" target="ga_service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#9673a6;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ga_service" target="recommendation_service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#e51400;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Services to Database -->
+        <mxCell edge="1" parent="1" source="user_service" target="mysql_db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="650"/>
+              <mxPoint x="270" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="poi_service" target="mysql_db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="650"/>
+              <mxPoint x="270" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="trip_service" target="mysql_db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="650"/>
+              <mxPoint x="270" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="clustering_service" target="mysql_db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="650"/>
+              <mxPoint x="270" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ga_service" target="mysql_db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="650"/>
+              <mxPoint x="270" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Services to Redis Cache -->
+        <mxCell edge="1" parent="1" source="poi_service" target="redis_cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=1.5;strokeColor=#e51400;dashed=1;dashPattern=5 5;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="640"/>
+              <mxPoint x="600" y="640"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- POI Service to File Storage -->
+        <mxCell edge="1" parent="1" source="poi_service" target="file_storage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=1.5;strokeColor=#9673a6;dashed=1;dashPattern=5 5;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="630"/>
+              <mxPoint x="860" y="630"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- POI Service to External APIs -->
+        <mxCell edge="1" parent="1" source="poi_service" target="google_places" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#b85450;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="820"/>
+              <mxPoint x="150" y="820"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="poi_service" target="google_reviews" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#b85450;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="820"/>
+              <mxPoint x="320" y="820"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ga_service" target="google_distance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#b85450;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="820"/>
+              <mxPoint x="490" y="820"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Frontend to Google Maps -->
+        <mxCell edge="1" parent="1" source="web_app" target="google_maps" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#1a5490;dashed=1;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="155"/>
+              <mxPoint x="20" y="1020"/>
+              <mxPoint x="660" y="1020"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="990" width="520" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1000" width="500" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_content" value="Arrow Types:&#xa;━━━ Solid: Direct communication&#xa;╌╌╌ Dashed: External API calls / Cache operations&#xa;&#xa;Color Coding:&#xa;🔵 Blue (#1a5490): Frontend/User related&#xa;🟡 Yellow (#b88a00): Backend services&#xa;🟢 Green (#82b366): Database operations&#xa;🔴 Red (#e51400 / #b85450): External APIs/Cache&#xa;🟣 Purple (#9673a6): Algorithm services&#xa;⚫ Gray (#666666): Infrastructure&#xa;&#xa;Database: 20 tables across all modules&#xa;API Endpoints: 20+ RESTful endpoints&#xa;Algorithms: K-means (Module III) + GA (Module IV)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1030" width="480" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Technology Notes -->
+        <mxCell id="tech_notes_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#666666;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="990" width="760" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tech_notes_title" value="TECHNOLOGY STACK SUMMARY" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1000" width="740" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tech_notes_content" value="Frontend: React.js/Vue.js, Material-UI, Google Maps JavaScript API, Redux/Vuex&#xa;Backend: Python 3.8+, Flask/FastAPI, JWT Auth, Celery, Redis&#xa;Algorithms: scikit-learn (K-means), DEAP (Genetic Algorithm), pandas, numpy, geopy&#xa;Database: MySQL 8.0+, Redis Cache, S3/GCS File Storage&#xa;APIs: Google Places, Google Reviews, Distance Matrix, Google Maps&#xa;Infrastructure: Nginx, Gunicorn, Docker, Monitoring (Prometheus/Sentry)&#xa;Deployment: VPS, PaaS (Heroku), Docker+K8s, or Serverless (AWS Lambda)&#xa;&#xa;Cost Estimate: $20-500/month depending on traffic&#xa;Development Time: 12-14 weeks for full implementation" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="620" y="1030" width="720" height="110" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
