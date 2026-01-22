@@ -1,0 +1,86 @@
+% WanderWise+ Module III: K-Means Geographic Clustering
+% Main LaTeX Document
+%
+% This file combines all Module III documentation into a single document
+% for academic submission and documentation purposes.
+
+\documentclass[12pt,a4paper,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% Page layout
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm
+}
+
+% Code listing configuration
+\lstset{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    tabsize=4,
+    language=Python
+}
+
+% Chapter style
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries}
+    {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+% Hyperlink colors
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Document information
+\title{WanderWise+ Module III Documentation}
+\subtitle{K-Means Geographic Clustering for Multi-Day Tourism Route Planning}
+\author{Project Documentation}
+\date{\today}
+
+\begin{document}
+
+% Front matter
+\frontmatter
+\maketitle
+\tableofcontents
+
+% Main chapters
+\mainmatter
+
+\include{01_clustering_fundamentals}
+\include{02_k_selection_strategy}
+\include{03_kmeans_plus_plus}
+\include{04_algorithm_details}
+\include{05_edge_cases_handling}
+\include{06_implementation_integration}
+
+% Back matter
+\backmatter
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
