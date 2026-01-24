@@ -1,0 +1,93 @@
+\subsection{Module III: K-Means Geographic Clustering for Multi-Day Tour Planning}
+
+\textbf{Purpose:} Transform flat lists of Points of Interest (POIs) into structured daily itineraries by grouping geographically proximate POIs together for each day of a multi-day tour.
+
+\textbf{Problem Overview:}
+When users request multi-day tours (3, 5, or 7 days) in Goa, the system must intelligently distribute POIs across days while respecting geographic proximity. Without geographic clustering, routes might schedule visits to Baga Beach and Palolem Beach on the same day—requiring over 70 kilometers of travel. Geographic clustering ensures each day's POIs form a spatially coherent cluster, minimizing excessive travel time.
+
+\textbf{Algorithm Overview:}
+K-means clustering is an unsupervised machine learning algorithm that partitions data points into K mutually exclusive clusters based on geographic proximity. In WanderWise+:
+\begin{itemize}
+    \item \textbf{$K$:} Number of trip days (user-specified, e.g., 5-day trip → K=5)
+    \item \textbf{Data points:} POI coordinates (latitude, longitude)
+    \item \textbf{Distance metric:} Haversine formula (great-circle distance accounting for Earth's curvature)
+    \item \textbf{Objective:} Minimize within-cluster sum of squares (WCSS)
+\end{itemize}
+
+\textbf{Algorithm Selection Rationale:}
+\begin{itemize}
+    \item \textbf{K-means chosen over hierarchical:} Produces exactly K clusters of roughly equal size, ideal for balanced daily itineraries
+    \item \textbf{K-means++ initialization:} Spreads initial centroids across data space, ensuring consistent convergence in 5-10 iterations (vs 10-20 with random initialization)
+    \item \textbf{Haversine over Euclidean:} Essential for Goa's 110km north-south extent where Earth's curvature affects distance accuracy
+\end{itemize}
+
+\textbf{K-Means++ Initialization Steps:}
+\begin{enumerate}
+    \item Select first centroid uniformly at random from all POIs
+    \item For each remaining POI, compute distance to nearest selected centroid
+    \item Select next centroid with probability $P(x) = \frac{D(x)^2}{\sum_{y \in \mathcal{X}} D(y)^2}$ where $D(x)$ is squared distance to nearest centroid
+    \item Repeat Steps 2-3 until K centroids are selected
+    \item Proceed with standard K-means iterations using these centroids
+\end{enumerate}
+
+\textbf{Complete K-Means Algorithm Steps:}
+\begin{enumerate}
+    \item Initialize K centroids using K-means++ method
+    \item \textbf{Assignment Step:} Assign each POI to the cluster with nearest centroid (Haversine distance)
+    \item \textbf{Update Step:} Reposition each centroid to geographic mean of assigned POIs
+    \item \textbf{Convergence Check:} If WCSS improvement $<$ tolerance ($10^{-4}$), terminate; else return to Step 2
+    \item Repeat until convergence (typically 5-10 iterations) or maximum iterations (100) reached
+\end{enumerate}
+
+\textbf{Constraint Handling:}
+\begin{itemize}
+    \item \textbf{Minimum POIs per day:} 6 (prevents sparse itineraries)
+    \item \textbf{Maximum POIs per day:} 15 (prevents overcrowded days)
+    \item \textbf{Edge Cases:} Imbalanced clusters, empty clusters, outlier POIs (e.g., Dudhsagar Waterfalls 40km inland)
+\end{itemize}
+
+\textbf{Edge Cases and Solutions:}
+\begin{itemize}
+    \item \textbf{Imbalanced clusters:} Boundary POI reassignment to undersized clusters
+    \item \textbf{Empty clusters:} Reinitialize to random unassigned POI location
+    \item \textbf{Outlier POIs (>30km from center):} Assign to nearest cluster with user notification
+    \item \textbf{Minimum constraint violation:} Cluster merging with neighboring clusters
+\end{itemize}
+
+\textbf{Goa Regional POI Distribution:}
+\begin{itemize}
+    \item \textbf{North Goa (25-35\%):} Baga, Calangute, Anjuna, Vagator
+    \item \textbf{Central Goa (15-20\%):} Panaji, Dona Paula, Miramar
+    \item \textbf{South Goa (20-25\%):} Palolem, Agonda, Cola Beach
+    \item \textbf{Interior/Outliers (5-10\%):} Dudhsagar, Spice Plantations
+\end{itemize}
+
+\textbf{Database Tables Used:}
+\begin{itemize}
+    \item \texttt{goa\_places}: Stores POI data with coordinates (latitude, longitude)
+    \item \texttt{distance\_matrix}: Precomputed pairwise distances between POIs
+    \item \texttt{itinerary\_clusters}: Stores cluster assignments (day\_number, centroid, POI lists)
+\end{itemize}
+
+\textbf{API Integration:}
+\begin{itemize}
+    \item \textbf{Endpoint:} \texttt{POST /api/clustering/geographic}
+    \item \textbf{Input:} POI IDs, number of days, optional random seed
+    \item \textbf{Output:} Cluster assignments with centroids, POI details, warnings
+\end{itemize}
+
+\textbf{Performance Metrics:}
+\begin{itemize}
+    \item \textbf{Computational complexity:} O(iterations × K × N)
+    \item \textbf{Typical iterations to converge:} 5-10
+    \item \textbf{Latency:} Sub-50ms on standard hardware
+\end{itemize}
+
+\textbf{Benefits:}
+\begin{itemize}
+    \item Reduces daily travel time by grouping nearby POIs
+    \item Ensures geographic coherence for each day's itinerary
+    \item Automatically adapts to any number of trip days
+    \item K-means++ initialization ensures consistent, reproducible results
+    \item Handles outliers gracefully with user notifications
+\end{itemize}

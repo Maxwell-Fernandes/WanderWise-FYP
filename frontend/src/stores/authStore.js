@@ -1,9 +1,17 @@
 import { create } from 'zustand';
 import { authService } from '../services/auth';
 
+// Mock user data for testing
+const mockUser = {
+  id: '1',
+  email: 'demo@wanderwise.com',
+  full_name: 'Demo User',
+  username: 'demo_user',
+};
+
 const useAuthStore = create((set) => ({
-  user: authService.getUser(),
-  isAuthenticated: authService.isAuthenticated(),
+  user: mockUser, //authService.getUser(),
+  isAuthenticated: true, //authService.isAuthenticated(),
   isLoading: false,
   error: null,
 

@@ -1,23 +1,41 @@
-import api from './api';
-
+// Dummy authentication service for frontend-only MVP
 export const authService = {
-  // User registration
+  // User registration (dummy)
   async register(userData) {
-    const response = await api.post('/api/auth/register', userData);
-    return response.data;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const mockUser = {
+          id: '1',
+          username: userData.username,
+          email: userData.email,
+          full_name: userData.full_name || userData.username,
+        };
+        resolve({
+          access_token: 'dummy-access-token',
+          refresh_token: 'dummy-refresh-token',
+          user: mockUser,
+        });
+      }, 1000);
+    });
   },
 
-  // User login
+  // User login (dummy)
   async login(credentials) {
-    const response = await api.post('/api/auth/login', credentials);
-    const { access_token, refresh_token, user } = response.data;
-
-    // Store tokens and user data
-    localStorage.setItem('access_token', access_token);
-    localStorage.setItem('refresh_token', refresh_token);
-    localStorage.setItem('user', JSON.stringify(user));
-
-    return response.data;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const mockUser = {
+          id: '1',
+          username: credentials.email.split('@')[0],
+          email: credentials.email,
+          full_name: 'Traveler',
+        };
+        resolve({
+          access_token: 'dummy-access-token',
+          refresh_token: 'dummy-refresh-token',
+          user: mockUser,
+        });
+      }, 1000);
+    });
   },
 
   // Logout
@@ -27,10 +45,18 @@ export const authService = {
     localStorage.removeItem('user');
   },
 
-  // Get current user
+  // Get current user (dummy)
   async getCurrentUser() {
-    const response = await api.get('/api/auth/me');
-    return response.data;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          resolve(JSON.parse(storedUser));
+        } else {
+          resolve(null);
+        }
+      }, 500);
+    });
   },
 
   // Check if user is authenticated

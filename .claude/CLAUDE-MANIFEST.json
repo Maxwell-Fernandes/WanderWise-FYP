@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "description": "WanderWise+ - Intelligent Tourism Route Planning System for Goa, India",
+  "contact": "",
+  "index": {
+    "enabled": true,
+    "files": [
+      "**/*.py",
+      "**/*.jsx",
+      "**/*.js",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.sql",
+      "**/*.md",
+      "**/*.txt",
+      "**/*.json",
+      "**/*.html",
+      "**/*.css"
+    ],
+    "exclude": [
+      ".git/**",
+      ".venv/**",
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "*.pyc",
+      "__pycache__/**",
+      "*.pdf",
+      "*.tex",
+      "*.docx"
+    ]
+  },
+  "codebase": {
+    "languages": ["python", "javascript", "sql", "html", "css"],
+    "frameworks": ["fastapi", "react", "tailwindcss", "postgis"],
+    "services": ["postgres"]
+  },
+  "dependencies": {
+    "python": {
+      "requirements": "backend/requirements.txt"
+    },
+    "javascript": {
+      "package": "frontend/package.json"
+    }
+  },
+  "entrypoints": {
+    "backend": "backend/app/main.py",
+    "frontend": "frontend/src/main.jsx"
+  },
+  "docs": ["QUICKSTART.md", "CLAUDE.md", "SETUP_SUMMARY.md"]
+}

@@ -1,63 +1,111 @@
-import axios from 'axios';
+// Mock API service for frontend-only MVP
+import { mockItinerary, mockInterests, mockPlaces, mockSurveyQuestions } from '../data/mockData';
 
-// Base API URL - adjust for your environment
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-
-// Create axios instance
-const api = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Request interceptor to add auth token
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// Response interceptor to handle errors
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
-      // Token expired, try to refresh
-      const refreshToken = localStorage.getItem('refresh_token');
-      if (refreshToken) {
-        try {
-          const response = await axios.post(`${API_BASE_URL}/api/auth/refresh`, {
-            refresh_token: refreshToken,
-          });
-          const { access_token } = response.data;
-          localStorage.setItem('access_token', access_token);
-          // Retry original request
-          error.config.headers.Authorization = `Bearer ${access_token}`;
-          return axios(error.config);
-        } catch (refreshError) {
-          // Refresh failed, logout user
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('refresh_token');
-          localStorage.removeItem('user');
-          window.location.href = '/login';
+const api = {
+  get: async (url) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let data = {};
+        
+        if (url.includes('/itineraries')) {
+          if (url.includes('/itinerary/')) {
+            // Get specific itinerary
+            data = mockItinerary;
+          } else {
+            // Get user itineraries list
+            data = [
+              {
+                id: 'itin-123',
+                name: 'Goa Beach Tour',
+                num_days: 3,
+                created_at: '2024-11-29',
+                total_distance_km: 145.6,
+              },
+              {
+                id: 'itin-456',
+                name: 'Cultural Heritage Tour',
+                num_days: 2,
+                created_at: '2024-11-28',
+                total_distance_km: 89.2,
+              },
+            ];
+          }
+        } else if (url.includes('/places')) {
+          data = mockPlaces;
+        } else if (url.includes('/interests')) {
+          data = mockInterests;
+        } else if (url.includes('/survey')) {
+          data = mockSurveyQuestions;
         }
-      } else {
-        // No refresh token, redirect to login
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('user');
-        window.location.href = '/login';
-      }
-    }
-    return Promise.reject(error);
-  }
-);
+        
+        resolve({
+          data,
+          status: 200,
+        });
+      }, 500);
+    });
+  },
+
+  post: async (url, data) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let responseData = {};
+        
+        if (url.includes('/itineraries')) {
+          // Create new itinerary
+          responseData = {
+            ...mockItinerary,
+            num_days: data.numDays,
+            start_date: data.startDate,
+            budget_category: data.budgetCategory,
+            daily_hours: {
+              start: data.startTime,
+              end: data.endTime,
+            },
+            user_interests: ['beaches', 'food', 'nature'],
+            total_pois: mockItinerary.days.reduce((sum, day) => sum + day.places.length, 0),
+            daily_itineraries: mockItinerary.days.slice(0, data.numDays),
+          };
+        } else if (url.includes('/classify-interests')) {
+          // Classify interests
+          responseData = {
+            interests: ['beaches', 'food', 'nature'],
+            confidence_scores: mockInterests,
+          };
+        } else if (url.includes('/feedback')) {
+          // Submit feedback
+          responseData = { success: true, message: 'Feedback submitted successfully' };
+        }
+        
+        resolve({
+          data: responseData,
+          status: 201,
+        });
+      }, 1000);
+    });
+  },
+
+  put: async (url, data) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          data: {},
+          status: 200,
+        });
+      }, 500);
+    });
+  },
+
+  delete: async (url) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          data: {},
+          status: 204,
+        });
+      }, 500);
+    });
+  },
+};
 
 export default api;

@@ -28,7 +28,7 @@ const DaySchedule = ({ dayData }) => {
     return <Typography>No schedule available for this day</Typography>;
   }
 
-  const { date, schedule, cluster_label } = dayData;
+  const { date, schedule } = dayData;
 
   return (
     <Paper elevation={3} sx={{ p: 3 }}>
@@ -36,9 +36,6 @@ const DaySchedule = ({ dayData }) => {
         <Typography variant="h5" gutterBottom>
           {date && `Day ${dayData.day} - ${format(new Date(date), 'MMMM d, yyyy')}`}
         </Typography>
-        {cluster_label !== undefined && (
-          <Chip label={`Cluster ${cluster_label + 1}`} size="small" />
-        )}
       </Box>
 
       <Timeline position="alternate">
@@ -68,7 +65,10 @@ const DaySchedule = ({ dayData }) => {
               <Card variant="outlined">
                 <CardContent>
                   <Typography variant="h6" component="span" gutterBottom>
-                    {item.poi_name}
+                    {item.place.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" gutterBottom>
+                    {item.place.description}
                   </Typography>
 
                   <Box sx={{ mt: 1 }}>
@@ -86,11 +86,11 @@ const DaySchedule = ({ dayData }) => {
                       </Typography>
                     </Box>
 
-                    {item.travel_time_from_previous_minutes > 0 && (
+                    {item.travel_time_to_next_minutes > 0 && (
                       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                         <DirectionsCar fontSize="small" sx={{ mr: 0.5 }} />
                         <Typography variant="caption" color="text.secondary">
-                          {item.travel_time_from_previous_minutes} min travel to next location
+                          {item.travel_time_to_next_minutes} min travel to next location
                         </Typography>
                       </Box>
                     )}
@@ -112,7 +112,7 @@ const DaySchedule = ({ dayData }) => {
           {schedule.reduce((sum, item) => sum + item.visit_duration_minutes, 0)} minutes |
           Total Travel Time:{' '}
           {schedule.reduce(
-            (sum, item) => sum + (item.travel_time_from_previous_minutes || 0),
+            (sum, item) => sum + (item.travel_time_to_next_minutes || 0),
             0
           )}{' '}
           minutes

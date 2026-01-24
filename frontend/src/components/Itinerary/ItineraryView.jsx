@@ -78,8 +78,19 @@ const ItineraryView = () => {
     );
   }
 
-  const { daily_itineraries, user_interests, total_distance_km, total_pois, num_days } =
+  const { days, user_interests, total_distance_km, num_days } =
     currentItinerary;
+  
+  // Calculate total POIs from days
+  const total_pois = days.reduce((sum, day) => sum + day.places.length, 0);
+  
+  // Use days directly as daily_itineraries
+  const daily_itineraries = days.map(day => ({
+    day: day.day,
+    schedule: day.places,
+    total_distance_km: day.total_distance_km,
+    total_stops: day.total_stops,
+  }));
 
   return (
     <Container maxWidth="lg">

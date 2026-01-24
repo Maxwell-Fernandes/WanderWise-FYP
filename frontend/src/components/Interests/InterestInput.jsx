@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Lightbulb, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -8,10 +8,20 @@ import { mockInterests } from '../../data/mockData';
 import useItineraryStore from '../../stores/itineraryStore';
 
 const InterestInput = () => {
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState('Want to explore waterfalls, spice plantations, and nature trails. Photography is my passion.');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analyzedInterests, setAnalyzedInterests] = useState(null);
+  const [analyzedInterests, setAnalyzedInterests] = useState(mockInterests);
   const navigate = useNavigate();
+  
+  // Automatically set interests and navigate when component loads
+  useEffect(() => {
+    useItineraryStore.setState({ interests: Object.keys(mockInterests) });
+    // Automatically navigate after 2 seconds
+    const timer = setTimeout(() => {
+      navigate('/create-itinerary');
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const examplePrompts = [
     "I love beaches, water sports, and trying local seafood. Looking for adventure and relaxation.",
@@ -39,6 +49,7 @@ const InterestInput = () => {
   };
 
   const handleContinue = () => {
+    console.log('Continue button clicked');
     navigate('/create-itinerary');
   };
 
@@ -63,6 +74,18 @@ const InterestInput = () => {
           <p className="text-lg text-gray-600">
             Describe what you'd like to experience in Goa, and our AI will understand your preferences
           </p>
+        </div>
+
+        {/* Continue Button (Visible at top) */}
+        <div className="mb-8">
+          <Button
+            onClick={handleContinue}
+            size="lg"
+            className="w-full text-base font-semibold"
+          >
+            Continue to Trip Planning
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
         </div>
 
         {/* Main Card */}
@@ -139,50 +162,50 @@ const InterestInput = () => {
         </Card>
 
         {/* Analysis Results */}
-        {analyzedInterests && (
-          <Card className="border-2 shadow-xl">
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center">
-                <Sparkles className="w-6 h-6 mr-2 text-green-500" />
-                Interest Analysis Complete!
-              </CardTitle>
-              <CardDescription className="text-base">
-                Here's what our AI understood about your preferences
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Interest Bars */}
-              <div className="space-y-4">
-                {Object.entries(analyzedInterests).map(([interest, score]) => (
-                  <div key={interest} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium capitalize">{interest}</span>
-                      <span className="text-sm font-semibold text-gray-700">
-                        {Math.round(score * 100)}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                      <div
-                        className={`h-full ${getInterestColor(score)} transition-all duration-500`}
-                        style={{ width: `${score * 100}%` }}
-                      />
-                    </div>
+        <Card className="border-2 shadow-xl mb-4">
+          <CardHeader>
+            <CardTitle className="text-2xl flex items-center">
+              <Sparkles className="w-6 h-6 mr-2 text-green-500" />
+              Interest Analysis Complete!
+            </CardTitle>
+            <CardDescription className="text-base">
+              Here's what our AI understood about your preferences
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Interest Bars */}
+            <div className="space-y-4 max-h-60 overflow-y-auto">
+              {Object.entries(analyzedInterests).map(([interest, score]) => (
+                <div key={interest} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium capitalize">{interest}</span>
+                    <span className="text-sm font-semibold text-gray-700">
+                      {Math.round(score * 100)}%
+                    </span>
                   </div>
-                ))}
-              </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div
+                      className={`h-full ${getInterestColor(score)} transition-all duration-500`}
+                      style={{ width: `${score * 100}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-              {/* Continue Button */}
-              <Button
-                onClick={handleContinue}
-                size="lg"
-                className="w-full text-base font-semibold"
-              >
-                Continue to Trip Planning
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+        {/* Continue Button */}
+        <div className="mb-8">
+          <Button
+            onClick={handleContinue}
+            size="lg"
+            className="w-full text-base font-semibold"
+          >
+            Continue to Trip Planning
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+        </div>
 
         {/* Info Section */}
         <div className="mt-8 text-center">

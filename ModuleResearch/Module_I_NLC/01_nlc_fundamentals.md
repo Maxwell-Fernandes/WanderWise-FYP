@@ -494,6 +494,7 @@ BERT excels in:
 
 ---
 
+
 ## 8. Multi-Label Classification
 
 ### 8.1 Single-Label vs Multi-Label
@@ -776,6 +777,7 @@ CREATE TABLE user_interests (
     confidence_scores JSONB,
     created_at TIMESTAMP DEFAULT NOW()
 );
+
 
 -- Example insert
 INSERT INTO user_interests (user_id, raw_text, predicted_categories, confidence_scores)

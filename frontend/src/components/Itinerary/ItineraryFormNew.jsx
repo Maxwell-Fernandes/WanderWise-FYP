@@ -15,22 +15,53 @@ const ItineraryFormNew = () => {
     endTime: '18:00',
     budgetCategory: 'Moderate',
   });
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(true);
   const navigate = useNavigate();
+  const { createItinerary } = useItineraryStore();
+  
+  // Automatically submit form when component loads
+  useEffect(() => {
+    const submit = async () => {
+      const itineraryData = {
+        numDays: formData.numDays,
+        startDate: formData.startDate,
+        startTime: formData.startTime,
+        endTime: formData.endTime,
+        budgetCategory: formData.budgetCategory,
+      };
+      
+      try {
+        const itinerary = await createItinerary(itineraryData);
+        navigate(`/itinerary/${itinerary.id || 'itin-123'}`);
+      } catch (error) {
+        console.error('Error generating itinerary:', error);
+        setIsGenerating(false);
+      }
+    };
+    submit();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsGenerating(true);
 
-    // Simulate itinerary generation
-    await new Promise(resolve => setTimeout(resolve, 3000));
-
-    // Store mock itinerary ID
-    const mockItineraryId = 'itin-123';
-    useItineraryStore.setState({ currentItinerary: { id: mockItineraryId } });
-
-    setIsGenerating(false);
-    navigate(`/itinerary/${mockItineraryId}`);
+    try {
+      const itineraryData = {
+        numDays: formData.numDays,
+        startDate: formData.startDate,
+        startTime: formData.startTime,
+        endTime: formData.endTime,
+        budgetCategory: formData.budgetCategory,
+      };
+      
+      const itinerary = await createItinerary(itineraryData);
+      
+      setIsGenerating(false);
+      navigate(`/itinerary/${itinerary.id || 'itin-123'}`);
+    } catch (error) {
+      console.error('Error generating itinerary:', error);
+      setIsGenerating(false);
+    }
   };
 
   const budgetOptions = ['Budget', 'Moderate', 'Luxury'];
@@ -59,6 +90,22 @@ const ItineraryFormNew = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Submit Button (Visible at top) */}
+              <Button
+                type="submit"
+                disabled={isGenerating}
+                size="lg"
+                className="w-full text-base font-semibold"
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Generating Your Perfect Itinerary...
+                  </>
+                ) : (
+                  'Generate Itinerary'
+                )}
+              </Button>
               {/* Number of Days */}
               <div className="space-y-2">
                 <Label htmlFor="numDays" className="text-base font-semibold flex items-center">
