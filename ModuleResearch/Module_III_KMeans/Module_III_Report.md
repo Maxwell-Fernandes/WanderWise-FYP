@@ -91,7 +91,7 @@ The WanderWise+ clustering module implements specific strategies to address edge
 
 ---
 
-## 7. Implementation & Integration
+<!-- ## 7. Implementation & Integration
 
 The geographic clustering module integrates with the WanderWise+ backend through a RESTful API endpoint:
 
@@ -131,9 +131,9 @@ CREATE TABLE itinerary_clusters (
 - Distance calculations per request: 2,000-8,000
 - Latency: sub-50ms on standard hardware
 
----
+--- -->
 
-## 8. Goa Regional Distribution
+<!-- ## 8. Goa Regional Distribution
 
 The geographic distribution of POIs in Goa reveals clear regional patterns:
 
@@ -146,7 +146,7 @@ The geographic distribution of POIs in Goa reveals clear regional patterns:
 
 This distribution directly informs cluster formation. For a 3-day tour, natural clusters correspond to North/Central/South divisions. For a 5-day tour, the North cluster may split (separating Baga from Anjuna/Vagator), while Central and South remain intact.
 
----
+--- -->
 
 ## 9. References
 
