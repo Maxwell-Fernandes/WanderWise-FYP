@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5dd1c9e464d6b3ed504a2aa72542661b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); 
+                z-index: 1000; background-color: white; padding: 10px; 
+                border: 2px solid grey; border-radius: 5px;">
+        <h3 style="margin: 0;">Custom Coordinates Clustering (K=2)</h3>
+    </div>
+    
+    
+            <div class="folium-map" id="map_5dd1c9e464d6b3ed504a2aa72542661b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5dd1c9e464d6b3ed504a2aa72542661b = L.map(
+                "map_5dd1c9e464d6b3ed504a2aa72542661b",
+                {
+                    center: [15.360134059999998, 73.98399615999999],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d21a7a5dee0dfad32026a0bd76d9f4c2 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d21a7a5dee0dfad32026a0bd76d9f4c2.addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var marker_efa8a4560ddba4df989562f298ce0b41 = L.marker(
+                [15.4922519, 73.7737462],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_f3f90839cb20995adcfef4c7f81a17ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0c9f7952dc2a00e51e8b65d9a6410da = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_abd1bd54fd374d81dfdf539e39793832 = $(`<div id="html_abd1bd54fd374d81dfdf539e39793832" style="width: 100.0%; height: 100.0%;"><b>Fort Aguada</b><br>Cluster: 1<br>Lat: 15.492252<br>Lon: 73.773746</div>`)[0];
+                popup_c0c9f7952dc2a00e51e8b65d9a6410da.setContent(html_abd1bd54fd374d81dfdf539e39793832);
+            
+        
+
+        marker_efa8a4560ddba4df989562f298ce0b41.bindPopup(popup_c0c9f7952dc2a00e51e8b65d9a6410da)
+        ;
+
+        
+    
+    
+            marker_efa8a4560ddba4df989562f298ce0b41.bindTooltip(
+                `<div>
+                     Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_efa8a4560ddba4df989562f298ce0b41.setIcon(icon_f3f90839cb20995adcfef4c7f81a17ab);
+            
+    
+            var marker_046cc48c803b4be61edbc033cf91b11a = L.marker(
+                [15.3144375, 74.3143073],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_e4022d87f941e5fb98a7ee92a1afca2c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_73363ede5df636e7b1c9fb35699d274c = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_437d09b70f6c0cf8e4ff6c9773811173 = $(`<div id="html_437d09b70f6c0cf8e4ff6c9773811173" style="width: 100.0%; height: 100.0%;"><b>Dudhsagar Falls</b><br>Cluster: 0<br>Lat: 15.314438<br>Lon: 74.314307</div>`)[0];
+                popup_73363ede5df636e7b1c9fb35699d274c.setContent(html_437d09b70f6c0cf8e4ff6c9773811173);
+            
+        
+
+        marker_046cc48c803b4be61edbc033cf91b11a.bindPopup(popup_73363ede5df636e7b1c9fb35699d274c)
+        ;
+
+        
+    
+    
+            marker_046cc48c803b4be61edbc033cf91b11a.bindTooltip(
+                `<div>
+                     Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_046cc48c803b4be61edbc033cf91b11a.setIcon(icon_e4022d87f941e5fb98a7ee92a1afca2c);
+            
+    
+            var marker_3f9c3e1e1abd5e7a27a87126d11a1fe1 = L.marker(
+                [15.3544232, 73.8838637],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_a2431e592f4441a060dc36fe3787f86f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fb1993f1ba852484d59e5d573a7256e9 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_9368207ea16f8cfb9c418d2036e085bd = $(`<div id="html_9368207ea16f8cfb9c418d2036e085bd" style="width: 100.0%; height: 100.0%;"><b>Velsao Beach</b><br>Cluster: 1<br>Lat: 15.354423<br>Lon: 73.883864</div>`)[0];
+                popup_fb1993f1ba852484d59e5d573a7256e9.setContent(html_9368207ea16f8cfb9c418d2036e085bd);
+            
+        
+
+        marker_3f9c3e1e1abd5e7a27a87126d11a1fe1.bindPopup(popup_fb1993f1ba852484d59e5d573a7256e9)
+        ;
+
+        
+    
+    
+            marker_3f9c3e1e1abd5e7a27a87126d11a1fe1.bindTooltip(
+                `<div>
+                     Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3f9c3e1e1abd5e7a27a87126d11a1fe1.setIcon(icon_a2431e592f4441a060dc36fe3787f86f);
+            
+    
+            var marker_182d9cddc8847243b97ac5ef9eea9054 = L.marker(
+                [15.0887849, 73.9215933],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_92600d7527e33d7647f3da56fc8c9233 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4d86570443c9d00a5bb765b97b2b0761 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_4c936a6d18681208f27b18e7d8324c55 = $(`<div id="html_4c936a6d18681208f27b18e7d8324c55" style="width: 100.0%; height: 100.0%;"><b>Cabo de Rama Fort</b><br>Cluster: 0<br>Lat: 15.088785<br>Lon: 73.921593</div>`)[0];
+                popup_4d86570443c9d00a5bb765b97b2b0761.setContent(html_4c936a6d18681208f27b18e7d8324c55);
+            
+        
+
+        marker_182d9cddc8847243b97ac5ef9eea9054.bindPopup(popup_4d86570443c9d00a5bb765b97b2b0761)
+        ;
+
+        
+    
+    
+            marker_182d9cddc8847243b97ac5ef9eea9054.bindTooltip(
+                `<div>
+                     Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_182d9cddc8847243b97ac5ef9eea9054.setIcon(icon_92600d7527e33d7647f3da56fc8c9233);
+            
+    
+            var marker_da3a77f3a914a3a40615eba7d7af34eb = L.marker(
+                [15.5507728, 74.0264703],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_d1675ba461330e5648603561fbefe35a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6a32ebfc219f0250dab7e117027bb49f = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_1d4fdf1e4948acf6987e7970c37dec08 = $(`<div id="html_1d4fdf1e4948acf6987e7970c37dec08" style="width: 100.0%; height: 100.0%;"><b>Harvalem Waterfalls</b><br>Cluster: 1<br>Lat: 15.550773<br>Lon: 74.026470</div>`)[0];
+                popup_6a32ebfc219f0250dab7e117027bb49f.setContent(html_1d4fdf1e4948acf6987e7970c37dec08);
+            
+        
+
+        marker_da3a77f3a914a3a40615eba7d7af34eb.bindPopup(popup_6a32ebfc219f0250dab7e117027bb49f)
+        ;
+
+        
+    
+    
+            marker_da3a77f3a914a3a40615eba7d7af34eb.bindTooltip(
+                `<div>
+                     Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_da3a77f3a914a3a40615eba7d7af34eb.setIcon(icon_d1675ba461330e5648603561fbefe35a);
+            
+    
+            var marker_3e426c835f0b3591e4c1769d54ea46f5 = L.marker(
+                [15.2016112, 74.11795029999999],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_d8a1f17ff551d7c84d00821cc4a655cf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ffd4c3a74f85a8d475b89aa2d7955db4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b9e3092156b7b7d2cd5859e452f1b32c = $(`<div id="html_b9e3092156b7b7d2cd5859e452f1b32c" style="width: 100.0%; height: 100.0%;">Centroid 0<br>Lat: 15.201611<br>Lon: 74.117950</div>`)[0];
+                popup_ffd4c3a74f85a8d475b89aa2d7955db4.setContent(html_b9e3092156b7b7d2cd5859e452f1b32c);
+            
+        
+
+        marker_3e426c835f0b3591e4c1769d54ea46f5.bindPopup(popup_ffd4c3a74f85a8d475b89aa2d7955db4)
+        ;
+
+        
+    
+    
+            marker_3e426c835f0b3591e4c1769d54ea46f5.bindTooltip(
+                `<div>
+                     Centroid 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e426c835f0b3591e4c1769d54ea46f5.setIcon(icon_d8a1f17ff551d7c84d00821cc4a655cf);
+            
+    
+            var marker_dd37a9b243192f20b065605d33ea9ea3 = L.marker(
+                [15.465815966666666, 73.89469340000001],
+                {
+}
+            ).addTo(map_5dd1c9e464d6b3ed504a2aa72542661b);
+        
+    
+            var icon_6128b978907f59c36407658acd49d5f5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6681e9795482134be2b88bb24c2a18ca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66479d878a5435ea649f3d3266ca05c1 = $(`<div id="html_66479d878a5435ea649f3d3266ca05c1" style="width: 100.0%; height: 100.0%;">Centroid 1<br>Lat: 15.465816<br>Lon: 73.894693</div>`)[0];
+                popup_6681e9795482134be2b88bb24c2a18ca.setContent(html_66479d878a5435ea649f3d3266ca05c1);
+            
+        
+
+        marker_dd37a9b243192f20b065605d33ea9ea3.bindPopup(popup_6681e9795482134be2b88bb24c2a18ca)
+        ;
+
+        
+    
+    
+            marker_dd37a9b243192f20b065605d33ea9ea3.bindTooltip(
+                `<div>
+                     Centroid 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dd37a9b243192f20b065605d33ea9ea3.setIcon(icon_6128b978907f59c36407658acd49d5f5);
+            
+</script>
+</html>

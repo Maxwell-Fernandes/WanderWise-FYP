@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e9eea847a0803f1a8d46027f203c6fde {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    <h3 style="position: fixed; top: 10px; left: 50px; z-index: 1000; background: white; padding: 10px; border-radius: 5px;">
+    Day 1 Route - 4 POIs
+    </h3>
+    
+            <div class="folium-map" id="map_e9eea847a0803f1a8d46027f203c6fde" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e9eea847a0803f1a8d46027f203c6fde = L.map(
+                "map_e9eea847a0803f1a8d46027f203c6fde",
+                {
+                    center: [15.3692433, 74.270446075],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_52bb1fe1eeffdf50508eb01728ae3313 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_52bb1fe1eeffdf50508eb01728ae3313.addTo(map_e9eea847a0803f1a8d46027f203c6fde);
+        
+    
+            var marker_2f4e6e5cad6953b478ec64bb49eeedb8 = L.marker(
+                [15.4390499, 74.2525571],
+                {
+}
+            ).addTo(map_e9eea847a0803f1a8d46027f203c6fde);
+        
+    
+            var icon_a02c9d93c196f833e309b672c2ab5881 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cf5a01537adfac36a21c50d6daf9109b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f46561c486ceb9fb0b79236d2f5f5022 = $(`<div id="html_f46561c486ceb9fb0b79236d2f5f5022" style="width: 100.0%; height: 100.0%;">         <div style='font-family: Arial; width: 200px;'>             <h4>1. Kadamba Shri Mahadeva Temple, Tambdisurla</h4>             <b>Arrival:</b> 09:00<br>             <b>Visit:</b> 09:00 - 09:45<br>             <b>WPI:</b> 1.000<br>             <b>Rating:</b> 4.8⭐<br>             <b>Duration:</b> 45 min         </div>         </div>`)[0];
+                popup_cf5a01537adfac36a21c50d6daf9109b.setContent(html_f46561c486ceb9fb0b79236d2f5f5022);
+            
+        
+
+        marker_2f4e6e5cad6953b478ec64bb49eeedb8.bindPopup(popup_cf5a01537adfac36a21c50d6daf9109b)
+        ;
+
+        
+    
+    
+            marker_2f4e6e5cad6953b478ec64bb49eeedb8.bindTooltip(
+                `<div>
+                     1. Kadamba Shri Mahadeva Temple, Tambdisurla
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2f4e6e5cad6953b478ec64bb49eeedb8.setIcon(icon_a02c9d93c196f833e309b672c2ab5881);
+            
+    
+            var marker_21723cf82f2257906cc0b28acc599f29 = L.marker(
+                [15.410787, 74.2005296],
+                {
+}
+            ).addTo(map_e9eea847a0803f1a8d46027f203c6fde);
+        
+    
+            var icon_cbefd79d922f8435d10f779ba0b4fbf6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_937b1715c3285a4b0e497ec49fbb15f1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f93170f033b8e321ead336a1f52a1734 = $(`<div id="html_f93170f033b8e321ead336a1f52a1734" style="width: 100.0%; height: 100.0%;">         <div style='font-family: Arial; width: 200px;'>             <h4>2. Natures Nest Goa</h4>             <b>Arrival:</b> 09:59<br>             <b>Visit:</b> 09:59 - 10:59<br>             <b>WPI:</b> 0.918<br>             <b>Rating:</b> 4.6⭐<br>             <b>Duration:</b> 60 min         </div>         </div>`)[0];
+                popup_937b1715c3285a4b0e497ec49fbb15f1.setContent(html_f93170f033b8e321ead336a1f52a1734);
+            
+        
+
+        marker_21723cf82f2257906cc0b28acc599f29.bindPopup(popup_937b1715c3285a4b0e497ec49fbb15f1)
+        ;
+
+        
+    
+    
+            marker_21723cf82f2257906cc0b28acc599f29.bindTooltip(
+                `<div>
+                     2. Natures Nest Goa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_21723cf82f2257906cc0b28acc599f29.setIcon(icon_cbefd79d922f8435d10f779ba0b4fbf6);
+            
+    
+            var marker_25e0758aeb981a074acddc904c44b672 = L.marker(
+                [15.3126988, 74.3143903],
+                {
+}
+            ).addTo(map_e9eea847a0803f1a8d46027f203c6fde);
+        
+    
+            var icon_70156e4528f1f1e21460f1b36552b844 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_96e909a5d157ea55bc5179dcb18d35af = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b404206ea87517937abbd30c1fcf2af3 = $(`<div id="html_b404206ea87517937abbd30c1fcf2af3" style="width: 100.0%; height: 100.0%;">         <div style='font-family: Arial; width: 200px;'>             <h4>3. Dudhsagara Waterfall Camp Site</h4>             <b>Arrival:</b> 11:14<br>             <b>Visit:</b> 11:14 - 12:14<br>             <b>WPI:</b> 0.910<br>             <b>Rating:</b> 4.6⭐<br>             <b>Duration:</b> 60 min         </div>         </div>`)[0];
+                popup_96e909a5d157ea55bc5179dcb18d35af.setContent(html_b404206ea87517937abbd30c1fcf2af3);
+            
+        
+
+        marker_25e0758aeb981a074acddc904c44b672.bindPopup(popup_96e909a5d157ea55bc5179dcb18d35af)
+        ;
+
+        
+    
+    
+            marker_25e0758aeb981a074acddc904c44b672.bindTooltip(
+                `<div>
+                     3. Dudhsagara Waterfall Camp Site
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_25e0758aeb981a074acddc904c44b672.setIcon(icon_70156e4528f1f1e21460f1b36552b844);
+            
+    
+            var marker_141ed45d58e2649c54ba42e1ee7ce9f3 = L.marker(
+                [15.3144375, 74.3143073],
+                {
+}
+            ).addTo(map_e9eea847a0803f1a8d46027f203c6fde);
+        
+    
+            var icon_5a7b9819b74f52f2a01155df5d0fdb24 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_265fbe4a6905db0177062cfa8d4e2ad1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a9c9922c336fb90fa7da921cbf225c73 = $(`<div id="html_a9c9922c336fb90fa7da921cbf225c73" style="width: 100.0%; height: 100.0%;">         <div style='font-family: Arial; width: 200px;'>             <h4>4. Dudhsagar Falls</h4>             <b>Arrival:</b> 13:30<br>             <b>Visit:</b> 13:30 - 14:30<br>             <b>WPI:</b> 0.998<br>             <b>Rating:</b> 4.6⭐<br>             <b>Duration:</b> 60 min         </div>         </div>`)[0];
+                popup_265fbe4a6905db0177062cfa8d4e2ad1.setContent(html_a9c9922c336fb90fa7da921cbf225c73);
+            
+        
+
+        marker_141ed45d58e2649c54ba42e1ee7ce9f3.bindPopup(popup_265fbe4a6905db0177062cfa8d4e2ad1)
+        ;
+
+        
+    
+    
+            marker_141ed45d58e2649c54ba42e1ee7ce9f3.bindTooltip(
+                `<div>
+                     4. Dudhsagar Falls
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_141ed45d58e2649c54ba42e1ee7ce9f3.setIcon(icon_5a7b9819b74f52f2a01155df5d0fdb24);
+            
+    
+            var poly_line_46be667e4cc4f79b2d0d06ec71b25ddb = L.polyline(
+                [[15.4390499, 74.2525571], [15.410787, 74.2005296], [15.3126988, 74.3143903], [15.3144375, 74.3143073]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_e9eea847a0803f1a8d46027f203c6fde);
+        
+    
+        var popup_e7f209ae2407bc7ae7f1720720d35dfe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dc2c6b2ae8762ad7ee82dac293a7e5e1 = $(`<div id="html_dc2c6b2ae8762ad7ee82dac293a7e5e1" style="width: 100.0%; height: 100.0%;">Day 1 Route</div>`)[0];
+                popup_e7f209ae2407bc7ae7f1720720d35dfe.setContent(html_dc2c6b2ae8762ad7ee82dac293a7e5e1);
+            
+        
+
+        poly_line_46be667e4cc4f79b2d0d06ec71b25ddb.bindPopup(popup_e7f209ae2407bc7ae7f1720720d35dfe)
+        ;
+
+        
+    
+</script>
+</html>
