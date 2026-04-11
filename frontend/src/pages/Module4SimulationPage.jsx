@@ -1,27 +1,45 @@
 import { useState } from 'react'
-import { mapUrl, runModule4 } from '../services/simulationApi'
+import { mapUrl, narrateModule4Day, runModule4 } from '../services/simulationApi'
 
 export default function Module4SimulationPage() {
   const [numDays, setNumDays] = useState(4)
+  const [travelType, setTravelType] = useState('solo')
+  const [useLlmFitnessProfile, setUseLlmFitnessProfile] = useState(false)
+  const [useLlmInterests, setUseLlmInterests] = useState(false)
+  const [includeGaHistory, setIncludeGaHistory] = useState(false)
+  const [useLlmItineraryQa, setUseLlmItineraryQa] = useState(false)
+  const [useLlmItineraryRetry, setUseLlmItineraryRetry] = useState(false)
+  const [populationSize, setPopulationSize] = useState(120)
+  const [maxGenerations, setMaxGenerations] = useState(90)
+  const [earlyStoppingPatience, setEarlyStoppingPatience] = useState(40)
   const [userPreference, setUserPreference] = useState('I love exploring historical forts and beaches, interested in nature waterfalls, but not interested in nightlife or shopping')
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [selectedRankByDay, setSelectedRankByDay] = useState({})
+  const [narrationByKey, setNarrationByKey] = useState({})
+  const [narratingByKey, setNarratingByKey] = useState({})
 
   const submit = async (e) => {
     e.preventDefault()
     setLoading(true)
     const data = await runModule4({
       num_days: Number(numDays),
+      travel_type: travelType,
       user_preference: userPreference,
       min_rating: 3.0,
       min_reviews: 1,
-      population_size: 100,
-      max_generations: 50,
+      population_size: Number(populationSize),
+      max_generations: Number(maxGenerations),
       mutation_rate: 0.2,
       crossover_rate: 0.7,
+      early_stopping_patience: Number(earlyStoppingPatience),
       random_state: 42,
-      use_osrm: true
+      use_osrm: true,
+      use_llm_fitness_profile: useLlmFitnessProfile,
+      use_llm_interests: useLlmInterests,
+      include_ga_history: includeGaHistory,
+      use_llm_itinerary_qa: useLlmItineraryQa,
+      use_llm_itinerary_retry: useLlmItineraryRetry
     })
     setResult(data.data)
     const defaults = {}
@@ -44,14 +62,85 @@ export default function Module4SimulationPage() {
     return ((1 - inter / union.size) * 100)
   }
 
+  const generateNarration = async (dayData, chosen) => {
+    const key = `${dayData.day}-${chosen.rank}`
+    setNarratingByKey((prev) => ({ ...prev, [key]: true }))
+    try {
+      const res = await narrateModule4Day({
+        day: Number(dayData.day),
+        rank: Number(chosen.rank),
+        user_preference: userPreference,
+        route: chosen.route || []
+      })
+      setNarrationByKey((prev) => ({ ...prev, [key]: res.data }))
+    } finally {
+      setNarratingByKey((prev) => ({ ...prev, [key]: false }))
+    }
+  }
+
   return (
     <div>
       <form className="card" onSubmit={submit}>
         <h2>Module 4 - Genetic Algorithm Route Optimization</h2>
         <label>Number of Days</label>
         <input type="number" min="1" max="10" value={numDays} onChange={(e) => setNumDays(e.target.value)} />
+        <label>Travel type</label>
+        <select value={travelType} onChange={(e) => setTravelType(e.target.value)}>
+          <option value="solo">Solo</option>
+          <option value="duo">Duo</option>
+          <option value="couple">Couple</option>
+          <option value="friends">Friends</option>
+          <option value="group">Group</option>
+          <option value="family">Family</option>
+        </select>
+        <label>GA population size</label>
+        <input type="number" min="20" max="300" value={populationSize} onChange={(e) => setPopulationSize(e.target.value)} />
+        <label>GA max generations</label>
+        <input type="number" min="10" max="300" value={maxGenerations} onChange={(e) => setMaxGenerations(e.target.value)} />
+        <label>Early stopping patience (gens without improvement)</label>
+        <input type="number" min="5" max="200" value={earlyStoppingPatience} onChange={(e) => setEarlyStoppingPatience(e.target.value)} />
         <label>User Preference</label>
         <textarea rows="4" value={userPreference} onChange={(e) => setUserPreference(e.target.value)} />
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={useLlmFitnessProfile}
+            onChange={(e) => setUseLlmFitnessProfile(e.target.checked)}
+          />
+          Use Groq LLM fitness profile (requires GROQ_API_KEY on server)
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={useLlmInterests}
+            onChange={(e) => setUseLlmInterests(e.target.checked)}
+          />
+          Use Groq for Module 1 interest filtering (candidate POIs)
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={includeGaHistory}
+            onChange={(e) => setIncludeGaHistory(e.target.checked)}
+          />
+          Include GA best-fitness history (rank 1 only; larger JSON)
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={useLlmItineraryQa}
+            onChange={(e) => setUseLlmItineraryQa(e.target.checked)}
+          />
+          Use Groq itinerary QA on rank-1 route per day (GROQ_API_KEY)
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={useLlmItineraryRetry}
+            onChange={(e) => setUseLlmItineraryRetry(e.target.checked)}
+          />
+          If QA fails, one GA retry with stronger wrong-time penalty (requires QA enabled)
+        </label>
         <button type="submit" disabled={loading}>{loading ? 'Running...' : 'Simulate Module 4'}</button>
       </form>
 
@@ -59,12 +148,50 @@ export default function Module4SimulationPage() {
         <>
           <div className="card">
             <p><b>Days:</b> {result.num_days}</p>
+            <p><b>Travel type:</b> {result.travel_type || travelType}</p>
+            <p><b>Fitness profile source:</b> {result.fitness_profile_source || '—'}</p>
+            <p><b>Module 1 interests source:</b> {result.module1_interests_source || '—'}</p>
+            {result.preference_extraction && (
+              <p style={{ whiteSpace: 'pre-wrap', fontSize: '0.9em' }}>
+                <b>Preference extraction:</b> {JSON.stringify(result.preference_extraction, null, 2)}
+              </p>
+            )}
             <p><b>Module chain:</b> module1_run_id={result.module1_run_id}, module2_run_id={result.module2_run_id}</p>
             <p><b>Generated:</b> {result.generated_files.optimized_routes}</p>
           </div>
           {Object.entries(result.routes).map(([dayKey, dayData]) => (
             <div className="card" key={dayKey}>
               <h3>{dayKey} - Top Alternatives</h3>
+              {dayData.itinerary_qa && (
+                <div style={{ marginBottom: '12px', padding: '10px', background: '#f0fdf4', borderRadius: '8px', fontSize: '0.9em' }}>
+                  <p style={{ margin: '0 0 6px' }}><b>Itinerary QA</b> ({dayData.itinerary_qa.source}){dayData.itinerary_retry_attempted ? ' · retried GA once' : ''}</p>
+                  <p style={{ margin: 0 }}><b>OK:</b> {String(dayData.itinerary_qa.ok)} — {dayData.itinerary_qa.summary}</p>
+                  {(dayData.itinerary_qa.problematic_places || []).length > 0 && (
+                    <p style={{ margin: '6px 0 0', color: '#166534' }}>
+                      <b>Flagged for replan:</b>{' '}
+                      {(dayData.itinerary_qa.problematic_places || [])
+                        .map((x) => (typeof x === 'object' && x !== null ? (x.name || '') : String(x)))
+                        .filter(Boolean)
+                        .join('; ')}
+                    </p>
+                  )}
+                  {dayData.itinerary_retry_details && (
+                    <p style={{ margin: '6px 0 0', color: '#14532d', fontSize: '0.85em' }}>
+                      <b>Retry:</b> {dayData.itinerary_retry_details.strategy}
+                      {Array.isArray(dayData.itinerary_retry_details.resolved_flagged_places) && dayData.itinerary_retry_details.resolved_flagged_places.length > 0 && (
+                        <> — resolved {dayData.itinerary_retry_details.resolved_flagged_places.map((r) => r.matched_name || r.place_id).join(', ')}</>
+                      )}
+                    </p>
+                  )}
+                  {(dayData.itinerary_qa.issues || []).length > 0 && (
+                    <ul style={{ margin: '6px 0 0', paddingLeft: '1.2rem' }}>
+                      {dayData.itinerary_qa.issues.map((issue, i) => (
+                        <li key={i}>{issue}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
               <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
                 {(dayData.alternatives || []).map((alt) => (
                   <button
@@ -84,6 +211,9 @@ export default function Module4SimulationPage() {
                 const chosen = (dayData.alternatives || []).find((x) => x.rank === selectedRankByDay[dayKey]) || dayData.alternatives?.[0]
                 const rank1 = (dayData.alternatives || []).find((x) => x.rank === 1) || dayData.alternatives?.[0]
                 const diffPct = routeSetDiffPercent(rank1?.route || [], chosen?.route || [])
+                const key = `${dayData.day}-${chosen?.rank || 1}`
+                const narration = narrationByKey[key]
+                const narrating = narratingByKey[key]
                 return chosen ? (
                   <>
                     <div style={{ background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '10px' }}>
@@ -99,6 +229,25 @@ export default function Module4SimulationPage() {
                         <b>Nearby Suggestions:</b> {chosen.nearby_suggestions_total || 0}
                       </p>
                     </div>
+                    {chosen.fitness_breakdown && (
+                      <details style={{ marginBottom: '12px', padding: '10px', background: '#f8fafc', borderRadius: '8px' }}>
+                        <summary style={{ cursor: 'pointer', fontWeight: 600 }}>Fitness breakdown (formula: {chosen.fitness_breakdown.formula})</summary>
+                        <p style={{ margin: '8px 0 4px', fontSize: '0.9em' }}>
+                          <b>fitness</b> = total_reward / (1 + delta) →{' '}
+                          {chosen.fitness_breakdown.fitness?.toFixed?.(6)} = {chosen.fitness_breakdown.total_reward?.toFixed?.(4)} / (1 + {chosen.fitness_breakdown.delta?.toFixed?.(4)})
+                        </p>
+                        {Array.isArray(chosen.ga_convergence) && chosen.ga_convergence.length > 0 && (
+                          <p style={{ margin: '0 0 8px', fontSize: '0.85em', color: '#475569' }}>
+                            <b>GA best fitness trace</b> (gen 0…{chosen.ga_convergence.length - 1}):{' '}
+                            {chosen.ga_convergence.slice(0, 6).map((x) => Number(x).toFixed(4)).join(' → ')}
+                            {chosen.ga_convergence.length > 6 ? ' …' : ''}
+                          </p>
+                        )}
+                        <pre style={{ margin: 0, fontSize: '0.75rem', overflow: 'auto', maxHeight: '240px' }}>
+                          {JSON.stringify({ weights: chosen.fitness_breakdown.weights, raw_components: chosen.fitness_breakdown.raw_components }, null, 2)}
+                        </pre>
+                      </details>
+                    )}
                     <div style={{ overflowX: 'auto', marginBottom: '12px' }}>
                       <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white' }}>
                         <thead>
@@ -125,6 +274,17 @@ export default function Module4SimulationPage() {
                         </tbody>
                       </table>
                     </div>
+                    <div style={{ marginBottom: '12px' }}>
+                      <button type="button" onClick={() => generateNarration(dayData, chosen)} disabled={narrating}>
+                        {narrating ? 'Generating narration...' : 'Generate Day Narration'}
+                      </button>
+                    </div>
+                    {narration && (
+                      <div style={{ background: '#eef2ff', padding: '12px', borderRadius: '8px', marginBottom: '12px' }}>
+                        <p><b>AI Day Narration</b> ({narration.provider})</p>
+                        <p style={{ whiteSpace: 'pre-wrap' }}>{narration.narration_text}</p>
+                      </div>
+                    )}
                     <div style={{ background: '#fff7ed', padding: '10px', borderRadius: '8px', marginBottom: '12px' }}>
                       <p><b>Nearby Places You Can Also Consider (outside this route)</b></p>
                       {(chosen.route || []).map((stop) => (

@@ -27,6 +27,15 @@ export async function runModule4(payload) {
   return res.json()
 }
 
+export async function narrateModule4Day(payload) {
+  const res = await fetch(`${API_BASE}/module4/narrate-day`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  return res.json()
+}
+
 export function mapUrl(mapRelPath) {
   const name = mapRelPath?.split('/').pop()
   return name ? `${API_BASE}/maps/${name}` : null
