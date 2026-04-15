@@ -9,6 +9,7 @@ export default function Module4SimulationPage() {
   const [includeGaHistory, setIncludeGaHistory] = useState(false)
   const [useLlmItineraryQa, setUseLlmItineraryQa] = useState(false)
   const [useLlmItineraryRetry, setUseLlmItineraryRetry] = useState(false)
+  const [useLlmSecondaryItineraryQa, setUseLlmSecondaryItineraryQa] = useState(false)
   const [populationSize, setPopulationSize] = useState(120)
   const [maxGenerations, setMaxGenerations] = useState(90)
   const [earlyStoppingPatience, setEarlyStoppingPatience] = useState(40)
@@ -16,6 +17,7 @@ export default function Module4SimulationPage() {
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [selectedRankByDay, setSelectedRankByDay] = useState({})
+  const [selectedSecondaryRankByDay, setSelectedSecondaryRankByDay] = useState({})
   const [narrationByKey, setNarrationByKey] = useState({})
   const [narratingByKey, setNarratingByKey] = useState({})
 
@@ -39,7 +41,8 @@ export default function Module4SimulationPage() {
       use_llm_interests: useLlmInterests,
       include_ga_history: includeGaHistory,
       use_llm_itinerary_qa: useLlmItineraryQa,
-      use_llm_itinerary_retry: useLlmItineraryRetry
+      use_llm_itinerary_retry: useLlmItineraryRetry,
+      use_llm_secondary_itinerary_qa: useLlmSecondaryItineraryQa
     })
     setResult(data.data)
     const defaults = {}
@@ -47,6 +50,11 @@ export default function Module4SimulationPage() {
       defaults[dayKey] = (dayData.alternatives?.[0]?.rank) || 1
     })
     setSelectedRankByDay(defaults)
+    const secondaryDefaults = {}
+    Object.entries(data.data.routes || {}).forEach(([dayKey, dayData]) => {
+      secondaryDefaults[dayKey] = (dayData.secondary_itinerary?.alternatives?.[0]?.rank) || 1
+    })
+    setSelectedSecondaryRankByDay(secondaryDefaults)
     setLoading(false)
   }
 
@@ -141,6 +149,14 @@ export default function Module4SimulationPage() {
           />
           If QA fails, one GA retry with stronger wrong-time penalty (requires QA enabled)
         </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={useLlmSecondaryItineraryQa}
+            onChange={(e) => setUseLlmSecondaryItineraryQa(e.target.checked)}
+          />
+          Use Groq itinerary QA for secondary rank-1 (extra Groq call per day)
+        </label>
         <button type="submit" disabled={loading}>{loading ? 'Running...' : 'Simulate Module 4'}</button>
       </form>
 
@@ -204,8 +220,35 @@ export default function Module4SimulationPage() {
                   </button>
                 ))}
               </div>
+              {(dayData.secondary_itinerary?.alternatives || []).length > 0 && (
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
+                  {(dayData.secondary_itinerary.alternatives || []).map((alt) => (
+                    <button
+                      type="button"
+                      key={`sec-${alt.rank}`}
+                      onClick={() => setSelectedSecondaryRankByDay((prev) => ({ ...prev, [dayKey]: alt.rank }))}
+                      style={{ width: 'auto', background: selectedSecondaryRankByDay[dayKey] === alt.rank ? '#1d4ed8' : '#64748b' }}
+                    >
+                      Secondary Rank {alt.rank}
+                    </button>
+                  ))}
+                </div>
+              )}
               {(dayData.alternatives || []).map((alt) => (
-                <p key={`s-${alt.rank}`}>Rank {alt.rank}: fitness={alt.fitness_score?.toFixed?.(6)} | POIs={alt.route?.length || 0}</p>
+                <p key={`s-${alt.rank}`}>
+                  Rank {alt.rank}: fitness={alt.fitness_score?.toFixed?.(6)} | POIs={alt.route?.length || 0}
+                  {alt.exclusive_must_visit_name && (
+                    <> | Must-visit: {alt.exclusive_must_visit_name}</>
+                  )}
+                </p>
+              ))}
+              {(dayData.secondary_itinerary?.alternatives || []).map((alt) => (
+                <p key={`s2-${alt.rank}`}>
+                  Secondary Rank {alt.rank}: fitness={alt.fitness_score?.toFixed?.(6)} | POIs={alt.route?.length || 0}
+                  {alt.exclusive_must_visit_name && (
+                    <> | Must-visit: {alt.exclusive_must_visit_name}</>
+                  )}
+                </p>
               ))}
               {(() => {
                 const chosen = (dayData.alternatives || []).find((x) => x.rank === selectedRankByDay[dayKey]) || dayData.alternatives?.[0]
@@ -228,6 +271,11 @@ export default function Module4SimulationPage() {
                         <b>Difference vs Rank 1:</b> {diffPct.toFixed(1)}% |{' '}
                         <b>Nearby Suggestions:</b> {chosen.nearby_suggestions_total || 0}
                       </p>
+                      {chosen.exclusive_must_visit_name && (
+                        <p>
+                          <b>Exclusive must-visit:</b> {chosen.exclusive_must_visit_name}
+                        </p>
+                      )}
                     </div>
                     {chosen.fitness_breakdown && (
                       <details style={{ marginBottom: '12px', padding: '10px', background: '#f8fafc', borderRadius: '8px' }}>
@@ -299,6 +347,117 @@ export default function Module4SimulationPage() {
                       ))}
                     </div>
                     {chosen.map && <iframe src={mapUrl(chosen.map)} title={`${dayKey}-map-rank-${chosen.rank}`} />}
+                  </>
+                ) : null
+              })()}
+              {(() => {
+                const secondary = dayData.secondary_itinerary
+                if (!secondary || !(secondary.alternatives || []).length) return null
+                const secondaryChosen = (secondary.alternatives || []).find((x) => x.rank === selectedSecondaryRankByDay[dayKey]) || secondary.alternatives?.[0]
+                const primaryRank1 = (dayData.alternatives || []).find((x) => x.rank === 1) || dayData.alternatives?.[0]
+                const secondaryDiffPct = routeSetDiffPercent(primaryRank1?.route || [], secondaryChosen?.route || [])
+                const secondaryQa = secondary.itinerary_qa
+                return secondaryChosen ? (
+                  <>
+                    <div style={{ background: '#f1f5f9', padding: '12px', borderRadius: '8px', marginBottom: '10px' }}>
+                      <p><b>SECONDARY ITINERARY — Rank {secondaryChosen.rank}</b></p>
+                      <p>
+                        <b>Fitness:</b> {secondaryChosen.fitness_score?.toFixed?.(3)} |{' '}
+                        <b>POI Value:</b> {secondaryChosen.poi_value_sum?.toFixed?.(3)} |{' '}
+                        <b>Travel:</b> {secondaryChosen.total_distance_km?.toFixed?.(1)} km ({secondaryChosen.total_travel_time_min?.toFixed?.(0)} min) |{' '}
+                        <b>Time:</b> {(secondaryChosen.total_time_hours || (secondaryChosen.total_time_min ? secondaryChosen.total_time_min / 60 : null))?.toFixed?.(2)} hours
+                      </p>
+                      <p>
+                        <b>Difference vs Primary Rank 1:</b> {secondaryDiffPct.toFixed(1)}% |{' '}
+                        <b>Disjoint from primary:</b> {String(secondary.disjoint_from_primary)}
+                      </p>
+                      {secondaryChosen.exclusive_must_visit_name && (
+                        <p>
+                          <b>Exclusive must-visit:</b> {secondaryChosen.exclusive_must_visit_name}
+                        </p>
+                      )}
+                    </div>
+                    {secondaryQa && (
+                      <div style={{ marginBottom: '12px', padding: '10px', background: '#f0fdf4', borderRadius: '8px', fontSize: '0.9em' }}>
+                        <p style={{ margin: '0 0 6px' }}><b>Secondary Itinerary QA</b> ({secondaryQa.source || 'groq'})</p>
+                        <p style={{ margin: 0 }}><b>OK:</b> {String(secondaryQa.ok)} — {secondaryQa.summary}</p>
+                        {(secondaryQa.problematic_places || []).length > 0 && (
+                          <p style={{ margin: '6px 0 0', color: '#166534' }}>
+                            <b>Flagged for replan:</b>{' '}
+                            {(secondaryQa.problematic_places || [])
+                              .map((x) => (typeof x === 'object' && x !== null ? (x.name || '') : String(x)))
+                              .filter(Boolean)
+                              .join('; ')}
+                          </p>
+                        )}
+                        {(secondaryQa.issues || []).length > 0 && (
+                          <ul style={{ margin: '6px 0 0', paddingLeft: '1.2rem' }}>
+                            {secondaryQa.issues.map((issue, i) => (
+                              <li key={i}>{issue}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+                    {secondaryChosen.fitness_breakdown && (
+                      <details style={{ marginBottom: '12px', padding: '10px', background: '#f8fafc', borderRadius: '8px' }}>
+                        <summary style={{ cursor: 'pointer', fontWeight: 600 }}>Secondary fitness breakdown (formula: {secondaryChosen.fitness_breakdown.formula})</summary>
+                        <p style={{ margin: '8px 0 4px', fontSize: '0.9em' }}>
+                          <b>fitness</b> = total_reward / (1 + delta) →{' '}
+                          {secondaryChosen.fitness_breakdown.fitness?.toFixed?.(6)} = {secondaryChosen.fitness_breakdown.total_reward?.toFixed?.(4)} / (1 + {secondaryChosen.fitness_breakdown.delta?.toFixed?.(4)})
+                        </p>
+                        {Array.isArray(secondaryChosen.ga_convergence) && secondaryChosen.ga_convergence.length > 0 && (
+                          <p style={{ margin: '0 0 8px', fontSize: '0.85em', color: '#475569' }}>
+                            <b>GA best fitness trace</b> (gen 0…{secondaryChosen.ga_convergence.length - 1}):{' '}
+                            {secondaryChosen.ga_convergence.slice(0, 6).map((x) => Number(x).toFixed(4)).join(' → ')}
+                            {secondaryChosen.ga_convergence.length > 6 ? ' …' : ''}
+                          </p>
+                        )}
+                        <pre style={{ margin: 0, fontSize: '0.75rem', overflow: 'auto', maxHeight: '240px' }}>
+                          {JSON.stringify({ weights: secondaryChosen.fitness_breakdown.weights, raw_components: secondaryChosen.fitness_breakdown.raw_components }, null, 2)}
+                        </pre>
+                      </details>
+                    )}
+                    <div style={{ overflowX: 'auto', marginBottom: '12px' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white' }}>
+                        <thead>
+                          <tr>
+                            <th style={{ textAlign: 'left', borderBottom: '1px solid #ddd', padding: '8px' }}>#</th>
+                            <th style={{ textAlign: 'left', borderBottom: '1px solid #ddd', padding: '8px' }}>Place</th>
+                            <th style={{ textAlign: 'left', borderBottom: '1px solid #ddd', padding: '8px' }}>Arrive</th>
+                            <th style={{ textAlign: 'left', borderBottom: '1px solid #ddd', padding: '8px' }}>Visit</th>
+                            <th style={{ textAlign: 'left', borderBottom: '1px solid #ddd', padding: '8px' }}>Duration</th>
+                            <th style={{ textAlign: 'left', borderBottom: '1px solid #ddd', padding: '8px' }}>WPI</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(secondaryChosen.route || []).map((stop, idx) => (
+                            <tr key={`s-${dayKey}-${secondaryChosen.rank}-${stop.sequence}`}>
+                              <td style={{ borderBottom: '1px solid #f1f5f9', padding: '8px' }}>{idx + 1}</td>
+                              <td style={{ borderBottom: '1px solid #f1f5f9', padding: '8px' }}>{stop.name}</td>
+                              <td style={{ borderBottom: '1px solid #f1f5f9', padding: '8px' }}>{stop.arrival_time}</td>
+                              <td style={{ borderBottom: '1px solid #f1f5f9', padding: '8px' }}>{stop.visit_start} - {stop.visit_end}</td>
+                              <td style={{ borderBottom: '1px solid #f1f5f9', padding: '8px' }}>{stop.visit_duration_min} min</td>
+                              <td style={{ borderBottom: '1px solid #f1f5f9', padding: '8px' }}>{stop.wpi_score?.toFixed?.(3)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div style={{ background: '#fff7ed', padding: '10px', borderRadius: '8px', marginBottom: '12px' }}>
+                      <p><b>Nearby Places You Can Also Consider (secondary)</b></p>
+                      {(secondaryChosen.route || []).map((stop) => (
+                        <div key={`n2-${dayKey}-${secondaryChosen.rank}-${stop.poi_id}`} style={{ marginBottom: '8px' }}>
+                          <p style={{ margin: 0 }}><b>{stop.sequence}. {stop.name}</b></p>
+                          <p style={{ margin: 0, color: '#475569' }}>
+                            {(stop.nearby_suggestions || []).length
+                              ? stop.nearby_suggestions.map((n) => `${n.name} (${n.distance_km} km, WPI ${n.wpi})`).join(' | ')
+                              : 'No nearby suggestions in this day cluster'}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    {secondaryChosen.map && <iframe src={mapUrl(secondaryChosen.map)} title={`${dayKey}-secondary-map-rank-${secondaryChosen.rank}`} />}
                   </>
                 ) : null
               })()}
