@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { geoapifyAutocomplete, geoapifyReverseGeocode, isWithinGoa } from '../services/geoapify'
 import { mapUrl, narrateModule4Day, runModule4 } from '../services/simulationApi'
 
 export default function Module4SimulationPage() {
   const [numDays, setNumDays] = useState(4)
   const [travelType, setTravelType] = useState('solo')
+  const [travelDistance, setTravelDistance] = useState('more')
+  const [hotelQuery, setHotelQuery] = useState('')
+  const [hotelSuggestions, setHotelSuggestions] = useState([])
+  const [hotelSelection, setHotelSelection] = useState(null)
+  const [hotelLoading, setHotelLoading] = useState(false)
+  const [hotelError, setHotelError] = useState('')
+  const [region, setRegion] = useState('')
   const [useLlmFitnessProfile, setUseLlmFitnessProfile] = useState(false)
   const [useLlmInterests, setUseLlmInterests] = useState(false)
   const [includeGaHistory, setIncludeGaHistory] = useState(false)
@@ -16,17 +24,121 @@ export default function Module4SimulationPage() {
   const [userPreference, setUserPreference] = useState('I love exploring historical forts and beaches, interested in nature waterfalls, but not interested in nightlife or shopping')
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [formError, setFormError] = useState('')
   const [selectedRankByDay, setSelectedRankByDay] = useState({})
   const [selectedSecondaryRankByDay, setSelectedSecondaryRankByDay] = useState({})
   const [narrationByKey, setNarrationByKey] = useState({})
   const [narratingByKey, setNarratingByKey] = useState({})
 
+  useEffect(() => {
+    let isActive = true
+    const trimmed = hotelQuery.trim()
+    const selectionLabel = hotelSelection?.formatted || hotelSelection?.name || ''
+
+    if (!trimmed) {
+      setHotelSuggestions([])
+      setHotelLoading(false)
+      return () => {}
+    }
+
+    if (hotelSelection && trimmed === selectionLabel) {
+      setHotelSuggestions([])
+      setHotelLoading(false)
+      return () => {}
+    }
+
+    setHotelLoading(true)
+    setHotelError('')
+
+    const timer = setTimeout(async () => {
+      try {
+        const results = await geoapifyAutocomplete(trimmed)
+        if (!isActive) return
+        setHotelSuggestions(results)
+      } catch (err) {
+        if (!isActive) return
+        setHotelSuggestions([])
+        setHotelError('Geoapify search failed. Check the API key and try again.')
+      } finally {
+        if (isActive) setHotelLoading(false)
+      }
+    }, 350)
+
+    return () => {
+      isActive = false
+      clearTimeout(timer)
+    }
+  }, [hotelQuery, hotelSelection])
+
+  const selectHotel = (item) => {
+    setHotelSelection(item)
+    setHotelQuery(item.formatted || item.name || '')
+    setHotelSuggestions([])
+    setHotelError('')
+  }
+
+  const clearHotel = () => {
+    setHotelSelection(null)
+    setHotelQuery('')
+    setHotelSuggestions([])
+    setHotelError('')
+  }
+
+  const useCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      setHotelError('Geolocation is not supported in this browser.')
+      return
+    }
+    setHotelLoading(true)
+    setHotelError('')
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const lat = pos.coords.latitude
+        const lon = pos.coords.longitude
+        if (!isWithinGoa(lat, lon)) {
+          setHotelLoading(false)
+          setHotelError('Current location is outside Goa bounds.')
+          return
+        }
+        try {
+          const result = await geoapifyReverseGeocode(lat, lon)
+          if (result) {
+            selectHotel(result)
+          } else {
+            setHotelError('Reverse geocoding returned no results.')
+          }
+        } catch (err) {
+          setHotelError('Reverse geocoding failed. Check the API key and try again.')
+        } finally {
+          setHotelLoading(false)
+        }
+      },
+      () => {
+        setHotelLoading(false)
+        setHotelError('Unable to access your location.')
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    )
+  }
+
   const submit = async (e) => {
     e.preventDefault()
+    setFormError('')
+    const hasHotelSelection = Number.isFinite(hotelSelection?.lat) && Number.isFinite(hotelSelection?.lon)
+    if (travelDistance === 'less' && !hasHotelSelection && !region) {
+      setFormError('Select a hotel location or choose a region for travel less.')
+      return
+    }
     setLoading(true)
     const data = await runModule4({
       num_days: Number(numDays),
       travel_type: travelType,
+      travel_distance: travelDistance,
+      hotel_location: null,
+      hotel_address: hasHotelSelection ? (hotelSelection.formatted || hotelSelection.name || null) : null,
+      hotel_lat: hasHotelSelection ? hotelSelection.lat : null,
+      hotel_lon: hasHotelSelection ? hotelSelection.lon : null,
+      region: region || null,
       user_preference: userPreference,
       min_rating: 3.0,
       min_reviews: 1,
@@ -86,6 +198,8 @@ export default function Module4SimulationPage() {
     }
   }
 
+  const hasHotelSelection = Number.isFinite(hotelSelection?.lat) && Number.isFinite(hotelSelection?.lon)
+
   return (
     <div>
       <form className="card" onSubmit={submit}>
@@ -101,6 +215,88 @@ export default function Module4SimulationPage() {
           <option value="group">Group</option>
           <option value="family">Family</option>
         </select>
+        <label>Travel distance</label>
+        <select value={travelDistance} onChange={(e) => setTravelDistance(e.target.value)}>
+          <option value="more">Willing to travel more</option>
+          <option value="less">Prefer shorter distances</option>
+        </select>
+        <label>Hotel location (optional)</label>
+        <div style={{ position: 'relative' }}>
+          <input
+            type="text"
+            placeholder="Search for your hotel in Goa"
+            value={hotelQuery}
+            onChange={(e) => {
+              setHotelQuery(e.target.value)
+              setHotelSelection(null)
+            }}
+          />
+          {hotelSuggestions.length > 0 && (
+            <div
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: '100%',
+                background: 'white',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                padding: '6px',
+                zIndex: 10
+              }}
+            >
+              {hotelSuggestions.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => selectHotel(item)}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '6px 8px',
+                    background: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div style={{ fontWeight: 600 }}>{item.name || item.formatted}</div>
+                  <div style={{ fontSize: '0.85em', color: '#475569' }}>{item.formatted}</div>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: '8px', marginTop: '8px', alignItems: 'center' }}>
+          <button type="button" onClick={useCurrentLocation} disabled={hotelLoading}>
+            {hotelLoading ? 'Locating...' : 'Use current location'}
+          </button>
+          <button type="button" onClick={clearHotel} disabled={hotelLoading || (!hotelQuery && !hotelSelection)}>
+            Clear
+          </button>
+          {hotelSelection && (
+            <span style={{ fontSize: '0.85em', color: '#475569' }}>
+              Selected: {hotelSelection.formatted || hotelSelection.name}
+            </span>
+          )}
+        </div>
+        {hotelError && (
+          <p style={{ color: '#b45309', margin: '6px 0 0' }}>{hotelError}</p>
+        )}
+        {travelDistance === 'less' && !hasHotelSelection && (
+          <>
+            <label>Region (required for travel less)</label>
+            <select value={region} onChange={(e) => setRegion(e.target.value)}>
+              <option value="">Select a region</option>
+              <option value="north">North Goa</option>
+              <option value="central">Central Goa</option>
+              <option value="south">South Goa</option>
+            </select>
+          </>
+        )}
+        {formError && (
+          <p style={{ color: '#b91c1c', margin: '6px 0 0' }}>{formError}</p>
+        )}
         <label>GA population size</label>
         <input type="number" min="20" max="300" value={populationSize} onChange={(e) => setPopulationSize(e.target.value)} />
         <label>GA max generations</label>
@@ -165,6 +361,7 @@ export default function Module4SimulationPage() {
           <div className="card">
             <p><b>Days:</b> {result.num_days}</p>
             <p><b>Travel type:</b> {result.travel_type || travelType}</p>
+            <p><b>Travel distance:</b> {result.travel_distance || travelDistance}</p>
             <p><b>Fitness profile source:</b> {result.fitness_profile_source || '—'}</p>
             <p><b>Module 1 interests source:</b> {result.module1_interests_source || '—'}</p>
             {result.preference_extraction && (
@@ -173,6 +370,30 @@ export default function Module4SimulationPage() {
               </p>
             )}
             <p><b>Module chain:</b> module1_run_id={result.module1_run_id}, module2_run_id={result.module2_run_id}</p>
+            {result.module2_radius_filter?.enabled && (
+              <div style={{ marginTop: '8px', padding: '10px', background: '#f8fafc', borderRadius: '8px' }}>
+                <p style={{ margin: '0 0 4px' }}><b>Travel radius filter</b> ({result.module2_radius_filter.travel_distance || 'less'})</p>
+                <p style={{ margin: 0 }}>
+                  <b>Radius:</b> {result.module2_radius_filter.radius_km?.toFixed?.(1)} km (base {result.module2_radius_filter.base_radius_km} · max {result.module2_radius_filter.max_radius_km})
+                </p>
+                <p style={{ margin: 0 }}>
+                  <b>Anchor:</b> {result.module2_radius_filter.anchor?.label || 'dataset mean'} ({result.module2_radius_filter.anchor?.source || 'dataset_mean'})
+                </p>
+                <p style={{ margin: 0 }}>
+                  <b>Within radius:</b> {result.module2_radius_filter.within_radius} · <b>Exceptions:</b> {result.module2_radius_filter.exceptions_added}
+                </p>
+                {result.module2_radius_filter.anchor_warning && (
+                  <p style={{ margin: 0, color: '#92400e' }}>
+                    <b>Anchor warning:</b> {result.module2_radius_filter.anchor_warning}
+                  </p>
+                )}
+                {result.module2_radius_filter.fallback_reason && (
+                  <p style={{ margin: 0, color: '#92400e' }}>
+                    <b>Fallback:</b> {result.module2_radius_filter.fallback_reason}
+                  </p>
+                )}
+              </div>
+            )}
             <p><b>Generated:</b> {result.generated_files.optimized_routes}</p>
           </div>
           {Object.entries(result.routes).map(([dayKey, dayData]) => (
