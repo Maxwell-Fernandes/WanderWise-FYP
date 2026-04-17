@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000/api'
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 export async function runModule1(payload) {
   const res = await fetch(`${API_BASE}/module1/simulate`, {
