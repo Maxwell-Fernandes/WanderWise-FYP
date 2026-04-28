@@ -430,9 +430,19 @@ def normalize_popularity_by_cluster(df_with_popularity: pd.DataFrame):
     df_normalized = df_with_popularity.copy()
     cluster_max_popularity = df_normalized.groupby("cluster")["popularity_score"].transform("max")
     df_normalized["cluster_max_popularity"] = cluster_max_popularity
-    df_normalized["normalized_popularity"] = (
-        df_normalized["popularity_score"] / df_normalized["cluster_max_popularity"]
-    )
+    
+    # Handle division by zero: when cluster_max_popularity is 0 (e.g., single low-rated POI),
+    # use 0.5 as default normalized popularity instead of NaN.
+    # This ensures:
+    # 1. No NaN values propagate to fitness calculations
+    # 2. Low-value POIs get a reasonable baseline score
+    # 3. GA fitness comparisons work correctly (NaN > x always False)
+    def safe_normalize(row):
+        if row["cluster_max_popularity"] == 0:
+            return 0.5  # Default middle-ground value for zero-max clusters
+        return row["popularity_score"] / row["cluster_max_popularity"]
+    
+    df_normalized["normalized_popularity"] = df_normalized.apply(safe_normalize, axis=1)
     return df_normalized
 
 
