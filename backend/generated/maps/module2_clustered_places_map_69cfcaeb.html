@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_520e53fcd5063e5ca2946b2157944fe2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_520e53fcd5063e5ca2946b2157944fe2" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_520e53fcd5063e5ca2946b2157944fe2 = L.map(
+                "map_520e53fcd5063e5ca2946b2157944fe2",
+                {
+                    center: [15.159638916363638, 74.11220699545456],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_dad0a0d97c60abe2ee5e118ad0de240a = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_dad0a0d97c60abe2ee5e118ad0de240a.addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+            var marker_6bffc20e7342784f8c388fad82e53387 = L.marker(
+                [15.086785, 74.203736],
+                {
+}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+            var icon_66cdcb535e22c7d64573cfdda3bd7d17 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9eec7cad73e24b83c014e1d356fccfe2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1da21b78460bd3306b442f4be0d8ec40 = $(`<div id="html_1da21b78460bd3306b442f4be0d8ec40" style="width: 100.0%; height: 100.0%;"><b>The Postcard Hideaway - Netravali, Pirla - 403704, GA, India</b></div>`)[0];
+                popup_9eec7cad73e24b83c014e1d356fccfe2.setContent(html_1da21b78460bd3306b442f4be0d8ec40);
+            
+        
+
+        marker_6bffc20e7342784f8c388fad82e53387.bindPopup(popup_9eec7cad73e24b83c014e1d356fccfe2)
+        ;
+
+        
+    
+    
+            marker_6bffc20e7342784f8c388fad82e53387.bindTooltip(
+                `<div>
+                     Hotel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6bffc20e7342784f8c388fad82e53387.setIcon(icon_66cdcb535e22c7d64573cfdda3bd7d17);
+            
+    
+            var circle_marker_476f9b367d2f4775ffee18e5797168dc = L.circleMarker(
+                [15.2026283, 74.2223068],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_6c10de454af75d9ffe9b78ffe2c7640a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0403cdb13daa4dee5a27e47daea780d4 = $(`<div id="html_0403cdb13daa4dee5a27e47daea780d4" style="width: 100.0%; height: 100.0%;">Day 1: Bhati waterfall<br>WPI: 0.630</div>`)[0];
+                popup_6c10de454af75d9ffe9b78ffe2c7640a.setContent(html_0403cdb13daa4dee5a27e47daea780d4);
+            
+        
+
+        circle_marker_476f9b367d2f4775ffee18e5797168dc.bindPopup(popup_6c10de454af75d9ffe9b78ffe2c7640a)
+        ;
+
+        
+    
+    
+            var circle_marker_59d83cc4f458b56cc35df97a3e01cd88 = L.circleMarker(
+                [15.1643649, 74.1069956],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_1492d260abe523a74b3cac3c9383752a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_65ac3b86a0e6cd7ee4222db40b19d30f = $(`<div id="html_65ac3b86a0e6cd7ee4222db40b19d30f" style="width: 100.0%; height: 100.0%;">Day 1: Shree Vimleshwar Temple<br>WPI: 0.854</div>`)[0];
+                popup_1492d260abe523a74b3cac3c9383752a.setContent(html_65ac3b86a0e6cd7ee4222db40b19d30f);
+            
+        
+
+        circle_marker_59d83cc4f458b56cc35df97a3e01cd88.bindPopup(popup_1492d260abe523a74b3cac3c9383752a)
+        ;
+
+        
+    
+    
+            var circle_marker_ed0f10f04594305064407a553c1e89a5 = L.circleMarker(
+                [15.210737, 74.201206],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_747bd877a95ef5bd48ec4a196cf89b29 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f1ea679701ca037250248b83dd013b04 = $(`<div id="html_f1ea679701ca037250248b83dd013b04" style="width: 100.0%; height: 100.0%;">Day 1: Shree Sateri Pachapuris Temple<br>WPI: 0.708</div>`)[0];
+                popup_747bd877a95ef5bd48ec4a196cf89b29.setContent(html_f1ea679701ca037250248b83dd013b04);
+            
+        
+
+        circle_marker_ed0f10f04594305064407a553c1e89a5.bindPopup(popup_747bd877a95ef5bd48ec4a196cf89b29)
+        ;
+
+        
+    
+    
+            var circle_marker_b12c69c1e118d0607d67c01dce619087 = L.circleMarker(
+                [15.1986869, 74.1470225],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_083d82dcb4fc982f1d9515d51a4c34c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3456aad85f27ba15d9a4b461e539bd78 = $(`<div id="html_3456aad85f27ba15d9a4b461e539bd78" style="width: 100.0%; height: 100.0%;">Day 1: SHRI PAIKDEV TEMPLE<br>WPI: 0.640</div>`)[0];
+                popup_083d82dcb4fc982f1d9515d51a4c34c8.setContent(html_3456aad85f27ba15d9a4b461e539bd78);
+            
+        
+
+        circle_marker_b12c69c1e118d0607d67c01dce619087.bindPopup(popup_083d82dcb4fc982f1d9515d51a4c34c8)
+        ;
+
+        
+    
+    
+            var circle_marker_09a47b4cc29d1a9d8dbbaa1cc107741c = L.circleMarker(
+                [15.067987, 74.0759749],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_35a9577512f5fe0c9942ef4f4dd5c453 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a380c14af0d81bef12ab8cfd0c141f20 = $(`<div id="html_a380c14af0d81bef12ab8cfd0c141f20" style="width: 100.0%; height: 100.0%;">Day 1: Gokuldem Waterfall<br>WPI: 0.671</div>`)[0];
+                popup_35a9577512f5fe0c9942ef4f4dd5c453.setContent(html_a380c14af0d81bef12ab8cfd0c141f20);
+            
+        
+
+        circle_marker_09a47b4cc29d1a9d8dbbaa1cc107741c.bindPopup(popup_35a9577512f5fe0c9942ef4f4dd5c453)
+        ;
+
+        
+    
+    
+            var circle_marker_5c4cc73bec6000a69e0a98c13fbc5345 = L.circleMarker(
+                [15.2099027, 74.176029],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_717649c3ff64dbac084debf8a8cf9051 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_072a58f717f58e776bcca53adc20aaba = $(`<div id="html_072a58f717f58e776bcca53adc20aaba" style="width: 100.0%; height: 100.0%;">Day 1: Salaulim dam<br>WPI: 0.749</div>`)[0];
+                popup_717649c3ff64dbac084debf8a8cf9051.setContent(html_072a58f717f58e776bcca53adc20aaba);
+            
+        
+
+        circle_marker_5c4cc73bec6000a69e0a98c13fbc5345.bindPopup(popup_717649c3ff64dbac084debf8a8cf9051)
+        ;
+
+        
+    
+    
+            var circle_marker_f8aa1e19002c43b56be81d6439dbaf48 = L.circleMarker(
+                [15.2127043, 74.1788677],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_6c96d069e5deba6818da92cb8c168cca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df868967951785e804c3fbe49044f31c = $(`<div id="html_df868967951785e804c3fbe49044f31c" style="width: 100.0%; height: 100.0%;">Day 1: Salaulim Dam<br>WPI: 0.900</div>`)[0];
+                popup_6c96d069e5deba6818da92cb8c168cca.setContent(html_df868967951785e804c3fbe49044f31c);
+            
+        
+
+        circle_marker_f8aa1e19002c43b56be81d6439dbaf48.bindPopup(popup_6c96d069e5deba6818da92cb8c168cca)
+        ;
+
+        
+    
+    
+            var circle_marker_9f612f7233adc17107ed941dc42642a9 = L.circleMarker(
+                [15.2145589, 74.1786934],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_514384cf8a3fba49b35fe782e34af228 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5765135899fb3098031143412cda0fb3 = $(`<div id="html_5765135899fb3098031143412cda0fb3" style="width: 100.0%; height: 100.0%;">Day 1: Salaulim Garden<br>WPI: 0.852</div>`)[0];
+                popup_514384cf8a3fba49b35fe782e34af228.setContent(html_5765135899fb3098031143412cda0fb3);
+            
+        
+
+        circle_marker_9f612f7233adc17107ed941dc42642a9.bindPopup(popup_514384cf8a3fba49b35fe782e34af228)
+        ;
+
+        
+    
+    
+            var circle_marker_b39f254c99c5649a7a56dca7a02dc9dd = L.circleMarker(
+                [15.0978161, 74.064417],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_8525f9f5ccb29b2d784e2815e701dcf1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fb3539f0cdfad487b770970fe03ef08e = $(`<div id="html_fb3539f0cdfad487b770970fe03ef08e" style="width: 100.0%; height: 100.0%;">Day 1: Nadal Waterfall<br>WPI: 0.586</div>`)[0];
+                popup_8525f9f5ccb29b2d784e2815e701dcf1.setContent(html_fb3539f0cdfad487b770970fe03ef08e);
+            
+        
+
+        circle_marker_b39f254c99c5649a7a56dca7a02dc9dd.bindPopup(popup_8525f9f5ccb29b2d784e2815e701dcf1)
+        ;
+
+        
+    
+    
+            var circle_marker_1727c8e199782b7fb2dd53fd45071cda = L.circleMarker(
+                [14.984734, 74.1085117],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_91359edaf61af345007358be1354f562 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_58dba0f944f04e1bc913da5af5609369 = $(`<div id="html_58dba0f944f04e1bc913da5af5609369" style="width: 100.0%; height: 100.0%;">Day 1: Cotigao Wildlife Sanctuary Office<br>WPI: 0.751</div>`)[0];
+                popup_91359edaf61af345007358be1354f562.setContent(html_58dba0f944f04e1bc913da5af5609369);
+            
+        
+
+        circle_marker_1727c8e199782b7fb2dd53fd45071cda.bindPopup(popup_91359edaf61af345007358be1354f562)
+        ;
+
+        
+    
+    
+            var circle_marker_e6d44b6d414b5f6a93783c7f0df4b757 = L.circleMarker(
+                [15.2137876, 74.1481576],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_ad895a5b4bac65b45bfc8f26cb25410f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6e05b05469a8b7c6ae9831f3ff53a787 = $(`<div id="html_6e05b05469a8b7c6ae9831f3ff53a787" style="width: 100.0%; height: 100.0%;">Day 1: Satteri Devi Temple<br>WPI: 0.659</div>`)[0];
+                popup_ad895a5b4bac65b45bfc8f26cb25410f.setContent(html_6e05b05469a8b7c6ae9831f3ff53a787);
+            
+        
+
+        circle_marker_e6d44b6d414b5f6a93783c7f0df4b757.bindPopup(popup_ad895a5b4bac65b45bfc8f26cb25410f)
+        ;
+
+        
+    
+    
+            var circle_marker_93d1069a5936035d22ce4e7095d16a02 = L.circleMarker(
+                [15.0227158, 74.0763636],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_50757e5c53e19b0b6ee7364414ae0bc8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_70accae4a7b59ef193e29d067918b900 = $(`<div id="html_70accae4a7b59ef193e29d067918b900" style="width: 100.0%; height: 100.0%;">Day 1: Mallikarjun Temple, Canacona<br>WPI: 0.906</div>`)[0];
+                popup_50757e5c53e19b0b6ee7364414ae0bc8.setContent(html_70accae4a7b59ef193e29d067918b900);
+            
+        
+
+        circle_marker_93d1069a5936035d22ce4e7095d16a02.bindPopup(popup_50757e5c53e19b0b6ee7364414ae0bc8)
+        ;
+
+        
+    
+    
+            var circle_marker_1f42bb22caa6010bc44ecc912f3773da = L.circleMarker(
+                [14.9883475, 74.1005476],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_bad0d0c9027a1af07132312d8d8f344d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d331c87625375e44f151269c0a7d507f = $(`<div id="html_d331c87625375e44f151269c0a7d507f" style="width: 100.0%; height: 100.0%;">Day 1: Cotigao Wildlife Sanctuary Entrance<br>WPI: 0.705</div>`)[0];
+                popup_bad0d0c9027a1af07132312d8d8f344d.setContent(html_d331c87625375e44f151269c0a7d507f);
+            
+        
+
+        circle_marker_1f42bb22caa6010bc44ecc912f3773da.bindPopup(popup_bad0d0c9027a1af07132312d8d8f344d)
+        ;
+
+        
+    
+    
+            var circle_marker_d4e1a50433fbcb63788be1d0bbeee96a = L.circleMarker(
+                [15.219766, 74.1575717],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_51cba11d3ec0c558e37da4f9ed407c54 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1d5c8e1d498f5abdc501294f853caced = $(`<div id="html_1d5c8e1d498f5abdc501294f853caced" style="width: 100.0%; height: 100.0%;">Day 1: Shree Paikdev Temple<br>WPI: 0.771</div>`)[0];
+                popup_51cba11d3ec0c558e37da4f9ed407c54.setContent(html_1d5c8e1d498f5abdc501294f853caced);
+            
+        
+
+        circle_marker_d4e1a50433fbcb63788be1d0bbeee96a.bindPopup(popup_51cba11d3ec0c558e37da4f9ed407c54)
+        ;
+
+        
+    
+    
+            var circle_marker_dff9cc16859f4d2ef8db0654c3e204f6 = L.circleMarker(
+                [15.2147666, 74.1425936],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_1b1ecbf3bc5014ee922f8e53bf128b0a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_02305d8b10c6efbd15059bf45ff5e701 = $(`<div id="html_02305d8b10c6efbd15059bf45ff5e701" style="width: 100.0%; height: 100.0%;">Day 1: Zariwada Spring Cortali<br>WPI: 0.600</div>`)[0];
+                popup_1b1ecbf3bc5014ee922f8e53bf128b0a.setContent(html_02305d8b10c6efbd15059bf45ff5e701);
+            
+        
+
+        circle_marker_dff9cc16859f4d2ef8db0654c3e204f6.bindPopup(popup_1b1ecbf3bc5014ee922f8e53bf128b0a)
+        ;
+
+        
+    
+    
+            var circle_marker_395a6ce325a047439e1c17f154b829ec = L.circleMarker(
+                [15.2211117, 74.1475365],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_271e1cf960d5204af5c1aa0612381009 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66e015c88f1bfc562f0301643e820973 = $(`<div id="html_66e015c88f1bfc562f0301643e820973" style="width: 100.0%; height: 100.0%;">Day 1: Shree Ramnath Paikdev Temple<br>WPI: 0.631</div>`)[0];
+                popup_271e1cf960d5204af5c1aa0612381009.setContent(html_66e015c88f1bfc562f0301643e820973);
+            
+        
+
+        circle_marker_395a6ce325a047439e1c17f154b829ec.bindPopup(popup_271e1cf960d5204af5c1aa0612381009)
+        ;
+
+        
+    
+    
+            var circle_marker_24d293c68b77a97586b85ddfd721ef6c = L.circleMarker(
+                [15.1866463, 74.0949954],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_8af93a1116163916efd3284850780ae6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9c40842604f0c1f9dbf5338cc8acd4d1 = $(`<div id="html_9c40842604f0c1f9dbf5338cc8acd4d1" style="width: 100.0%; height: 100.0%;">Day 1: Shree Ramnath Damodar Sansthaan, Goa<br>WPI: 0.912</div>`)[0];
+                popup_8af93a1116163916efd3284850780ae6.setContent(html_9c40842604f0c1f9dbf5338cc8acd4d1);
+            
+        
+
+        circle_marker_24d293c68b77a97586b85ddfd721ef6c.bindPopup(popup_8af93a1116163916efd3284850780ae6)
+        ;
+
+        
+    
+    
+            var circle_marker_b379b332a02b9e54c9ed0c7c02a8b3bd = L.circleMarker(
+                [15.2309646, 74.1518249],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_d1b465a694dac774ba9b5bb1eb92f76f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_40e8724726904846d481ade106749cca = $(`<div id="html_40e8724726904846d481ade106749cca" style="width: 100.0%; height: 100.0%;">Day 1: Vithal Mandir<br>WPI: 0.755</div>`)[0];
+                popup_d1b465a694dac774ba9b5bb1eb92f76f.setContent(html_40e8724726904846d481ade106749cca);
+            
+        
+
+        circle_marker_b379b332a02b9e54c9ed0c7c02a8b3bd.bindPopup(popup_d1b465a694dac774ba9b5bb1eb92f76f)
+        ;
+
+        
+    
+    
+            var circle_marker_4fd9f0db325371f4824830a59cb9d908 = L.circleMarker(
+                [15.2327554, 74.1491559],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_f127635b780e17d6abd07154eaf5e0f2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_876c5ce6b772ef64480485540b51d6dc = $(`<div id="html_876c5ce6b772ef64480485540b51d6dc" style="width: 100.0%; height: 100.0%;">Day 1: Sangameshwar Temple<br>WPI: 0.717</div>`)[0];
+                popup_f127635b780e17d6abd07154eaf5e0f2.setContent(html_876c5ce6b772ef64480485540b51d6dc);
+            
+        
+
+        circle_marker_4fd9f0db325371f4824830a59cb9d908.bindPopup(popup_f127635b780e17d6abd07154eaf5e0f2)
+        ;
+
+        
+    
+    
+            var circle_marker_b518946dc80391b3ac90db9840c8b3d1 = L.circleMarker(
+                [15.033731, 74.050117],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_eddd883afffe5949180a6222b5199a80 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0c7bda6f4e41a491f1fda64c156b7b81 = $(`<div id="html_0c7bda6f4e41a491f1fda64c156b7b81" style="width: 100.0%; height: 100.0%;">Day 1: Chapoli Waterfall Canacona South Goa<br>WPI: 0.690</div>`)[0];
+                popup_eddd883afffe5949180a6222b5199a80.setContent(html_0c7bda6f4e41a491f1fda64c156b7b81);
+            
+        
+
+        circle_marker_b518946dc80391b3ac90db9840c8b3d1.bindPopup(popup_eddd883afffe5949180a6222b5199a80)
+        ;
+
+        
+    
+    
+            var circle_marker_56feefb8c58e6ad4eab629b0ed8bce7f = L.circleMarker(
+                [15.2364551, 74.1465475],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_662cff98b80f01f7720235b4c7c50af1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4ad8aff0a5098c68421d9f5718e233f4 = $(`<div id="html_4ad8aff0a5098c68421d9f5718e233f4" style="width: 100.0%; height: 100.0%;">Day 1: Saraswati temple vakarwada<br>WPI: 0.630</div>`)[0];
+                popup_662cff98b80f01f7720235b4c7c50af1.setContent(html_4ad8aff0a5098c68421d9f5718e233f4);
+            
+        
+
+        circle_marker_56feefb8c58e6ad4eab629b0ed8bce7f.bindPopup(popup_662cff98b80f01f7720235b4c7c50af1)
+        ;
+
+        
+    
+    
+            var circle_marker_b80dd7580e63cadf25764d0f13ba1017 = L.circleMarker(
+                [15.2066842, 74.0925928],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_7ed4d31c5bb958f05c558a75a89bbd6c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c9bcb1553d9521b8bf848c81c3af2787 = $(`<div id="html_c9bcb1553d9521b8bf848c81c3af2787" style="width: 100.0%; height: 100.0%;">Day 1: Shri Someshwara Temple (Shirvoi)<br>WPI: 0.789</div>`)[0];
+                popup_7ed4d31c5bb958f05c558a75a89bbd6c.setContent(html_c9bcb1553d9521b8bf848c81c3af2787);
+            
+        
+
+        circle_marker_b80dd7580e63cadf25764d0f13ba1017.bindPopup(popup_7ed4d31c5bb958f05c558a75a89bbd6c)
+        ;
+
+        
+    
+    
+            var circle_marker_04a1f0bb3d4363306c4a94f31583f053 = L.circleMarker(
+                [15.24406, 74.1528377],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_daf0eaa57ba6970aad40f736431002f1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4f9ed2adc679c2c97ab0d427455f2c97 = $(`<div id="html_4f9ed2adc679c2c97ab0d427455f2c97" style="width: 100.0%; height: 100.0%;">Day 1: Shree Kalnath Temple Marangan Mugoli sanguem Goa<br>WPI: 0.720</div>`)[0];
+                popup_daf0eaa57ba6970aad40f736431002f1.setContent(html_4f9ed2adc679c2c97ab0d427455f2c97);
+            
+        
+
+        circle_marker_04a1f0bb3d4363306c4a94f31583f053.bindPopup(popup_daf0eaa57ba6970aad40f736431002f1)
+        ;
+
+        
+    
+    
+            var circle_marker_ebba93d8d9f134141902ce2acf4165a8 = L.circleMarker(
+                [15.2450243, 74.1507733],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_3c6b7e7c2b7ca4e3aefb102cc7021eef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3c99ee58b9daf42e5088ec65d9abccd = $(`<div id="html_f3c99ee58b9daf42e5088ec65d9abccd" style="width: 100.0%; height: 100.0%;">Day 1: Saibaba Temple<br>WPI: 0.680</div>`)[0];
+                popup_3c6b7e7c2b7ca4e3aefb102cc7021eef.setContent(html_f3c99ee58b9daf42e5088ec65d9abccd);
+            
+        
+
+        circle_marker_ebba93d8d9f134141902ce2acf4165a8.bindPopup(popup_3c6b7e7c2b7ca4e3aefb102cc7021eef)
+        ;
+
+        
+    
+    
+            var circle_marker_9b1c771b1e2855f3378c262fb4436bd8 = L.circleMarker(
+                [14.9941098, 74.0586288],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_9e860ed998ade934a6ff6decf1a5395b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b980fe562ae7ced7bd7c8911aa26619d = $(`<div id="html_b980fe562ae7ced7bd7c8911aa26619d" style="width: 100.0%; height: 100.0%;">Day 1: River queen boat trip and kayaking by Tulsidas ji<br>WPI: 0.700</div>`)[0];
+                popup_9e860ed998ade934a6ff6decf1a5395b.setContent(html_b980fe562ae7ced7bd7c8911aa26619d);
+            
+        
+
+        circle_marker_9b1c771b1e2855f3378c262fb4436bd8.bindPopup(popup_9e860ed998ade934a6ff6decf1a5395b)
+        ;
+
+        
+    
+    
+            var circle_marker_041f5d07c1113f04a42f9b43c77fa4ad = L.circleMarker(
+                [15.0892446, 74.0285175],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_8046746678869ca5dd55cfa9ce48e0bc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_32bfcec3c702053d3eb336beccb285fd = $(`<div id="html_32bfcec3c702053d3eb336beccb285fd" style="width: 100.0%; height: 100.0%;">Day 1: Padi Waterfall<br>WPI: 0.675</div>`)[0];
+                popup_8046746678869ca5dd55cfa9ce48e0bc.setContent(html_32bfcec3c702053d3eb336beccb285fd);
+            
+        
+
+        circle_marker_041f5d07c1113f04a42f9b43c77fa4ad.bindPopup(popup_8046746678869ca5dd55cfa9ce48e0bc)
+        ;
+
+        
+    
+    
+            var circle_marker_b546b6d54a299d5afdf6acdbefd7d7f3 = L.circleMarker(
+                [15.1682596, 74.0444539],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_565986fcf38719921a5378f6e3b46c0c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5f8e5a7ba2c1f8c3ba040a444e36b09a = $(`<div id="html_5f8e5a7ba2c1f8c3ba040a444e36b09a" style="width: 100.0%; height: 100.0%;">Day 1: Somnath Temple<br>WPI: 0.620</div>`)[0];
+                popup_565986fcf38719921a5378f6e3b46c0c.setContent(html_5f8e5a7ba2c1f8c3ba040a444e36b09a);
+            
+        
+
+        circle_marker_b546b6d54a299d5afdf6acdbefd7d7f3.bindPopup(popup_565986fcf38719921a5378f6e3b46c0c)
+        ;
+
+        
+    
+    
+            var circle_marker_850ec6ecfd57725e95e4fec2e7251423 = L.circleMarker(
+                [15.2116832, 74.0754267],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_d888814c62a68679cb83d9083ba27fe8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0c7483be0f48c93281a4a8312f69111b = $(`<div id="html_0c7483be0f48c93281a4a8312f69111b" style="width: 100.0%; height: 100.0%;">Day 1: Quepem Dam<br>WPI: 0.742</div>`)[0];
+                popup_d888814c62a68679cb83d9083ba27fe8.setContent(html_0c7483be0f48c93281a4a8312f69111b);
+            
+        
+
+        circle_marker_850ec6ecfd57725e95e4fec2e7251423.bindPopup(popup_d888814c62a68679cb83d9083ba27fe8)
+        ;
+
+        
+    
+    
+            var circle_marker_e4b18d718d4564d083d63c387c83f38b = L.circleMarker(
+                [15.2135835, 74.0736286],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_2a5e7814d56df951f738f3b997bb889c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3e56db30146d7b79aa2ad2c391a5d51 = $(`<div id="html_f3e56db30146d7b79aa2ad2c391a5d51" style="width: 100.0%; height: 100.0%;">Day 1: Palácio do Deão<br>WPI: 0.816</div>`)[0];
+                popup_2a5e7814d56df951f738f3b997bb889c.setContent(html_f3e56db30146d7b79aa2ad2c391a5d51);
+            
+        
+
+        circle_marker_e4b18d718d4564d083d63c387c83f38b.bindPopup(popup_2a5e7814d56df951f738f3b997bb889c)
+        ;
+
+        
+    
+    
+            var circle_marker_01635e023ee3b67f2ed04bd469ceb7e9 = L.circleMarker(
+                [15.2000456, 74.0549115],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_4344d830e3d39ebca6b9122a6a510ccf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6d7cc0f74e33fcf61b378d9a2064cd59 = $(`<div id="html_6d7cc0f74e33fcf61b378d9a2064cd59" style="width: 100.0%; height: 100.0%;">Day 1: Ambaulim Church<br>WPI: 0.754</div>`)[0];
+                popup_4344d830e3d39ebca6b9122a6a510ccf.setContent(html_6d7cc0f74e33fcf61b378d9a2064cd59);
+            
+        
+
+        circle_marker_01635e023ee3b67f2ed04bd469ceb7e9.bindPopup(popup_4344d830e3d39ebca6b9122a6a510ccf)
+        ;
+
+        
+    
+    
+            var circle_marker_2274aafb609d1cbdd449f2073f5b2be0 = L.circleMarker(
+                [15.2491399, 74.1099441],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_ad3270dbafef9c8e4b4005a4a6b5e124 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_92ba921657aaa098546fddf11dc3dbaf = $(`<div id="html_92ba921657aaa098546fddf11dc3dbaf" style="width: 100.0%; height: 100.0%;">Day 1: Near Mahadev Temple<br>WPI: 0.753</div>`)[0];
+                popup_ad3270dbafef9c8e4b4005a4a6b5e124.setContent(html_92ba921657aaa098546fddf11dc3dbaf);
+            
+        
+
+        circle_marker_2274aafb609d1cbdd449f2073f5b2be0.bindPopup(popup_ad3270dbafef9c8e4b4005a4a6b5e124)
+        ;
+
+        
+    
+    
+            var circle_marker_dd0aec6ff9002013e9c9ad7ebb922315 = L.circleMarker(
+                [15.2734367, 74.1831127],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_caf722aac31e3cab903431f4bc413f9f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_216a8dc64894d9bc2dbd86dc9f6f9e58 = $(`<div id="html_216a8dc64894d9bc2dbd86dc9f6f9e58" style="width: 100.0%; height: 100.0%;">Day 1: Tiger Waterfall<br>WPI: 0.565</div>`)[0];
+                popup_caf722aac31e3cab903431f4bc413f9f.setContent(html_216a8dc64894d9bc2dbd86dc9f6f9e58);
+            
+        
+
+        circle_marker_dd0aec6ff9002013e9c9ad7ebb922315.bindPopup(popup_caf722aac31e3cab903431f4bc413f9f)
+        ;
+
+        
+    
+    
+            var circle_marker_3a15293bef1f883fcd02b052e94926ed = L.circleMarker(
+                [15.0076952, 74.0261434],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_c726413c3f3dfd5acd9ea10d09b6916c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a3cd5c9c96287304248b5a3743fb20b7 = $(`<div id="html_a3cd5c9c96287304248b5a3743fb20b7" style="width: 100.0%; height: 100.0%;">Day 1: Palolem Kayaking Spot<br>WPI: 0.696</div>`)[0];
+                popup_c726413c3f3dfd5acd9ea10d09b6916c.setContent(html_a3cd5c9c96287304248b5a3743fb20b7);
+            
+        
+
+        circle_marker_3a15293bef1f883fcd02b052e94926ed.bindPopup(popup_c726413c3f3dfd5acd9ea10d09b6916c)
+        ;
+
+        
+    
+    
+            var circle_marker_83a708f6d3d02389ec0e253087b87bd9 = L.circleMarker(
+                [14.9855084, 74.0383984],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_22e762a93a13ab2c55ef846a523976da = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b64113307364258975faeb31e829797 = $(`<div id="html_7b64113307364258975faeb31e829797" style="width: 100.0%; height: 100.0%;">Day 1: Parental Umbrage - A Boat Trip Adventure<br>WPI: 0.757</div>`)[0];
+                popup_22e762a93a13ab2c55ef846a523976da.setContent(html_7b64113307364258975faeb31e829797);
+            
+        
+
+        circle_marker_83a708f6d3d02389ec0e253087b87bd9.bindPopup(popup_22e762a93a13ab2c55ef846a523976da)
+        ;
+
+        
+    
+    
+            var circle_marker_9c576aa9e1d2216872107adba41dad4b = L.circleMarker(
+                [15.0099648, 74.0232186],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_df618352285e9c747b01e1c83b3e4f15 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8c3093999055b0be6c8293b47bff96c9 = $(`<div id="html_8c3093999055b0be6c8293b47bff96c9" style="width: 100.0%; height: 100.0%;">Day 1: Palolem Beach<br>WPI: 1.000</div>`)[0];
+                popup_df618352285e9c747b01e1c83b3e4f15.setContent(html_8c3093999055b0be6c8293b47bff96c9);
+            
+        
+
+        circle_marker_9c576aa9e1d2216872107adba41dad4b.bindPopup(popup_df618352285e9c747b01e1c83b3e4f15)
+        ;
+
+        
+    
+    
+            var circle_marker_78204c63a58b5c06a94bdbc51a50af71 = L.circleMarker(
+                [15.0114217, 74.0213312],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_8b522825d3c33172d10e501dd5d33721 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_edb7aff84dad87c2af7fa03c8b800c1d = $(`<div id="html_edb7aff84dad87c2af7fa03c8b800c1d" style="width: 100.0%; height: 100.0%;">Day 1: Dolphin Boat trip and kayaking<br>WPI: 0.645</div>`)[0];
+                popup_8b522825d3c33172d10e501dd5d33721.setContent(html_edb7aff84dad87c2af7fa03c8b800c1d);
+            
+        
+
+        circle_marker_78204c63a58b5c06a94bdbc51a50af71.bindPopup(popup_8b522825d3c33172d10e501dd5d33721)
+        ;
+
+        
+    
+    
+            var circle_marker_519ab8ab684a22d404716fb789c15f6e = L.circleMarker(
+                [15.0114947, 74.0211434],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_07fa00f3e8608c7fa8221c75e35c661e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3a1071eeffd4ecd9aa88ffa1d8ddb7e4 = $(`<div id="html_3a1071eeffd4ecd9aa88ffa1d8ddb7e4" style="width: 100.0%; height: 100.0%;">Day 1: All day kayak adventure<br>WPI: 0.713</div>`)[0];
+                popup_07fa00f3e8608c7fa8221c75e35c661e.setContent(html_3a1071eeffd4ecd9aa88ffa1d8ddb7e4);
+            
+        
+
+        circle_marker_519ab8ab684a22d404716fb789c15f6e.bindPopup(popup_07fa00f3e8608c7fa8221c75e35c661e)
+        ;
+
+        
+    
+    
+            var circle_marker_c3f4ec9b9d5977255fcd8691b2e817f2 = L.circleMarker(
+                [15.0158338, 74.0175332],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_a1b013325fbdeb910eebc902a6df5cf4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_76168cdaf8c31068ba922f6d90fc6c1a = $(`<div id="html_76168cdaf8c31068ba922f6d90fc6c1a" style="width: 100.0%; height: 100.0%;">Day 1: PALOLEM BEACH MANGROVE FOREST<br>WPI: 0.683</div>`)[0];
+                popup_a1b013325fbdeb910eebc902a6df5cf4.setContent(html_76168cdaf8c31068ba922f6d90fc6c1a);
+            
+        
+
+        circle_marker_c3f4ec9b9d5977255fcd8691b2e817f2.bindPopup(popup_a1b013325fbdeb910eebc902a6df5cf4)
+        ;
+
+        
+    
+    
+            var circle_marker_178ec055f1bb531377c78cb06bccc47e = L.circleMarker(
+                [15.2561103, 74.1068441],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_631a220badc539832308f11b8b535e8b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_60388ba481c457ba714b9645efd587ef = $(`<div id="html_60388ba481c457ba714b9645efd587ef" style="width: 100.0%; height: 100.0%;">Day 1: Sansthan Maruti Temple<br>WPI: 0.788</div>`)[0];
+                popup_631a220badc539832308f11b8b535e8b.setContent(html_60388ba481c457ba714b9645efd587ef);
+            
+        
+
+        circle_marker_178ec055f1bb531377c78cb06bccc47e.bindPopup(popup_631a220badc539832308f11b8b535e8b)
+        ;
+
+        
+    
+    
+            var circle_marker_e8ccb823330031b01ae951a638132f34 = L.circleMarker(
+                [14.942263, 74.0704844],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_a550cbb603745fe61011d76007a6c31d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4b6348e7d9964cd9d26782de49824953 = $(`<div id="html_4b6348e7d9964cd9d26782de49824953" style="width: 100.0%; height: 100.0%;">Day 1: Damodara Temple Loliem, South Goa<br>WPI: 0.725</div>`)[0];
+                popup_a550cbb603745fe61011d76007a6c31d.setContent(html_4b6348e7d9964cd9d26782de49824953);
+            
+        
+
+        circle_marker_e8ccb823330031b01ae951a638132f34.bindPopup(popup_a550cbb603745fe61011d76007a6c31d)
+        ;
+
+        
+    
+    
+            var circle_marker_48e1e753e1129fd67c64bbf6a59f4552 = L.circleMarker(
+                [15.0135625, 74.0163125],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_23f6f0d4bc62e074b72ee309896aa0b5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_60df47352d80c3a19ef16cee1b74b632 = $(`<div id="html_60df47352d80c3a19ef16cee1b74b632" style="width: 100.0%; height: 100.0%;">Day 1: Backwaters Palolem<br>WPI: 0.830</div>`)[0];
+                popup_23f6f0d4bc62e074b72ee309896aa0b5.setContent(html_60df47352d80c3a19ef16cee1b74b632);
+            
+        
+
+        circle_marker_48e1e753e1129fd67c64bbf6a59f4552.bindPopup(popup_23f6f0d4bc62e074b72ee309896aa0b5)
+        ;
+
+        
+    
+    
+            var circle_marker_d896e846fa4144676656af67886511b1 = L.circleMarker(
+                [15.0130747, 74.0159922],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_97de7d85aa87dd260d2c35ebc9695e7a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f7933b74164686713a893642eb16e5d8 = $(`<div id="html_f7933b74164686713a893642eb16e5d8" style="width: 100.0%; height: 100.0%;">Day 1: Palolem boat kayaking backwater<br>WPI: 0.816</div>`)[0];
+                popup_97de7d85aa87dd260d2c35ebc9695e7a.setContent(html_f7933b74164686713a893642eb16e5d8);
+            
+        
+
+        circle_marker_d896e846fa4144676656af67886511b1.bindPopup(popup_97de7d85aa87dd260d2c35ebc9695e7a)
+        ;
+
+        
+    
+    
+            var circle_marker_b82211b8848a365f7f9d724e8808c206 = L.circleMarker(
+                [15.1017751, 74.1933999],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_150d0b846dc0f67779affeee062bce4b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d1e669f738b0e68984d302e082b20f5e = $(`<div id="html_d1e669f738b0e68984d302e082b20f5e" style="width: 100.0%; height: 100.0%;">Day 2: Ruins of Lakshmi Narayana Swamy Temple<br>WPI: 0.749</div>`)[0];
+                popup_150d0b846dc0f67779affeee062bce4b.setContent(html_d1e669f738b0e68984d302e082b20f5e);
+            
+        
+
+        circle_marker_b82211b8848a365f7f9d724e8808c206.bindPopup(popup_150d0b846dc0f67779affeee062bce4b)
+        ;
+
+        
+    
+    
+            var circle_marker_80c0e1c85b9078709893efc9afa67741 = L.circleMarker(
+                [15.1049457, 74.1961618],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_e9e973f707b3af9bd6ca63331a5c4821 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_762acc3ae2c24dd930db247abf97defb = $(`<div id="html_762acc3ae2c24dd930db247abf97defb" style="width: 100.0%; height: 100.0%;">Day 2: Shree Chandreshwar Temple<br>WPI: 0.751</div>`)[0];
+                popup_e9e973f707b3af9bd6ca63331a5c4821.setContent(html_762acc3ae2c24dd930db247abf97defb);
+            
+        
+
+        circle_marker_80c0e1c85b9078709893efc9afa67741.bindPopup(popup_e9e973f707b3af9bd6ca63331a5c4821)
+        ;
+
+        
+    
+    
+            var circle_marker_d1d7b1f6331aa36849ef7a0278db80f0 = L.circleMarker(
+                [15.0836711, 74.2320539],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_f56a260ee654b066dacfd72adb58fed9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2b54eb8b63333a370b04c41356e88eae = $(`<div id="html_2b54eb8b63333a370b04c41356e88eae" style="width: 100.0%; height: 100.0%;">Day 2: Netravali Wildlife Sanctuary<br>WPI: 0.936</div>`)[0];
+                popup_f56a260ee654b066dacfd72adb58fed9.setContent(html_2b54eb8b63333a370b04c41356e88eae);
+            
+        
+
+        circle_marker_d1d7b1f6331aa36849ef7a0278db80f0.bindPopup(popup_f56a260ee654b066dacfd72adb58fed9)
+        ;
+
+        
+    
+    
+            var circle_marker_1eb15e77df10bfce11557044aa6a5de0 = L.circleMarker(
+                [15.0666853, 74.2341689],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_76ecbead94716bbcd12f8b36b704ca0f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1e88cf33f3d21e4fd742d99ec2882198 = $(`<div id="html_1e88cf33f3d21e4fd742d99ec2882198" style="width: 100.0%; height: 100.0%;">Day 2: Savri Waterfall Parking<br>WPI: 0.773</div>`)[0];
+                popup_76ecbead94716bbcd12f8b36b704ca0f.setContent(html_1e88cf33f3d21e4fd742d99ec2882198);
+            
+        
+
+        circle_marker_1eb15e77df10bfce11557044aa6a5de0.bindPopup(popup_76ecbead94716bbcd12f8b36b704ca0f)
+        ;
+
+        
+    
+    
+            var circle_marker_bb361e0dbe80d81747b00126d8edd677 = L.circleMarker(
+                [15.0612063, 74.2319242],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_fd42d4e13966dfb4050b50a2bfcd41aa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d2140af1d27263ad128cbe399d0e6205 = $(`<div id="html_d2140af1d27263ad128cbe399d0e6205" style="width: 100.0%; height: 100.0%;">Day 2: Neturlem Waterfall (Savri)<br>WPI: 1.000</div>`)[0];
+                popup_fd42d4e13966dfb4050b50a2bfcd41aa.setContent(html_d2140af1d27263ad128cbe399d0e6205);
+            
+        
+
+        circle_marker_bb361e0dbe80d81747b00126d8edd677.bindPopup(popup_fd42d4e13966dfb4050b50a2bfcd41aa)
+        ;
+
+        
+    
+    
+            var circle_marker_52e275e3cbe056a964118ed4fb7a082f = L.circleMarker(
+                [15.0631936, 74.1668166],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_bd60bdbfd09ca5032c2d09669af0491a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a9b2f1085d8092eae838b9bec9950d0c = $(`<div id="html_a9b2f1085d8092eae838b9bec9950d0c" style="width: 100.0%; height: 100.0%;">Day 2: Mountain Top Ambe Forest Checkpost<br>WPI: 0.601</div>`)[0];
+                popup_bd60bdbfd09ca5032c2d09669af0491a.setContent(html_a9b2f1085d8092eae838b9bec9950d0c);
+            
+        
+
+        circle_marker_52e275e3cbe056a964118ed4fb7a082f.bindPopup(popup_bd60bdbfd09ca5032c2d09669af0491a)
+        ;
+
+        
+    
+    
+            var circle_marker_b6f510356d1a21b21fbed71334063015 = L.circleMarker(
+                [15.0498253, 74.1771558],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_988acb6243a6f9e6174df5bf0bb8f520 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_75922087d9a7440f058ff0c42ab55b53 = $(`<div id="html_75922087d9a7440f058ff0c42ab55b53" style="width: 100.0%; height: 100.0%;">Day 2: Hidden Waterfall<br>WPI: 0.633</div>`)[0];
+                popup_988acb6243a6f9e6174df5bf0bb8f520.setContent(html_75922087d9a7440f058ff0c42ab55b53);
+            
+        
+
+        circle_marker_b6f510356d1a21b21fbed71334063015.bindPopup(popup_988acb6243a6f9e6174df5bf0bb8f520)
+        ;
+
+        
+    
+    
+            var circle_marker_20eb949e345a3d895f70884ac49a047b = L.circleMarker(
+                [15.1241694, 74.1742121],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_31b992754a917b6c22a09d8d4f33cb07 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_abb950db88e69d6b8a0ccbcde8a3ab04 = $(`<div id="html_abb950db88e69d6b8a0ccbcde8a3ab04" style="width: 100.0%; height: 100.0%;">Day 2: Aqueous Spice Farm<br>WPI: 0.786</div>`)[0];
+                popup_31b992754a917b6c22a09d8d4f33cb07.setContent(html_abb950db88e69d6b8a0ccbcde8a3ab04);
+            
+        
+
+        circle_marker_20eb949e345a3d895f70884ac49a047b.bindPopup(popup_31b992754a917b6c22a09d8d4f33cb07)
+        ;
+
+        
+    
+    
+            var circle_marker_0023f62ba9465bac05e8366df5344791 = L.circleMarker(
+                [15.0419619, 74.2195388],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_a785f52e7565ee8564950ca3b80661fb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c57c83f2d87b066452dd350ed8c892f1 = $(`<div id="html_c57c83f2d87b066452dd350ed8c892f1" style="width: 100.0%; height: 100.0%;">Day 2: Ravna Dongar<br>WPI: 0.660</div>`)[0];
+                popup_a785f52e7565ee8564950ca3b80661fb.setContent(html_c57c83f2d87b066452dd350ed8c892f1);
+            
+        
+
+        circle_marker_0023f62ba9465bac05e8366df5344791.bindPopup(popup_a785f52e7565ee8564950ca3b80661fb)
+        ;
+
+        
+    
+    
+            var circle_marker_d76489abb3ce8c5167ef5d85f9c92f00 = L.circleMarker(
+                [15.0605999, 74.1601111],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_65f605104069f0f6abeffdbfb63ce766 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_213155d03dded6285cb49472e5763906 = $(`<div id="html_213155d03dded6285cb49472e5763906" style="width: 100.0%; height: 100.0%;">Day 2: Bharsa Waterfall<br>WPI: 0.679</div>`)[0];
+                popup_65f605104069f0f6abeffdbfb63ce766.setContent(html_213155d03dded6285cb49472e5763906);
+            
+        
+
+        circle_marker_d76489abb3ce8c5167ef5d85f9c92f00.bindPopup(popup_65f605104069f0f6abeffdbfb63ce766)
+        ;
+
+        
+    
+    
+            var circle_marker_7b0946583af08c63ea401d417996c7cc = L.circleMarker(
+                [15.0600515, 74.1595025],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_144ff385d8968bfee8ac93474d5489ad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_972f477e257f895229d5863c7780b19d = $(`<div id="html_972f477e257f895229d5863c7780b19d" style="width: 100.0%; height: 100.0%;">Day 2: Bamanbudo Waterfall<br>WPI: 0.952</div>`)[0];
+                popup_144ff385d8968bfee8ac93474d5489ad.setContent(html_972f477e257f895229d5863c7780b19d);
+            
+        
+
+        circle_marker_7b0946583af08c63ea401d417996c7cc.bindPopup(popup_144ff385d8968bfee8ac93474d5489ad)
+        ;
+
+        
+    
+    
+            var circle_marker_1ce14580346c2efb9e81ea03b590e49f = L.circleMarker(
+                [15.0696893, 74.2563011],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_3eb89b58d1ae6d13cb4c553f643393e1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cd55b29a071fd5e442f4df8c0e3b46b9 = $(`<div id="html_cd55b29a071fd5e442f4df8c0e3b46b9" style="width: 100.0%; height: 100.0%;">Day 2: Mainapi Waterfall Netravali<br>WPI: 0.938</div>`)[0];
+                popup_3eb89b58d1ae6d13cb4c553f643393e1.setContent(html_cd55b29a071fd5e442f4df8c0e3b46b9);
+            
+        
+
+        circle_marker_1ce14580346c2efb9e81ea03b590e49f.bindPopup(popup_3eb89b58d1ae6d13cb4c553f643393e1)
+        ;
+
+        
+    
+    
+            var circle_marker_61f5bfc79fd4f379a1928a60ad70aec6 = L.circleMarker(
+                [15.1109173, 74.1493259],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_5de648880cc0fe4cdc934213bdcec1b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_809cffc3f585b4ffc7c49880b092c55e = $(`<div id="html_809cffc3f585b4ffc7c49880b092c55e" style="width: 100.0%; height: 100.0%;">Day 2: Don Bosco Dam<br>WPI: 0.693</div>`)[0];
+                popup_5de648880cc0fe4cdc934213bdcec1b1.setContent(html_809cffc3f585b4ffc7c49880b092c55e);
+            
+        
+
+        circle_marker_61f5bfc79fd4f379a1928a60ad70aec6.bindPopup(popup_5de648880cc0fe4cdc934213bdcec1b1)
+        ;
+
+        
+    
+    
+            var circle_marker_2ee0559c7a0884721ab071ca9f1d7d90 = L.circleMarker(
+                [15.0464227, 74.1597144],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_82d400a9ba88104ca4d67648e149d5d4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b2af0b4dc00023f97c6ceeb32fa55272 = $(`<div id="html_b2af0b4dc00023f97c6ceeb32fa55272" style="width: 100.0%; height: 100.0%;">Day 2: Badsarem hills<br>WPI: 0.666</div>`)[0];
+                popup_82d400a9ba88104ca4d67648e149d5d4.setContent(html_b2af0b4dc00023f97c6ceeb32fa55272);
+            
+        
+
+        circle_marker_2ee0559c7a0884721ab071ca9f1d7d90.bindPopup(popup_82d400a9ba88104ca4d67648e149d5d4)
+        ;
+
+        
+    
+    
+            var circle_marker_db59a08a99bf5415c1617f70eaa06855 = L.circleMarker(
+                [15.037483, 74.167388],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_079441d9d4088c0bade6becd58c3d652 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df06324e2db58157739c8eefeb50eacf = $(`<div id="html_df06324e2db58157739c8eefeb50eacf" style="width: 100.0%; height: 100.0%;">Day 2: Avali waterfall<br>WPI: 0.737</div>`)[0];
+                popup_079441d9d4088c0bade6becd58c3d652.setContent(html_df06324e2db58157739c8eefeb50eacf);
+            
+        
+
+        circle_marker_db59a08a99bf5415c1617f70eaa06855.bindPopup(popup_079441d9d4088c0bade6becd58c3d652)
+        ;
+
+        
+    
+    
+            var circle_marker_f17784bbfc1379144cc6da3d71597bfd = L.circleMarker(
+                [15.0424651, 74.2495537],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_03e18476bb9a4ef361f752fc8d3b904a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f1de414aca5505abe0784558d8c4577 = $(`<div id="html_0f1de414aca5505abe0784558d8c4577" style="width: 100.0%; height: 100.0%;">Day 2: Strawberry Plantation<br>WPI: 0.863</div>`)[0];
+                popup_03e18476bb9a4ef361f752fc8d3b904a.setContent(html_0f1de414aca5505abe0784558d8c4577);
+            
+        
+
+        circle_marker_f17784bbfc1379144cc6da3d71597bfd.bindPopup(popup_03e18476bb9a4ef361f752fc8d3b904a)
+        ;
+
+        
+    
+    
+            var circle_marker_8c8bf7dbcf89243e665f3ecf8e0e8c2b = L.circleMarker(
+                [15.0217083, 74.2086604],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_2b4696b8a6b4f2b9a9f635ced184cbf0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ceb5ac9f644b633b9095bb4d7408ead3 = $(`<div id="html_ceb5ac9f644b633b9095bb4d7408ead3" style="width: 100.0%; height: 100.0%;">Day 2: Kuske Waterfall<br>WPI: 0.873</div>`)[0];
+                popup_2b4696b8a6b4f2b9a9f635ced184cbf0.setContent(html_ceb5ac9f644b633b9095bb4d7408ead3);
+            
+        
+
+        circle_marker_8c8bf7dbcf89243e665f3ecf8e0e8c2b.bindPopup(popup_2b4696b8a6b4f2b9a9f635ced184cbf0)
+        ;
+
+        
+    
+    
+            var circle_marker_a84bb748e977ee1f801511fca62e72b7 = L.circleMarker(
+                [15.0505185, 74.1302594],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_9ec8c7c61c30a38581f4c8572cc00cd4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d9784a6686f926df46e2c7c72042292d = $(`<div id="html_d9784a6686f926df46e2c7c72042292d" style="width: 100.0%; height: 100.0%;">Day 2: Bhupar waterfall<br>WPI: 0.778</div>`)[0];
+                popup_9ec8c7c61c30a38581f4c8572cc00cd4.setContent(html_d9784a6686f926df46e2c7c72042292d);
+            
+        
+
+        circle_marker_a84bb748e977ee1f801511fca62e72b7.bindPopup(popup_9ec8c7c61c30a38581f4c8572cc00cd4)
+        ;
+
+        
+    
+    
+            var circle_marker_8f19a14e3959e0f5d36b0413c2b08e8b = L.circleMarker(
+                [15.0505657, 74.1301421],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_0fdb3aa7b112101842aa483bcd7f1e51 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6494edc9d783ccab8a5a9a3f97f7ab12 = $(`<div id="html_6494edc9d783ccab8a5a9a3f97f7ab12" style="width: 100.0%; height: 100.0%;">Day 2: Aai Waterfall<br>WPI: 0.743</div>`)[0];
+                popup_0fdb3aa7b112101842aa483bcd7f1e51.setContent(html_6494edc9d783ccab8a5a9a3f97f7ab12);
+            
+        
+
+        circle_marker_8f19a14e3959e0f5d36b0413c2b08e8b.bindPopup(popup_0fdb3aa7b112101842aa483bcd7f1e51)
+        ;
+
+        
+    
+    
+            var circle_marker_b8b3ef357e00659bcb317ffe2feb40c8 = L.circleMarker(
+                [15.1655655, 74.1869144],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_ae1000105f85065d7d95b3f02e0e34ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e7351bbc321af22ebe5957fcd99adbca = $(`<div id="html_e7351bbc321af22ebe5957fcd99adbca" style="width: 100.0%; height: 100.0%;">Day 2: Shri Someshwara Temple<br>WPI: 0.936</div>`)[0];
+                popup_ae1000105f85065d7d95b3f02e0e34ac.setContent(html_e7351bbc321af22ebe5957fcd99adbca);
+            
+        
+
+        circle_marker_b8b3ef357e00659bcb317ffe2feb40c8.bindPopup(popup_ae1000105f85065d7d95b3f02e0e34ac)
+        ;
+
+        
+    
+    
+            var circle_marker_9f928ac780fc6d6c3494292d1c9ece9f = L.circleMarker(
+                [15.1495311, 74.1327804],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_5a6f5f4bf6f2a330f80b92774f5663a1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2452b8bdb704e52088e2815316002f54 = $(`<div id="html_2452b8bdb704e52088e2815316002f54" style="width: 100.0%; height: 100.0%;">Day 2: Colomba Spring pond<br>WPI: 0.584</div>`)[0];
+                popup_5a6f5f4bf6f2a330f80b92774f5663a1.setContent(html_2452b8bdb704e52088e2815316002f54);
+            
+        
+
+        circle_marker_9f928ac780fc6d6c3494292d1c9ece9f.bindPopup(popup_5a6f5f4bf6f2a330f80b92774f5663a1)
+        ;
+
+        
+    
+    
+            var circle_marker_d9253b649dd253b15f9d301799bbe80e = L.circleMarker(
+                [15.1501101, 74.1310663],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_46031f17fa7b5931acb1feac9ccf766c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9d21ae8618025690d732df1764823d0a = $(`<div id="html_9d21ae8618025690d732df1764823d0a" style="width: 100.0%; height: 100.0%;">Day 2: Shri Shantadurga Temple Colomba<br>WPI: 0.754</div>`)[0];
+                popup_46031f17fa7b5931acb1feac9ccf766c.setContent(html_9d21ae8618025690d732df1764823d0a);
+            
+        
+
+        circle_marker_d9253b649dd253b15f9d301799bbe80e.bindPopup(popup_46031f17fa7b5931acb1feac9ccf766c)
+        ;
+
+        
+    
+    
+            var circle_marker_fd65ce11191929ed4875b177c9cfb341 = L.circleMarker(
+                [15.137164, 74.117323],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_7503c7938c414c1cca3cb0330a192d77 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eba0307a203fafb9d3362fc7ea274d26 = $(`<div id="html_eba0307a203fafb9d3362fc7ea274d26" style="width: 100.0%; height: 100.0%;">Day 2: Blue Waterfall<br>WPI: 0.748</div>`)[0];
+                popup_7503c7938c414c1cca3cb0330a192d77.setContent(html_eba0307a203fafb9d3362fc7ea274d26);
+            
+        
+
+        circle_marker_fd65ce11191929ed4875b177c9cfb341.bindPopup(popup_7503c7938c414c1cca3cb0330a192d77)
+        ;
+
+        
+    
+    
+            var circle_marker_086be716456b3185e57bd2ed80191bd8 = L.circleMarker(
+                [15.0583155, 74.1070181],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_b763095c4ef8eb89509b5e2e96a28b72 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ff7656a3d98323dbb4855d273618b719 = $(`<div id="html_ff7656a3d98323dbb4855d273618b719" style="width: 100.0%; height: 100.0%;">Day 2: Chal Waterfall<br>WPI: 0.513</div>`)[0];
+                popup_b763095c4ef8eb89509b5e2e96a28b72.setContent(html_ff7656a3d98323dbb4855d273618b719);
+            
+        
+
+        circle_marker_086be716456b3185e57bd2ed80191bd8.bindPopup(popup_b763095c4ef8eb89509b5e2e96a28b72)
+        ;
+
+        
+    
+    
+            var circle_marker_48f741ef2d277dca87105181e65cb5a9 = L.circleMarker(
+                [15.1540738, 74.1182468],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_390f5d1e5015012ec62b881d8d8458f9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fccf3cf9b696ebc9dfe68e32fad13d9c = $(`<div id="html_fccf3cf9b696ebc9dfe68e32fad13d9c" style="width: 100.0%; height: 100.0%;">Day 2: Rivona Small Dam<br>WPI: 0.698</div>`)[0];
+                popup_390f5d1e5015012ec62b881d8d8458f9.setContent(html_fccf3cf9b696ebc9dfe68e32fad13d9c);
+            
+        
+
+        circle_marker_48f741ef2d277dca87105181e65cb5a9.bindPopup(popup_390f5d1e5015012ec62b881d8d8458f9)
+        ;
+
+        
+    
+    
+            var circle_marker_458cfc060a1ae0ca957333220276a079 = L.circleMarker(
+                [14.9760305, 74.2061931],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_8b813771c13a52444471c0385eb772e2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8586a8918e2d0a2f595f9e0924c9152a = $(`<div id="html_8586a8918e2d0a2f595f9e0924c9152a" style="width: 100.0%; height: 100.0%;">Day 2: Cotigao Wildlife Sanctuary<br>WPI: 0.912</div>`)[0];
+                popup_8b813771c13a52444471c0385eb772e2.setContent(html_8586a8918e2d0a2f595f9e0924c9152a);
+            
+        
+
+        circle_marker_458cfc060a1ae0ca957333220276a079.bindPopup(popup_8b813771c13a52444471c0385eb772e2)
+        ;
+
+        
+    
+    
+            var circle_marker_1387d2fabbb7128abf22eb790832eb97 = L.circleMarker(
+                [15.2106197, 74.042919],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_2b5d3f336ff3d389ccaf9f05d00cd84f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9f9e65c3a390b849d44027f44e93f425 = $(`<div id="html_9f9e65c3a390b849d44027f44e93f425" style="width: 100.0%; height: 100.0%;">Day 3: Dragon Waterfall aka Agnela Fond<br>WPI: 0.612</div>`)[0];
+                popup_2b5d3f336ff3d389ccaf9f05d00cd84f.setContent(html_9f9e65c3a390b849d44027f44e93f425);
+            
+        
+
+        circle_marker_1387d2fabbb7128abf22eb790832eb97.bindPopup(popup_2b5d3f336ff3d389ccaf9f05d00cd84f)
+        ;
+
+        
+    
+    
+            var circle_marker_aa2f462f08cd76bb835503dda6829e48 = L.circleMarker(
+                [15.2107335, 74.0429012],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_a5215b89feb82597cc4fe9136c1f85d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ae19cf96b0bed4f2572e5f374be6b2be = $(`<div id="html_ae19cf96b0bed4f2572e5f374be6b2be" style="width: 100.0%; height: 100.0%;">Day 3: Dragon Waterfall Ambaulim<br>WPI: 0.638</div>`)[0];
+                popup_a5215b89feb82597cc4fe9136c1f85d6.setContent(html_ae19cf96b0bed4f2572e5f374be6b2be);
+            
+        
+
+        circle_marker_aa2f462f08cd76bb835503dda6829e48.bindPopup(popup_a5215b89feb82597cc4fe9136c1f85d6)
+        ;
+
+        
+    
+    
+            var circle_marker_2870a3c3b92196c24be4e8e6473f5680 = L.circleMarker(
+                [15.2489329, 74.0845626],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_341a4942a42ab517e7a91caf2546de3a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_be9334a8886c1354ae5614e249c91cd6 = $(`<div id="html_be9334a8886c1354ae5614e249c91cd6" style="width: 100.0%; height: 100.0%;">Day 3: Shree Sateri Shantadurga, xeldem<br>WPI: 0.728</div>`)[0];
+                popup_341a4942a42ab517e7a91caf2546de3a.setContent(html_be9334a8886c1354ae5614e249c91cd6);
+            
+        
+
+        circle_marker_2870a3c3b92196c24be4e8e6473f5680.bindPopup(popup_341a4942a42ab517e7a91caf2546de3a)
+        ;
+
+        
+    
+    
+            var circle_marker_46ac2a4e53f9ca9cf0778921e6417f86 = L.circleMarker(
+                [15.2285273, 74.0540636],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_20e37355aca02bab8a0ca0c33c06ef7e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_92a4be82b39943956663069bcbde5f54 = $(`<div id="html_92a4be82b39943956663069bcbde5f54" style="width: 100.0%; height: 100.0%;">Day 3: Shree Saunsthan Shantadurga Chamundeshwari Kudtari Mahamaya<br>WPI: 0.866</div>`)[0];
+                popup_20e37355aca02bab8a0ca0c33c06ef7e.setContent(html_92a4be82b39943956663069bcbde5f54);
+            
+        
+
+        circle_marker_46ac2a4e53f9ca9cf0778921e6417f86.bindPopup(popup_20e37355aca02bab8a0ca0c33c06ef7e)
+        ;
+
+        
+    
+    
+            var circle_marker_5ee090dd6c5ebdbc97758934f29edf47 = L.circleMarker(
+                [15.26655, 74.1018701],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_e1e4d7c4721d7e9e3bc536db1fd7bb29 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb8d71d66fca113a1566b813d3538db8 = $(`<div id="html_cb8d71d66fca113a1566b813d3538db8" style="width: 100.0%; height: 100.0%;">Day 3: Shri Purushmharu Temple<br>WPI: 0.760</div>`)[0];
+                popup_e1e4d7c4721d7e9e3bc536db1fd7bb29.setContent(html_cb8d71d66fca113a1566b813d3538db8);
+            
+        
+
+        circle_marker_5ee090dd6c5ebdbc97758934f29edf47.bindPopup(popup_e1e4d7c4721d7e9e3bc536db1fd7bb29)
+        ;
+
+        
+    
+    
+            var circle_marker_4f1c4bf4d1bedb7c763208e547554dc0 = L.circleMarker(
+                [15.2134237, 74.0365689],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_cb4e6e6eb3fcea9d6362dc761f5e0ee2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8398a6f61d38a88e5b5839ee4736fa9 = $(`<div id="html_f8398a6f61d38a88e5b5839ee4736fa9" style="width: 100.0%; height: 100.0%;">Day 3: Shri Chandreshwar Bhootnath Temple<br>WPI: 0.889</div>`)[0];
+                popup_cb4e6e6eb3fcea9d6362dc761f5e0ee2.setContent(html_f8398a6f61d38a88e5b5839ee4736fa9);
+            
+        
+
+        circle_marker_4f1c4bf4d1bedb7c763208e547554dc0.bindPopup(popup_cb4e6e6eb3fcea9d6362dc761f5e0ee2)
+        ;
+
+        
+    
+    
+            var circle_marker_e1b45e41805a4841278b35a22ea70b2c = L.circleMarker(
+                [15.0196019, 74.001647],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_66254849554498c733e8d9da010b3510 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_33ff548930ca14bbc1dd30abb1e359a2 = $(`<div id="html_33ff548930ca14bbc1dd30abb1e359a2" style="width: 100.0%; height: 100.0%;">Day 3: Butterfly Beach<br>WPI: 0.911</div>`)[0];
+                popup_66254849554498c733e8d9da010b3510.setContent(html_33ff548930ca14bbc1dd30abb1e359a2);
+            
+        
+
+        circle_marker_e1b45e41805a4841278b35a22ea70b2c.bindPopup(popup_66254849554498c733e8d9da010b3510)
+        ;
+
+        
+    
+    
+            var circle_marker_0ba1973bbc062c771b1993bfc25e3901 = L.circleMarker(
+                [15.0195801, 74.001638],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_22ef504513a96c2a23d1670648b39bbd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d235bf4061c676cefd5cd94367668d67 = $(`<div id="html_d235bf4061c676cefd5cd94367668d67" style="width: 100.0%; height: 100.0%;">Day 3: Butterfly Beach Goa<br>WPI: 0.871</div>`)[0];
+                popup_22ef504513a96c2a23d1670648b39bbd.setContent(html_d235bf4061c676cefd5cd94367668d67);
+            
+        
+
+        circle_marker_0ba1973bbc062c771b1993bfc25e3901.bindPopup(popup_22ef504513a96c2a23d1670648b39bbd)
+        ;
+
+        
+    
+    
+            var circle_marker_b60027d975fbbc1fa031fc256eed0bf4 = L.circleMarker(
+                [15.2287502, 74.0473785],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_6e6bcf3c9122aca5aed9b7951add5d07 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8a58eedf727b8df987133898a3758344 = $(`<div id="html_8a58eedf727b8df987133898a3758344" style="width: 100.0%; height: 100.0%;">Day 3: Paroda Church<br>WPI: 0.731</div>`)[0];
+                popup_6e6bcf3c9122aca5aed9b7951add5d07.setContent(html_8a58eedf727b8df987133898a3758344);
+            
+        
+
+        circle_marker_b60027d975fbbc1fa031fc256eed0bf4.bindPopup(popup_6e6bcf3c9122aca5aed9b7951add5d07)
+        ;
+
+        
+    
+    
+            var circle_marker_a919b40d0cd463f524faa323b064b9eb = L.circleMarker(
+                [15.1437754, 73.9920561],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_945de223b5fac0d66620c086157af877 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ebd9bf57cda80e09c763fe88631969b9 = $(`<div id="html_ebd9bf57cda80e09c763fe88631969b9" style="width: 100.0%; height: 100.0%;">Day 3: Shri Shantadurga Kunkallikarin Temple<br>WPI: 0.932</div>`)[0];
+                popup_945de223b5fac0d66620c086157af877.setContent(html_ebd9bf57cda80e09c763fe88631969b9);
+            
+        
+
+        circle_marker_a919b40d0cd463f524faa323b064b9eb.bindPopup(popup_945de223b5fac0d66620c086157af877)
+        ;
+
+        
+    
+    
+            var circle_marker_3dd7be0c0a6458276940d7ebec9b5941 = L.circleMarker(
+                [15.1455425, 73.9911349],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_be81714beec205e2e9ff1d9b1e4c2d52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4f16f04794ca9824396e8b465f2c6069 = $(`<div id="html_4f16f04794ca9824396e8b465f2c6069" style="width: 100.0%; height: 100.0%;">Day 3: Shri Shantadurga Fatarpekarin Temple<br>WPI: 0.878</div>`)[0];
+                popup_be81714beec205e2e9ff1d9b1e4c2d52.setContent(html_4f16f04794ca9824396e8b465f2c6069);
+            
+        
+
+        circle_marker_3dd7be0c0a6458276940d7ebec9b5941.bindPopup(popup_be81714beec205e2e9ff1d9b1e4c2d52)
+        ;
+
+        
+    
+    
+            var circle_marker_24420006512b89bd9cb1661c8fedacc3 = L.circleMarker(
+                [15.1927933, 74.0093659],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_3e0a91b8a948391cd4d76291f448cef4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0ec3d41fbc2da7c20071c5298958d253 = $(`<div id="html_0ec3d41fbc2da7c20071c5298958d253" style="width: 100.0%; height: 100.0%;">Day 3: St. Anthony Church<br>WPI: 0.651</div>`)[0];
+                popup_3e0a91b8a948391cd4d76291f448cef4.setContent(html_0ec3d41fbc2da7c20071c5298958d253);
+            
+        
+
+        circle_marker_24420006512b89bd9cb1661c8fedacc3.bindPopup(popup_3e0a91b8a948391cd4d76291f448cef4)
+        ;
+
+        
+    
+    
+            var circle_marker_0670ab2a2338675972e076a70d0e52c3 = L.circleMarker(
+                [15.1794143, 73.9972238],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_d9db268d83d8a5ae66c45c39dd125b13 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0377380aa4c9c1e01aeedd409b30407b = $(`<div id="html_0377380aa4c9c1e01aeedd409b30407b" style="width: 100.0%; height: 100.0%;">Day 3: Our Lady of Health Church<br>WPI: 0.808</div>`)[0];
+                popup_d9db268d83d8a5ae66c45c39dd125b13.setContent(html_0377380aa4c9c1e01aeedd409b30407b);
+            
+        
+
+        circle_marker_0670ab2a2338675972e076a70d0e52c3.bindPopup(popup_d9db268d83d8a5ae66c45c39dd125b13)
+        ;
+
+        
+    
+    
+            var circle_marker_1b50b7812f4e665c2c336ac228ba6b0e = L.circleMarker(
+                [15.2517473, 74.0528925],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_5eb3dea5228a61f17ee9cd8989d94213 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2b0cf3b7f1b16c35fc13b0aa6a41bd91 = $(`<div id="html_2b0cf3b7f1b16c35fc13b0aa6a41bd91" style="width: 100.0%; height: 100.0%;">Day 3: Shri Mahadev Temple Cotombi<br>WPI: 0.707</div>`)[0];
+                popup_5eb3dea5228a61f17ee9cd8989d94213.setContent(html_2b0cf3b7f1b16c35fc13b0aa6a41bd91);
+            
+        
+
+        circle_marker_1b50b7812f4e665c2c336ac228ba6b0e.bindPopup(popup_5eb3dea5228a61f17ee9cd8989d94213)
+        ;
+
+        
+    
+    
+            var circle_marker_37dacfc5b706df5079e3cd61a9af1371 = L.circleMarker(
+                [15.258105, 74.0549473],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_c1c0bab825782276cf711a223d6f6f7e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_55934774867e28d5ba1330e22d842630 = $(`<div id="html_55934774867e28d5ba1330e22d842630" style="width: 100.0%; height: 100.0%;">Day 3: Ancient Kadamba Shri Shiva Temple/ Nandi Bull<br>WPI: 0.714</div>`)[0];
+                popup_c1c0bab825782276cf711a223d6f6f7e.setContent(html_55934774867e28d5ba1330e22d842630);
+            
+        
+
+        circle_marker_37dacfc5b706df5079e3cd61a9af1371.bindPopup(popup_c1c0bab825782276cf711a223d6f6f7e)
+        ;
+
+        
+    
+    
+            var circle_marker_d0107fb57646d50e0039cced71ba24a2 = L.circleMarker(
+                [15.2428627, 74.0355993],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_f096ca75728950a3e1fbc970d4e66e40 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_86974e1c846373bf1fb234b9791357ff = $(`<div id="html_86974e1c846373bf1fb234b9791357ff" style="width: 100.0%; height: 100.0%;">Day 3: RAJ DUDHSAGAR WATERFALLS<br>WPI: 0.629</div>`)[0];
+                popup_f096ca75728950a3e1fbc970d4e66e40.setContent(html_86974e1c846373bf1fb234b9791357ff);
+            
+        
+
+        circle_marker_d0107fb57646d50e0039cced71ba24a2.bindPopup(popup_f096ca75728950a3e1fbc970d4e66e40)
+        ;
+
+        
+    
+    
+            var circle_marker_8191651e3273a315ca81aa17d07d71a3 = L.circleMarker(
+                [15.05696, 73.9714593],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_31eb5058e4fc6ce59d93ba54eb1d4faf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af639049c908397f7cffc1d5b5606c02 = $(`<div id="html_af639049c908397f7cffc1d5b5606c02" style="width: 100.0%; height: 100.0%;">Day 3: Cola backwaters kayaking spot<br>WPI: 0.741</div>`)[0];
+                popup_31eb5058e4fc6ce59d93ba54eb1d4faf.setContent(html_af639049c908397f7cffc1d5b5606c02);
+            
+        
+
+        circle_marker_8191651e3273a315ca81aa17d07d71a3.bindPopup(popup_31eb5058e4fc6ce59d93ba54eb1d4faf)
+        ;
+
+        
+    
+    
+            var circle_marker_dbd638a2d52dce6af5f08fabbd25bdf4 = L.circleMarker(
+                [15.0573791, 73.9713667],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_99cccb194bb95f01dce8133f5af00df6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b7a19e0ed0b89f0d068db77d8e517c3f = $(`<div id="html_b7a19e0ed0b89f0d068db77d8e517c3f" style="width: 100.0%; height: 100.0%;">Day 3: Cola beach kayaking - ADI kayaking service<br>WPI: 0.831</div>`)[0];
+                popup_99cccb194bb95f01dce8133f5af00df6.setContent(html_b7a19e0ed0b89f0d068db77d8e517c3f);
+            
+        
+
+        circle_marker_dbd638a2d52dce6af5f08fabbd25bdf4.bindPopup(popup_99cccb194bb95f01dce8133f5af00df6)
+        ;
+
+        
+    
+    
+            var circle_marker_fd9c61c4c9b0adbc48565122158c2fcf = L.circleMarker(
+                [15.2421745, 74.0332858],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_f24cc299e2cbcfe22a9402ac61b37efd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66a0b68b3cb18c3e09edea0cbfa06c4c = $(`<div id="html_66a0b68b3cb18c3e09edea0cbfa06c4c" style="width: 100.0%; height: 100.0%;">Day 3: Nagesh Love Forest<br>WPI: 0.630</div>`)[0];
+                popup_f24cc299e2cbcfe22a9402ac61b37efd.setContent(html_66a0b68b3cb18c3e09edea0cbfa06c4c);
+            
+        
+
+        circle_marker_fd9c61c4c9b0adbc48565122158c2fcf.bindPopup(popup_f24cc299e2cbcfe22a9402ac61b37efd)
+        ;
+
+        
+    
+    
+            var circle_marker_0068ae70703747f012d9206ab61262df = L.circleMarker(
+                [15.2598132, 74.0476968],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_fcfb1f2567074432a1741538a243665e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1da19019ebbee252ad28862df2e7520a = $(`<div id="html_1da19019ebbee252ad28862df2e7520a" style="width: 100.0%; height: 100.0%;">Day 3: Flames Garden Cafe & Plants Nursery<br>WPI: 0.786</div>`)[0];
+                popup_fcfb1f2567074432a1741538a243665e.setContent(html_1da19019ebbee252ad28862df2e7520a);
+            
+        
+
+        circle_marker_0068ae70703747f012d9206ab61262df.bindPopup(popup_fcfb1f2567074432a1741538a243665e)
+        ;
+
+        
+    
+    
+            var circle_marker_c818db2b42ce7d540a526834198c1bef = L.circleMarker(
+                [15.2138763, 74.0001521],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_690db54c108f7459b708095f6987d813 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2fb3af2eab9c666ef4cb747b4e70320c = $(`<div id="html_2fb3af2eab9c666ef4cb747b4e70320c" style="width: 100.0%; height: 100.0%;">Day 3: Our Lady of the Assumption Church<br>WPI: 0.756</div>`)[0];
+                popup_690db54c108f7459b708095f6987d813.setContent(html_2fb3af2eab9c666ef4cb747b4e70320c);
+            
+        
+
+        circle_marker_c818db2b42ce7d540a526834198c1bef.bindPopup(popup_690db54c108f7459b708095f6987d813)
+        ;
+
+        
+    
+    
+            var circle_marker_ebad8aee826b0e4102b857444f584e75 = L.circleMarker(
+                [15.1365717, 73.9572545],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_876e46076b79b57a8488d2b31bd40265 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8b52a8878b99d556f84c29f72b92ffb9 = $(`<div id="html_8b52a8878b99d556f84c29f72b92ffb9" style="width: 100.0%; height: 100.0%;">Day 3: Our Lady of the Immaculate Conception Church<br>WPI: 0.664</div>`)[0];
+                popup_876e46076b79b57a8488d2b31bd40265.setContent(html_8b52a8878b99d556f84c29f72b92ffb9);
+            
+        
+
+        circle_marker_ebad8aee826b0e4102b857444f584e75.bindPopup(popup_876e46076b79b57a8488d2b31bd40265)
+        ;
+
+        
+    
+    
+            var circle_marker_c532e630b9c711373cb3d2d8ccf2fd8e = L.circleMarker(
+                [15.3297474, 74.2325394],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_cd684617d688069a6be2e9e7b39f9e88 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4ee477e8ada4742c7f955ff048667de9 = $(`<div id="html_4ee477e8ada4742c7f955ff048667de9" style="width: 100.0%; height: 100.0%;">Day 3: Small Waterfall<br>WPI: 0.690</div>`)[0];
+                popup_cd684617d688069a6be2e9e7b39f9e88.setContent(html_4ee477e8ada4742c7f955ff048667de9);
+            
+        
+
+        circle_marker_c532e630b9c711373cb3d2d8ccf2fd8e.bindPopup(popup_cd684617d688069a6be2e9e7b39f9e88)
+        ;
+
+        
+    
+    
+            var circle_marker_75a195695ef7b5480e1288d88061f026 = L.circleMarker(
+                [15.1832553, 73.9703798],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_6d0de6924a5599ba3a404bcba2970b75 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb1f74ab1fbc6bee2b550e5f7f8f1282 = $(`<div id="html_cb1f74ab1fbc6bee2b550e5f7f8f1282" style="width: 100.0%; height: 100.0%;">Day 3: Regina Martyrum Church<br>WPI: 0.743</div>`)[0];
+                popup_6d0de6924a5599ba3a404bcba2970b75.setContent(html_cb1f74ab1fbc6bee2b550e5f7f8f1282);
+            
+        
+
+        circle_marker_75a195695ef7b5480e1288d88061f026.bindPopup(popup_6d0de6924a5599ba3a404bcba2970b75)
+        ;
+
+        
+    
+    
+            var circle_marker_3138a340047f690b1a0fcab44a3c69ab = L.circleMarker(
+                [15.3126009, 74.3047931],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_b3bd9acd6ceeefa6fddb76e75403deff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_13b7eb14d11a25603eaf08ab86c8442d = $(`<div id="html_13b7eb14d11a25603eaf08ab86c8442d" style="width: 100.0%; height: 100.0%;">Day 3: Devils Canyon, Dudhsagar Waterfalls Trail<br>WPI: 0.644</div>`)[0];
+                popup_b3bd9acd6ceeefa6fddb76e75403deff.setContent(html_13b7eb14d11a25603eaf08ab86c8442d);
+            
+        
+
+        circle_marker_3138a340047f690b1a0fcab44a3c69ab.bindPopup(popup_b3bd9acd6ceeefa6fddb76e75403deff)
+        ;
+
+        
+    
+    
+            var circle_marker_8d6de47a9ab00f293e5a5c556bb8c0d2 = L.circleMarker(
+                [15.3296133, 74.1601603],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_773db7533b201efce3c73a8debd76ee0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6d6da06b882c263fac9a98132f94c205 = $(`<div id="html_6d6da06b882c263fac9a98132f94c205" style="width: 100.0%; height: 100.0%;">Day 3: Dudhsagar Plantation<br>WPI: 0.819</div>`)[0];
+                popup_773db7533b201efce3c73a8debd76ee0.setContent(html_6d6da06b882c263fac9a98132f94c205);
+            
+        
+
+        circle_marker_8d6de47a9ab00f293e5a5c556bb8c0d2.bindPopup(popup_773db7533b201efce3c73a8debd76ee0)
+        ;
+
+        
+    
+    
+            var circle_marker_3dcca555b49545ce803bcb8b83a44617 = L.circleMarker(
+                [15.3108179, 74.3131114],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_3bddeb1df764b662d8be7206093a90d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_283241ac05b4b79d1a144c9761eb61f3 = $(`<div id="html_283241ac05b4b79d1a144c9761eb61f3" style="width: 100.0%; height: 100.0%;">Day 3: waterfall spot<br>WPI: 0.682</div>`)[0];
+                popup_3bddeb1df764b662d8be7206093a90d6.setContent(html_283241ac05b4b79d1a144c9761eb61f3);
+            
+        
+
+        circle_marker_3dcca555b49545ce803bcb8b83a44617.bindPopup(popup_3bddeb1df764b662d8be7206093a90d6)
+        ;
+
+        
+    
+    
+            var circle_marker_973a64ed6ad0db9d3d14aaea442591ff = L.circleMarker(
+                [15.3126988, 74.3143903],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_1c92489f7dc18305c84b8f4cddf8469c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_889c053557f7f2b2321c38b98142e682 = $(`<div id="html_889c053557f7f2b2321c38b98142e682" style="width: 100.0%; height: 100.0%;">Day 3: Dudhsagara Waterfall Camp Site<br>WPI: 0.836</div>`)[0];
+                popup_1c92489f7dc18305c84b8f4cddf8469c.setContent(html_889c053557f7f2b2321c38b98142e682);
+            
+        
+
+        circle_marker_973a64ed6ad0db9d3d14aaea442591ff.bindPopup(popup_1c92489f7dc18305c84b8f4cddf8469c)
+        ;
+
+        
+    
+    
+            var circle_marker_9506d4f04ab94b566bc92af3e77dc6f4 = L.circleMarker(
+                [15.3144375, 74.3143073],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_820cc926c23101a9611ff525fb326f69 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe1e47f4dce5a98400d43609343df2c6 = $(`<div id="html_fe1e47f4dce5a98400d43609343df2c6" style="width: 100.0%; height: 100.0%;">Day 3: Dudhsagar Falls<br>WPI: 1.000</div>`)[0];
+                popup_820cc926c23101a9611ff525fb326f69.setContent(html_fe1e47f4dce5a98400d43609343df2c6);
+            
+        
+
+        circle_marker_9506d4f04ab94b566bc92af3e77dc6f4.bindPopup(popup_820cc926c23101a9611ff525fb326f69)
+        ;
+
+        
+    
+    
+            var circle_marker_0977d9ab5863585c3b330f016b297ef7 = L.circleMarker(
+                [15.2119516, 73.9775072],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_6a882721ecf2a0df9c1756ad171a5934 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c47cf352039f066f830b4b2fad255ff = $(`<div id="html_7c47cf352039f066f830b4b2fad255ff" style="width: 100.0%; height: 100.0%;">Day 3: Our Lady Of Hope Church<br>WPI: 0.771</div>`)[0];
+                popup_6a882721ecf2a0df9c1756ad171a5934.setContent(html_7c47cf352039f066f830b4b2fad255ff);
+            
+        
+
+        circle_marker_0977d9ab5863585c3b330f016b297ef7.bindPopup(popup_6a882721ecf2a0df9c1756ad171a5934)
+        ;
+
+        
+    
+    
+            var circle_marker_d9a1683482f373182999d19b2c98365a = L.circleMarker(
+                [15.3358363, 74.2434258],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_20e114af5660357cae5c14f4e1f3d640 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_28fe39c168ac60303b9aa743d5d24030 = $(`<div id="html_28fe39c168ac60303b9aa743d5d24030" style="width: 100.0%; height: 100.0%;">Day 3: Dudhsagar Trek<br>WPI: 0.694</div>`)[0];
+                popup_20e114af5660357cae5c14f4e1f3d640.setContent(html_28fe39c168ac60303b9aa743d5d24030);
+            
+        
+
+        circle_marker_d9a1683482f373182999d19b2c98365a.bindPopup(popup_20e114af5660357cae5c14f4e1f3d640)
+        ;
+
+        
+    
+    
+            var circle_marker_b3e51a05e3b4f80c2f274fa11b43c0a4 = L.circleMarker(
+                [15.3363533, 74.244316],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_f5b89a1663f599b7051d9e8ddc1ad7e9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a7feb0fdfe2d0c9eeae85b688ea01284 = $(`<div id="html_a7feb0fdfe2d0c9eeae85b688ea01284" style="width: 100.0%; height: 100.0%;">Day 3: Official Dudhsagar Jeep Safari & Trek Booking<br>WPI: 0.829</div>`)[0];
+                popup_f5b89a1663f599b7051d9e8ddc1ad7e9.setContent(html_a7feb0fdfe2d0c9eeae85b688ea01284);
+            
+        
+
+        circle_marker_b3e51a05e3b4f80c2f274fa11b43c0a4.bindPopup(popup_f5b89a1663f599b7051d9e8ddc1ad7e9)
+        ;
+
+        
+    
+    
+            var circle_marker_b9c107994562af5e8cf98af9012a2627 = L.circleMarker(
+                [15.3372386, 74.2449805],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_28f7d8e37e9155cec9268e895be79a2c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a1a1254469e0f8561b152eaebe634704 = $(`<div id="html_a1a1254469e0f8561b152eaebe634704" style="width: 100.0%; height: 100.0%;">Day 3: Dudhsagar waterfall parking<br>WPI: 0.733</div>`)[0];
+                popup_28f7d8e37e9155cec9268e895be79a2c.setContent(html_a1a1254469e0f8561b152eaebe634704);
+            
+        
+
+        circle_marker_b9c107994562af5e8cf98af9012a2627.bindPopup(popup_28f7d8e37e9155cec9268e895be79a2c)
+        ;
+
+        
+    
+    
+            var circle_marker_20f36f5774a10167ead57dc180c9f236 = L.circleMarker(
+                [15.3379486, 74.2462197],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_df3d8d1cd9ef2cb852a0307d90d9899c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9445733355bc9c31c1e4183867567965 = $(`<div id="html_9445733355bc9c31c1e4183867567965" style="width: 100.0%; height: 100.0%;">Day 3: Dudhsagar Waterfall Trip - Goa<br>WPI: 0.771</div>`)[0];
+                popup_df3d8d1cd9ef2cb852a0307d90d9899c.setContent(html_9445733355bc9c31c1e4183867567965);
+            
+        
+
+        circle_marker_20f36f5774a10167ead57dc180c9f236.bindPopup(popup_df3d8d1cd9ef2cb852a0307d90d9899c)
+        ;
+
+        
+    
+    
+            var circle_marker_a01400cea002de8384570211cc125e07 = L.circleMarker(
+                [15.2346544, 73.9859837],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_1e0fa5ac3f8dfc889da5e468e9853e61 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5d69647e62b44d92f1bd7141b1a5cc18 = $(`<div id="html_5d69647e62b44d92f1bd7141b1a5cc18" style="width: 100.0%; height: 100.0%;">Day 3: St. Joseph's Church (Sao Jose Igreja em Dramapur)<br>WPI: 0.755</div>`)[0];
+                popup_1e0fa5ac3f8dfc889da5e468e9853e61.setContent(html_5d69647e62b44d92f1bd7141b1a5cc18);
+            
+        
+
+        circle_marker_a01400cea002de8384570211cc125e07.bindPopup(popup_1e0fa5ac3f8dfc889da5e468e9853e61)
+        ;
+
+        
+    
+    
+            var circle_marker_d835e8f66428d7b081151164f30aae9f = L.circleMarker(
+                [15.2602459, 74.0055254],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_215d8949bbea2d1c5fa14c4027f4a0f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f26f4e90dc9acd14c95c2c67f40d1177 = $(`<div id="html_f26f4e90dc9acd14c95c2c67f40d1177" style="width: 100.0%; height: 100.0%;">Day 3: Sao Jose de Areal Church<br>WPI: 0.759</div>`)[0];
+                popup_215d8949bbea2d1c5fa14c4027f4a0f4.setContent(html_f26f4e90dc9acd14c95c2c67f40d1177);
+            
+        
+
+        circle_marker_d835e8f66428d7b081151164f30aae9f.bindPopup(popup_215d8949bbea2d1c5fa14c4027f4a0f4)
+        ;
+
+        
+    
+    
+            var circle_marker_0018a72dce4f78169d064568eadbf7a7 = L.circleMarker(
+                [15.3339015, 74.2883536],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_e2be2a4400b35eaff6d00079e3e52dda = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_599b08a5bcc36160f54fbe5514e73d87 = $(`<div id="html_599b08a5bcc36160f54fbe5514e73d87" style="width: 100.0%; height: 100.0%;">Day 3: Bhagwan Mahavir Wildlife Sanctuary<br>WPI: 0.877</div>`)[0];
+                popup_e2be2a4400b35eaff6d00079e3e52dda.setContent(html_599b08a5bcc36160f54fbe5514e73d87);
+            
+        
+
+        circle_marker_0018a72dce4f78169d064568eadbf7a7.bindPopup(popup_e2be2a4400b35eaff6d00079e3e52dda)
+        ;
+
+        
+    
+    
+            var circle_marker_8e2ee09d5aeab6906af6ef19a9eb24e2 = L.circleMarker(
+                [15.2172151, 73.9692823],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_88355f0b214232e633a0bbefac0af15a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_79fcc6527c200f08dcde8d068fb1bb3b = $(`<div id="html_79fcc6527c200f08dcde8d068fb1bb3b" style="width: 100.0%; height: 100.0%;">Day 3: St. Anthony's Chapel<br>WPI: 0.870</div>`)[0];
+                popup_88355f0b214232e633a0bbefac0af15a.setContent(html_79fcc6527c200f08dcde8d068fb1bb3b);
+            
+        
+
+        circle_marker_8e2ee09d5aeab6906af6ef19a9eb24e2.bindPopup(popup_88355f0b214232e633a0bbefac0af15a)
+        ;
+
+        
+    
+    
+            var circle_marker_ad2baee4eec40dbb5280711554745a25 = L.circleMarker(
+                [15.3476215, 74.2413703],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_accb762791047726b727b4db4828a955 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aceca42a267083809a2302fff2e743c2 = $(`<div id="html_aceca42a267083809a2302fff2e743c2" style="width: 100.0%; height: 100.0%;">Day 3: श्री राक्षस मळ्ळीकेश्वर प्रसन्न<br>WPI: 0.728</div>`)[0];
+                popup_accb762791047726b727b4db4828a955.setContent(html_aceca42a267083809a2302fff2e743c2);
+            
+        
+
+        circle_marker_ad2baee4eec40dbb5280711554745a25.bindPopup(popup_accb762791047726b727b4db4828a955)
+        ;
+
+        
+    
+    
+            var circle_marker_77adb2cde38f4acc95c68644a789aebf = L.circleMarker(
+                [15.2448652, 73.9850796],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_5709e309633e5326077d7247515b824c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2b5d91da09de2eb592bdce153f15deef = $(`<div id="html_2b5d91da09de2eb592bdce153f15deef" style="width: 100.0%; height: 100.0%;">Day 3: Shri Shani temple<br>WPI: 0.817</div>`)[0];
+                popup_5709e309633e5326077d7247515b824c.setContent(html_2b5d91da09de2eb592bdce153f15deef);
+            
+        
+
+        circle_marker_77adb2cde38f4acc95c68644a789aebf.bindPopup(popup_5709e309633e5326077d7247515b824c)
+        ;
+
+        
+    
+    
+            var circle_marker_b3a55a13a49e7f3dc6aca4cb1708684b = L.circleMarker(
+                [15.1861257, 73.9476369],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_780deeb17bb10a891cbf44973f62a065 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6707444a10f24a65e937e0ca5211d475 = $(`<div id="html_6707444a10f24a65e937e0ca5211d475" style="width: 100.0%; height: 100.0%;">Day 3: Church of Holy Cross<br>WPI: 0.799</div>`)[0];
+                popup_780deeb17bb10a891cbf44973f62a065.setContent(html_6707444a10f24a65e937e0ca5211d475);
+            
+        
+
+        circle_marker_b3a55a13a49e7f3dc6aca4cb1708684b.bindPopup(popup_780deeb17bb10a891cbf44973f62a065)
+        ;
+
+        
+    
+    
+            var circle_marker_ef56b003fb0f1957068a2e4bbc9a07ea = L.circleMarker(
+                [15.2894037, 74.0218254],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+        var popup_c33e522db9f4bfdef65963e67f20f052 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e7ce9d31f95a84586873241aa2614cb8 = $(`<div id="html_e7ce9d31f95a84586873241aa2614cb8" style="width: 100.0%; height: 100.0%;">Day 3: St. Alex Church, Curtorim<br>WPI: 0.827</div>`)[0];
+                popup_c33e522db9f4bfdef65963e67f20f052.setContent(html_e7ce9d31f95a84586873241aa2614cb8);
+            
+        
+
+        circle_marker_ef56b003fb0f1957068a2e4bbc9a07ea.bindPopup(popup_c33e522db9f4bfdef65963e67f20f052)
+        ;
+
+        
+    
+    
+            var marker_288b3b56c26364df62c647fe585ec752 = L.marker(
+                [15.136365909523809, 74.10018249761904],
+                {
+}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+            var icon_c66f66d029d3f17db45527b1e4cd5934 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_288b3b56c26364df62c647fe585ec752.bindTooltip(
+                `<div>
+                     Cluster 1 centroid
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_288b3b56c26364df62c647fe585ec752.setIcon(icon_c66f66d029d3f17db45527b1e4cd5934);
+            
+    
+            var marker_040b84793add0bb41fe8c4fa6f2d189c = L.marker(
+                [15.078409442307692, 74.1767666423077],
+                {
+}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+            var icon_e553fc8e0c0006eb3afead0936015cb2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_040b84793add0bb41fe8c4fa6f2d189c.bindTooltip(
+                `<div>
+                     Cluster 2 centroid
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_040b84793add0bb41fe8c4fa6f2d189c.setIcon(icon_e553fc8e0c0006eb3afead0936015cb2);
+            
+    
+            var marker_adcb2ef3dde5c73c1bac14b6c8294a3f = L.marker(
+                [15.233196835714287, 74.08426599761904],
+                {
+}
+            ).addTo(map_520e53fcd5063e5ca2946b2157944fe2);
+        
+    
+            var icon_428f6499f70fdbf3e64c967d97bcd748 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_adcb2ef3dde5c73c1bac14b6c8294a3f.bindTooltip(
+                `<div>
+                     Cluster 3 centroid
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_adcb2ef3dde5c73c1bac14b6c8294a3f.setIcon(icon_428f6499f70fdbf3e64c967d97bcd748);
+            
+</script>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7ae5b59a87c0715402820f4452e7c79b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_7ae5b59a87c0715402820f4452e7c79b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7ae5b59a87c0715402820f4452e7c79b = L.map(
+                "map_7ae5b59a87c0715402820f4452e7c79b",
+                {
+                    center: [15.5055969, 73.9150423],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_84d88d8907d69d26af5cf4ea5ebec0ac = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_84d88d8907d69d26af5cf4ea5ebec0ac.addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+            var marker_c4a56a7e9fb81fb0c9817acdbfea8653 = L.marker(
+                [15.5055969, 73.9150423],
+                {
+}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_8f7f97e02646f34c5a5e6479b633bb8a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8db9abe2348e686a447a1b42879a487b = $(`<div id="html_8db9abe2348e686a447a1b42879a487b" style="width: 100.0%; height: 100.0%;">St. Cajetan Church, Goa<br>Arrive: 09:00<br>Visit: 09:00 - 10:00<br>Duration: 60 min</div>`)[0];
+                popup_8f7f97e02646f34c5a5e6479b633bb8a.setContent(html_8db9abe2348e686a447a1b42879a487b);
+            
+        
+
+        marker_c4a56a7e9fb81fb0c9817acdbfea8653.bindPopup(popup_8f7f97e02646f34c5a5e6479b633bb8a)
+        ;
+
+        
+    
+    
+            marker_c4a56a7e9fb81fb0c9817acdbfea8653.bindTooltip(
+                `<div>
+                     1. St. Cajetan Church, Goa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e35d1ecd8b77089a35f5b88fe7f17df = L.circleMarker(
+                [15.5035996, 73.9122204],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_a532b079416f396e59f57112288a9b10 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f317cad1945ebd362ed70cf729c47c64 = $(`<div id="html_f317cad1945ebd362ed70cf729c47c64" style="width: 100.0%; height: 100.0%;">Nearby: Se Cathedral<br>Distance: 0.375 km<br>WPI: 0.913</div>`)[0];
+                popup_a532b079416f396e59f57112288a9b10.setContent(html_f317cad1945ebd362ed70cf729c47c64);
+            
+        
+
+        circle_marker_2e35d1ecd8b77089a35f5b88fe7f17df.bindPopup(popup_a532b079416f396e59f57112288a9b10)
+        ;
+
+        
+    
+    
+            circle_marker_2e35d1ecd8b77089a35f5b88fe7f17df.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_44d373eb5ff9608b07161ab023bab9f2 = L.circleMarker(
+                [15.5057585, 73.9137064],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_a26ce83c1d1cca082993fc6b5577e4b6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_adea037f0f0e1e0c85b9a57d53470ea4 = $(`<div id="html_adea037f0f0e1e0c85b9a57d53470ea4" style="width: 100.0%; height: 100.0%;">Nearby: Viceroys Arch, Goa<br>Distance: 0.144 km<br>WPI: 0.829</div>`)[0];
+                popup_a26ce83c1d1cca082993fc6b5577e4b6.setContent(html_adea037f0f0e1e0c85b9a57d53470ea4);
+            
+        
+
+        circle_marker_44d373eb5ff9608b07161ab023bab9f2.bindPopup(popup_a26ce83c1d1cca082993fc6b5577e4b6)
+        ;
+
+        
+    
+    
+            circle_marker_44d373eb5ff9608b07161ab023bab9f2.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ccbf271c6756202b1cc4c69e822abfb = L.circleMarker(
+                [15.5031845, 73.9109878],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_9f92c6d439d83af8a41e1e73538c3da5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1f7024875511d247b696468786c935dc = $(`<div id="html_1f7024875511d247b696468786c935dc" style="width: 100.0%; height: 100.0%;">Nearby: Archaeological Survey of India<br>Distance: 0.511 km<br>WPI: 0.916</div>`)[0];
+                popup_9f92c6d439d83af8a41e1e73538c3da5.setContent(html_1f7024875511d247b696468786c935dc);
+            
+        
+
+        circle_marker_1ccbf271c6756202b1cc4c69e822abfb.bindPopup(popup_9f92c6d439d83af8a41e1e73538c3da5)
+        ;
+
+        
+    
+    
+            circle_marker_1ccbf271c6756202b1cc4c69e822abfb.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_61dc250b8be364b69621179f9c4580a8 = L.marker(
+                [15.5008429, 73.9114097],
+                {
+}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_86a2730957102ff144fcf56b002b68de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5477d01789e882a9774237d217ec75ea = $(`<div id="html_5477d01789e882a9774237d217ec75ea" style="width: 100.0%; height: 100.0%;">Basilica of Bom Jesus<br>Arrive: 10:01<br>Visit: 10:01 - 12:01<br>Duration: 120 min</div>`)[0];
+                popup_86a2730957102ff144fcf56b002b68de.setContent(html_5477d01789e882a9774237d217ec75ea);
+            
+        
+
+        marker_61dc250b8be364b69621179f9c4580a8.bindPopup(popup_86a2730957102ff144fcf56b002b68de)
+        ;
+
+        
+    
+    
+            marker_61dc250b8be364b69621179f9c4580a8.bindTooltip(
+                `<div>
+                     2. Basilica of Bom Jesus
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5c6d9617ef217c5bcb51abfac95d670e = L.circleMarker(
+                [15.5031845, 73.9109878],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_576599bc26fa018e0d163bb854a6669c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d4f583c13af20f35279093a788acd032 = $(`<div id="html_d4f583c13af20f35279093a788acd032" style="width: 100.0%; height: 100.0%;">Nearby: Archaeological Survey of India<br>Distance: 0.264 km<br>WPI: 0.916</div>`)[0];
+                popup_576599bc26fa018e0d163bb854a6669c.setContent(html_d4f583c13af20f35279093a788acd032);
+            
+        
+
+        circle_marker_5c6d9617ef217c5bcb51abfac95d670e.bindPopup(popup_576599bc26fa018e0d163bb854a6669c)
+        ;
+
+        
+    
+    
+            circle_marker_5c6d9617ef217c5bcb51abfac95d670e.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97274ceaf4be9f0a819a3b8b480dc356 = L.circleMarker(
+                [15.5030158, 73.911237],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_ace2a0e21d1a18bba37a65a05b202dc4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_413626360a86efb18ee7dc6b0cadcd25 = $(`<div id="html_413626360a86efb18ee7dc6b0cadcd25" style="width: 100.0%; height: 100.0%;">Nearby: Church of St. Francis of Assisi<br>Distance: 0.242 km<br>WPI: 0.9</div>`)[0];
+                popup_ace2a0e21d1a18bba37a65a05b202dc4.setContent(html_413626360a86efb18ee7dc6b0cadcd25);
+            
+        
+
+        circle_marker_97274ceaf4be9f0a819a3b8b480dc356.bindPopup(popup_ace2a0e21d1a18bba37a65a05b202dc4)
+        ;
+
+        
+    
+    
+            circle_marker_97274ceaf4be9f0a819a3b8b480dc356.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8532974eb0ab0dea62be70d44635d3bd = L.circleMarker(
+                [15.5035996, 73.9122204],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_faf28f3151b5b9de0fe712f04f1235dc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_54201e02053894036199bb4d53d2fd4f = $(`<div id="html_54201e02053894036199bb4d53d2fd4f" style="width: 100.0%; height: 100.0%;">Nearby: Se Cathedral<br>Distance: 0.319 km<br>WPI: 0.913</div>`)[0];
+                popup_faf28f3151b5b9de0fe712f04f1235dc.setContent(html_54201e02053894036199bb4d53d2fd4f);
+            
+        
+
+        circle_marker_8532974eb0ab0dea62be70d44635d3bd.bindPopup(popup_faf28f3151b5b9de0fe712f04f1235dc)
+        ;
+
+        
+    
+    
+            circle_marker_8532974eb0ab0dea62be70d44635d3bd.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5d41a0c408527120cfa280bbbb7455e9 = L.marker(
+                [15.5005094, 73.9064616],
+                {
+}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_2556dd7f9bb395490d28e37468879dfb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9ef27c4a1dd76d180123e084644db9bd = $(`<div id="html_9ef27c4a1dd76d180123e084644db9bd" style="width: 100.0%; height: 100.0%;">St. Augustine Tower<br>Arrive: 13:30<br>Visit: 13:30 - 14:30<br>Duration: 60 min</div>`)[0];
+                popup_2556dd7f9bb395490d28e37468879dfb.setContent(html_9ef27c4a1dd76d180123e084644db9bd);
+            
+        
+
+        marker_5d41a0c408527120cfa280bbbb7455e9.bindPopup(popup_2556dd7f9bb395490d28e37468879dfb)
+        ;
+
+        
+    
+    
+            marker_5d41a0c408527120cfa280bbbb7455e9.bindTooltip(
+                `<div>
+                     3. St. Augustine Tower
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_df974252107569d7f8d1173aab30baf8 = L.circleMarker(
+                [15.5002453, 73.9061058],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_9ecc14ec2c1a840aceb66104b0cd50b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_301df55f4b8d1ecef1b32d10ee337712 = $(`<div id="html_301df55f4b8d1ecef1b32d10ee337712" style="width: 100.0%; height: 100.0%;">Nearby: Church of Our Lady of Grace<br>Distance: 0.048 km<br>WPI: 0.829</div>`)[0];
+                popup_9ecc14ec2c1a840aceb66104b0cd50b1.setContent(html_301df55f4b8d1ecef1b32d10ee337712);
+            
+        
+
+        circle_marker_df974252107569d7f8d1173aab30baf8.bindPopup(popup_9ecc14ec2c1a840aceb66104b0cd50b1)
+        ;
+
+        
+    
+    
+            circle_marker_df974252107569d7f8d1173aab30baf8.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e586b1f12f1a8985499af6082d2e48ef = L.circleMarker(
+                [15.5009998, 73.9071469],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_fe7e0237838f7d0dc1da2b9e03231192 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_48add372e31d08d2995695b85047e14a = $(`<div id="html_48add372e31d08d2995695b85047e14a" style="width: 100.0%; height: 100.0%;">Nearby: Buttress Of The Church Of Santa Monica<br>Distance: 0.091 km<br>WPI: 0.802</div>`)[0];
+                popup_fe7e0237838f7d0dc1da2b9e03231192.setContent(html_48add372e31d08d2995695b85047e14a);
+            
+        
+
+        circle_marker_e586b1f12f1a8985499af6082d2e48ef.bindPopup(popup_fe7e0237838f7d0dc1da2b9e03231192)
+        ;
+
+        
+    
+    
+            circle_marker_e586b1f12f1a8985499af6082d2e48ef.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1adfca5f4a24a61250044a1c5edb22d3 = L.circleMarker(
+                [15.5031845, 73.9109878],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_d9257e5dffa7e1531180eecb467d3c73 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_deae6aba1095fdf8777047dfd46d83eb = $(`<div id="html_deae6aba1095fdf8777047dfd46d83eb" style="width: 100.0%; height: 100.0%;">Nearby: Archaeological Survey of India<br>Distance: 0.569 km<br>WPI: 0.916</div>`)[0];
+                popup_d9257e5dffa7e1531180eecb467d3c73.setContent(html_deae6aba1095fdf8777047dfd46d83eb);
+            
+        
+
+        circle_marker_1adfca5f4a24a61250044a1c5edb22d3.bindPopup(popup_d9257e5dffa7e1531180eecb467d3c73)
+        ;
+
+        
+    
+    
+            circle_marker_1adfca5f4a24a61250044a1c5edb22d3.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_7fde21c090691256a13ec7c59a029849 = L.marker(
+                [15.4888494, 73.9013952],
+                {
+}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_85d244c50487f6fe6f76af97416df029 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_55390e8cd55b9521aedc5e0c0cd46d25 = $(`<div id="html_55390e8cd55b9521aedc5e0c0cd46d25" style="width: 100.0%; height: 100.0%;">Dr.Sophia Waterfall<br>Arrive: 14:32<br>Visit: 14:32 - 15:32<br>Duration: 60 min</div>`)[0];
+                popup_85d244c50487f6fe6f76af97416df029.setContent(html_55390e8cd55b9521aedc5e0c0cd46d25);
+            
+        
+
+        marker_7fde21c090691256a13ec7c59a029849.bindPopup(popup_85d244c50487f6fe6f76af97416df029)
+        ;
+
+        
+    
+    
+            marker_7fde21c090691256a13ec7c59a029849.bindTooltip(
+                `<div>
+                     4. Dr.Sophia Waterfall
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d4a7ea213ccabda4740742555cf9fadd = L.circleMarker(
+                [15.492147, 73.913386],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_2805d7c7ee9a031ba4b77339a8335248 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0cea3eb9aa1c9631c6cae9789938cd52 = $(`<div id="html_0cea3eb9aa1c9631c6cae9789938cd52" style="width: 100.0%; height: 100.0%;">Nearby: Church of the Cross of Miracles<br>Distance: 1.336 km<br>WPI: 0.848</div>`)[0];
+                popup_2805d7c7ee9a031ba4b77339a8335248.setContent(html_0cea3eb9aa1c9631c6cae9789938cd52);
+            
+        
+
+        circle_marker_d4a7ea213ccabda4740742555cf9fadd.bindPopup(popup_2805d7c7ee9a031ba4b77339a8335248)
+        ;
+
+        
+    
+    
+            circle_marker_d4a7ea213ccabda4740742555cf9fadd.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c2d94cfb9a302d4dcdd92a1393c9cdad = L.circleMarker(
+                [15.5002453, 73.9061058],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_f58e451ac13fdd79b400f20329d26724 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ea57d61ed3e8a023a70808e3abe0b01 = $(`<div id="html_8ea57d61ed3e8a023a70808e3abe0b01" style="width: 100.0%; height: 100.0%;">Nearby: Church of Our Lady of Grace<br>Distance: 1.364 km<br>WPI: 0.829</div>`)[0];
+                popup_f58e451ac13fdd79b400f20329d26724.setContent(html_8ea57d61ed3e8a023a70808e3abe0b01);
+            
+        
+
+        circle_marker_c2d94cfb9a302d4dcdd92a1393c9cdad.bindPopup(popup_f58e451ac13fdd79b400f20329d26724)
+        ;
+
+        
+    
+    
+            circle_marker_c2d94cfb9a302d4dcdd92a1393c9cdad.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1a6d200ac8e22a086dd5a2f07cbab6d4 = L.circleMarker(
+                [15.4924326, 73.9134459],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_78aaa9f301a66e37d3abd69d5a14f272 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2c1f434c9635db974e51e2826e35bc3 = $(`<div id="html_f2c1f434c9635db974e51e2826e35bc3" style="width: 100.0%; height: 100.0%;">Nearby: Our Lady Of Miracles Church<br>Distance: 1.351 km<br>WPI: 0.785</div>`)[0];
+                popup_78aaa9f301a66e37d3abd69d5a14f272.setContent(html_f2c1f434c9635db974e51e2826e35bc3);
+            
+        
+
+        circle_marker_1a6d200ac8e22a086dd5a2f07cbab6d4.bindPopup(popup_78aaa9f301a66e37d3abd69d5a14f272)
+        ;
+
+        
+    
+    
+            circle_marker_1a6d200ac8e22a086dd5a2f07cbab6d4.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_70ef02f0426084b4840f975163d727e5 = L.marker(
+                [15.5002292, 73.8972411],
+                {
+}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_2e5523954a7760116c99d3c11969482f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9b38b587374d28dfa30d413d60490f9d = $(`<div id="html_9b38b587374d28dfa30d413d60490f9d" style="width: 100.0%; height: 100.0%;">São Pedro Church, Goa<br>Arrive: 15:35<br>Visit: 15:35 - 16:35<br>Duration: 60 min</div>`)[0];
+                popup_2e5523954a7760116c99d3c11969482f.setContent(html_9b38b587374d28dfa30d413d60490f9d);
+            
+        
+
+        marker_70ef02f0426084b4840f975163d727e5.bindPopup(popup_2e5523954a7760116c99d3c11969482f)
+        ;
+
+        
+    
+    
+            marker_70ef02f0426084b4840f975163d727e5.bindTooltip(
+                `<div>
+                     5. São Pedro Church, Goa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b8275137b619f814663c95d64cc007d = L.circleMarker(
+                [15.5002453, 73.9061058],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_45025ecccf17ef5625f9af944e72d311 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aecdebfa6ddad8b0a9609376cd534a2f = $(`<div id="html_aecdebfa6ddad8b0a9609376cd534a2f" style="width: 100.0%; height: 100.0%;">Nearby: Church of Our Lady of Grace<br>Distance: 0.95 km<br>WPI: 0.829</div>`)[0];
+                popup_45025ecccf17ef5625f9af944e72d311.setContent(html_aecdebfa6ddad8b0a9609376cd534a2f);
+            
+        
+
+        circle_marker_1b8275137b619f814663c95d64cc007d.bindPopup(popup_45025ecccf17ef5625f9af944e72d311)
+        ;
+
+        
+    
+    
+            circle_marker_1b8275137b619f814663c95d64cc007d.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d87941b4a7792ae10e337027e6603de6 = L.circleMarker(
+                [15.501778, 73.9049807],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_1d9dbe5a4d0db42c9dbfd67f6ce47e28 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4775146ff4b919e53e4c7b8db0a6c593 = $(`<div id="html_4775146ff4b919e53e4c7b8db0a6c593" style="width: 100.0%; height: 100.0%;">Nearby: Church of Our Lady of the Rosary<br>Distance: 0.847 km<br>WPI: 0.762</div>`)[0];
+                popup_1d9dbe5a4d0db42c9dbfd67f6ce47e28.setContent(html_4775146ff4b919e53e4c7b8db0a6c593);
+            
+        
+
+        circle_marker_d87941b4a7792ae10e337027e6603de6.bindPopup(popup_1d9dbe5a4d0db42c9dbfd67f6ce47e28)
+        ;
+
+        
+    
+    
+            circle_marker_d87941b4a7792ae10e337027e6603de6.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_590edde0e5aaf255504ce8c918d2424b = L.circleMarker(
+                [15.5031845, 73.9109878],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+    
+        var popup_50f578a47865eb14a22e9eaabada9f49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8a16579777b2e36ea3ef46274e0b7352 = $(`<div id="html_8a16579777b2e36ea3ef46274e0b7352" style="width: 100.0%; height: 100.0%;">Nearby: Archaeological Survey of India<br>Distance: 1.509 km<br>WPI: 0.916</div>`)[0];
+                popup_50f578a47865eb14a22e9eaabada9f49.setContent(html_8a16579777b2e36ea3ef46274e0b7352);
+            
+        
+
+        circle_marker_590edde0e5aaf255504ce8c918d2424b.bindPopup(popup_50f578a47865eb14a22e9eaabada9f49)
+        ;
+
+        
+    
+    
+            circle_marker_590edde0e5aaf255504ce8c918d2424b.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1ac71e6366cfe3c2f9b9edd937112e4b = L.polyline(
+                [[15.504498, 73.915034], [15.504498, 73.915034], [15.504496, 73.915137], [15.504496, 73.915164], [15.504496, 73.915198], [15.50447, 73.915851], [15.504451, 73.915901], [15.504382, 73.915982], [15.50403, 73.915754], [15.503261, 73.915369], [15.502276, 73.914391], [15.502063, 73.914144], [15.501706, 73.913586], [15.501553, 73.913407], [15.501462, 73.913412], [15.501319, 73.913421], [15.501321, 73.91345], [15.501314, 73.913479], [15.5013, 73.913505], [15.501285, 73.91352], [15.501267, 73.913532], [15.501248, 73.913539], [15.501227, 73.913542], [15.5012, 73.913539], [15.501175, 73.913528], [15.501154, 73.91351], [15.501139, 73.913487], [15.50113, 73.913461], [15.501129, 73.91343], [15.501137, 73.913401], [15.501153, 73.913376], [15.501175, 73.913357], [15.501202, 73.913345], [15.501231, 73.913342], [15.501606, 73.911599], [15.501606, 73.911599], [15.501622, 73.911527], [15.501636, 73.911458], [15.501978, 73.909937], [15.501598, 73.90996], [15.501524, 73.90996], [15.501366, 73.909962], [15.501266, 73.909275], [15.50097, 73.908064], [15.500894, 73.90773], [15.500884, 73.907659], [15.5008, 73.907489], [15.500751, 73.907228], [15.500727, 73.90703], [15.500658, 73.906443], [15.500618, 73.906109], [15.500575, 73.905952], [15.500534, 73.905883], [15.500481, 73.905792], [15.50038, 73.905657], [15.500154, 73.905656], [15.499769, 73.905771], [15.499169, 73.90597], [15.498599, 73.906157], [15.498019, 73.906322], [15.497536, 73.906381], [15.497247, 73.906357], [15.496503, 73.90616], [15.49645, 73.906142], [15.496072, 73.906012], [15.495712, 73.90584], [15.495304, 73.905576], [15.495076, 73.90543], [15.49483, 73.905434], [15.494707, 73.90546], [15.49446, 73.905511], [15.493369, 73.905769], [15.492932, 73.905872], [15.492576, 73.905972], [15.492259, 73.906088], [15.491995, 73.90622], [15.491611, 73.906429], [15.491335, 73.906504], [15.491122, 73.906551], [15.490718, 73.906663], [15.490539, 73.906717], [15.490461, 73.906696], [15.49024, 73.906561], [15.489966, 73.906393], [15.489797, 73.906664], [15.489541, 73.906501], [15.489301, 73.906327], [15.488489, 73.905727], [15.488334, 73.905554], [15.488323, 73.905415], [15.488091, 73.905185], [15.487879, 73.904891], [15.487592, 73.904497], [15.487156, 73.903731], [15.486982, 73.903354], [15.486861, 73.903034], [15.48675, 73.903082], [15.486575, 73.902717], [15.486486, 73.902438], [15.486442, 73.901865], [15.486897, 73.901821], [15.486918, 73.901809], [15.487283, 73.90161], [15.487606, 73.901388], [15.487984, 73.901129], [15.488368, 73.900882], [15.488595, 73.901319], [15.488368, 73.900882], [15.487984, 73.901129], [15.487606, 73.901388], [15.487283, 73.90161], [15.486918, 73.901809], [15.486897, 73.901821], [15.486941, 73.902234], [15.48697, 73.902392], [15.487022, 73.902616], [15.487095, 73.902859], [15.487239, 73.903119], [15.487324, 73.903252], [15.48742, 73.903361], [15.487839, 73.903796], [15.488051, 73.904033], [15.488204, 73.904233], [15.48831, 73.904375], [15.488461, 73.904638], [15.488552, 73.904775], [15.488773, 73.905138], [15.488955, 73.905386], [15.489099, 73.905569], [15.489212, 73.905677], [15.489339, 73.90578], [15.489471, 73.905861], [15.489876, 73.906134], [15.490357, 73.906437], [15.490718, 73.906663], [15.491122, 73.906551], [15.491335, 73.906504], [15.491611, 73.906429], [15.491995, 73.90622], [15.492259, 73.906088], [15.492576, 73.905972], [15.492932, 73.905872], [15.493369, 73.905769], [15.49446, 73.905511], [15.494707, 73.90546], [15.49483, 73.905434], [15.495076, 73.90543], [15.495304, 73.905576], [15.495712, 73.90584], [15.496072, 73.906012], [15.49645, 73.906142], [15.496503, 73.90616], [15.497247, 73.906357], [15.497536, 73.906381], [15.498019, 73.906322], [15.498599, 73.906157], [15.499169, 73.90597], [15.499769, 73.905771], [15.500154, 73.905656], [15.50038, 73.905657], [15.500314, 73.905429], [15.500205, 73.905177], [15.500175, 73.905033], [15.500148, 73.903721], [15.50027, 73.902995], [15.500311, 73.902629], [15.500357, 73.902571], [15.500316, 73.902427], [15.500295, 73.902306], [15.500321, 73.902119], [15.500385, 73.901709], [15.500397, 73.901403], [15.500391, 73.900279], [15.500232, 73.898866], [15.500214, 73.898651], [15.500143, 73.897724], [15.500176, 73.897237]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7ae5b59a87c0715402820f4452e7c79b);
+        
+</script>
+</html>

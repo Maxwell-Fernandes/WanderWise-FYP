@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a4c344239b743e9db8d37a81e42c37ed {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a4c344239b743e9db8d37a81e42c37ed" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a4c344239b743e9db8d37a81e42c37ed = L.map(
+                "map_a4c344239b743e9db8d37a81e42c37ed",
+                {
+                    center: [14.9600472, 74.0495654],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_960aad1ad4751e5b125f37d213b6be88 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_960aad1ad4751e5b125f37d213b6be88.addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+            var marker_c0929942273ff5a26c59bf7b16f2abd7 = L.marker(
+                [14.9600472, 74.0495654],
+                {
+}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_a9e35a158b1f52cbb1a72ef21f2cec67 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b0b751c308e5a90eaf3d0c2e8479dd4f = $(`<div id="html_b0b751c308e5a90eaf3d0c2e8479dd4f" style="width: 100.0%; height: 100.0%;">Galgibaga Beach<br>Arrive: 09:00<br>Visit: 09:00 - 10:30<br>Duration: 90 min</div>`)[0];
+                popup_a9e35a158b1f52cbb1a72ef21f2cec67.setContent(html_b0b751c308e5a90eaf3d0c2e8479dd4f);
+            
+        
+
+        marker_c0929942273ff5a26c59bf7b16f2abd7.bindPopup(popup_a9e35a158b1f52cbb1a72ef21f2cec67)
+        ;
+
+        
+    
+    
+            marker_c0929942273ff5a26c59bf7b16f2abd7.bindTooltip(
+                `<div>
+                     1. Galgibaga Beach
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_50f6c6de8f1dc8b44002c34c596536aa = L.circleMarker(
+                [14.9599248, 74.0489962],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_30fa5913f536f86e4da89e1b4246df5a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2894b3634837c27b9856ad4ff39d449d = $(`<div id="html_2894b3634837c27b9856ad4ff39d449d" style="width: 100.0%; height: 100.0%;">Nearby: Turtle Beach<br>Distance: 0.063 km<br>WPI: 0.795</div>`)[0];
+                popup_30fa5913f536f86e4da89e1b4246df5a.setContent(html_2894b3634837c27b9856ad4ff39d449d);
+            
+        
+
+        circle_marker_50f6c6de8f1dc8b44002c34c596536aa.bindPopup(popup_30fa5913f536f86e4da89e1b4246df5a)
+        ;
+
+        
+    
+    
+            circle_marker_50f6c6de8f1dc8b44002c34c596536aa.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_cf910848185eff4b6184740d20a4594a = L.marker(
+                [14.9968861, 74.0335008],
+                {
+}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_7e5dc4e38838d65948909ba7f67be394 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24f9477ef0d3e40461f05729dedce16e = $(`<div id="html_24f9477ef0d3e40461f05729dedce16e" style="width: 100.0%; height: 100.0%;">Patnem Beach<br>Arrive: 10:35<br>Visit: 10:35 - 12:05<br>Duration: 90 min</div>`)[0];
+                popup_7e5dc4e38838d65948909ba7f67be394.setContent(html_24f9477ef0d3e40461f05729dedce16e);
+            
+        
+
+        marker_cf910848185eff4b6184740d20a4594a.bindPopup(popup_7e5dc4e38838d65948909ba7f67be394)
+        ;
+
+        
+    
+    
+            marker_cf910848185eff4b6184740d20a4594a.bindTooltip(
+                `<div>
+                     2. Patnem Beach
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07fbad8f67b5b3c16a277850f3e1c661 = L.circleMarker(
+                [14.9978902, 74.033415],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_1566f9e46038610020613f0f1bbbbcbe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8649a0f9ba9ace7518e94fb45243c6b = $(`<div id="html_f8649a0f9ba9ace7518e94fb45243c6b" style="width: 100.0%; height: 100.0%;">Nearby: GYAN DOLPHIN TRIP<br>Distance: 0.112 km<br>WPI: 0.619</div>`)[0];
+                popup_1566f9e46038610020613f0f1bbbbcbe.setContent(html_f8649a0f9ba9ace7518e94fb45243c6b);
+            
+        
+
+        circle_marker_07fbad8f67b5b3c16a277850f3e1c661.bindPopup(popup_1566f9e46038610020613f0f1bbbbcbe)
+        ;
+
+        
+    
+    
+            circle_marker_07fbad8f67b5b3c16a277850f3e1c661.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_47a60fbbcc7a7b71f423463713e57319 = L.circleMarker(
+                [15.0026499, 74.0271825],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_816f1fcdc18772d70e899252343cfca6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ebb2cdfb4d62591e81dca4ccbcdbe0a3 = $(`<div id="html_ebb2cdfb4d62591e81dca4ccbcdbe0a3" style="width: 100.0%; height: 100.0%;">Nearby: Colomb Beach<br>Distance: 0.933 km<br>WPI: 0.784</div>`)[0];
+                popup_816f1fcdc18772d70e899252343cfca6.setContent(html_ebb2cdfb4d62591e81dca4ccbcdbe0a3);
+            
+        
+
+        circle_marker_47a60fbbcc7a7b71f423463713e57319.bindPopup(popup_816f1fcdc18772d70e899252343cfca6)
+        ;
+
+        
+    
+    
+            circle_marker_47a60fbbcc7a7b71f423463713e57319.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8214018c0e14af4a885ea12d78cadb32 = L.circleMarker(
+                [14.9850204, 74.038458],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_327273de1daab40538195d4d24039611 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a0e5949455e8464d5078759da702f116 = $(`<div id="html_a0e5949455e8464d5078759da702f116" style="width: 100.0%; height: 100.0%;">Nearby: Rajbag Beach<br>Distance: 1.423 km<br>WPI: 0.831</div>`)[0];
+                popup_327273de1daab40538195d4d24039611.setContent(html_a0e5949455e8464d5078759da702f116);
+            
+        
+
+        circle_marker_8214018c0e14af4a885ea12d78cadb32.bindPopup(popup_327273de1daab40538195d4d24039611)
+        ;
+
+        
+    
+    
+            circle_marker_8214018c0e14af4a885ea12d78cadb32.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_70fa2f775ee0515ef8d6e7b39223d702 = L.marker(
+                [15.0114217, 74.0213312],
+                {
+}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_3e7f89541a7bedfac1ebc573e2516623 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_330e8833e4b3b49a18f77a7bbe8b6ba6 = $(`<div id="html_330e8833e4b3b49a18f77a7bbe8b6ba6" style="width: 100.0%; height: 100.0%;">Dolphin Boat trip and kayaking<br>Arrive: 13:30<br>Visit: 13:30 - 14:30<br>Duration: 60 min</div>`)[0];
+                popup_3e7f89541a7bedfac1ebc573e2516623.setContent(html_330e8833e4b3b49a18f77a7bbe8b6ba6);
+            
+        
+
+        marker_70fa2f775ee0515ef8d6e7b39223d702.bindPopup(popup_3e7f89541a7bedfac1ebc573e2516623)
+        ;
+
+        
+    
+    
+            marker_70fa2f775ee0515ef8d6e7b39223d702.bindTooltip(
+                `<div>
+                     3. Dolphin Boat trip and kayaking
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f9340c8c16f95c7c7b4403bcbd2abcd = L.circleMarker(
+                [15.0114947, 74.0211434],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_542112b9211032477f2f4390cde1a2fb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_54a406c2f5802da623f754f6838a2e14 = $(`<div id="html_54a406c2f5802da623f754f6838a2e14" style="width: 100.0%; height: 100.0%;">Nearby: All day kayak adventure<br>Distance: 0.022 km<br>WPI: 0.71</div>`)[0];
+                popup_542112b9211032477f2f4390cde1a2fb.setContent(html_54a406c2f5802da623f754f6838a2e14);
+            
+        
+
+        circle_marker_8f9340c8c16f95c7c7b4403bcbd2abcd.bindPopup(popup_542112b9211032477f2f4390cde1a2fb)
+        ;
+
+        
+    
+    
+            circle_marker_8f9340c8c16f95c7c7b4403bcbd2abcd.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1c954ab09718b81306ff53a632a6fbc = L.circleMarker(
+                [15.0130747, 74.0159922],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_e6f20e73dd168bf4bf8096333fe95b38 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_10b71f59b1e5d7f94dbb11bb42f38da1 = $(`<div id="html_10b71f59b1e5d7f94dbb11bb42f38da1" style="width: 100.0%; height: 100.0%;">Nearby: Palolem boat kayaking backwater<br>Distance: 0.602 km<br>WPI: 0.814</div>`)[0];
+                popup_e6f20e73dd168bf4bf8096333fe95b38.setContent(html_10b71f59b1e5d7f94dbb11bb42f38da1);
+            
+        
+
+        circle_marker_a1c954ab09718b81306ff53a632a6fbc.bindPopup(popup_e6f20e73dd168bf4bf8096333fe95b38)
+        ;
+
+        
+    
+    
+            circle_marker_a1c954ab09718b81306ff53a632a6fbc.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4938a7efa588153ada52a45f6293e629 = L.circleMarker(
+                [15.0080706, 74.0258535],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_62a6378e0001a59012013547012f7665 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_59fa37e96c164c3aef3c55e693f1b717 = $(`<div id="html_59fa37e96c164c3aef3c55e693f1b717" style="width: 100.0%; height: 100.0%;">Nearby: Cocos Beach Resort<br>Distance: 0.612 km<br>WPI: 0.779</div>`)[0];
+                popup_62a6378e0001a59012013547012f7665.setContent(html_59fa37e96c164c3aef3c55e693f1b717);
+            
+        
+
+        circle_marker_4938a7efa588153ada52a45f6293e629.bindPopup(popup_62a6378e0001a59012013547012f7665)
+        ;
+
+        
+    
+    
+            circle_marker_4938a7efa588153ada52a45f6293e629.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0031963e556b2c20566d459820f42dc4 = L.marker(
+                [15.0083261, 74.0251467],
+                {
+}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_5d42c73b6effeaa7f5e888aaad3170c2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c3103adbe63aecaaae3c2918799b4382 = $(`<div id="html_c3103adbe63aecaaae3c2918799b4382" style="width: 100.0%; height: 100.0%;">Palolem Beach, GOA<br>Arrive: 14:31<br>Visit: 14:31 - 15:31<br>Duration: 60 min</div>`)[0];
+                popup_5d42c73b6effeaa7f5e888aaad3170c2.setContent(html_c3103adbe63aecaaae3c2918799b4382);
+            
+        
+
+        marker_0031963e556b2c20566d459820f42dc4.bindPopup(popup_5d42c73b6effeaa7f5e888aaad3170c2)
+        ;
+
+        
+    
+    
+            marker_0031963e556b2c20566d459820f42dc4.bindTooltip(
+                `<div>
+                     4. Palolem Beach, GOA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_da2eb93545035a0265631b918e397beb = L.circleMarker(
+                [15.0080706, 74.0258535],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_f41aa73132e95cbe76284af50d9ec259 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df6b2c83458fc2abe697361e2dff6d2e = $(`<div id="html_df6b2c83458fc2abe697361e2dff6d2e" style="width: 100.0%; height: 100.0%;">Nearby: Cocos Beach Resort<br>Distance: 0.081 km<br>WPI: 0.779</div>`)[0];
+                popup_f41aa73132e95cbe76284af50d9ec259.setContent(html_df6b2c83458fc2abe697361e2dff6d2e);
+            
+        
+
+        circle_marker_da2eb93545035a0265631b918e397beb.bindPopup(popup_f41aa73132e95cbe76284af50d9ec259)
+        ;
+
+        
+    
+    
+            circle_marker_da2eb93545035a0265631b918e397beb.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3fef31125b213b2ad42b62a6e3d2d28d = L.circleMarker(
+                [15.0076952, 74.0261434],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_e02e7f82a8043c0a6567c57e0009ad52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0a71899b2ed27a63997edde824d28b18 = $(`<div id="html_0a71899b2ed27a63997edde824d28b18" style="width: 100.0%; height: 100.0%;">Nearby: Palolem Kayaking Spot<br>Distance: 0.128 km<br>WPI: 0.694</div>`)[0];
+                popup_e02e7f82a8043c0a6567c57e0009ad52.setContent(html_0a71899b2ed27a63997edde824d28b18);
+            
+        
+
+        circle_marker_3fef31125b213b2ad42b62a6e3d2d28d.bindPopup(popup_e02e7f82a8043c0a6567c57e0009ad52)
+        ;
+
+        
+    
+    
+            circle_marker_3fef31125b213b2ad42b62a6e3d2d28d.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7084662f6d278117ac81d4c435724a6e = L.circleMarker(
+                [15.0095819, 74.0235293],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+    
+        var popup_5214200e8bc0a13c339bdf2637c2fc40 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aff4a5580142e1fa36c94896583b278f = $(`<div id="html_aff4a5580142e1fa36c94896583b278f" style="width: 100.0%; height: 100.0%;">Nearby: Goa Best Beach Accommodation<br>Distance: 0.223 km<br>WPI: 0.694</div>`)[0];
+                popup_5214200e8bc0a13c339bdf2637c2fc40.setContent(html_aff4a5580142e1fa36c94896583b278f);
+            
+        
+
+        circle_marker_7084662f6d278117ac81d4c435724a6e.bindPopup(popup_5214200e8bc0a13c339bdf2637c2fc40)
+        ;
+
+        
+    
+    
+            circle_marker_7084662f6d278117ac81d4c435724a6e.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_474a7305ec9cc871b136619e7652616f = L.polyline(
+                [[14.960892, 74.051212], [14.96102, 74.051142], [14.963839, 74.049973], [14.96585, 74.0492], [14.966258, 74.049042], [14.967336, 74.048635], [14.969096, 74.047935], [14.970943, 74.047205], [14.971235, 74.047095], [14.971246, 74.047091], [14.972711, 74.046502], [14.975473, 74.045408], [14.976051, 74.045161], [14.977459, 74.044557], [14.97763, 74.044484], [14.97767, 74.044467], [14.978142, 74.044265], [14.978404, 74.044204], [14.979375, 74.044177], [14.979476, 74.044201], [14.979585, 74.044244], [14.979837, 74.044392], [14.980785, 74.045371], [14.980953, 74.045585], [14.981345, 74.046114], [14.982834, 74.048214], [14.983119, 74.048624], [14.983249, 74.048766], [14.983588, 74.04901], [14.983884, 74.049142], [14.984234, 74.049246], [14.984506, 74.049295], [14.984713, 74.049321], [14.985001, 74.049343], [14.985257, 74.049336], [14.989382, 74.049245], [14.989812, 74.049197], [14.990292, 74.049095], [14.990673, 74.048883], [14.991284, 74.048397], [14.991579, 74.048093], [14.991792, 74.047862], [14.991851, 74.047769], [14.992004, 74.0475], [14.992994, 74.044936], [14.993141, 74.044542], [14.993516, 74.043498], [14.993573, 74.043383], [14.993949, 74.042691], [14.994125, 74.042522], [14.995218, 74.041545], [14.99526, 74.041516], [14.995514, 74.041338], [14.995683, 74.041288], [14.995946, 74.041244], [14.995964, 74.041242], [14.996038, 74.041234], [14.996091, 74.041162], [14.996146, 74.041112], [14.996202, 74.041079], [14.996398, 74.041051], [14.997403, 74.040945], [14.997928, 74.040858], [14.997684, 74.040329], [14.997623, 74.040119], [14.99758, 74.03991], [14.997479, 74.039043], [14.997488, 74.038909], [14.997493, 74.038846], [14.99754, 74.038641], [14.997676, 74.038195], [14.997923, 74.037461], [14.998171, 74.036874], [14.998494, 74.036284], [14.99838, 74.036152], [14.998273, 74.036035], [14.998098, 74.035827], [14.997925, 74.035587], [14.997865, 74.035504], [14.997647, 74.035171], [14.99752, 74.034952], [14.997349, 74.03473], [14.997188, 74.034457], [14.996998, 74.034171], [14.997188, 74.034457], [14.997349, 74.03473], [14.99752, 74.034952], [14.997647, 74.035171], [14.997865, 74.035504], [14.997925, 74.035587], [14.998098, 74.035827], [14.998273, 74.036035], [14.99838, 74.036152], [14.998494, 74.036284], [14.998523, 74.036232], [14.998875, 74.035615], [14.998899, 74.035542], [14.998892, 74.035478], [14.99886, 74.035416], [14.998754, 74.03525], [14.998743, 74.035162], [14.998774, 74.035075], [14.998875, 74.034932], [14.999583, 74.034204], [15.000546, 74.033635], [15.000897, 74.033511], [15.000995, 74.03349], [15.001092, 74.033488], [15.001207, 74.033507], [15.001323, 74.033501], [15.001486, 74.033422], [15.001594, 74.033343], [15.001713, 74.033282], [15.001878, 74.033215], [15.002785, 74.032889], [15.003387, 74.032554], [15.00399, 74.032057], [15.004763, 74.031719], [15.005663, 74.031405], [15.005982, 74.031268], [15.006108, 74.03123], [15.006178, 74.031209], [15.006303, 74.031132], [15.006547, 74.03101], [15.006663, 74.030914], [15.006777, 74.030805], [15.007194, 74.030272], [15.007303, 74.030152], [15.007441, 74.030032], [15.00762, 74.029933], [15.009049, 74.029581], [15.009411, 74.029409], [15.009772, 74.029217], [15.010186, 74.029088], [15.010187, 74.029031], [15.010178, 74.028948], [15.010141, 74.028893], [15.0101, 74.028827], [15.010071, 74.028767], [15.010071, 74.028673], [15.01009, 74.028592], [15.010552, 74.02811], [15.010725, 74.027939], [15.010873, 74.02778], [15.010664, 74.027543], [15.01016, 74.027015], [15.010138, 74.026952], [15.010149, 74.026866], [15.010187, 74.026805], [15.010537, 74.026339], [15.01073, 74.0261], [15.010752, 74.026072], [15.010958, 74.025823], [15.011287, 74.025425], [15.011586, 74.025021], [15.011933, 74.024483], [15.012174, 74.024042], [15.012221, 74.023982], [15.012473, 74.023723], [15.012581, 74.023605], [15.012736, 74.023389], [15.012742, 74.02338], [15.012906, 74.023058], [15.013088, 74.022716], [15.013236, 74.02233], [15.011585, 74.021458], [15.011585, 74.021458], [15.011585, 74.021458], [15.013236, 74.02233], [15.013088, 74.022716], [15.012906, 74.023058], [15.012742, 74.02338], [15.012736, 74.023389], [15.012581, 74.023605], [15.012473, 74.023723], [15.012221, 74.023982], [15.012174, 74.024042], [15.011933, 74.024483], [15.011586, 74.025021], [15.011287, 74.025425], [15.010958, 74.025823], [15.010752, 74.026072], [15.01073, 74.0261], [15.010537, 74.026339], [15.010187, 74.026805], [15.010149, 74.026866], [15.009953, 74.026886], [15.009809, 74.026844], [15.009677, 74.026774], [15.00934, 74.026409], [15.008969, 74.026154], [15.008796, 74.026234]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_a4c344239b743e9db8d37a81e42c37ed);
+        
+</script>
+</html>

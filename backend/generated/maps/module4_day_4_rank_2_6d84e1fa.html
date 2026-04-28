@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_99aa455f72a570cedf53ee84e69aadd7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_99aa455f72a570cedf53ee84e69aadd7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_99aa455f72a570cedf53ee84e69aadd7 = L.map(
+                "map_99aa455f72a570cedf53ee84e69aadd7",
+                {
+                    center: [15.4506125, 73.8029961],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_9acc9df0d12a0d0455b0a2231aaa46ba = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_9acc9df0d12a0d0455b0a2231aaa46ba.addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+            var marker_b481527793f558ea227c0fc008cb884c = L.marker(
+                [15.4506125, 73.8029961],
+                {
+}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_7ed012e6f76167104b13bb739ad431a0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2468b5c24520355971b21b8f6250843e = $(`<div id="html_2468b5c24520355971b21b8f6250843e" style="width: 100.0%; height: 100.0%;">Dona Paula View Point<br>Arrive: 09:00<br>Visit: 09:00 - 11:00<br>Duration: 120 min</div>`)[0];
+                popup_7ed012e6f76167104b13bb739ad431a0.setContent(html_2468b5c24520355971b21b8f6250843e);
+            
+        
+
+        marker_b481527793f558ea227c0fc008cb884c.bindPopup(popup_7ed012e6f76167104b13bb739ad431a0)
+        ;
+
+        
+    
+    
+            marker_b481527793f558ea227c0fc008cb884c.bindTooltip(
+                `<div>
+                     1. Dona Paula View Point
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a2c224c28e322e0872e5e1e58d264c54 = L.circleMarker(
+                [15.4505614, 73.8036167],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_858e636ab344e97aa31a8ed7abeecce9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9539c9b36a6a07443da66151227bd7b1 = $(`<div id="html_9539c9b36a6a07443da66151227bd7b1" style="width: 100.0%; height: 100.0%;">Nearby: Dona Paula Jetty Goa<br>Distance: 0.067 km<br>WPI: 0.751</div>`)[0];
+                popup_858e636ab344e97aa31a8ed7abeecce9.setContent(html_9539c9b36a6a07443da66151227bd7b1);
+            
+        
+
+        circle_marker_a2c224c28e322e0872e5e1e58d264c54.bindPopup(popup_858e636ab344e97aa31a8ed7abeecce9)
+        ;
+
+        
+    
+    
+            circle_marker_a2c224c28e322e0872e5e1e58d264c54.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_df50d1349001b2e8e845eea3cd1814f9 = L.circleMarker(
+                [15.4596433, 73.7975451],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_edb8d91723e9753a8df3d9908310e441 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ccfc1ef48d8c6bbba9fe217b6190cd7f = $(`<div id="html_ccfc1ef48d8c6bbba9fe217b6190cd7f" style="width: 100.0%; height: 100.0%;">Nearby: Cabo View Point, Panjim<br>Distance: 1.162 km<br>WPI: 0.882</div>`)[0];
+                popup_edb8d91723e9753a8df3d9908310e441.setContent(html_ccfc1ef48d8c6bbba9fe217b6190cd7f);
+            
+        
+
+        circle_marker_df50d1349001b2e8e845eea3cd1814f9.bindPopup(popup_edb8d91723e9753a8df3d9908310e441)
+        ;
+
+        
+    
+    
+            circle_marker_df50d1349001b2e8e845eea3cd1814f9.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f3eec6624e1e6ce66ca021443e6e1e44 = L.circleMarker(
+                [15.4555962, 73.8134175],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_163678b39efda2717e9b3f21c14f42f0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d358de9e5f9fe1da79b01cce67b9f8db = $(`<div id="html_d358de9e5f9fe1da79b01cce67b9f8db" style="width: 100.0%; height: 100.0%;">Nearby: Vainguinim Beach<br>Distance: 1.247 km<br>WPI: 0.828</div>`)[0];
+                popup_163678b39efda2717e9b3f21c14f42f0.setContent(html_d358de9e5f9fe1da79b01cce67b9f8db);
+            
+        
+
+        circle_marker_f3eec6624e1e6ce66ca021443e6e1e44.bindPopup(popup_163678b39efda2717e9b3f21c14f42f0)
+        ;
+
+        
+    
+    
+            circle_marker_f3eec6624e1e6ce66ca021443e6e1e44.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5c1439e1d8088a1e21a530f7750c7dda = L.marker(
+                [15.4900268, 73.8121598],
+                {
+}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_96625e537da5491a2656f60a6feabb91 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_74c4d18c911b8fcd63957c0d765526ef = $(`<div id="html_74c4d18c911b8fcd63957c0d765526ef" style="width: 100.0%; height: 100.0%;">Mandovi Riverfront Promenade<br>Arrive: 11:06<br>Visit: 11:06 - 12:06<br>Duration: 60 min</div>`)[0];
+                popup_96625e537da5491a2656f60a6feabb91.setContent(html_74c4d18c911b8fcd63957c0d765526ef);
+            
+        
+
+        marker_5c1439e1d8088a1e21a530f7750c7dda.bindPopup(popup_96625e537da5491a2656f60a6feabb91)
+        ;
+
+        
+    
+    
+            marker_5c1439e1d8088a1e21a530f7750c7dda.bindTooltip(
+                `<div>
+                     2. Mandovi Riverfront Promenade
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_63cc4fff353f33c4be149bce1da2b090 = L.circleMarker(
+                [15.4975409, 73.8187902],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_df465fa15f7c49c286fbb88fb57da13d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5a73c7c8ea5dfe185517874167e51694 = $(`<div id="html_5a73c7c8ea5dfe185517874167e51694" style="width: 100.0%; height: 100.0%;">Nearby: BHAGWAN MAHAVIR BAL VIHAR PARK<br>Distance: 1.097 km<br>WPI: 0.812</div>`)[0];
+                popup_df465fa15f7c49c286fbb88fb57da13d.setContent(html_5a73c7c8ea5dfe185517874167e51694);
+            
+        
+
+        circle_marker_63cc4fff353f33c4be149bce1da2b090.bindPopup(popup_df465fa15f7c49c286fbb88fb57da13d)
+        ;
+
+        
+    
+    
+            circle_marker_63cc4fff353f33c4be149bce1da2b090.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c74508ab1987f1a1abd16a522704bfac = L.circleMarker(
+                [15.4959536, 73.806726],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_2882f12a63e0a442c11d4e91a1ae9c12 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d2749a6d150c5471099e3140a5e2fd49 = $(`<div id="html_d2749a6d150c5471099e3140a5e2fd49" style="width: 100.0%; height: 100.0%;">Nearby: Quegdevelim Beach<br>Distance: 0.879 km<br>WPI: 0.74</div>`)[0];
+                popup_2882f12a63e0a442c11d4e91a1ae9c12.setContent(html_d2749a6d150c5471099e3140a5e2fd49);
+            
+        
+
+        circle_marker_c74508ab1987f1a1abd16a522704bfac.bindPopup(popup_2882f12a63e0a442c11d4e91a1ae9c12)
+        ;
+
+        
+    
+    
+            circle_marker_c74508ab1987f1a1abd16a522704bfac.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc68d398e96316aac9f415d3b874bc24 = L.circleMarker(
+                [15.5004277, 73.8214165],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_80b6d3d5ff7fe51e9382361ec00e3e02 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a5b24593462402de8cb99e9a04507aac = $(`<div id="html_a5b24593462402de8cb99e9a04507aac" style="width: 100.0%; height: 100.0%;">Nearby: Panjim Promenade<br>Distance: 1.524 km<br>WPI: 0.796</div>`)[0];
+                popup_80b6d3d5ff7fe51e9382361ec00e3e02.setContent(html_a5b24593462402de8cb99e9a04507aac);
+            
+        
+
+        circle_marker_bc68d398e96316aac9f415d3b874bc24.bindPopup(popup_80b6d3d5ff7fe51e9382361ec00e3e02)
+        ;
+
+        
+    
+    
+            circle_marker_bc68d398e96316aac9f415d3b874bc24.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e32f630806ad872c86bdeb794bd8a03f = L.marker(
+                [15.500124, 73.8261919],
+                {
+}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_b0978f7b194e786b7a59c2cc89fa32ed = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aff4b788b8536f3e11efa78bf516ded3 = $(`<div id="html_aff4b788b8536f3e11efa78bf516ded3" style="width: 100.0%; height: 100.0%;">Azad Maidan<br>Arrive: 13:30<br>Visit: 13:30 - 14:30<br>Duration: 60 min</div>`)[0];
+                popup_b0978f7b194e786b7a59c2cc89fa32ed.setContent(html_aff4b788b8536f3e11efa78bf516ded3);
+            
+        
+
+        marker_e32f630806ad872c86bdeb794bd8a03f.bindPopup(popup_b0978f7b194e786b7a59c2cc89fa32ed)
+        ;
+
+        
+    
+    
+            marker_e32f630806ad872c86bdeb794bd8a03f.bindTooltip(
+                `<div>
+                     3. Azad Maidan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_52646a09e78258fdf6cdcad84043d27b = L.circleMarker(
+                [15.5016184, 73.8274399],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_1e4af37b2c6c11d32062c03888994a24 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d5b73cfade0b98a3343566c4cd1536f3 = $(`<div id="html_d5b73cfade0b98a3343566c4cd1536f3" style="width: 100.0%; height: 100.0%;">Nearby: Deltin Royale<br>Distance: 0.213 km<br>WPI: 1.0</div>`)[0];
+                popup_1e4af37b2c6c11d32062c03888994a24.setContent(html_d5b73cfade0b98a3343566c4cd1536f3);
+            
+        
+
+        circle_marker_52646a09e78258fdf6cdcad84043d27b.bindPopup(popup_1e4af37b2c6c11d32062c03888994a24)
+        ;
+
+        
+    
+    
+            circle_marker_52646a09e78258fdf6cdcad84043d27b.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b030d39715d5c04aeef967379aa95cb7 = L.circleMarker(
+                [15.5014739, 73.8278952],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_3ad0afe62ba71f8ac8f02868d508b35c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_68973e41e2badc06fade1ad848a36caf = $(`<div id="html_68973e41e2badc06fade1ad848a36caf" style="width: 100.0%; height: 100.0%;">Nearby: Casino Pride<br>Distance: 0.236 km<br>WPI: 0.943</div>`)[0];
+                popup_3ad0afe62ba71f8ac8f02868d508b35c.setContent(html_68973e41e2badc06fade1ad848a36caf);
+            
+        
+
+        circle_marker_b030d39715d5c04aeef967379aa95cb7.bindPopup(popup_3ad0afe62ba71f8ac8f02868d508b35c)
+        ;
+
+        
+    
+    
+            circle_marker_b030d39715d5c04aeef967379aa95cb7.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e3c7982373c93f16d438ee18e38aa891 = L.circleMarker(
+                [15.501018, 73.8282409],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_a0d8e2f22383f0470dddbeb39116ef07 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dd6a7ceacd05d520739f812d78b174f4 = $(`<div id="html_dd6a7ceacd05d520739f812d78b174f4" style="width: 100.0%; height: 100.0%;">Nearby: Dharohar : National Museum of Customs and GST<br>Distance: 0.241 km<br>WPI: 0.815</div>`)[0];
+                popup_a0d8e2f22383f0470dddbeb39116ef07.setContent(html_dd6a7ceacd05d520739f812d78b174f4);
+            
+        
+
+        circle_marker_e3c7982373c93f16d438ee18e38aa891.bindPopup(popup_a0d8e2f22383f0470dddbeb39116ef07)
+        ;
+
+        
+    
+    
+            circle_marker_e3c7982373c93f16d438ee18e38aa891.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_7f1a2362d6cfe4e9dbdc19b2ff815263 = L.marker(
+                [15.49806, 73.818748],
+                {
+}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_031e5ef13d665dcb4ce46c869a4a9a3f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_03c59bbb01512e0fbc50790cd261f235 = $(`<div id="html_03c59bbb01512e0fbc50790cd261f235" style="width: 100.0%; height: 100.0%;">Campal Gardens<br>Arrive: 14:31<br>Visit: 14:31 - 16:01<br>Duration: 90 min</div>`)[0];
+                popup_031e5ef13d665dcb4ce46c869a4a9a3f.setContent(html_03c59bbb01512e0fbc50790cd261f235);
+            
+        
+
+        marker_7f1a2362d6cfe4e9dbdc19b2ff815263.bindPopup(popup_031e5ef13d665dcb4ce46c869a4a9a3f)
+        ;
+
+        
+    
+    
+            marker_7f1a2362d6cfe4e9dbdc19b2ff815263.bindTooltip(
+                `<div>
+                     4. Campal Gardens
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_678806a859c3b3b98e22705852632806 = L.circleMarker(
+                [15.4975409, 73.8187902],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_4f74548bd216d00e66cbdba76f6a64f3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad39d96dd31d511ca74e5789deabc06e = $(`<div id="html_ad39d96dd31d511ca74e5789deabc06e" style="width: 100.0%; height: 100.0%;">Nearby: BHAGWAN MAHAVIR BAL VIHAR PARK<br>Distance: 0.058 km<br>WPI: 0.812</div>`)[0];
+                popup_4f74548bd216d00e66cbdba76f6a64f3.setContent(html_ad39d96dd31d511ca74e5789deabc06e);
+            
+        
+
+        circle_marker_678806a859c3b3b98e22705852632806.bindPopup(popup_4f74548bd216d00e66cbdba76f6a64f3)
+        ;
+
+        
+    
+    
+            circle_marker_678806a859c3b3b98e22705852632806.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7e610a6a14a1de97a919cf74a9b4254e = L.circleMarker(
+                [15.5016184, 73.8274399],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_592d5b03bff29359a1b5e889cc12e388 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_868534839ec85f93987a07c725f499c2 = $(`<div id="html_868534839ec85f93987a07c725f499c2" style="width: 100.0%; height: 100.0%;">Nearby: Deltin Royale<br>Distance: 1.012 km<br>WPI: 1.0</div>`)[0];
+                popup_592d5b03bff29359a1b5e889cc12e388.setContent(html_868534839ec85f93987a07c725f499c2);
+            
+        
+
+        circle_marker_7e610a6a14a1de97a919cf74a9b4254e.bindPopup(popup_592d5b03bff29359a1b5e889cc12e388)
+        ;
+
+        
+    
+    
+            circle_marker_7e610a6a14a1de97a919cf74a9b4254e.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_af20b1c0efdfe1c0853df9e0ecb3cd64 = L.circleMarker(
+                [15.5004277, 73.8214165],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_f97d9c4f6259f52a0777048aa29beb7e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_229fd6a307b6ef6e8e79bdc78d333fb2 = $(`<div id="html_229fd6a307b6ef6e8e79bdc78d333fb2" style="width: 100.0%; height: 100.0%;">Nearby: Panjim Promenade<br>Distance: 0.389 km<br>WPI: 0.796</div>`)[0];
+                popup_f97d9c4f6259f52a0777048aa29beb7e.setContent(html_229fd6a307b6ef6e8e79bdc78d333fb2);
+            
+        
+
+        circle_marker_af20b1c0efdfe1c0853df9e0ecb3cd64.bindPopup(popup_f97d9c4f6259f52a0777048aa29beb7e)
+        ;
+
+        
+    
+    
+            circle_marker_af20b1c0efdfe1c0853df9e0ecb3cd64.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_30cafee64b6b5610554597864119995f = L.marker(
+                [15.5004674, 73.8316279],
+                {
+}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_c2425a8753cae59ff63a3ba94af094b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_db568c129927d62823899299c3a06495 = $(`<div id="html_db568c129927d62823899299c3a06495" style="width: 100.0%; height: 100.0%;">Majestic Pride Casino<br>Arrive: 16:02<br>Visit: 16:02 - 17:32<br>Duration: 90 min</div>`)[0];
+                popup_c2425a8753cae59ff63a3ba94af094b1.setContent(html_db568c129927d62823899299c3a06495);
+            
+        
+
+        marker_30cafee64b6b5610554597864119995f.bindPopup(popup_c2425a8753cae59ff63a3ba94af094b1)
+        ;
+
+        
+    
+    
+            marker_30cafee64b6b5610554597864119995f.bindTooltip(
+                `<div>
+                     5. Majestic Pride Casino
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21b5dca84f296275662b1f54570fa06e = L.circleMarker(
+                [15.5016184, 73.8274399],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_9e114d99f5d0729351d1ac408624f1de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4b14152c37d11d80cbf8761aebeb0608 = $(`<div id="html_4b14152c37d11d80cbf8761aebeb0608" style="width: 100.0%; height: 100.0%;">Nearby: Deltin Royale<br>Distance: 0.467 km<br>WPI: 1.0</div>`)[0];
+                popup_9e114d99f5d0729351d1ac408624f1de.setContent(html_4b14152c37d11d80cbf8761aebeb0608);
+            
+        
+
+        circle_marker_21b5dca84f296275662b1f54570fa06e.bindPopup(popup_9e114d99f5d0729351d1ac408624f1de)
+        ;
+
+        
+    
+    
+            circle_marker_21b5dca84f296275662b1f54570fa06e.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db1209745fd93b8dd47fb310730c1661 = L.circleMarker(
+                [15.5014739, 73.8278952],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_c588ec9e940bcc33a3927f525477e9d0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1ecb1a7d5fb2abb58c710bc7e01fe0c4 = $(`<div id="html_1ecb1a7d5fb2abb58c710bc7e01fe0c4" style="width: 100.0%; height: 100.0%;">Nearby: Casino Pride<br>Distance: 0.415 km<br>WPI: 0.943</div>`)[0];
+                popup_c588ec9e940bcc33a3927f525477e9d0.setContent(html_1ecb1a7d5fb2abb58c710bc7e01fe0c4);
+            
+        
+
+        circle_marker_db1209745fd93b8dd47fb310730c1661.bindPopup(popup_c588ec9e940bcc33a3927f525477e9d0)
+        ;
+
+        
+    
+    
+            circle_marker_db1209745fd93b8dd47fb310730c1661.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_801b8d2519dae40232e4b8ab3acb4fcf = L.circleMarker(
+                [15.5003534, 73.8318225],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+    
+        var popup_48851b7faf00af548751a138c0fcf658 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4a503d4215728f36993249f3dfc2000e = $(`<div id="html_4a503d4215728f36993249f3dfc2000e" style="width: 100.0%; height: 100.0%;">Nearby: Kings Casino, Goa<br>Distance: 0.024 km<br>WPI: 0.759</div>`)[0];
+                popup_48851b7faf00af548751a138c0fcf658.setContent(html_4a503d4215728f36993249f3dfc2000e);
+            
+        
+
+        circle_marker_801b8d2519dae40232e4b8ab3acb4fcf.bindPopup(popup_48851b7faf00af548751a138c0fcf658)
+        ;
+
+        
+    
+    
+            circle_marker_801b8d2519dae40232e4b8ab3acb4fcf.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7e49ec4e77ac082dcaebb19c91f3b332 = L.polyline(
+                [[15.451381, 73.803349], [15.451813, 73.803285], [15.451944, 73.803241], [15.452088, 73.803123], [15.452067, 73.8031], [15.452055, 73.803069], [15.452052, 73.803036], [15.452061, 73.803004], [15.452079, 73.802976], [15.452106, 73.802957], [15.452137, 73.802948], [15.452169, 73.80295], [15.452199, 73.802963], [15.452238, 73.802875], [15.452313, 73.802715], [15.452459, 73.802496], [15.452568, 73.802365], [15.452723, 73.802308], [15.452891, 73.802308], [15.453075, 73.802332], [15.45318, 73.802369], [15.453416, 73.802482], [15.45375, 73.802675], [15.454278, 73.803006], [15.454694, 73.803255], [15.454805, 73.803288], [15.454961, 73.803297], [15.455144, 73.803278], [15.456159, 73.803051], [15.456339, 73.803098], [15.456838, 73.803324], [15.45691, 73.803375], [15.45701, 73.803373], [15.457085, 73.80339], [15.457184, 73.80343], [15.457227, 73.803467], [15.457236, 73.803446], [15.457256, 73.803419], [15.457283, 73.8034], [15.457314, 73.80339], [15.457346, 73.80339], [15.457378, 73.8034], [15.457403, 73.803417], [15.457423, 73.803442], [15.457435, 73.80347], [15.457566, 73.803512], [15.457643, 73.803536], [15.457767, 73.803547], [15.458879, 73.803573], [15.459495, 73.803543], [15.459542, 73.803543], [15.459743, 73.803543], [15.460352, 73.803542], [15.460544, 73.803559], [15.461115, 73.803675], [15.4622, 73.8043], [15.463486, 73.80501], [15.463534, 73.805037], [15.465412, 73.806115], [15.465572, 73.806206], [15.466101, 73.806412], [15.467758, 73.806977], [15.467782, 73.807008], [15.46965, 73.807478], [15.470516, 73.807704], [15.472571, 73.808239], [15.473626, 73.808514], [15.473806, 73.808525], [15.474108, 73.808537], [15.475752, 73.808293], [15.47602, 73.808281], [15.476315, 73.808267], [15.477062, 73.80831], [15.480891, 73.808533], [15.480943, 73.808545], [15.481249, 73.808615], [15.482342, 73.808866], [15.482761, 73.808908], [15.483183, 73.808914], [15.483242, 73.808886], [15.483296, 73.808877], [15.48335, 73.808882], [15.483401, 73.808901], [15.483446, 73.808933], [15.483481, 73.808975], [15.483506, 73.809025], [15.483518, 73.80908], [15.483518, 73.809119], [15.483511, 73.809159], [15.483498, 73.809196], [15.483478, 73.80923], [15.483711, 73.809451], [15.484369, 73.810019], [15.484892, 73.810484], [15.486139, 73.811596], [15.486196, 73.811647], [15.486243, 73.81169], [15.486771, 73.812177], [15.487618, 73.81293], [15.487836, 73.813124], [15.488134, 73.812805], [15.488215, 73.812718], [15.488594, 73.812271], [15.488638, 73.812231], [15.488745, 73.812197], [15.4888, 73.81219], [15.488887, 73.812179], [15.489017, 73.812145], [15.489291, 73.812147], [15.489587, 73.811973], [15.489672, 73.812079], [15.489739, 73.812142], [15.489783, 73.812182], [15.489917, 73.812298], [15.489783, 73.812182], [15.489739, 73.812142], [15.489672, 73.812079], [15.489587, 73.811973], [15.489291, 73.812147], [15.489017, 73.812145], [15.488887, 73.812179], [15.4888, 73.81219], [15.488745, 73.812197], [15.488638, 73.812231], [15.488594, 73.812271], [15.488215, 73.812718], [15.488134, 73.812805], [15.487836, 73.813124], [15.489388, 73.814477], [15.48946, 73.814535], [15.489533, 73.814594], [15.490506, 73.815486], [15.49057, 73.815545], [15.491007, 73.815945], [15.492068, 73.816888], [15.492373, 73.817159], [15.492491, 73.817264], [15.492547, 73.817313], [15.49257, 73.817334], [15.492854, 73.817586], [15.493153, 73.817852], [15.493295, 73.817949], [15.493596, 73.818074], [15.494013, 73.818241], [15.494118, 73.818284], [15.496028, 73.818957], [15.496668, 73.819083], [15.497959, 73.819338], [15.49812, 73.819408], [15.498317, 73.819538], [15.498481, 73.819676], [15.498616, 73.819789], [15.498718, 73.819876], [15.499298, 73.820413], [15.500149, 73.821202], [15.500251, 73.821296], [15.500343, 73.82144], [15.500622, 73.822684], [15.500835, 73.823815], [15.501073, 73.825163], [15.500996, 73.825187], [15.500799, 73.825305], [15.500728, 73.825348], [15.500295, 73.825619], [15.500171, 73.825697], [15.50009, 73.825748], [15.49992, 73.825862], [15.50009, 73.825748], [15.500171, 73.825697], [15.500295, 73.825619], [15.500728, 73.825348], [15.500799, 73.825305], [15.500996, 73.825187], [15.500764, 73.823846], [15.500645, 73.823135], [15.500556, 73.822667], [15.500446, 73.822207], [15.500288, 73.82164], [15.50025, 73.821481], [15.500205, 73.821412], [15.500163, 73.821358], [15.500122, 73.821319], [15.500109, 73.821307], [15.499345, 73.820584], [15.499238, 73.820483], [15.499166, 73.820415], [15.498901, 73.820165], [15.498703, 73.819988], [15.498657, 73.819947], [15.498547, 73.819845], [15.498265, 73.819624], [15.498189, 73.819577], [15.497965, 73.819442], [15.497959, 73.819338], [15.497959, 73.819338], [15.49812, 73.819408], [15.498317, 73.819538], [15.498481, 73.819676], [15.498616, 73.819789], [15.498718, 73.819876], [15.499298, 73.820413], [15.500149, 73.821202], [15.500251, 73.821296], [15.500343, 73.82144], [15.500622, 73.822684], [15.500835, 73.823815], [15.501073, 73.825163], [15.501141, 73.825761], [15.501235, 73.826731], [15.501299, 73.827319], [15.501303, 73.827409], [15.501314, 73.827695], [15.501292, 73.827915], [15.501273, 73.828097], [15.501247, 73.828322], [15.501136, 73.829086], [15.501107, 73.829285], [15.5011, 73.829353], [15.501034, 73.829995], [15.500992, 73.830206], [15.500641, 73.830888], [15.500476, 73.831238], [15.500338, 73.83157]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_99aa455f72a570cedf53ee84e69aadd7);
+        
+</script>
+</html>

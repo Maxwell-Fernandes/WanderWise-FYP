@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c6824ad97e94be1d96d4a823a0c93343 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c6824ad97e94be1d96d4a823a0c93343" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c6824ad97e94be1d96d4a823a0c93343 = L.map(
+                "map_c6824ad97e94be1d96d4a823a0c93343",
+                {
+                    center: [15.4568345, 74.00504],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_042be9299651e108577c7139ba85525e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_042be9299651e108577c7139ba85525e.addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+            var marker_e3726eb1eacf52f7ace61634846023bf = L.marker(
+                [15.4568345, 74.00504],
+                {
+}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_f2cfc90bdc38fccde66f60e59f31f8b5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_797ad88ae2d5af4f0f5c90f873a287f2 = $(`<div id="html_797ad88ae2d5af4f0f5c90f873a287f2" style="width: 100.0%; height: 100.0%;">Keri Karmale waterfall<br>Arrive: 09:00<br>Visit: 09:00 - 10:00<br>Duration: 60 min</div>`)[0];
+                popup_f2cfc90bdc38fccde66f60e59f31f8b5.setContent(html_797ad88ae2d5af4f0f5c90f873a287f2);
+            
+        
+
+        marker_e3726eb1eacf52f7ace61634846023bf.bindPopup(popup_f2cfc90bdc38fccde66f60e59f31f8b5)
+        ;
+
+        
+    
+    
+            marker_e3726eb1eacf52f7ace61634846023bf.bindTooltip(
+                `<div>
+                     1. Keri Karmale waterfall
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c7b453b096d712d70b1b12ed58fa5f68 = L.circleMarker(
+                [15.4672429, 73.9979551],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_8213e4c298fe75208ab7648fef71132d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d87f334b2819811f0ad6b04f740bd0b5 = $(`<div id="html_d87f334b2819811f0ad6b04f740bd0b5" style="width: 100.0%; height: 100.0%;">Nearby: Shri Vijayadurga Temple<br>Distance: 1.384 km<br>WPI: 0.885</div>`)[0];
+                popup_8213e4c298fe75208ab7648fef71132d.setContent(html_d87f334b2819811f0ad6b04f740bd0b5);
+            
+        
+
+        circle_marker_c7b453b096d712d70b1b12ed58fa5f68.bindPopup(popup_8213e4c298fe75208ab7648fef71132d)
+        ;
+
+        
+    
+    
+            circle_marker_c7b453b096d712d70b1b12ed58fa5f68.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9a490241584623ac3da6ab7e21e7bc49 = L.marker(
+                [15.4405329, 73.9727179],
+                {
+}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_b51d855a8bfd443589e42b3f2a1e36bc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c718cebd3438bf589dd2179ba8be2028 = $(`<div id="html_c718cebd3438bf589dd2179ba8be2028" style="width: 100.0%; height: 100.0%;">Shri Mahalasa Narayani Temple<br>Arrive: 10:07<br>Visit: 10:07 - 11:37<br>Duration: 90 min</div>`)[0];
+                popup_b51d855a8bfd443589e42b3f2a1e36bc.setContent(html_c718cebd3438bf589dd2179ba8be2028);
+            
+        
+
+        marker_9a490241584623ac3da6ab7e21e7bc49.bindPopup(popup_b51d855a8bfd443589e42b3f2a1e36bc)
+        ;
+
+        
+    
+    
+            marker_9a490241584623ac3da6ab7e21e7bc49.bindTooltip(
+                `<div>
+                     2. Shri Mahalasa Narayani Temple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3d0992a936aae8a8ae7cf267a892005d = L.circleMarker(
+                [15.4465904, 73.9700775],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_07141c8f3ef7be13a3c390e88980016d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3a8683eb340a01ab9b4aee05206e0621 = $(`<div id="html_3a8683eb340a01ab9b4aee05206e0621" style="width: 100.0%; height: 100.0%;">Nearby: Mangeshi Temple<br>Distance: 0.731 km<br>WPI: 0.817</div>`)[0];
+                popup_07141c8f3ef7be13a3c390e88980016d.setContent(html_3a8683eb340a01ab9b4aee05206e0621);
+            
+        
+
+        circle_marker_3d0992a936aae8a8ae7cf267a892005d.bindPopup(popup_07141c8f3ef7be13a3c390e88980016d)
+        ;
+
+        
+    
+    
+            circle_marker_3d0992a936aae8a8ae7cf267a892005d.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b9d5a26dd99b62a12d33285109dee71e = L.circleMarker(
+                [15.4330458, 73.9725648],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_450e6fdcd4e32393275f111fc4aef4e0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66f220464b66d22841af5062c53eda58 = $(`<div id="html_66f220464b66d22841af5062c53eda58" style="width: 100.0%; height: 100.0%;">Nearby: Laxmi Narasimha Temple<br>Distance: 0.833 km<br>WPI: 0.839</div>`)[0];
+                popup_450e6fdcd4e32393275f111fc4aef4e0.setContent(html_66f220464b66d22841af5062c53eda58);
+            
+        
+
+        circle_marker_b9d5a26dd99b62a12d33285109dee71e.bindPopup(popup_450e6fdcd4e32393275f111fc4aef4e0)
+        ;
+
+        
+    
+    
+            circle_marker_b9d5a26dd99b62a12d33285109dee71e.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_900d669bb0023dccda20df5a85c3bdfa = L.circleMarker(
+                [15.4301473, 73.9724502],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_f4333f9d44c0315b6b891caa672f79ba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_197fa75f2937c9642365b8f7170cf599 = $(`<div id="html_197fa75f2937c9642365b8f7170cf599" style="width: 100.0%; height: 100.0%;">Nearby: Shri Shantadurga Shankhwaleshwari Devasthana<br>Distance: 1.155 km<br>WPI: 0.854</div>`)[0];
+                popup_f4333f9d44c0315b6b891caa672f79ba.setContent(html_197fa75f2937c9642365b8f7170cf599);
+            
+        
+
+        circle_marker_900d669bb0023dccda20df5a85c3bdfa.bindPopup(popup_f4333f9d44c0315b6b891caa672f79ba)
+        ;
+
+        
+    
+    
+            circle_marker_900d669bb0023dccda20df5a85c3bdfa.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_8ca84772e46193402ecbbe347696e8ba = L.marker(
+                [15.4448919, 73.9663431],
+                {
+}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_5eea21b749fd4c08d589b54b84b3153d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_81284d5e70a392e58b70c8491c6a6d5d = $(`<div id="html_81284d5e70a392e58b70c8491c6a6d5d" style="width: 100.0%; height: 100.0%;">Shree Mangesh temple<br>Arrive: 11:39<br>Visit: 11:39 - 13:39<br>Duration: 120 min</div>`)[0];
+                popup_5eea21b749fd4c08d589b54b84b3153d.setContent(html_81284d5e70a392e58b70c8491c6a6d5d);
+            
+        
+
+        marker_8ca84772e46193402ecbbe347696e8ba.bindPopup(popup_5eea21b749fd4c08d589b54b84b3153d)
+        ;
+
+        
+    
+    
+            marker_8ca84772e46193402ecbbe347696e8ba.bindTooltip(
+                `<div>
+                     3. Shree Mangesh temple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74b5578cedaf89855adbfd54aebe34ea = L.circleMarker(
+                [15.4465904, 73.9700775],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_aae5dc6c8589714853a590aa138f7634 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_06d8b7aad38c196ce2f23d6244b43ac1 = $(`<div id="html_06d8b7aad38c196ce2f23d6244b43ac1" style="width: 100.0%; height: 100.0%;">Nearby: Mangeshi Temple<br>Distance: 0.443 km<br>WPI: 0.817</div>`)[0];
+                popup_aae5dc6c8589714853a590aa138f7634.setContent(html_06d8b7aad38c196ce2f23d6244b43ac1);
+            
+        
+
+        circle_marker_74b5578cedaf89855adbfd54aebe34ea.bindPopup(popup_aae5dc6c8589714853a590aa138f7634)
+        ;
+
+        
+    
+    
+            circle_marker_74b5578cedaf89855adbfd54aebe34ea.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_949dbc7d63d7e3c0f608e11b02d768d9 = L.circleMarker(
+                [15.4460956, 73.966177],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_ab1d8f441ab390f2fb7491ce502f7dee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e85f3402f53d50f8e526ce67a04dda0c = $(`<div id="html_e85f3402f53d50f8e526ce67a04dda0c" style="width: 100.0%; height: 100.0%;">Nearby: Ganesh Temple<br>Distance: 0.135 km<br>WPI: 0.712</div>`)[0];
+                popup_ab1d8f441ab390f2fb7491ce502f7dee.setContent(html_e85f3402f53d50f8e526ce67a04dda0c);
+            
+        
+
+        circle_marker_949dbc7d63d7e3c0f608e11b02d768d9.bindPopup(popup_ab1d8f441ab390f2fb7491ce502f7dee)
+        ;
+
+        
+    
+    
+            circle_marker_949dbc7d63d7e3c0f608e11b02d768d9.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abb55d6e309c7e1741630d6c93e13629 = L.circleMarker(
+                [15.4563074, 73.9737458],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_372d9e2c2a0833ee0ddaa0791dfc1257 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a72b5fb0342484c6d728db5cd1412b66 = $(`<div id="html_a72b5fb0342484c6d728db5cd1412b66" style="width: 100.0%; height: 100.0%;">Nearby: Tirupati Balaji Temple<br>Distance: 1.497 km<br>WPI: 0.907</div>`)[0];
+                popup_372d9e2c2a0833ee0ddaa0791dfc1257.setContent(html_a72b5fb0342484c6d728db5cd1412b66);
+            
+        
+
+        circle_marker_abb55d6e309c7e1741630d6c93e13629.bindPopup(popup_372d9e2c2a0833ee0ddaa0791dfc1257)
+        ;
+
+        
+    
+    
+            circle_marker_abb55d6e309c7e1741630d6c93e13629.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_30777d7fccea40b3da56a49ed6d67ec0 = L.marker(
+                [15.3962235, 73.9852776],
+                {
+}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_37dd8629e5a6d834c4edcd8dc20ee627 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b27d2a07b3027e3d708c855e1f750c3 = $(`<div id="html_7b27d2a07b3027e3d708c855e1f750c3" style="width: 100.0%; height: 100.0%;">Shree Shantadurga Temple<br>Arrive: 13:51<br>Visit: 13:51 - 15:21<br>Duration: 90 min</div>`)[0];
+                popup_37dd8629e5a6d834c4edcd8dc20ee627.setContent(html_7b27d2a07b3027e3d708c855e1f750c3);
+            
+        
+
+        marker_30777d7fccea40b3da56a49ed6d67ec0.bindPopup(popup_37dd8629e5a6d834c4edcd8dc20ee627)
+        ;
+
+        
+    
+    
+            marker_30777d7fccea40b3da56a49ed6d67ec0.bindTooltip(
+                `<div>
+                     4. Shree Shantadurga Temple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_944ccef4f2353556aad13780a8ece9b2 = L.circleMarker(
+                [15.3989676, 73.9808124],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_a6ba8b5ed0220046010a93ba45988b63 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_57fc8cb2be4eb9fd37b5433cf27a6447 = $(`<div id="html_57fc8cb2be4eb9fd37b5433cf27a6447" style="width: 100.0%; height: 100.0%;">Nearby: Shri Ramnath Devasthan, Bandora<br>Distance: 0.568 km<br>WPI: 0.939</div>`)[0];
+                popup_a6ba8b5ed0220046010a93ba45988b63.setContent(html_57fc8cb2be4eb9fd37b5433cf27a6447);
+            
+        
+
+        circle_marker_944ccef4f2353556aad13780a8ece9b2.bindPopup(popup_a6ba8b5ed0220046010a93ba45988b63)
+        ;
+
+        
+    
+    
+            circle_marker_944ccef4f2353556aad13780a8ece9b2.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2b2e2fb7fcdfc18f5d0ef516d61e5451 = L.circleMarker(
+                [15.3963253, 73.9896906],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_5a1e3385c6933788fab649b1ac2bfc63 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a6946af505f2f4c0324a6a63412103a6 = $(`<div id="html_a6946af505f2f4c0324a6a63412103a6" style="width: 100.0%; height: 100.0%;">Nearby: Shree Kalyan Maruti Temple Kavle Ponda<br>Distance: 0.473 km<br>WPI: 0.783</div>`)[0];
+                popup_5a1e3385c6933788fab649b1ac2bfc63.setContent(html_a6946af505f2f4c0324a6a63412103a6);
+            
+        
+
+        circle_marker_2b2e2fb7fcdfc18f5d0ef516d61e5451.bindPopup(popup_5a1e3385c6933788fab649b1ac2bfc63)
+        ;
+
+        
+    
+    
+            circle_marker_2b2e2fb7fcdfc18f5d0ef516d61e5451.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c22efae13881f0bee759cc42ea68aa0 = L.circleMarker(
+                [15.4060292, 73.9798296],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_1e2c5e6fb5676adca423db5da462bf45 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e6f204f8ec7fea605372dc21893e1886 = $(`<div id="html_e6f204f8ec7fea605372dc21893e1886" style="width: 100.0%; height: 100.0%;">Nearby: Shree Mahalaxmi Saunsthan, Bandora<br>Distance: 1.237 km<br>WPI: 0.95</div>`)[0];
+                popup_1e2c5e6fb5676adca423db5da462bf45.setContent(html_e6f204f8ec7fea605372dc21893e1886);
+            
+        
+
+        circle_marker_3c22efae13881f0bee759cc42ea68aa0.bindPopup(popup_1e2c5e6fb5676adca423db5da462bf45)
+        ;
+
+        
+    
+    
+            circle_marker_3c22efae13881f0bee759cc42ea68aa0.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f5f1d9071638ea6a483c39b7a70369f4 = L.marker(
+                [15.4074651, 73.9837259],
+                {
+}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_3982285feb585b4bccd01c551f3dae30 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_afeb57e6ee404ac41f1e385e1fa7c0e5 = $(`<div id="html_afeb57e6ee404ac41f1e385e1fa7c0e5" style="width: 100.0%; height: 100.0%;">Shri Nageshi Temple,<br>Arrive: 15:23<br>Visit: 15:23 - 16:23<br>Duration: 60 min</div>`)[0];
+                popup_3982285feb585b4bccd01c551f3dae30.setContent(html_afeb57e6ee404ac41f1e385e1fa7c0e5);
+            
+        
+
+        marker_f5f1d9071638ea6a483c39b7a70369f4.bindPopup(popup_3982285feb585b4bccd01c551f3dae30)
+        ;
+
+        
+    
+    
+            marker_f5f1d9071638ea6a483c39b7a70369f4.bindTooltip(
+                `<div>
+                     5. Shri Nageshi Temple,
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b5bf085dd4ad1001ec8b973cc335e974 = L.circleMarker(
+                [15.4060292, 73.9798296],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_82711494fc69d218a627dcb588aa90da = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af1d2f04e4832af061c0a6b1f7ee89c3 = $(`<div id="html_af1d2f04e4832af061c0a6b1f7ee89c3" style="width: 100.0%; height: 100.0%;">Nearby: Shree Mahalaxmi Saunsthan, Bandora<br>Distance: 0.447 km<br>WPI: 0.95</div>`)[0];
+                popup_82711494fc69d218a627dcb588aa90da.setContent(html_af1d2f04e4832af061c0a6b1f7ee89c3);
+            
+        
+
+        circle_marker_b5bf085dd4ad1001ec8b973cc335e974.bindPopup(popup_82711494fc69d218a627dcb588aa90da)
+        ;
+
+        
+    
+    
+            circle_marker_b5bf085dd4ad1001ec8b973cc335e974.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_466249a61a419107f66db52260543e1f = L.circleMarker(
+                [15.3989676, 73.9808124],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_8fbb9e5942ea02f51beaaee84d61e4e7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_585af40fcbf6c59ecad435b286c1524a = $(`<div id="html_585af40fcbf6c59ecad435b286c1524a" style="width: 100.0%; height: 100.0%;">Nearby: Shri Ramnath Devasthan, Bandora<br>Distance: 0.995 km<br>WPI: 0.939</div>`)[0];
+                popup_8fbb9e5942ea02f51beaaee84d61e4e7.setContent(html_585af40fcbf6c59ecad435b286c1524a);
+            
+        
+
+        circle_marker_466249a61a419107f66db52260543e1f.bindPopup(popup_8fbb9e5942ea02f51beaaee84d61e4e7)
+        ;
+
+        
+    
+    
+            circle_marker_466249a61a419107f66db52260543e1f.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c58a3decf2c1db1d6767be3fa6b3e7f0 = L.circleMarker(
+                [15.4127367, 73.9891712],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+    
+        var popup_5b7fc9375a736fbbe53c6dd43861be10 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3bd113d5f5ead0f429593753040eb3c8 = $(`<div id="html_3bd113d5f5ead0f429593753040eb3c8" style="width: 100.0%; height: 100.0%;">Nearby: Chhatrapati Shivaji Maharaj Fort छत्रपती शिवाजीचो किल्लो<br>Distance: 0.827 km<br>WPI: 0.853</div>`)[0];
+                popup_5b7fc9375a736fbbe53c6dd43861be10.setContent(html_3bd113d5f5ead0f429593753040eb3c8);
+            
+        
+
+        circle_marker_c58a3decf2c1db1d6767be3fa6b3e7f0.bindPopup(popup_5b7fc9375a736fbbe53c6dd43861be10)
+        ;
+
+        
+    
+    
+            circle_marker_c58a3decf2c1db1d6767be3fa6b3e7f0.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f1c73b5dee48ebee7485095adaa3539f = L.polyline(
+                [[15.456752, 74.003906], [15.456457, 74.003771], [15.456227, 74.003712], [15.455899, 74.003745], [15.45556, 74.003838], [15.455131, 74.003997], [15.454591, 74.00416], [15.454403, 74.004155], [15.454444, 74.004054], [15.454588, 74.003557], [15.45479, 74.002803], [15.45487, 74.00232], [15.454955, 74.001956], [15.455018, 74.001749], [15.455263, 74.001494], [15.455599, 74.001344], [15.455842, 74.001229], [15.455894, 74.001151], [15.455943, 74.000893], [15.456163, 74.000521], [15.456354, 74.000362], [15.456326, 74.000284], [15.456158, 74.000153], [15.455924, 73.999951], [15.45549, 73.999713], [15.455332, 73.999607], [15.455203, 73.999479], [15.455066, 73.999351], [15.454941, 73.999198], [15.454788, 73.999138], [15.45448, 73.999105], [15.454116, 73.999], [15.453872, 73.998857], [15.453607, 73.998571], [15.453469, 73.998409], [15.453262, 73.998098], [15.453105, 73.997834], [15.453053, 73.997593], [15.453033, 73.997523], [15.452997, 73.997396], [15.452922, 73.997187], [15.452758, 73.996858], [15.452413, 73.996184], [15.452168, 73.995612], [15.452053, 73.995206], [15.452053, 73.994841], [15.452051, 73.994278], [15.452177, 73.993619], [15.452203, 73.993564], [15.452281, 73.9934], [15.453192, 73.992632], [15.45316, 73.992506], [15.453036, 73.992356], [15.452798, 73.992073], [15.452461, 73.991847], [15.452223, 73.991669], [15.451998, 73.991456], [15.451829, 73.9911], [15.451704, 73.990795], [15.451535, 73.990574], [15.451312, 73.990495], [15.451106, 73.99018], [15.45096, 73.989748], [15.450723, 73.989416], [15.450556, 73.989121], [15.450484, 73.988899], [15.450519, 73.988647], [15.450573, 73.988514], [15.450597, 73.988358], [15.450533, 73.988257], [15.450362, 73.98806], [15.450068, 73.987744], [15.449808, 73.987541], [15.449632, 73.987556], [15.449411, 73.987642], [15.44912, 73.987955], [15.448935, 73.988067], [15.448637, 73.988073], [15.448256, 73.988105], [15.447793, 73.988143], [15.447475, 73.988038], [15.447167, 73.987882], [15.447087, 73.987772], [15.446928, 73.987555], [15.446765, 73.987545], [15.44658, 73.987716], [15.44644, 73.987854], [15.446369, 73.988084], [15.446255, 73.98812], [15.446144, 73.988148], [15.445782, 73.988161], [15.445302, 73.988204], [15.444962, 73.988232], [15.444708, 73.988166], [15.444422, 73.987949], [15.444045, 73.987716], [15.443737, 73.987494], [15.443525, 73.987322], [15.443257, 73.987271], [15.443047, 73.987151], [15.442813, 73.986913], [15.442579, 73.986727], [15.442233, 73.98646], [15.441645, 73.986154], [15.441361, 73.985985], [15.441153, 73.985729], [15.440881, 73.985404], [15.440672, 73.985465], [15.440274, 73.985111], [15.439994, 73.984673], [15.439784, 73.984345], [15.439596, 73.984126], [15.439431, 73.984065], [15.439264, 73.983881], [15.43902, 73.983758], [15.438849, 73.983691], [15.438767, 73.983713], [15.438738, 73.983636], [15.438521, 73.983448], [15.438407, 73.98318], [15.438515, 73.982451], [15.438412, 73.982075], [15.438412, 73.981866], [15.438443, 73.981689], [15.438572, 73.981496], [15.43881, 73.981083], [15.439276, 73.980353], [15.439358, 73.979994], [15.439524, 73.979677], [15.439772, 73.979425], [15.439932, 73.979076], [15.440077, 73.978674], [15.440082, 73.978438], [15.439829, 73.977049], [15.439752, 73.976474], [15.439651, 73.976411], [15.439462, 73.97624], [15.439328, 73.976057], [15.439211, 73.97577], [15.439754, 73.975511], [15.440625, 73.974941], [15.441017, 73.974685], [15.441037, 73.974662], [15.441412, 73.974245], [15.440752, 73.973208], [15.440724, 73.973164], [15.44071, 73.973117], [15.440724, 73.973077], [15.44071, 73.973117], [15.440724, 73.973164], [15.440752, 73.973208], [15.441412, 73.974245], [15.441037, 73.974662], [15.441017, 73.974685], [15.440625, 73.974941], [15.440553, 73.974824], [15.440508, 73.97471], [15.440458, 73.974587], [15.440423, 73.974456], [15.440383, 73.974308], [15.4403, 73.974084], [15.440216, 73.97391], [15.440146, 73.973807], [15.440079, 73.973726], [15.440014, 73.973666], [15.439872, 73.973509], [15.439708, 73.973324], [15.439626, 73.97321], [15.439412, 73.972904], [15.4393, 73.972734], [15.439111, 73.972523], [15.439059, 73.972436], [15.439037, 73.972329], [15.439036, 73.972225], [15.439205, 73.971291], [15.439378, 73.970334], [15.439429, 73.97005], [15.439544, 73.969283], [15.439955, 73.969104], [15.440182, 73.969005], [15.440481, 73.968872], [15.440591, 73.96883], [15.440791, 73.968756], [15.440917, 73.968718], [15.441045, 73.968702], [15.44114, 73.968694], [15.441242, 73.968675], [15.441315, 73.968646], [15.441414, 73.968587], [15.441516, 73.968536], [15.441674, 73.968486], [15.441978, 73.968399], [15.442175, 73.968334], [15.44233, 73.968284], [15.442394, 73.968262], [15.4425, 73.968232], [15.442684, 73.968248], [15.442856, 73.968253], [15.442985, 73.968246], [15.443123, 73.968215], [15.4432, 73.968194], [15.443569, 73.968089], [15.443691, 73.96807], [15.443891, 73.968025], [15.444021, 73.967965], [15.44418, 73.967816], [15.444325, 73.967681], [15.444402, 73.967595], [15.444422, 73.967501], [15.444413, 73.967395], [15.444378, 73.967307], [15.444457, 73.967047], [15.44446, 73.967024], [15.444479, 73.967], [15.444684, 73.966894], [15.444708, 73.966884], [15.444729, 73.966887], [15.444708, 73.966884], [15.444684, 73.966894], [15.444479, 73.967], [15.44446, 73.967024], [15.444457, 73.967047], [15.444378, 73.967307], [15.444413, 73.967395], [15.444422, 73.967501], [15.444402, 73.967595], [15.444325, 73.967681], [15.44418, 73.967816], [15.444021, 73.967965], [15.443891, 73.968025], [15.443691, 73.96807], [15.443569, 73.968089], [15.4432, 73.968194], [15.443123, 73.968215], [15.442985, 73.968246], [15.442856, 73.968253], [15.442684, 73.968248], [15.4425, 73.968232], [15.442394, 73.968262], [15.44233, 73.968284], [15.442175, 73.968334], [15.441978, 73.968399], [15.441674, 73.968486], [15.441516, 73.968536], [15.441414, 73.968587], [15.441315, 73.968646], [15.441242, 73.968675], [15.44114, 73.968694], [15.441045, 73.968702], [15.440917, 73.968718], [15.440791, 73.968756], [15.440591, 73.96883], [15.440481, 73.968872], [15.440182, 73.969005], [15.439955, 73.969104], [15.439544, 73.969283], [15.439429, 73.97005], [15.439378, 73.970334], [15.439205, 73.971291], [15.439036, 73.972225], [15.439037, 73.972329], [15.439059, 73.972436], [15.439111, 73.972523], [15.4393, 73.972734], [15.439412, 73.972904], [15.439626, 73.97321], [15.439708, 73.973324], [15.439872, 73.973509], [15.440014, 73.973666], [15.440079, 73.973726], [15.440146, 73.973807], [15.440216, 73.97391], [15.4403, 73.974084], [15.440383, 73.974308], [15.440423, 73.974456], [15.440458, 73.974587], [15.440508, 73.97471], [15.440553, 73.974824], [15.440625, 73.974941], [15.439754, 73.975511], [15.439211, 73.97577], [15.438933, 73.975933], [15.438688, 73.97611], [15.438397, 73.976383], [15.438266, 73.976524], [15.438139, 73.976579], [15.437852, 73.976645], [15.437524, 73.976767], [15.437361, 73.976839], [15.437209, 73.976923], [15.436972, 73.977058], [15.436866, 73.977237], [15.436854, 73.977399], [15.436888, 73.977646], [15.436937, 73.978006], [15.436984, 73.978156], [15.437023, 73.97824], [15.437044, 73.978348], [15.437074, 73.978524], [15.437108, 73.978695], [15.437141, 73.978809], [15.437176, 73.979116], [15.437195, 73.97945], [15.437191, 73.979706], [15.437184, 73.979839], [15.437146, 73.979966], [15.437087, 73.980102], [15.436972, 73.980231], [15.436838, 73.980343], [15.436695, 73.980426], [15.436527, 73.980522], [15.436336, 73.980585], [15.436226, 73.980603], [15.436079, 73.980623], [15.435878, 73.98069], [15.435723, 73.98077], [15.43554, 73.980877], [15.435367, 73.981008], [15.435253, 73.981148], [15.435185, 73.981281], [15.435135, 73.981448], [15.435114, 73.981662], [15.435084, 73.982428], [15.435046, 73.983192], [15.435012, 73.983454], [15.434954, 73.98363], [15.434869, 73.983817], [15.434502, 73.984479], [15.434182, 73.985125], [15.434168, 73.985154], [15.434055, 73.985344], [15.433941, 73.985479], [15.433814, 73.985596], [15.433641, 73.985717], [15.433512, 73.985776], [15.433355, 73.985818], [15.433212, 73.985843], [15.432541, 73.985912], [15.432329, 73.985939], [15.432094, 73.985954], [15.431889, 73.985937], [15.431667, 73.985878], [15.431148, 73.985624], [15.430887, 73.98549], [15.43063, 73.985371], [15.430469, 73.985324], [15.430272, 73.985287], [15.429536, 73.98522], [15.429161, 73.985182], [15.42879, 73.985152], [15.428595, 73.985152], [15.428432, 73.985166], [15.428293, 73.985193], [15.428151, 73.985234], [15.427997, 73.985309], [15.427881, 73.985368], [15.427778, 73.985457], [15.427683, 73.98556], [15.427628, 73.985641], [15.427568, 73.985747], [15.427433, 73.986016], [15.427355, 73.986157], [15.427228, 73.98632], [15.42712, 73.986432], [15.426921, 73.986621], [15.42677, 73.986747], [15.426575, 73.986888], [15.426344, 73.987017], [15.42615, 73.9871], [15.425948, 73.987155], [15.425748, 73.987201], [15.425531, 73.987212], [15.42539, 73.987203], [15.425227, 73.987172], [15.424754, 73.987014], [15.424361, 73.986882], [15.423965, 73.986759], [15.423794, 73.986687], [15.423639, 73.986583], [15.423501, 73.986446], [15.423368, 73.986268], [15.423173, 73.98593], [15.4231, 73.985808], [15.423029, 73.985722], [15.422934, 73.985622], [15.422813, 73.985521], [15.421971, 73.985007], [15.421047, 73.984397], [15.42085, 73.984281], [15.420736, 73.984243], [15.420633, 73.984222], [15.420506, 73.984222], [15.420392, 73.984248], [15.420284, 73.984292], [15.420199, 73.984347], [15.419998, 73.984501], [15.419769, 73.984699], [15.419591, 73.984829], [15.419372, 73.984944], [15.41909, 73.985072], [15.418878, 73.985146], [15.418682, 73.985199], [15.418473, 73.985257], [15.418105, 73.985367], [15.417731, 73.985484], [15.417481, 73.985584], [15.417315, 73.985656], [15.417141, 73.98577], [15.416775, 73.986035], [15.416602, 73.986196], [15.416499, 73.986319], [15.41638, 73.986498], [15.41629, 73.986645], [15.416202, 73.986758], [15.416088, 73.98689], [15.416007, 73.986973], [15.415863, 73.98709], [15.415748, 73.987165], [15.415604, 73.98726], [15.415544, 73.987295], [15.415389, 73.987385], [15.414889, 73.987664], [15.41427, 73.988068], [15.414203, 73.988157], [15.413955, 73.988279], [15.413867, 73.98833], [15.413679, 73.988432], [15.413583, 73.988473], [15.413549, 73.988512], [15.413504, 73.988538], [15.413454, 73.988549], [15.413403, 73.988544], [15.413281, 73.988544], [15.413062, 73.988513], [15.41292, 73.988503], [15.412794, 73.988498], [15.412663, 73.988492], [15.412555, 73.988547], [15.412085, 73.988601], [15.411672, 73.988694], [15.411385, 73.988761], [15.41111, 73.988776], [15.410928, 73.988735], [15.410738, 73.988578], [15.410618, 73.988281], [15.410447, 73.987883], [15.41028, 73.987624], [15.410126, 73.987403], [15.410072, 73.987237], [15.410035, 73.987088], [15.409977, 73.986686], [15.409949, 73.986377], [15.40998, 73.986097], [15.40994, 73.985814], [15.409859, 73.985405], [15.409752, 73.985032], [15.409544, 73.984755], [15.409403, 73.98461], [15.409327, 73.984532], [15.409044, 73.984318], [15.408808, 73.984158], [15.408556, 73.984085], [15.408276, 73.984075], [15.407846, 73.984066], [15.407538, 73.984054], [15.407429, 73.984052], [15.407263, 73.984048], [15.406814, 73.983967], [15.406615, 73.98394], [15.406106, 73.983923], [15.405886, 73.983953], [15.405787, 73.983967], [15.405546, 73.984042], [15.405154, 73.984142], [15.405093, 73.984157], [15.404768, 73.98425], [15.404337, 73.984284], [15.404297, 73.984285], [15.404088, 73.984295], [15.403824, 73.984452], [15.403753, 73.984498], [15.403598, 73.984607], [15.403455, 73.984758], [15.403343, 73.984877], [15.403168, 73.985107], [15.40282, 73.985535], [15.402591, 73.985888], [15.402361, 73.986165], [15.402197, 73.986309], [15.402145, 73.986355], [15.401808, 73.986677], [15.401533, 73.986992], [15.401375, 73.987194], [15.4013, 73.987255], [15.401208, 73.987329], [15.400865, 73.98741], [15.400277, 73.987477], [15.39978, 73.98748], [15.399337, 73.987437], [15.399127, 73.9874], [15.398466, 73.987309], [15.398395, 73.987368], [15.398346, 73.987408], [15.397999, 73.98738], [15.397673, 73.987398], [15.397242, 73.987281], [15.397049, 73.987295], [15.396968, 73.987242], [15.396839, 73.987137], [15.396761, 73.987041], [15.396622, 73.986545], [15.396515, 73.986208], [15.396452, 73.986084], [15.395937, 73.986163], [15.395766, 73.986117], [15.395632, 73.986108], [15.394696, 73.986343], [15.394265, 73.986654], [15.393989, 73.986158], [15.393873, 73.985949], [15.393956, 73.985891], [15.395046, 73.985546], [15.395752, 73.985454], [15.395046, 73.985546], [15.393956, 73.985891], [15.393873, 73.985949], [15.393989, 73.986158], [15.394265, 73.986654], [15.394696, 73.986343], [15.395632, 73.986108], [15.395766, 73.986117], [15.395937, 73.986163], [15.396452, 73.986084], [15.396515, 73.986208], [15.396622, 73.986545], [15.396761, 73.987041], [15.396839, 73.987137], [15.396968, 73.987242], [15.397049, 73.987295], [15.397242, 73.987281], [15.397673, 73.987398], [15.397999, 73.98738], [15.398346, 73.987408], [15.398395, 73.987368], [15.398466, 73.987309], [15.399127, 73.9874], [15.399337, 73.987437], [15.39978, 73.98748], [15.400277, 73.987477], [15.400865, 73.98741], [15.401208, 73.987329], [15.4013, 73.987255], [15.401375, 73.987194], [15.401533, 73.986992], [15.401808, 73.986677], [15.402145, 73.986355], [15.402197, 73.986309], [15.402361, 73.986165], [15.402591, 73.985888], [15.40282, 73.985535], [15.403168, 73.985107], [15.403343, 73.984877], [15.403455, 73.984758], [15.403598, 73.984607], [15.403753, 73.984498], [15.403824, 73.984452], [15.404088, 73.984295], [15.404297, 73.984285], [15.404337, 73.984284], [15.404768, 73.98425], [15.405093, 73.984157], [15.405154, 73.984142], [15.405546, 73.984042], [15.405787, 73.983967], [15.405886, 73.983953], [15.406106, 73.983923], [15.406615, 73.98394], [15.406814, 73.983967], [15.407263, 73.984048], [15.407429, 73.984052], [15.407459, 73.984053]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_c6824ad97e94be1d96d4a823a0c93343);
+        
+</script>
+</html>

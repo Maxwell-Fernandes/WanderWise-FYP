@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f6b490f31957d33e11e4778388dc745c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f6b490f31957d33e11e4778388dc745c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f6b490f31957d33e11e4778388dc745c = L.map(
+                "map_f6b490f31957d33e11e4778388dc745c",
+                {
+                    center: [15.3144375, 74.3143073],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f46062b270fac537fabd769c762be13d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_f46062b270fac537fabd769c762be13d.addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+            var marker_690e192982b662032fd23130231450c4 = L.marker(
+                [15.3144375, 74.3143073],
+                {
+}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_adf06e1dbc722eb6ce88d79a6b183c1f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a0668cf9dc95a1ba462977d1e264c484 = $(`<div id="html_a0668cf9dc95a1ba462977d1e264c484" style="width: 100.0%; height: 100.0%;">Dudhsagar Falls<br>Arrive: 09:00<br>Visit: 09:00 - 11:00<br>Duration: 120 min</div>`)[0];
+                popup_adf06e1dbc722eb6ce88d79a6b183c1f.setContent(html_a0668cf9dc95a1ba462977d1e264c484);
+            
+        
+
+        marker_690e192982b662032fd23130231450c4.bindPopup(popup_adf06e1dbc722eb6ce88d79a6b183c1f)
+        ;
+
+        
+    
+    
+            marker_690e192982b662032fd23130231450c4.bindTooltip(
+                `<div>
+                     1. Dudhsagar Falls
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e7c20e1d215e1b9bedb8cdc7bfd57082 = L.circleMarker(
+                [15.3126988, 74.3143903],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_c1032763ccbcd377f446e7018e996992 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_87afb39d0a16441399fb033ea607bca5 = $(`<div id="html_87afb39d0a16441399fb033ea607bca5" style="width: 100.0%; height: 100.0%;">Nearby: Dudhsagara Waterfall Camp Site<br>Distance: 0.194 km<br>WPI: 0.836</div>`)[0];
+                popup_c1032763ccbcd377f446e7018e996992.setContent(html_87afb39d0a16441399fb033ea607bca5);
+            
+        
+
+        circle_marker_e7c20e1d215e1b9bedb8cdc7bfd57082.bindPopup(popup_c1032763ccbcd377f446e7018e996992)
+        ;
+
+        
+    
+    
+            circle_marker_e7c20e1d215e1b9bedb8cdc7bfd57082.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0eab6e90a69f23dd8a75c878fa013f3c = L.circleMarker(
+                [15.309264, 74.3130526],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_8d52741430cdad9dec224973c84cf862 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1574a3c3e6cfd10dde0114bbc614a04e = $(`<div id="html_1574a3c3e6cfd10dde0114bbc614a04e" style="width: 100.0%; height: 100.0%;">Nearby: Dudhsagar Watchtower<br>Distance: 0.591 km<br>WPI: 0.727</div>`)[0];
+                popup_8d52741430cdad9dec224973c84cf862.setContent(html_1574a3c3e6cfd10dde0114bbc614a04e);
+            
+        
+
+        circle_marker_0eab6e90a69f23dd8a75c878fa013f3c.bindPopup(popup_8d52741430cdad9dec224973c84cf862)
+        ;
+
+        
+    
+    
+            circle_marker_0eab6e90a69f23dd8a75c878fa013f3c.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_51a29f02ff67cbac38c32d73d5b3dcca = L.circleMarker(
+                [15.3108179, 74.3131114],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_312a881cf081fd4d62b753025e76875f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5398c91695a74918df48354b80569b69 = $(`<div id="html_5398c91695a74918df48354b80569b69" style="width: 100.0%; height: 100.0%;">Nearby: waterfall spot<br>Distance: 0.422 km<br>WPI: 0.681</div>`)[0];
+                popup_312a881cf081fd4d62b753025e76875f.setContent(html_5398c91695a74918df48354b80569b69);
+            
+        
+
+        circle_marker_51a29f02ff67cbac38c32d73d5b3dcca.bindPopup(popup_312a881cf081fd4d62b753025e76875f)
+        ;
+
+        
+    
+    
+            circle_marker_51a29f02ff67cbac38c32d73d5b3dcca.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d3ae6432abb99e3ec78f4dece5553a96 = L.marker(
+                [15.3363533, 74.244316],
+                {
+}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_7bfd82981a68e2be46f7103439bb8823 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a95714f84fb505c79750afa0027a756c = $(`<div id="html_a95714f84fb505c79750afa0027a756c" style="width: 100.0%; height: 100.0%;">Official Dudhsagar Jeep Safari & Trek Booking<br>Arrive: 11:02<br>Visit: 11:02 - 12:02<br>Duration: 60 min</div>`)[0];
+                popup_7bfd82981a68e2be46f7103439bb8823.setContent(html_a95714f84fb505c79750afa0027a756c);
+            
+        
+
+        marker_d3ae6432abb99e3ec78f4dece5553a96.bindPopup(popup_7bfd82981a68e2be46f7103439bb8823)
+        ;
+
+        
+    
+    
+            marker_d3ae6432abb99e3ec78f4dece5553a96.bindTooltip(
+                `<div>
+                     2. Official Dudhsagar Jeep Safari & Trek Booking
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4cd43a637cdd24e5a018e16c7d24a667 = L.circleMarker(
+                [15.3379486, 74.2462197],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_97b10ec97bbf02a371194f4550c0ca2a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a1d8b635f4f622b235ec82799c82141a = $(`<div id="html_a1d8b635f4f622b235ec82799c82141a" style="width: 100.0%; height: 100.0%;">Nearby: Dudhsagar Waterfall Trip - Goa<br>Distance: 0.27 km<br>WPI: 0.771</div>`)[0];
+                popup_97b10ec97bbf02a371194f4550c0ca2a.setContent(html_a1d8b635f4f622b235ec82799c82141a);
+            
+        
+
+        circle_marker_4cd43a637cdd24e5a018e16c7d24a667.bindPopup(popup_97b10ec97bbf02a371194f4550c0ca2a)
+        ;
+
+        
+    
+    
+            circle_marker_4cd43a637cdd24e5a018e16c7d24a667.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9beec5e563429005c496c53e303c9950 = L.circleMarker(
+                [15.3297474, 74.2325394],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_2ea202417c6c7c27ad1f8cf28b7770c3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1099b961362cc9c7accbbdb567378e92 = $(`<div id="html_1099b961362cc9c7accbbdb567378e92" style="width: 100.0%; height: 100.0%;">Nearby: Small Waterfall<br>Distance: 1.461 km<br>WPI: 0.688</div>`)[0];
+                popup_2ea202417c6c7c27ad1f8cf28b7770c3.setContent(html_1099b961362cc9c7accbbdb567378e92);
+            
+        
+
+        circle_marker_9beec5e563429005c496c53e303c9950.bindPopup(popup_2ea202417c6c7c27ad1f8cf28b7770c3)
+        ;
+
+        
+    
+    
+            circle_marker_9beec5e563429005c496c53e303c9950.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f77eda1769ecf67fbb3db8183f3eba0c = L.marker(
+                [15.3339015, 74.2883536],
+                {
+}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+    
+        var popup_7cd052dc89951710e0b2c9ddf483f836 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dd7512aa8ebe82b4a0e18feabd0fc8d4 = $(`<div id="html_dd7512aa8ebe82b4a0e18feabd0fc8d4" style="width: 100.0%; height: 100.0%;">Bhagwan Mahavir Wildlife Sanctuary<br>Arrive: 13:30<br>Visit: 13:30 - 15:30<br>Duration: 120 min</div>`)[0];
+                popup_7cd052dc89951710e0b2c9ddf483f836.setContent(html_dd7512aa8ebe82b4a0e18feabd0fc8d4);
+            
+        
+
+        marker_f77eda1769ecf67fbb3db8183f3eba0c.bindPopup(popup_7cd052dc89951710e0b2c9ddf483f836)
+        ;
+
+        
+    
+    
+            marker_f77eda1769ecf67fbb3db8183f3eba0c.bindTooltip(
+                `<div>
+                     3. Bhagwan Mahavir Wildlife Sanctuary
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2c6ede2b8180dee0d97457bf093fcf89 = L.polyline(
+                [[15.332983, 74.245964], [15.333732, 74.244699], [15.334398, 74.245154], [15.334614, 74.245302], [15.335385, 74.245774], [15.335592, 74.245973], [15.336171, 74.246257], [15.336358, 74.246271], [15.336563, 74.246151], [15.336631, 74.246065], [15.336661, 74.246027], [15.336693, 74.245988], [15.336718, 74.245959], [15.336745, 74.245926], [15.336764, 74.245905], [15.336774, 74.245892], [15.336948, 74.245682], [15.337053, 74.24553], [15.336969, 74.245417], [15.336765, 74.245276], [15.335867, 74.244654], [15.336369, 74.244343], [15.335867, 74.244654], [15.336765, 74.245276], [15.336969, 74.245417], [15.337053, 74.24553], [15.336948, 74.245682], [15.336774, 74.245892], [15.336764, 74.245905], [15.336745, 74.245926], [15.336718, 74.245959], [15.336693, 74.245988], [15.336661, 74.246027], [15.336631, 74.246065], [15.336563, 74.246151], [15.336358, 74.246271]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_f6b490f31957d33e11e4778388dc745c);
+        
+</script>
+</html>
