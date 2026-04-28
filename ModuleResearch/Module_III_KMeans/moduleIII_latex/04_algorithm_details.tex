@@ -1,0 +1,103 @@
+\chapter{04: K-Means Algorithm Details for Geographic Clustering}
+
+\section{1. Complete K-Means Algorithm Step-by-Step}
+
+The K-means algorithm for geographic clustering proceeds through a systematic sequence of steps that transform an initial centroid configuration into optimal geographic clusters. This section provides a detailed walkthrough of each step, explaining both the algorithmic mechanics and the geographic interpretation relevant to WanderWise+ tour planning.
+
+\textbf{Initialization Phase}: The algorithm begins with K-means++ initialization, selecting K initial centroids as described in the previous document. For a 5-day tour with 50 POIs, this phase produces 5 initial centroid locations, spread across the geographic distribution of POIs.
+
+\textbf{Iteration Loop}: The algorithm enters an iterative process that continues until convergence criteria are met. Each iteration consists of an assignment step followed by an update step.
+
+\textbf{Assignment Step}: Each POI is assigned to the cluster with the nearest centroid. The assignment uses Haversine distance for geographic accuracy. For each POI, the algorithm computes the distance to all K centroids and assigns the POI to the cluster with minimum distance.
+
+\textbf{Update Step}: After all POIs are assigned, each centroid is repositioned to the geographic center (mean latitude and mean longitude) of its assigned POIs. This recalculation reflects the geographic principle that the best representative point for a set of locations is their centroid.
+
+\textbf{Convergence Check}: After the update step, the algorithm checks whether convergence has been achieved. Convergence is typically defined as no change in cluster assignments or minimal improvement in the objective function.
+
+\textbf{Termination}: The algorithm terminates when convergence is achieved or when a maximum iteration count is reached.
+
+\section{2. Assignment Step: POI to Cluster Mapping}
+
+The assignment step is the computational core of each K-means iteration. For each POI, the algorithm computes distances to all K centroids and assigns the POI to the nearest centroid. This step determines the geographic grouping that defines each day's itinerary.
+
+The assignment process for geographic data uses the Haversine formula to compute great-circle distances between POI coordinates and cluster centroids. The algorithm maintains O(K) distance calculations per POI, where K is the number of clusters (days in the tour). For a typical tour with 50 POIs and K=5, each iteration requires 250 distance calculations.
+
+The assignment step can be optimized through precomputation. The WanderWise+ database maintains a distance\_matrix table containing pairwise distances between all POIs. During assignment, the algorithm looks up distances rather than computing them, reducing computational overhead.
+
+Assignment results are stored as cluster membership lists. Each cluster maintains a list of assigned POIs, enabling efficient iteration during the update step.
+
+\section{3. Update Step: Centroid Recalculation}
+
+The update step repositions each cluster centroid to the geographic center of its assigned POIs. This recalculation reflects the principle that the optimal representative point for a set of geographic locations is their mean latitude and longitude.
+
+For a cluster containing POIs at coordinates (lat1, lon1), (lat2, lon2), ..., (latn, lonn), the new centroid position is:
+
+\begin{equation}
+centroid\_lat = \frac{lat_1 + lat_2 + ... + lat_n}{n}
+\end{equation}
+
+\begin{equation}
+centroid\_lon = \frac{lon_1 + lon_2 + ... + lon_n}{n}
+\end{equation}
+
+This simple averaging works well for geographic data because it produces the point that minimizes the sum of squared distances to all cluster members.
+
+The update step also handles empty clusters, which can occur when initialization places centroids in sparse regions or when cluster reassignment during iterations leaves some centroids without assigned POIs. The implementation uses a reinitialization strategy that moves empty cluster centroids to the location of a random unassigned POI.
+
+\section{4. Haversine Distance Implementation}
+
+The Haversine formula implementation in the WanderWise+ clustering module requires careful attention to coordinate handling and angle conversion:
+
+\begin{lstlisting}[language=Python]
+import math
+
+def haversine_distance(lat1: float, lon1: float, 
+                      lat2: float, lon2: float) -> float:
+    EARTH_RADIUS_KM = 6371.0
+    
+    r_lat1 = math.radians(lat1)
+    r_lon1 = math.radians(lon1)
+    r_lat2 = math.radians(lat2)
+    r_lon2 = math.radians(lon2)
+    
+    d_lat = r_lat2 - r_lat1
+    d_lon = r_lon2 - r_lon1
+    
+    a = (math.sin(d_lat / 2) ** 2 +
+         math.cos(r_lat1) * math.cos(r_lat2) * 
+         math.sin(d_lon / 2) ** 2)
+    
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    
+    return EARTH_RADIUS_KM * c
+\end{lstlisting}
+
+The implementation uses the standard Haversine formula with Earth radius 6371 kilometers. All trigonometric functions in Python's math library operate on radians, requiring explicit conversion from degrees.
+
+\section{5. Convergence Criteria}
+
+Convergence criteria determine when the K-means algorithm terminates. The implementation uses two criteria: objective function improvement threshold and maximum iteration count.
+
+The objective function improvement criterion uses the within-cluster sum of squares (WCSS). After each update step, the algorithm computes WCSS by summing squared distances from each POI to its cluster centroid. If the improvement from the previous WCSS is less than the tolerance (1e-4), the algorithm considers itself converged.
+
+The maximum iteration count provides a hard limit on computation time. Even if the algorithm is slowly converging, it will terminate after the specified maximum iterations.
+
+For geographic clustering of tourism POIs, convergence typically occurs within 10-15 iterations with K-means++ initialization.
+
+\section{6. Edge Cases: Empty Clusters and Single POI Clusters}
+
+Two edge cases require special handling in geographic K-means clustering: empty clusters and clusters containing only a single POI.
+
+Empty clusters occur when initialization places a centroid in a sparse region or when cluster reassignment during iterations leaves a centroid without any assigned POIs. The implementation handles empty clusters by reinitializing the centroid to the location of a randomly selected unassigned POI.
+
+Single-POI clusters occur when geographic distribution naturally isolates one POI from the main clusters. This is common for outlier POIs like Dudhsagar Waterfalls, which is located inland from the coastal concentration of other POIs. The algorithm handles single-POI clusters by maintaining the centroid at the POI's location.
+
+Post-clustering validation checks whether all clusters contain a minimum number of POIs (e.g., 5). Clusters below this threshold may be merged with neighboring clusters.
+
+\section*{References}
+
+\begin{itemize}
+\item MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations.
+\item Lloyd, S. P. (1982). Least squares quantization in PCM. IEEE Transactions on Information Theory.
+\item Sinnott, R. W. (1984). Virtues of the Haversine. Sky and Telescope.
+\end{itemize}

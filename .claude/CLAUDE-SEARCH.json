@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "index": {
+    "enabled": true,
+    "files": [
+      "**/*.py",
+      "**/*.jsx",
+      "**/*.js",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.sql",
+      "**/*.md",
+      "**/*.txt",
+      "**/*.json",
+      "**/*.html",
+      "**/*.css"
+    ],
+    "exclude": [
+      ".git/**",
+      ".venv/**",
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "*.pyc",
+      "__pycache__/**",
+      "*.pdf",
+      "*.tex",
+      "*.docx"
+    ]
+  },
+  "search": {
+    "suggestions": [
+      "Route optimization algorithms",
+      "Distance matrix calculation",
+      "PostGIS spatial queries",
+      "FastAPI endpoints",
+      "React components",
+      "Database schema design"
+    ],
+    "aliases": {
+      "route planner": ["route_planner.py", "optimize_route"],
+      "spatial utils": ["spatial.py", "distance calculation"],
+      "database": ["database_setup.sql", "models"]
+    }
+  },
+  "codebase": {
+    "languages": ["python", "javascript", "sql", "html", "css"],
+    "frameworks": ["fastapi", "react", "tailwindcss", "postgis"],
+    "services": ["postgres"]
+  },
+  "entrypoints": {
+    "backend": "backend/app/main.py",
+    "frontend": "frontend/src/main.jsx"
+  }
+}

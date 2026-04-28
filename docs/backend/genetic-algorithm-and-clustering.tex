@@ -1,0 +1,425 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\title{Genetic Algorithm and Clustering Documentation}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Scope}
+This document describes the production clustering pipeline (Module 2) and the GA-based route optimizer (Module 4). It lists all parameters currently used in code, their defaults, and how the fitness function is computed, including penalties and rewards.
+
+\section{Module 2: Clustering (K-Means + Popularity Normalization)}
+
+\subsection{Inputs}
+\begin{itemize}
+  \item \texttt{num\_days} (int): number of clusters (days)
+  \item \texttt{min\_reviews} (int, default 1): Bayesian smoothing threshold
+  \item \texttt{random\_state} (int, default 42): KMeans RNG seed
+  \item \texttt{input\_places} (optional list): if provided, bypass dataset loading
+  \item \texttt{travel\_distance} ("less" or "more"): optional radius filter
+  \item \texttt{hotel\_location}, \texttt{region}, \texttt{hotel\_lat}, \texttt{hotel\_lon}, \texttt{hotel\_address}: anchor inputs
+  \item \texttt{user\_preference}, \texttt{positive\_interests}: used for interest derivation and metadata
+\end{itemize}
+
+\subsection{Preprocessing}
+\begin{itemize}
+  \item Loads dataset and filters to Goa bounds: latitude 14.8--15.9, longitude 73.6--74.4.
+  \item Ensures \texttt{categories} exists (via \texttt{parse\_categories()} or \texttt{classify\_place()}).
+  \item Coerces coordinates to numeric and drops invalid rows.
+\end{itemize}
+
+\subsection{Anchor Resolution}
+If the user provides hotel coordinates or a location/region:
+\begin{enumerate}
+  \item \texttt{hotel\_lat}/\texttt{hotel\_lon} takes priority if within Goa bounds.
+  \item \texttt{hotel\_location} is matched against \texttt{HOTEL\_LOCATION\_TERMS} in address/name text.
+  \item \texttt{region} is matched against \texttt{REGION\_TERMS} in address/name text.
+  \item Fallback to dataset mean coordinates.
+\end{enumerate}
+
+\subsection{Travel Distance Filter ("less")}
+Enabled when \texttt{travel\_distance == "less"} and there is enough data.
+
+\paragraph{Parameters}
+\begin{itemize}
+  \item \texttt{TRAVEL\_LESS\_BASE\_RADIUS\_KM = 20.0}
+  \item \texttt{TRAVEL\_LESS\_STEP\_KM = 5.0}
+  \item \texttt{TRAVEL\_LESS\_MAX\_RADIUS\_KM = 60.0}
+  \item \texttt{TRAVEL\_LESS\_EXCEPTION\_PER\_DAY = 2}
+  \item \texttt{FIRST\_STOP\_RADIUS\_BUFFER\_KM = 0.0}
+\end{itemize}
+
+\paragraph{Logic}
+\begin{itemize}
+  \item Radius starts at base and expands by step up to max until minimum POI counts are satisfied.
+  \item Minimum count target: \texttt{min\_count = max(num\_days * MIN\_POIS\_PER\_ROUTE, num\_days)}.
+  \item Metadata includes \texttt{exception\_cap} and \texttt{fallback\_reason}, but exception adding is currently disabled (\texttt{exception\_policy = "none"}).
+\end{itemize}
+
+\subsection{Clustering Features}
+\begin{itemize}
+  \item Base features: latitude and longitude.
+  \item Optional third feature: distance from anchor (km) scaled by \texttt{HOTEL\_DISTANCE\_FEATURE\_WEIGHT = 0.05}.
+\end{itemize}
+
+\subsection{KMeans Configuration}
+\texttt{perform\_kmeans\_clustering()}:
+\begin{itemize}
+  \item \texttt{n\_clusters = min(num\_days, len(df))}
+  \item \texttt{random\_state = random\_state}
+  \item \texttt{n\_init = 10}
+  \item \texttt{max\_iter = 300}
+\end{itemize}
+
+\paragraph{Day assignment}
+\begin{itemize}
+  \item \texttt{cluster} is KMeans label (0-based)
+  \item \texttt{day = cluster + 1}
+\end{itemize}
+
+\subsection{Popularity Scoring}
+Computed per cluster with Bayesian smoothing and normalization.
+
+\paragraph{Definitions}
+\begin{itemize}
+  \item $r$ = normalized Google rating, $r = (rating - 1) / 4$
+  \item $v$ = review count
+  \item $m$ = \texttt{min\_reviews}
+  \item $c$ = global mean normalized rating
+\end{itemize}
+
+\paragraph{Weighted rating}
+\[
+weighted = \frac{v}{v + m} r + \frac{m}{v + m} c
+\]
+
+\paragraph{Quantity factor}
+\[
+quantity = \frac{\log(1 + v)}{\log(1 + max\_reviews\_in\_cluster)}
+\]
+
+\paragraph{Popularity score}
+\[
+score = QUALITY\_WEIGHT \cdot weighted + QUANTITY\_WEIGHT \cdot quantity
+\]
+
+\paragraph{Normalization within cluster}
+\[
+normalized\_popularity = \frac{score}{max\_score\_in\_cluster}
+\]
+
+\paragraph{Parameters}
+\begin{itemize}
+  \item \texttt{QUALITY\_WEIGHT = 0.6}
+  \item \texttt{QUANTITY\_WEIGHT = 0.4}
+\end{itemize}
+
+\subsection{First-Stop Ordering (optional)}
+When a travel radius is used, \texttt{FIRST\_STOP\_RADIUS\_BUFFER\_KM} is applied to find a first POI near the anchor. The day is then ordered so this POI appears early. Metadata records per-day first-stop selection.
+
+\section{Module 4: Genetic Algorithm (GA) Route Optimization}
+
+\subsection{GA Defaults (ga\_config)}
+\begin{itemize}
+  \item \texttt{POPULATION\_SIZE = 120}
+  \item \texttt{MAX\_GENERATIONS = 90}
+  \item \texttt{CROSSOVER\_RATE = 0.7}
+  \item \texttt{MUTATION\_RATE = 0.2}
+  \item \texttt{TOURNAMENT\_SIZE = 2}
+  \item \texttt{ELITE\_COUNT = 3}
+  \item \texttt{EARLY\_STOPPING\_THRESHOLD = 40}
+\end{itemize}
+
+\paragraph{Chromosome limits}
+\begin{itemize}
+  \item \texttt{INITIAL\_CHROMOSOME\_LENGTH = 6}
+  \item \texttt{MIN\_POIS\_PER\_ROUTE = 4}
+  \item \texttt{MAX\_POIS\_PER\_ROUTE = 15}
+\end{itemize}
+
+\paragraph{Time windows}
+\begin{itemize}
+  \item \texttt{TOUR\_START\_TIME = "09:00"}
+  \item \texttt{TOUR\_END\_TIME = "18:00"}
+  \item \texttt{LUNCH\_START\_TIME = "12:30"}
+  \item \texttt{LUNCH\_END\_TIME = "13:30"}
+  \item \texttt{DAILY\_TIME\_BUDGET\_HOURS = 9}
+\end{itemize}
+
+\paragraph{Defaults}
+\begin{itemize}
+  \item \texttt{DEFAULT\_VISIT\_DURATION\_MIN = 60}
+  \item \texttt{DEFAULT\_OPENING\_TIME = "09:00"}
+  \item \texttt{DEFAULT\_CLOSING\_TIME = "17:00"}
+  \item \texttt{AVERAGE\_SPEED\_KM\_H = 30}
+\end{itemize}
+
+\subsection{Runtime Overrides (payload)}
+The payload can override:
+\begin{itemize}
+  \item \texttt{population\_size}, \texttt{max\_generations}, \texttt{mutation\_rate}, \texttt{crossover\_rate}, \texttt{early\_stopping\_patience}
+\end{itemize}
+
+\subsection{Core GA Operations}
+\begin{itemize}
+  \item \textbf{Initialization}: \texttt{initialize\_population()} builds random routes with a bias toward higher popularity POIs.
+  \item \textbf{Selection}: \texttt{tournament\_selection()} with \texttt{TOURNAMENT\_SIZE}.
+  \item \textbf{Crossover}: \texttt{single\_point\_crossover()} maintains unique POIs and minimum length.
+  \item \textbf{Mutation}: \texttt{swap\_mutation()} swaps two POIs with probability \texttt{MUTATION\_RATE}.
+  \item \textbf{Early stopping}: stops after \texttt{EARLY\_STOPPING\_THRESHOLD} generations without improvement.
+  \item \textbf{Diversity}: final top routes are filtered by minimum Jaccard distance between POI sets.
+\end{itemize}
+
+\subsection{Distance and Duration Matrices}
+\texttt{prepare\_day\_matrices()} builds matrices per day:
+\begin{itemize}
+  \item Primary: OSRM Table API
+  \item Fallback: Haversine + average speed
+\end{itemize}
+
+\subsection{Itinerary QA Retry (end-to-end)}
+When \texttt{use\_llm\_itinerary\_qa} is enabled, the primary day route is evaluated by \texttt{evaluate\_itinerary\_qa()}.
+If \texttt{use\_llm\_itinerary\_retry} is also enabled and the result is \texttt{ok == false} with \texttt{source == "groq"}, the retry flow runs:
+\begin{enumerate}
+  \item Map \texttt{problematic\_places} to POI IDs via \texttt{resolve\_qa\_flagged\_place\_ids()}.
+  \item Choose a retry strategy:
+  \begin{itemize}
+    \item \texttt{excluded\_from\_pool}: remove flagged POIs if the remaining pool stays $\geq$ \texttt{MIN\_POIS\_PER\_ROUTE}.
+    \item \texttt{penalty\_only}: keep pool, but pass \texttt{penalty\_place\_ids} so flagged POIs incur \texttt{ITINERARY\_QA\_FLAGGED\_POI\_PENALTY}.
+    \item \texttt{weights\_only}: if no POIs could be matched, only adjust weights.
+  \end{itemize}
+  \item Increase \texttt{wrong\_time} weight by 20\% (capped at 3.0) for the retry run.
+  \item Re-run \texttt{optimize\_route\_ga()} on the chosen pool with optional penalty IDs.
+  \item Rebuild the day JSON and re-run QA on the new recommended itinerary.
+  \item Persist \texttt{itinerary\_retry\_attempted} and \texttt{itinerary\_retry\_details} in the response.
+\end{enumerate}
+
+\subsection{Travel-Type Weights and Tag Defaults}
+\begin{itemize}
+  \item \texttt{FitnessWeights} multipliers scale penalty groups.
+  \item \texttt{get\_fitness\_weights(travel\_type)} returns travel-type defaults.
+  \item \texttt{get\_default\_tag\_adjustments(travel\_type)} provides baseline tag rewards/penalties (e.g., family penalizes strenuous waterfalls).
+\end{itemize}
+
+\paragraph{FitnessWeights fields}
+\begin{itemize}
+  \item \texttt{distance}, \texttt{hard\_violation}, \texttt{undertime}, \texttt{overtime}, \texttt{wrong\_time}, \texttt{trek}, \texttt{fatigue}, \texttt{type\_coverage}, \texttt{beach\_dominance}
+\end{itemize}
+
+\paragraph{Per-travel-type weight defaults (values not listed are 1.0)}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccccccccc}
+\textbf{travel\_type} & \textbf{distance} & \textbf{hard\_violation} & \textbf{undertime} & \textbf{overtime} & \textbf{wrong\_time} & \textbf{trek} & \textbf{fatigue} & \textbf{type\_coverage} & \textbf{beach\_dominance} \\
+\hline
+solo & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 & 1.0 \\
+family & 1.1 & 1.15 & 1.0 & 1.25 & 0.95 & 1.15 & 1.45 & 1.05 & 0.9 \\
+duo & 0.98 & 1.0 & 1.0 & 1.08 & 1.0 & 1.0 & 0.95 & 1.0 & 1.0 \\
+friends & 0.92 & 1.0 & 1.0 & 1.05 & 0.92 & 1.0 & 0.9 & 1.0 & 1.0 \\
+couple & 0.96 & 1.0 & 1.0 & 1.05 & 0.98 & 1.0 & 0.96 & 1.0 & 1.0 \\
+group & 0.88 & 1.0 & 1.0 & 1.1 & 0.9 & 1.0 & 0.85 & 1.03 & 1.0 \\
+\end{tabular}
+\end{table}
+
+\paragraph{Hard-violation scaling (applies to \texttt{LUNCH\_INVASION\_PENALTY} and closed-POI penalties)}
+\begin{itemize}
+  \item solo: 1.0
+  \item family: 1.15
+  \item duo: 1.0
+  \item friends: 1.0
+  \item couple: 1.0
+  \item group: 1.0
+\end{itemize}
+
+\paragraph{Per-travel-type tag defaults (values are per-tag reward/penalty multipliers)}
+\begin{itemize}
+  \item solo: \texttt{\{\}}
+  \item family: \texttt{\{waterfall: -0.78, strenuous: -0.68, park: 0.42, sanctuary: 0.52, beach: 0.58\}}
+  \item duo: \texttt{\{beach: 0.22, historical: 0.18, religious: 0.1\}}
+  \item couple: \texttt{\{beach: 0.58, historical: 0.2, viewpoint: 0.45, religious: 0.15, park: 0.12\}}
+  \item friends: \texttt{\{beach: 0.2, park: 0.15, historical: 0.1\}}
+  \item group: \texttt{\{beach: 0.15, park: 0.2, religious: 0.12, shopping: 0.12\}}
+\end{itemize}
+
+\paragraph{Optional LLM adjustments (preference\_fitness\_llm.py)}
+\begin{itemize}
+  \item \texttt{weight\_deltas} clamped to [-0.5, 0.5]
+  \item Final weights clamped to [0.25, 4.0]
+  \item Tag preferences override per-tag defaults when provided
+\end{itemize}
+
+\paragraph{LLM prompt logic (preference\_fitness\_llm.py)}
+\begin{itemize}
+  \item System prompt requires a single JSON object only (no markdown).
+  \item Output schema:
+  \begin{itemize}
+    \item \texttt{weight\_deltas}: per-weight deltas applied as \texttt{final = base * (1 + delta)}.
+    \item \texttt{tag\_preference}: per-tag adjustments in [-1, 1].
+  \end{itemize}
+  \item Allowed tag keys: waterfall, strenuous, beach, park, religious, nature, historical, sanctuary, temple, church, shopping, viewpoint.
+  \item Merge rule: \texttt{tag\_preference} replaces server defaults only for keys present in the LLM output; omitted keys keep defaults.
+  \item Conflict handling: if user preference conflicts with safer travel types (e.g., family), the prompt instructs safer weights unless user insists.
+  \item Input context: travel\_type, server defaults, raw user\_preference text, and optional module1 structured extraction.
+\end{itemize}
+
+\section{Fitness Function (Detailed)}
+
+\subsection{Formula}
+\[
+fitness = \frac{total\_reward}{1 + \Delta}
+\]
+
+Where:
+\[
+\Delta = w_d D + w_h H + w_u U + w_o O + w_t T + w_w W + w_f F + w_c C + w_b B + P_{tag}
+\]
+
+\begin{itemize}
+  \item $D$ distance penalty
+  \item $H$ hard violation penalty
+  \item $U$ undertime penalty
+  \item $O$ overtime penalty
+  \item $T$ wrong-time penalty
+  \item $W$ trek penalty
+  \item $F$ fatigue penalty
+  \item $C$ type coverage penalty
+  \item $B$ beach dominance penalty
+  \item $P_{tag}$ negative tag-preference penalty
+\end{itemize}
+
+Weights $w_*$ come from \texttt{FitnessWeights}.
+
+\subsection{Rewards (added to total\_reward)}
+\begin{itemize}
+  \item \textbf{POI value sum}: sum of normalized popularity for POIs in route.
+  \item \textbf{Time utilization bonus}: proportional to fraction of daily time budget used.
+  \item \textbf{Route length bonus}: favors a target route length (8 if budget $\geq$ 8h, else 6).
+  \item \textbf{Must-see reward}: \texttt{MUST\_SEE\_REWARD} per must-see POI (WPI $\geq$ 0.85).
+  \item \textbf{Neighbour reward}: \texttt{MUST\_SEE\_NEIGHBOUR\_REWARD} per POI within 5 km of must-see POIs.
+  \item \textbf{Correct time reward}: rewards for time-appropriate visits (waterfalls early, beaches outside scorch window, parks in 10:00--16:00).
+  \item \textbf{Type coverage bonus}: \texttt{DAY\_TYPE\_COVERAGE\_BONUS} for each distinct category covered.
+  \item \textbf{Tag preference reward}: positive average tag adjustment scaled by \texttt{TAG\_PREFERENCE\_SCALE}.
+\end{itemize}
+
+\subsection{Penalties (detailed)}
+
+\paragraph{1) Distance penalty}
+For each segment distance $d$ (km):
+\[
+D += DISTANCE\_PENALTY\_WEIGHT \cdot d + DISTANCE\_QUADRATIC\_WEIGHT \cdot d^2
+\]
+
+\paragraph{2) Hard violation penalty}
+\begin{itemize}
+  \item Lunch invasion: \texttt{LUNCH\_INVASION\_PENALTY}
+  \item Closed POI: \texttt{HARD\_VIOLATION\_PENALTY}
+  \item Partial close overlap: \texttt{0.5 * HARD\_VIOLATION\_PENALTY}
+\end{itemize}
+
+\paragraph{3) Overtime penalty}
+\begin{itemize}
+  \item Base: \texttt{OVERTIME\_PENALTY\_PER\_MIN * overtime\_minutes}
+  \item If overtime exceeds \texttt{OVERTIME\_HARD\_THRESHOLD\_MIN}, multiply by \texttt{OVERTIME\_STEEP\_MULTIPLIER}
+\end{itemize}
+
+\paragraph{4) Undertime penalty}
+If finishing early beyond 45 minutes buffer:
+\[
+U = UNDERTIME\_PENALTY\_PER\_MIN \cdot undertime\_minutes
+\]
+
+\paragraph{5) Wrong-time penalty}
+Accumulated from:
+\begin{itemize}
+  \item Waterfall visited after \texttt{AFTERNOON\_END\_MIN}: \texttt{WRONG\_TIME\_PENALTY}
+  \item Beach scorch overlap: \texttt{BEACH\_SCORCH\_PENALTY\_PER\_MIN * overlap\_minutes}
+  \item Beach streak (3 beaches in a row): \texttt{BEACH\_STREAK\_PENALTY}
+  \item Park visited outside 10:00--16:00: \texttt{PARK\_WRONG\_TIME\_PENALTY}
+  \item Backtrack penalty: \texttt{BACKTRACK\_PENALTY\_WEIGHT * sum(peaks over avg segment distance)}
+  \item Nearby duplicate POIs within \texttt{NEARBY\_DEDUP\_KM}: \texttt{NEARBY\_DUPLICATE\_PENALTY}
+  \item Itinerary QA retry penalty (flagged POIs): \texttt{ITINERARY\_QA\_FLAGGED\_POI\_PENALTY}
+\end{itemize}
+
+\paragraph{6) Waterfall penalty}
+If more than one waterfall:
+\[
+W = (waterfall\_count - 1) \cdot EXTRA\_WATERFALL\_PENALTY
+\]
+
+\paragraph{7) Fatigue penalty}
+If more than two strenuous POIs:
+\[
+F = (strenuous\_count - 2) \cdot PHYSICAL\_FATIGUE\_PENALTY
+\]
+
+\paragraph{8) Type coverage penalty}
+If route misses categories (historical, religious, nature, beach, waterfall, park):
+\[
+C = missing\_types \cdot DAY\_MISSING\_TYPE\_PENALTY
+\]
+
+\paragraph{9) Beach dominance penalty}
+If beach ratio exceeds \texttt{BEACH\_DOMINANCE\_THRESHOLD}:
+\[
+B = (ratio - BEACH\_DOMINANCE\_THRESHOLD) \cdot BEACH\_DOMINANCE\_PENALTY\_SCALE
+\]
+
+\paragraph{10) Tag preference penalty}
+Negative average tag adjustment scaled by:
+\begin{itemize}
+  \item \texttt{TAG\_PREFERENCE\_SCALE = 0.2}
+\end{itemize}
+
+\subsection{Penalty and Reward Constants (Module 4)}
+\begin{itemize}
+  \item \texttt{MUST\_SEE\_WPI\_THRESHOLD = 0.85}
+  \item \texttt{DISTANCE\_PENALTY\_WEIGHT = 0.5}
+  \item \texttt{DISTANCE\_QUADRATIC\_WEIGHT = 0.08}
+  \item \texttt{LUNCH\_INVASION\_PENALTY = 10.0}
+  \item \texttt{UNDERTIME\_PENALTY\_PER\_MIN = 0.15}
+  \item \texttt{OVERTIME\_PENALTY\_PER\_MIN = 0.20}
+  \item \texttt{OVERTIME\_HARD\_THRESHOLD\_MIN = 45}
+  \item \texttt{OVERTIME\_STEEP\_MULTIPLIER = 1.8}
+  \item \texttt{WRONG\_TIME\_PENALTY = 8.0}
+  \item \texttt{EXTRA\_WATERFALL\_PENALTY = 30.0}
+  \item \texttt{PHYSICAL\_FATIGUE\_PENALTY = 5.0}
+  \item \texttt{BACKTRACK\_PENALTY\_WEIGHT = 0.5}
+  \item \texttt{BEACH\_STREAK\_PENALTY = 20.0}
+  \item \texttt{BEACH\_SCORCH\_START = "12:00"}
+  \item \texttt{BEACH\_SCORCH\_END = "16:00"}
+  \item \texttt{BEACH\_SCORCH\_PENALTY\_PER\_MIN = 0.35}
+  \item \texttt{ITINERARY\_QA\_FLAGGED\_POI\_PENALTY = 18.0}
+  \item \texttt{DAY\_TYPE\_COVERAGE\_BONUS = 0.12}
+  \item \texttt{DAY\_MISSING\_TYPE\_PENALTY = 2.0}
+  \item \texttt{BEACH\_DOMINANCE\_THRESHOLD = 0.45}
+  \item \texttt{BEACH\_DOMINANCE\_PENALTY\_SCALE = 16.0}
+  \item \texttt{PARK\_WRONG\_TIME\_PENALTY = 6.0}
+  \item \texttt{PARK\_CORRECT\_TIME\_REWARD = 0.08}
+  \item \texttt{NEARBY\_DEDUP\_KM = 0.5}
+  \item \texttt{NEARBY\_REWARD\_RADIUS\_KM = 0.7}
+  \item \texttt{NEARBY\_DUPLICATE\_PENALTY = 4.0}
+  \item \texttt{NEARBY\_SUGGESTION\_RADIUS\_KM = 2.0}
+  \item \texttt{NEARBY\_SUGGESTIONS\_PER\_STOP = 3}
+  \item \texttt{TIME\_UTILIZATION\_WEIGHT = 2.0}
+  \item \texttt{ROUTE\_LENGTH\_BONUS\_PER\_POI = 0.05} (used in earlier versions; current route length bonus uses a fixed curve)
+  \item \texttt{MUST\_SEE\_REWARD = 0.3}
+  \item \texttt{MUST\_SEE\_NEIGHBOUR\_REWARD = 0.15}
+  \item \texttt{CORRECT\_TIME\_REWARD = 0.1}
+\end{itemize}
+
+\subsection{Fitness Breakdown Output}
+\texttt{build\_day\_json()} embeds a structured breakdown with:
+\begin{itemize}
+  \item Fitness score and formula
+  \item Penalty components
+  \item Reward components
+  \item Weight multipliers
+  \item Nearby alternatives and suggestions
+\end{itemize}
+
+\end{document}

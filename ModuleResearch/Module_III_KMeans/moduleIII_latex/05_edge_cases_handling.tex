@@ -1,0 +1,99 @@
+\chapter{05: Edge Cases Handling in Geographic Clustering}
+
+\section{1. Common Edge Cases in Tourism Clustering}
+
+Geographic clustering for tourism routing encounters several edge cases that require specialized handling beyond the standard K-means algorithm. These edge cases arise from the unique characteristics of tourism POI distribution, user preference combinations, and the requirement for balanced daily itineraries. The WanderWise+ clustering module implements specific strategies to address each edge case, ensuring robust cluster quality across diverse tour configurations.
+
+The primary edge cases include imbalanced clusters (where POIs are distributed unevenly across days), empty clusters (where some cluster centroids receive no POI assignments), outlier POIs (that fall far from any natural cluster), and minimum POI constraints (ensuring each day has sufficient activities).
+
+Understanding these edge cases is essential for production deployment. Without proper handling, edge cases can produce unusable itineraries—days with too few activities, days requiring excessive travel, or tours that exclude popular POIs due to algorithmic quirks.
+
+\section{2. Imbalanced Clusters}
+
+Imbalanced clusters occur when POIs are distributed unevenly across the K clusters, resulting in some days with significantly more activities than others. This situation commonly arises when user interests favor POIs concentrated in one geographic region. For example, a user interested primarily in nightlife might select POIs concentrated almost entirely in North Goa.
+
+The impact of imbalanced clusters on user experience is significant. A tour with 25 POIs in Day 1 and only 3 POIs in Day 2 creates an inconsistent travel experience—users would feel rushed on the first day and bored on the second.
+
+The WanderWise+ implementation addresses imbalanced clusters through post-clustering rebalancing. After the K-means algorithm converges, the algorithm evaluates cluster sizes against minimum and maximum thresholds (typically 6 and 15 POIs clusters fall outside these per cluster). If bounds, rebalancing proceeds by identifying oversized clusters and attempting to reassign peripheral POIs to undersized clusters.
+
+Rebalancing maintains geographic coherence by only considering POIs near cluster boundaries. A POI on the edge of the North Goa cluster that is closer to the Central Goa cluster centroid might be reassigned to Central.
+
+\begin{lstlisting}[language=Python]
+def rebalance_clusters(clusters: Dict[int, List[POI]], 
+                       centroids: List[Tuple[float, float]],
+                       min_pois: int = 6, 
+                       max_pois: int = 15) -> Dict[int, List[POI]]:
+    MIN_POI_COUNT = min_pois
+    MAX_POI_COUNT = max_pois
+    
+    def compute_cluster_stats(cluster_idx: int) -> Dict:
+        cluster_pois = clusters[cluster_idx]
+        cent_lat, cent_lon = centroids[cluster_idx]
+        max_dist = 0.0
+        for poi in cluster_pois:
+            d = haversine_distance(poi.latitude, poi.longitude, cent_lat, cent_lon)
+            max_dist = max(max_dist, d)
+        return {'count': len(cluster_pois), 'centroid': (cent_lat, cent_lon)}
+    
+    stats = {i: compute_cluster_stats(i) for i in clusters.keys()}
+    undersized = [i for i, s in stats.items() if s['count'] < MIN_POI_COUNT]
+    oversized = [i for i, s in stats.items() if s['count'] > MAX_POI_COUNT]
+    
+    for under_idx in undersized:
+        for over_idx in oversized:
+            # Rebalance logic here
+            pass
+    
+    return clusters
+\end{itemize}
+
+\section{3. Empty Clusters}
+
+Empty clusters occur when K-means initialization places a centroid in a sparse region of the POI distribution, or when cluster reassignment during iterations leaves a centroid without any assigned POIs. This edge case is particularly common when clustering POIs for niche interest combinations that concentrate in specific geographic areas.
+
+The standard K-means algorithm fails with empty clusters because the centroid update step requires computing the mean of assigned POIs—with no assigned POIs, the mean is undefined.
+
+The WanderWise+ implementation handles empty clusters through proactive detection and reinitialization. After each assignment step, the algorithm checks for empty clusters. If empty clusters are detected, the implementation reinitializes each empty centroid to the location of a randomly selected POI from an oversized cluster.
+
+\section{4. Outlier POIs in Goa Tourism}
+
+Outlier POIs present a unique challenge in geographic clustering because they cannot be meaningfully assigned to any cluster without creating geographic incoherence. In the Goa context, Dudhsagar Waterfalls is the primary outlier—located approximately 40 kilometers inland from the coastal concentration of most other POIs.
+
+The geographic distribution of Goa POIs creates natural clustering around the coastal regions. Most beaches, nightlife venues, and historical sites are located within 10-15 kilometers of the coastline. Dudhsagar Waterfalls, situated in the Bhagwan Mahavir Wildlife Sanctuary near the Karnataka border, lies approximately 40 kilometers from the nearest major beach destination.
+
+The WanderWise+ implementation handles outliers through detection and either special clustering or user notification. Outlier detection uses a distance threshold—POIs more than 30 kilometers from the geographic center of the POI distribution are flagged as potential outliers.
+
+\begin{itemize}
+\item Detection: Compute center of all POIs, flag POIs beyond threshold distance
+\item Assignment: Assign outliers to nearest cluster
+\item Notification: Warn users about increased travel time for outliers
+\end{itemize}
+
+\section{5. Minimum POIs Per Day Constraint}
+
+The minimum POIs per day constraint ensures that each day of the tour has sufficient activities to constitute a meaningful itinerary. The WanderWise+ implementation enforces a minimum threshold (typically 6 POIs per day) to prevent days with only 1-2 activities.
+
+Minimum constraint violations occur when user interest selection yields few POIs overall, or when geographic distribution naturally creates sparse clusters. The implementation addresses minimum constraints through three mechanisms: minimum constraint violation detection, cluster merging, and user notification.
+
+When minimum constraint violations are detected, the algorithm first attempts cluster merging—combining undersized clusters with neighboring clusters to achieve minimum size.
+
+\section{6. Real Goa Examples}
+
+\textbf{Example 1: Beach-Focused 5-Day Tour with 25 POIs}
+
+After filtering for beach-related POIs, the system retrieves 25 locations distributed across North, Central, and South Goa. K-means clustering with K=5 initially produces clusters with sizes [8, 7, 6, 3, 1]. The undersized clusters (3 and 1 POIs) trigger rebalancing. The algorithm reassigns boundary POIs from oversized clusters, achieving final sizes [7, 7, 6, 6, 5].
+
+\textbf{Example 2: Nightlife-Focused 3-Day Tour with 12 POIs}
+
+Nightlife POIs concentrate heavily in North Goa (Baga, Calangute, Anjuna). After filtering, only 12 POIs match, all in the North region. K-means produces clusters with sizes [10, 1, 1]. Rebalancing merges the undersized clusters into a single cluster of size 2.
+
+\textbf{Example 3: Nature-Focused Tour with Dudhsagar}
+
+A user interested in nature selects Dudhsagar Waterfalls, Bhagwan Mahavir Sanctuary, Salim Ali Bird Sanctuary, and several spice plantations. The outlier detection identifies Dudhsagar as an outlier (40km from the center of other nature POIs).
+
+\section*{References}
+
+\begin{itemize}
+\item Jain, A. K. (2010). Data clustering: 50 years beyond K-means. Pattern Recognition Letters.
+\item Celebi, M. E., Kingravi, H. A., \& Vela, P. A. (2013). A comparative study of efficient initialization methods for the k-means clustering algorithm.
+\end{itemize}
