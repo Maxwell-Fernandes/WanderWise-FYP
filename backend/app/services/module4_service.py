@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import contextvars
+from contextlib import nullcontext
 import json
 import logging
 import random
@@ -21,6 +23,49 @@ from app.services.module2_service import run_module2_simulation
 from app.utils.data_loader import ensure_output_dirs
 
 logger = logging.getLogger(__name__)
+
+# Request-scoped context variables to prevent concurrent request interference
+_context_distance_km = contextvars.ContextVar(
+    "distance_km", default=None
+)
+_context_duration_min = contextvars.ContextVar(
+    "duration_min", default=None
+)
+_context_poi_index = contextvars.ContextVar(
+    "poi_index", default=None
+)
+
+
+@dataclass(frozen=True)
+class GAConfig:
+    """Immutable GA configuration to prevent concurrent request interference.
+    
+    Each request gets its own GAConfig instance with parameters from the payload,
+    preventing one user's settings from affecting another's.
+    """
+    population_size: int
+    max_generations: int
+    mutation_rate: float
+    crossover_rate: float
+    tournament_size: int
+    early_stopping_threshold: int
+    elite_count: int
+
+    @classmethod
+    def from_payload(cls, payload: Dict[str, Any]) -> "GAConfig":
+        """Create a GAConfig from request payload, with defaults from module config."""
+        return cls(
+            population_size=int(payload.get("population_size", POPULATION_SIZE)),
+            max_generations=int(payload.get("max_generations", MAX_GENERATIONS)),
+            mutation_rate=float(payload.get("mutation_rate", MUTATION_RATE)),
+            crossover_rate=float(payload.get("crossover_rate", CROSSOVER_RATE)),
+            tournament_size=TOURNAMENT_SIZE,  # Not typically user-configurable
+            early_stopping_threshold=int(
+                payload.get("early_stopping_patience", EARLY_STOPPING_THRESHOLD)
+            ),
+            elite_count=ELITE_COUNT,  # Not typically user-configurable
+        )
+
 
 POPULATION_SIZE = cfg.POPULATION_SIZE
 MAX_GENERATIONS = cfg.MAX_GENERATIONS
@@ -52,9 +97,7 @@ PREFERRED_TAG_GLOBAL_MISSING_PENALTY = cfg.PREFERRED_TAG_GLOBAL_MISSING_PENALTY
 PREFERRED_TAG_GLOBAL_REWARD = cfg.PREFERRED_TAG_GLOBAL_REWARD
 PREFERRED_TAG_MAX_PER_DAY_CREDIT = cfg.PREFERRED_TAG_MAX_PER_DAY_CREDIT
 
-CURRENT_DISTANCE_KM = None
-CURRENT_DURATION_MIN = None
-CURRENT_POI_INDEX = {}
+
 
 EXCLUDED_TYPES = {
     "lodging",
@@ -404,7 +447,13 @@ class POI:
         self.name = name
         self.lat = lat
         self.lon = lon
-        self.normalized_popularity = normalized_popularity
+        # Guard against NaN from normalize_popularity_by_cluster division by zero
+        # This can happen with single-POI clusters that have zero popularity score.
+        # If NaN is detected, default to 0.5 as a reasonable baseline.
+        if isinstance(normalized_popularity, float) and normalized_popularity != normalized_popularity:  # NaN check
+            self.normalized_popularity = 0.5
+        else:
+            self.normalized_popularity = normalized_popularity
         self.place_id = place_id or name
         self.rating = rating
         self.user_ratings_total = user_ratings_total
@@ -416,6 +465,16 @@ class POI:
 
     def __repr__(self):
         return f"POI({self.name}, WPI={self.normalized_popularity:.3f})"
+
+    def __eq__(self, other):
+        """Compare POIs by place_id for equality."""
+        if not isinstance(other, POI):
+            return False
+        return self.place_id == other.place_id
+
+    def __hash__(self):
+        """Hash based on place_id for set/dict operations."""
+        return hash(self.place_id)
 
 
 class Individual:
@@ -618,31 +677,111 @@ def build_haversine_matrices(pois):
 
 
 def prepare_day_matrices(pois, use_osrm=True):
-    global CURRENT_DISTANCE_KM, CURRENT_DURATION_MIN, CURRENT_POI_INDEX
-    CURRENT_POI_INDEX = {}
+    """Prepare distance and duration matrices for the given POIs.
+    
+    Stores matrices in request-scoped context variables to prevent
+    concurrent request interference (thread-safe and async-safe).
+    """
+    poi_index = {}
     for i, poi in enumerate(pois):
-        CURRENT_POI_INDEX[id(poi)] = i
+        # Store by both id(poi) and place_id for lookup resilience:
+        # - id(poi): Fast lookup for original POI objects (in-process)
+        # - place_id: Fallback for pickled/deep-copied POI objects (multiprocessing)
+        # See _lookup_poi_index() which tries id() first, then place_id
+        poi_index[id(poi)] = i
         place_id = getattr(poi, "place_id", None)
         if place_id is not None:
-            CURRENT_POI_INDEX[place_id] = i
+            poi_index[place_id] = i
+    
     if use_osrm:
         try:
-            CURRENT_DISTANCE_KM, CURRENT_DURATION_MIN = build_osrm_matrices(pois)
+            distance_km, duration_min = build_osrm_matrices(pois)
+            _context_distance_km.set(distance_km)
+            _context_duration_min.set(duration_min)
+            _context_poi_index.set(poi_index)
             return
         except Exception:
             pass
-    CURRENT_DISTANCE_KM, CURRENT_DURATION_MIN = build_haversine_matrices(pois)
+    
+    distance_km, duration_min = build_haversine_matrices(pois)
+    _context_distance_km.set(distance_km)
+    _context_duration_min.set(duration_min)
+    _context_poi_index.set(poi_index)
+
+
+class TemporaryMatrices:
+    """Context manager to safely switch matrix context and restore on exit.
+    
+    Prevents stale index bugs when retrying GA with different POI subsets.
+    Usage:
+        with TemporaryMatrices(pois_subset):
+            # ... GA retry runs with subset matrices ...
+        # matrices automatically restored to original state
+    """
+    
+    def __init__(self, pois, use_osrm=True):
+        """Initialize with POI set to temporarily use."""
+        self.pois = pois
+        self.use_osrm = use_osrm
+        # Save current context state
+        self.saved_distance_km = _context_distance_km.get()
+        self.saved_duration_min = _context_duration_min.get()
+        self.saved_poi_index = _context_poi_index.get()
+    
+    def __enter__(self):
+        """Set up temporary matrices."""
+        prepare_day_matrices(self.pois, use_osrm=self.use_osrm)
+        return self
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Restore original matrices, even if exception occurred."""
+        _context_distance_km.set(self.saved_distance_km)
+        _context_duration_min.set(self.saved_duration_min)
+        _context_poi_index.set(self.saved_poi_index)
+        return False  # Don't suppress exceptions
+
+
+def _pois_are_equal(poi1, poi2) -> bool:
+    """Check if two POI objects represent the same location.
+    
+    Compares by place_id, which is stable across POI object recreation
+    (e.g., when load_pois_for_day creates fresh instances from DataFrame).
+    Also works with identity comparison for in-process optimizations.
+    
+    This replaces identity-based (is) comparison throughout the GA:
+    - Crossover and mutation operations use 'if poi not in route' checks
+    - Fitness evaluation uses POI lookups in cached matrices
+    - Deduplication logic compares POI objects across generations
+    
+    Returns True if poi1 and poi2 represent the same POI (same place_id).
+    """
+    if poi1 is poi2:
+        return True
+    if not isinstance(poi1, POI) or not isinstance(poi2, POI):
+        return False
+    return poi1.place_id == poi2.place_id
 
 
 def _lookup_poi_index(poi) -> int | None:
-    """Resolve POI index in current matrix, supporting id and place_id matching."""
-    idx = CURRENT_POI_INDEX.get(id(poi))
+    """Resolve POI index in current matrix, supporting id and place_id matching.
+    
+    Tries id() first (fast path for original POI objects), then falls back to 
+    place_id (resilient path for pickled/deep-copied POI objects).
+    This ensures compatibility with multiprocessing and serialization.
+    """
+    poi_index = _context_poi_index.get()
+    if poi_index is None:
+        return None
+    
+    # Try fast path: id() lookup (works for original POI objects in same process)
+    idx = poi_index.get(id(poi))
     if idx is not None:
         return idx
 
+    # Fallback path: place_id lookup (works for pickled/copied POI objects)
     place_id = getattr(poi, "place_id", None)
     if place_id is not None:
-        idx = CURRENT_POI_INDEX.get(place_id)
+        idx = poi_index.get(place_id)
         if idx is not None:
             return idx
     return None
@@ -659,34 +798,36 @@ def _fallback_duration_min(distance_km: float) -> float:
 def get_cached_distance(poi1, poi2):
     i = _lookup_poi_index(poi1)
     j = _lookup_poi_index(poi2)
+    distance_km = _context_distance_km.get()
 
     if (
         i is None
         or j is None
-        or CURRENT_DISTANCE_KM is None
-        or i >= CURRENT_DISTANCE_KM.shape[0]
-        or j >= CURRENT_DISTANCE_KM.shape[1]
+        or distance_km is None
+        or i >= distance_km.shape[0]
+        or j >= distance_km.shape[1]
     ):
         return _fallback_distance_km(poi1, poi2)
 
-    return float(CURRENT_DISTANCE_KM[i, j])
+    return float(distance_km[i, j])
 
 
 def calculate_travel_time(poi1, poi2):
     i = _lookup_poi_index(poi1)
     j = _lookup_poi_index(poi2)
+    duration_min = _context_duration_min.get()
 
     if (
         i is None
         or j is None
-        or CURRENT_DURATION_MIN is None
-        or i >= CURRENT_DURATION_MIN.shape[0]
-        or j >= CURRENT_DURATION_MIN.shape[1]
+        or duration_min is None
+        or i >= duration_min.shape[0]
+        or j >= duration_min.shape[1]
     ):
         distance_km = get_cached_distance(poi1, poi2)
         return _fallback_duration_min(distance_km)
 
-    return float(CURRENT_DURATION_MIN[i, j])
+    return float(duration_min[i, j])
 
 
 def select_top_pois_for_optimization(pois, max_candidates=50, diversity_tracker=None):
@@ -1155,17 +1296,18 @@ def evaluate_fitness(
     current_time_min = time_to_minutes(start_time)
     lunch_start_min = time_to_minutes(LUNCH_START_TIME)
     lunch_end_min = time_to_minutes(LUNCH_END_TIME)
-    poi_tags = {id(poi): _classify_poi(poi) for poi in core_route}
+    # Use place_id instead of id() for stable tagging (safe after copy/pickle)
+    poi_tags = {poi.place_id: _classify_poi(poi) for poi in core_route}
     eval_result.waterfall_count = sum(
-        1 for poi in core_route if "waterfall" in poi_tags[id(poi)]
+        1 for poi in core_route if "waterfall" in poi_tags.get(poi.place_id, set())
     )
     eval_result.strenuous_count = sum(
-        1 for poi in core_route if "strenuous" in poi_tags[id(poi)]
+        1 for poi in core_route if "strenuous" in poi_tags.get(poi.place_id, set())
     )
     segment_distances = []
 
     for i, poi in enumerate(core_route):
-        tags = poi_tags[id(poi)]
+        tags = poi_tags.get(poi.place_id, set())
         if i > 0:
             prev = core_route[i - 1]
             d = get_cached_distance(prev, poi)
@@ -1222,8 +1364,8 @@ def evaluate_fitness(
                 else:
                     eval_result.correct_time_reward += CORRECT_TIME_REWARD * 0.5
             if i >= 2:
-                prev1_tags = poi_tags[id(core_route[i - 1])]
-                prev2_tags = poi_tags[id(core_route[i - 2])]
+                prev1_tags = poi_tags.get(core_route[i - 1].place_id, set())
+                prev2_tags = poi_tags.get(core_route[i - 2].place_id, set())
                 if "beach" in prev1_tags and "beach" in prev2_tags:
                     eval_result.beach_streak_violations += 1
                     eval_result.wrong_time_penalty += BEACH_STREAK_PENALTY
@@ -1344,6 +1486,11 @@ def evaluate_fitness(
                 )
 
     eval_result.poi_value_sum = sum(poi.normalized_popularity for poi in core_route)
+    
+    # Guard against NaN from normalize_popularity_by_cluster division by zero
+    # This can happen with single-POI clusters that have zero popularity score
+    if not isinstance(eval_result.poi_value_sum, (int, float)) or eval_result.poi_value_sum != eval_result.poi_value_sum:  # NaN check
+        eval_result.poi_value_sum = 0.0
     time_used = min(eval_result.total_time_min, DAILY_BUDGET_MIN)
     time_ratio = time_used / DAILY_BUDGET_MIN if DAILY_BUDGET_MIN else 0.0
     eval_result.time_utilization_bonus = time_ratio * TIME_UTILIZATION_WEIGHT
@@ -1352,11 +1499,11 @@ def evaluate_fitness(
     eval_result.route_length_bonus = max(0.0, 0.6 - 0.08 * length_gap)
     must_see_pois = [p for p in core_route if _is_must_see(p)]
     eval_result.must_see_reward = len(must_see_pois) * MUST_SEE_REWARD
-    neighbour_ids = set()
+    neighbour_place_ids = set()
     for anchor in must_see_pois:
         for n in _get_neighbours(anchor, core_route, radius_km=5.0):
-            neighbour_ids.add(id(n))
-    eval_result.neighbour_reward = len(neighbour_ids) * MUST_SEE_NEIGHBOUR_REWARD
+            neighbour_place_ids.add(n.place_id)
+    eval_result.neighbour_reward = len(neighbour_place_ids) * MUST_SEE_NEIGHBOUR_REWARD
 
     tag_pref_reward = 0.0
     tag_pref_penalty = 0.0
@@ -1398,7 +1545,16 @@ def evaluate_fitness(
         + eval_result.preference_global_reward
     )
     eval_result.total_reward = total_reward
-    eval_result.fitness = total_reward / (1.0 + eval_result.delta)
+    # Guard against NaN in fitness calculation
+    # NaN can propagate from poi_value_sum or intermediate calculations
+    # Ensure fitness is always a valid number for GA comparison (NaN > x always False)
+    if total_reward != total_reward or eval_result.delta != eval_result.delta:  # NaN check
+        eval_result.fitness = 0.0
+    else:
+        eval_result.fitness = total_reward / (1.0 + eval_result.delta)
+        # Final sanity check
+        if eval_result.fitness != eval_result.fitness:  # Still NaN?
+            eval_result.fitness = 0.0
     eval_result.travel_penalty = eval_result.distance_penalty
     eval_result.constraint_penalty = eval_result.hard_violation_penalty
     eval_result.user_pref_penalty = tag_pref_penalty
@@ -1411,7 +1567,7 @@ def evaluate_fitness(
 
 def initialize_population(
     candidate_pois,
-    population_size,
+    ga_config: GAConfig,
     fitness_weights: FitnessWeights | None = None,
     tag_adjustments: dict[str, float] | None = None,
     penalty_place_ids: frozenset[str] | None = None,
@@ -1424,7 +1580,7 @@ def initialize_population(
 
     fw = fitness_weights or get_fitness_weights("solo")
     tag_adj = tag_adjustments if tag_adjustments is not None else {}
-    for _ in range(population_size):
+    for _ in range(ga_config.population_size):
         route_len = random.randint(
             MIN_POIS_PER_ROUTE, min(MAX_POIS_PER_ROUTE, len(candidate_pois))
         )
@@ -1461,14 +1617,27 @@ def initialize_population(
     return population
 
 
-def tournament_selection(population, tournament_size=TOURNAMENT_SIZE):
-    tournament = random.sample(population, min(tournament_size, len(population)))
-    return max(tournament, key=lambda ind: ind.fitness if ind.fitness is not None else -1.0)
+def tournament_selection(population, ga_config: GAConfig):
+    tournament = random.sample(population, min(ga_config.tournament_size, len(population)))
+    
+    def get_fitness_key(ind):
+        """Return fitness value, treating None and NaN as -1.0 (worst).
+        
+        This prevents NaN from being selected as "best" in tournament selection.
+        """
+        if ind.fitness is None:
+            return -1.0
+        # Check for NaN: NaN != NaN is True
+        if isinstance(ind.fitness, float) and ind.fitness != ind.fitness:
+            return -1.0
+        return ind.fitness
+    
+    return max(tournament, key=get_fitness_key)
 
 
-def swap_mutation(individual):
+def swap_mutation(individual, ga_config: GAConfig):
     """Swap mutation: randomly swap two POIs in route."""
-    if random.random() > MUTATION_RATE:
+    if random.random() > ga_config.mutation_rate:
         return individual
     if len(individual.route) < 2:
         return individual
@@ -1482,7 +1651,7 @@ def swap_mutation(individual):
     return mutated
 
 
-def single_point_crossover(parent1, parent2):
+def single_point_crossover(parent1, parent2, ga_config: GAConfig):
     """Single-point crossover adapted for variable-length chromosomes."""
     size1 = len(parent1.route)
     size2 = len(parent2.route)
@@ -1543,8 +1712,23 @@ def single_point_crossover(parent1, parent2):
     )
 
 
+def _is_fitness_valid(fitness_value) -> bool:
+    """Check if a fitness value is valid (not None and not NaN).
+    
+    This guards against NaN values that can propagate from normalized_popularity
+    division by zero, which causes GA convergence to stall (NaN > x always False).
+    """
+    if fitness_value is None:
+        return False
+    # NaN check: NaN != NaN is True
+    if isinstance(fitness_value, float) and fitness_value != fitness_value:
+        return False
+    return True
+
+
 def optimize_route_ga(
     pois,
+    ga_config: GAConfig,
     start_time=TOUR_START_TIME,
     keep_top_n=3,
     diversity_tracker=None,
@@ -1582,43 +1766,46 @@ def optimize_route_ga(
         return [only], [fit]
 
     population = initialize_population(
-        candidate_pois, POPULATION_SIZE, fw, tag_adj, pen_ids, preference_state
+        candidate_pois, ga_config, fw, tag_adj, pen_ids, preference_state
     )
     for ind in population:
         ind.evaluate(start_time)
 
-    best_individual = max(population, key=lambda ind: ind.fitness)
+    best_individual = max(population, key=lambda ind: ind.fitness if _is_fitness_valid(ind.fitness) else -1.0)
     best_fitness_history = [best_individual.fitness]
     no_improvement_count = 0
 
-    for _generation in range(1, MAX_GENERATIONS + 1):
+    for _generation in range(1, ga_config.max_generations + 1):
         new_population = [best_individual.copy()]
 
-        while len(new_population) < POPULATION_SIZE:
-            parent1 = tournament_selection(population)
-            parent2 = tournament_selection(population)
-            if random.random() < CROSSOVER_RATE:
-                offspring1, offspring2 = single_point_crossover(parent1, parent2)
+        while len(new_population) < ga_config.population_size:
+            parent1 = tournament_selection(population, ga_config)
+            parent2 = tournament_selection(population, ga_config)
+            if random.random() < ga_config.crossover_rate:
+                offspring1, offspring2 = single_point_crossover(parent1, parent2, ga_config)
             else:
                 offspring1, offspring2 = parent1.copy(), parent2.copy()
-            offspring1 = swap_mutation(offspring1)
-            offspring2 = swap_mutation(offspring2)
+            offspring1 = swap_mutation(offspring1, ga_config)
+            offspring2 = swap_mutation(offspring2, ga_config)
             new_population.extend([offspring1, offspring2])
 
-        population = new_population[:POPULATION_SIZE]
+        population = new_population[:ga_config.population_size]
         for ind in population:
             if ind.fitness is None:
                 ind.evaluate(start_time)
 
-        generation_best = max(population, key=lambda ind: ind.fitness)
-        if generation_best.fitness > best_individual.fitness:
+        generation_best = max(population, key=lambda ind: ind.fitness if _is_fitness_valid(ind.fitness) else -1.0)
+        # Guard against NaN in comparison - NaN > x always False, breaking convergence
+        best_fitness_valid = _is_fitness_valid(best_individual.fitness)
+        gen_best_valid = _is_fitness_valid(generation_best.fitness)
+        if gen_best_valid and (not best_fitness_valid or generation_best.fitness > best_individual.fitness):
             best_individual = generation_best.copy()
             no_improvement_count = 0
         else:
             no_improvement_count += 1
 
         best_fitness_history.append(best_individual.fitness)
-        if no_improvement_count >= EARLY_STOPPING_THRESHOLD:
+        if no_improvement_count >= ga_config.early_stopping_threshold:
             break
 
     best_individual.evaluate(start_time)
@@ -1627,12 +1814,13 @@ def optimize_route_ga(
     for ind in population:
         key = tuple(p.place_id for p in ind.route)
         if key not in unique or (
-            unique[key].fitness is None or ind.fitness > unique[key].fitness
+            not _is_fitness_valid(unique[key].fitness) or 
+            (_is_fitness_valid(ind.fitness) and ind.fitness > unique[key].fitness)
         ):
             unique[key] = ind
 
     sorted_unique = sorted(
-        unique.values(), key=lambda x: x.fitness if x.fitness is not None else -1.0, reverse=True
+        unique.values(), key=lambda x: x.fitness if _is_fitness_valid(x.fitness) else -1.0, reverse=True
     )
     # Ensure best_individual is included first.
     if sorted_unique:
@@ -2262,14 +2450,10 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
     ensure_output_dirs()
     random.seed(payload.get("random_state", 42))
     np.random.seed(payload.get("random_state", 42))
-    global POPULATION_SIZE, MAX_GENERATIONS, MUTATION_RATE, CROSSOVER_RATE, EARLY_STOPPING_THRESHOLD
-    POPULATION_SIZE = int(payload.get("population_size", POPULATION_SIZE))
-    MAX_GENERATIONS = int(payload.get("max_generations", MAX_GENERATIONS))
-    MUTATION_RATE = float(payload.get("mutation_rate", MUTATION_RATE))
-    CROSSOVER_RATE = float(payload.get("crossover_rate", CROSSOVER_RATE))
-    EARLY_STOPPING_THRESHOLD = int(
-        payload.get("early_stopping_patience", EARLY_STOPPING_THRESHOLD)
-    )
+    
+    # Create request-scoped GA configuration from payload
+    # This prevents concurrent requests from interfering with each other's GA parameters
+    ga_config = GAConfig.from_payload(payload)
 
     travel_type = str(payload.get("travel_type", "solo"))
     from app.services.preference_fitness_llm import resolve_fitness_profile
@@ -2391,6 +2575,7 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
         day_fitness_weights = fitness_weights
         top_candidates, best_fitness_history = optimize_route_ga(
             pois,
+            ga_config,
             keep_top_n=ALTERNATIVE_CANDIDATE_POOL,
             diversity_tracker=global_diversity_tracker,
             fitness_weights=day_fitness_weights,
@@ -2437,46 +2622,53 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
                 else:
                     strategy = "weights_only"
 
+                # Use context manager to safely handle matrix switches during retry
+                # Ensures matrices are restored even if exception occurs
                 if strategy == "excluded_from_pool":
-                    prepare_day_matrices(pois_for_ga, use_osrm=use_osrm)
+                    matrices_context = TemporaryMatrices(pois_for_ga, use_osrm=use_osrm)
+                else:
+                    # No matrix change needed for other strategies
+                    matrices_context = nullcontext()
 
-                day_fitness_weights = replace(
-                    fitness_weights,
-                    wrong_time=min(fitness_weights.wrong_time * 1.2, 3.0),
-                )
-                logger.info(
-                    "Module4 day %s: itinerary QA retry strategy=%s wrong_time=%.3f penalized_ids=%s",
-                    day,
-                    strategy,
-                    day_fitness_weights.wrong_time,
-                    len(penalty_ids),
-                )
-                top_candidates, best_fitness_history = optimize_route_ga(
-                    pois_for_ga,
-                    keep_top_n=ALTERNATIVE_CANDIDATE_POOL,
-                    diversity_tracker=global_diversity_tracker,
-                    fitness_weights=day_fitness_weights,
-                    tag_adjustments=tag_adjustments,
-                    penalty_place_ids=penalty_ids,
-                    preference_state=preference_state,
-                )
-                itinerary_retry_attempted = True
-                itinerary_retry_details = {
-                    "strategy": strategy,
-                    "flagged_place_ids": sorted(flagged_ids),
-                    "resolved_flagged_places": resolved,
-                    "raw_problematic_places": itinerary_qa.get("problematic_places"),
-                }
-                prepare_day_matrices(pois, use_osrm=use_osrm)
-                selected = select_exclusive_must_visit_alternatives(
-                    top_candidates, desired_count=ALTERNATIVE_COUNT
-                )
-                recommended_individual = selected[0][0] if selected else None
-                if recommended_individual:
-                    preview = build_day_json(day, recommended_individual, day_pool=pois)
-                    itinerary_qa = evaluate_itinerary_qa(preview["route"], day)
+                with matrices_context:
+                    day_fitness_weights = replace(
+                        fitness_weights,
+                        wrong_time=min(fitness_weights.wrong_time * 1.2, 3.0),
+                    )
+                    logger.info(
+                        "Module4 day %s: itinerary QA retry strategy=%s wrong_time=%.3f penalized_ids=%s",
+                        day,
+                        strategy,
+                        day_fitness_weights.wrong_time,
+                        len(penalty_ids),
+                    )
+                    top_candidates, best_fitness_history = optimize_route_ga(
+                        pois_for_ga,
+                        ga_config,
+                        keep_top_n=ALTERNATIVE_CANDIDATE_POOL,
+                        diversity_tracker=global_diversity_tracker,
+                        fitness_weights=day_fitness_weights,
+                        tag_adjustments=tag_adjustments,
+                        penalty_place_ids=penalty_ids,
+                        preference_state=preference_state,
+                    )
+                    itinerary_retry_attempted = True
+                    itinerary_retry_details = {
+                        "strategy": strategy,
+                        "flagged_place_ids": sorted(flagged_ids),
+                        "resolved_flagged_places": resolved,
+                        "raw_problematic_places": itinerary_qa.get("problematic_places"),
+                    }
+                    selected = select_exclusive_must_visit_alternatives(
+                        top_candidates, desired_count=ALTERNATIVE_COUNT
+                    )
+                    recommended_individual = selected[0][0] if selected else None
+                    if recommended_individual:
+                        preview = build_day_json(day, recommended_individual, day_pool=pois)
+                        itinerary_qa = evaluate_itinerary_qa(preview["route"], day)
 
-        alternatives = []
+        # Build day_json for all selected alternatives (without rank assignment yet)
+        alternatives_data = []
         for rank, (ind, exclusive_id) in enumerate(selected, start=1):
             ga_conv = (
                 best_fitness_history
@@ -2489,6 +2681,26 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
             day_json = _augment_day_json_with_hotel_round_trip(
                 day_json, hotel_anchor, use_osrm=use_osrm
             )
+            alternatives_data.append({
+                "ind": ind,
+                "exclusive_id": exclusive_id,
+                "day_json": day_json,
+                "original_rank": rank,
+            })
+        
+        # If hotel is selected, sort by round-trip distance (min distance first)
+        if hotel_anchor and alternatives_data:
+            alternatives_data.sort(
+                key=lambda x: x["day_json"].get("round_trip_total_distance_km") or float('inf')
+            )
+        
+        # Now build alternatives list with correct ranking
+        alternatives = []
+        for rank, alt_data in enumerate(alternatives_data, start=1):
+            ind = alt_data["ind"]
+            exclusive_id = alt_data["exclusive_id"]
+            day_json = alt_data["day_json"]
+            
             map_name = create_route_map_from_json(
                 f"module4_day_{day}_rank_{rank}",
                 day_json,
@@ -2506,8 +2718,9 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
                 }
             )
 
+        # Use the top-ranked alternative (after sorting by distance if hotel selected) for primary route
         primary_route_ids = (
-            _route_place_ids(selected[0][0]) if selected else set()
+            _route_place_ids(alternatives_data[0]["ind"]) if alternatives_data else set()
         )
         remaining_pois = [
             p for p in pois if str(p.place_id) not in primary_route_ids
@@ -2529,6 +2742,7 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
                 prepare_day_matrices(secondary_pool, use_osrm=use_osrm)
             secondary_candidates, secondary_history = optimize_route_ga(
                 secondary_pool,
+                ga_config,
                 keep_top_n=ALTERNATIVE_CANDIDATE_POOL,
                 diversity_tracker=global_diversity_tracker,
                 fitness_weights=day_fitness_weights,
