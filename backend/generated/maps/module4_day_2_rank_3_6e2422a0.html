@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_90e5d45a052385efec30708b10f4c9e4 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_90e5d45a052385efec30708b10f4c9e4" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_90e5d45a052385efec30708b10f4c9e4 = L.map(
+                "map_90e5d45a052385efec30708b10f4c9e4",
+                {
+                    center: [15.5179749, 73.7626122],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3804843a5cf86db764aeec1bf310d5cc = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3804843a5cf86db764aeec1bf310d5cc.addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+            var marker_b600277546d1c3a7ad1540cd2b9e4c42 = L.marker(
+                [15.5179749, 73.7626122],
+                {
+}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_63bb980f76bba6f7bc0d3c6a29edcc13 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_767181b05f32dc213fb76e9cb62b2da7 = $(`<div id="html_767181b05f32dc213fb76e9cb62b2da7" style="width: 100.0%; height: 100.0%;">Candolim Beach<br>Arrive: 09:00<br>Visit: 09:00 - 11:00<br>Duration: 120 min</div>`)[0];
+                popup_63bb980f76bba6f7bc0d3c6a29edcc13.setContent(html_767181b05f32dc213fb76e9cb62b2da7);
+            
+        
+
+        marker_b600277546d1c3a7ad1540cd2b9e4c42.bindPopup(popup_63bb980f76bba6f7bc0d3c6a29edcc13)
+        ;
+
+        
+    
+    
+            marker_b600277546d1c3a7ad1540cd2b9e4c42.bindTooltip(
+                `<div>
+                     1. Candolim Beach
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca7253754f52b3db100f7bd8df8989b0 = L.circleMarker(
+                [15.5181114, 73.7638247],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_15e500a5a2296a4bfc617781194077ad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6f5eaf493a7b8c6bed13fa2d9da62d0c = $(`<div id="html_6f5eaf493a7b8c6bed13fa2d9da62d0c" style="width: 100.0%; height: 100.0%;">Nearby: Candolim Beach Entry Gate<br>Distance: 0.131 km<br>WPI: 0.735</div>`)[0];
+                popup_15e500a5a2296a4bfc617781194077ad.setContent(html_6f5eaf493a7b8c6bed13fa2d9da62d0c);
+            
+        
+
+        circle_marker_ca7253754f52b3db100f7bd8df8989b0.bindPopup(popup_15e500a5a2296a4bfc617781194077ad)
+        ;
+
+        
+    
+    
+            circle_marker_ca7253754f52b3db100f7bd8df8989b0.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dad9e21d3ce049846aa6c0b17024f0a0 = L.circleMarker(
+                [15.51302, 73.7697696],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_70cf6c858a29134cff75f97757933762 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_61c68bd5cb2264ba3160516c3b7d0a51 = $(`<div id="html_61c68bd5cb2264ba3160516c3b7d0a51" style="width: 100.0%; height: 100.0%;">Nearby: Shri Shantadurga Devasthan<br>Distance: 0.944 km<br>WPI: 0.858</div>`)[0];
+                popup_70cf6c858a29134cff75f97757933762.setContent(html_61c68bd5cb2264ba3160516c3b7d0a51);
+            
+        
+
+        circle_marker_dad9e21d3ce049846aa6c0b17024f0a0.bindPopup(popup_70cf6c858a29134cff75f97757933762)
+        ;
+
+        
+    
+    
+            circle_marker_dad9e21d3ce049846aa6c0b17024f0a0.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7a301dc1965a92689b94867318053d51 = L.circleMarker(
+                [15.5114419, 73.7646301],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_ee9a9f03da666f3e36e5574732171337 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d3b9649ccf241495ae067ff9e0970196 = $(`<div id="html_d3b9649ccf241495ae067ff9e0970196" style="width: 100.0%; height: 100.0%;">Nearby: Francoise beach<br>Distance: 0.758 km<br>WPI: 0.783</div>`)[0];
+                popup_ee9a9f03da666f3e36e5574732171337.setContent(html_d3b9649ccf241495ae067ff9e0970196);
+            
+        
+
+        circle_marker_7a301dc1965a92689b94867318053d51.bindPopup(popup_ee9a9f03da666f3e36e5574732171337)
+        ;
+
+        
+    
+    
+            circle_marker_7a301dc1965a92689b94867318053d51.bindTooltip(
+                `<div>
+                     Nearby to 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_10f436cafa3aa0d2695158b33343fa1f = L.marker(
+                [15.5095841, 73.7693015],
+                {
+}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_ba2f909e1b7ec2e38842c554f5fbd279 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ce65d4e07b1e671001dd3eec211c7554 = $(`<div id="html_ce65d4e07b1e671001dd3eec211c7554" style="width: 100.0%; height: 100.0%;">AAA All About Alcohol Museum<br>Arrive: 11:02<br>Visit: 11:02 - 12:02<br>Duration: 60 min</div>`)[0];
+                popup_ba2f909e1b7ec2e38842c554f5fbd279.setContent(html_ce65d4e07b1e671001dd3eec211c7554);
+            
+        
+
+        marker_10f436cafa3aa0d2695158b33343fa1f.bindPopup(popup_ba2f909e1b7ec2e38842c554f5fbd279)
+        ;
+
+        
+    
+    
+            marker_10f436cafa3aa0d2695158b33343fa1f.bindTooltip(
+                `<div>
+                     2. AAA All About Alcohol Museum
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b1ac586035aaf13b1d866c71a715897 = L.circleMarker(
+                [15.51302, 73.7697696],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_2b6e88d2867c5fae47506fee41cad0d3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dcb97bff243150f975ab70a50bee30df = $(`<div id="html_dcb97bff243150f975ab70a50bee30df" style="width: 100.0%; height: 100.0%;">Nearby: Shri Shantadurga Devasthan<br>Distance: 0.385 km<br>WPI: 0.858</div>`)[0];
+                popup_2b6e88d2867c5fae47506fee41cad0d3.setContent(html_dcb97bff243150f975ab70a50bee30df);
+            
+        
+
+        circle_marker_9b1ac586035aaf13b1d866c71a715897.bindPopup(popup_2b6e88d2867c5fae47506fee41cad0d3)
+        ;
+
+        
+    
+    
+            circle_marker_9b1ac586035aaf13b1d866c71a715897.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe31f666ae5a24c9af047e54f289ed5f = L.circleMarker(
+                [15.5114419, 73.7646301],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_ff719a01edd5c98e77dc0606d3deb95c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b9865290cffba891a35b4a10ce3d96b = $(`<div id="html_7b9865290cffba891a35b4a10ce3d96b" style="width: 100.0%; height: 100.0%;">Nearby: Francoise beach<br>Distance: 0.541 km<br>WPI: 0.783</div>`)[0];
+                popup_ff719a01edd5c98e77dc0606d3deb95c.setContent(html_7b9865290cffba891a35b4a10ce3d96b);
+            
+        
+
+        circle_marker_fe31f666ae5a24c9af047e54f289ed5f.bindPopup(popup_ff719a01edd5c98e77dc0606d3deb95c)
+        ;
+
+        
+    
+    
+            circle_marker_fe31f666ae5a24c9af047e54f289ed5f.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a687f93c9a8082df87a396baf155122c = L.circleMarker(
+                [15.4991764, 73.7674326],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_f3fea316139428cb57415dae700a4f13 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2a8e69514d61441a29f8b413e97fee83 = $(`<div id="html_2a8e69514d61441a29f8b413e97fee83" style="width: 100.0%; height: 100.0%;">Nearby: Sinquerim Beach<br>Distance: 1.174 km<br>WPI: 0.829</div>`)[0];
+                popup_f3fea316139428cb57415dae700a4f13.setContent(html_2a8e69514d61441a29f8b413e97fee83);
+            
+        
+
+        circle_marker_a687f93c9a8082df87a396baf155122c.bindPopup(popup_f3fea316139428cb57415dae700a4f13)
+        ;
+
+        
+    
+    
+            circle_marker_a687f93c9a8082df87a396baf155122c.bindTooltip(
+                `<div>
+                     Nearby to 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4cdfac98af380f944eb842ea95bd95de = L.marker(
+                [15.4984466, 73.7663559],
+                {
+}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_4c46fff03c80a7e64bbba79fa13101d2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_65f0f355b72887ef7ee80ac828d7e05f = $(`<div id="html_65f0f355b72887ef7ee80ac828d7e05f" style="width: 100.0%; height: 100.0%;">Sinquerim Fort<br>Arrive: 13:30<br>Visit: 13:30 - 15:00<br>Duration: 90 min</div>`)[0];
+                popup_4c46fff03c80a7e64bbba79fa13101d2.setContent(html_65f0f355b72887ef7ee80ac828d7e05f);
+            
+        
+
+        marker_4cdfac98af380f944eb842ea95bd95de.bindPopup(popup_4c46fff03c80a7e64bbba79fa13101d2)
+        ;
+
+        
+    
+    
+            marker_4cdfac98af380f944eb842ea95bd95de.bindTooltip(
+                `<div>
+                     3. Sinquerim Fort
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_61949f0fbad9f284306c9b45d3a4a051 = L.circleMarker(
+                [15.4991764, 73.7674326],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_467e3cfa83fd64faef72b30d6a46130a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f32d533c9d9d1ab4bc5b11ce0e1a2755 = $(`<div id="html_f32d533c9d9d1ab4bc5b11ce0e1a2755" style="width: 100.0%; height: 100.0%;">Nearby: Sinquerim Beach<br>Distance: 0.141 km<br>WPI: 0.829</div>`)[0];
+                popup_467e3cfa83fd64faef72b30d6a46130a.setContent(html_f32d533c9d9d1ab4bc5b11ce0e1a2755);
+            
+        
+
+        circle_marker_61949f0fbad9f284306c9b45d3a4a051.bindPopup(popup_467e3cfa83fd64faef72b30d6a46130a)
+        ;
+
+        
+    
+    
+            circle_marker_61949f0fbad9f284306c9b45d3a4a051.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bbb8d89fd12a5f4d44dcd3217b37b97c = L.circleMarker(
+                [15.4975629, 73.7649449],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_b2a4a6d304f514fe47b1d8d3937bf7ea = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2d1a9d44c56c86343b461f216dc61685 = $(`<div id="html_2d1a9d44c56c86343b461f216dc61685" style="width: 100.0%; height: 100.0%;">Nearby: Sinquerim Fort view Point<br>Distance: 0.18 km<br>WPI: 0.812</div>`)[0];
+                popup_b2a4a6d304f514fe47b1d8d3937bf7ea.setContent(html_2d1a9d44c56c86343b461f216dc61685);
+            
+        
+
+        circle_marker_bbb8d89fd12a5f4d44dcd3217b37b97c.bindPopup(popup_b2a4a6d304f514fe47b1d8d3937bf7ea)
+        ;
+
+        
+    
+    
+            circle_marker_bbb8d89fd12a5f4d44dcd3217b37b97c.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_37a6622206f555d4589116a349de3b32 = L.circleMarker(
+                [15.4942477, 73.7666941],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_197f69c79bdd3ed25d7adf19fda3652f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_10f781cf76b7391b50877f658a8e31c6 = $(`<div id="html_10f781cf76b7391b50877f658a8e31c6" style="width: 100.0%; height: 100.0%;">Nearby: Kaurati's Caves<br>Distance: 0.468 km<br>WPI: 0.848</div>`)[0];
+                popup_197f69c79bdd3ed25d7adf19fda3652f.setContent(html_10f781cf76b7391b50877f658a8e31c6);
+            
+        
+
+        circle_marker_37a6622206f555d4589116a349de3b32.bindPopup(popup_197f69c79bdd3ed25d7adf19fda3652f)
+        ;
+
+        
+    
+    
+            circle_marker_37a6622206f555d4589116a349de3b32.bindTooltip(
+                `<div>
+                     Nearby to 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9d41b00ddb5ee3ca54998ca855fc77c3 = L.marker(
+                [15.4922519, 73.7737462],
+                {
+}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_4e0087e2d4621063ee1bf322728d1539 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2ef800ccea5fb1353515284777d911d = $(`<div id="html_f2ef800ccea5fb1353515284777d911d" style="width: 100.0%; height: 100.0%;">Fort Aguada<br>Arrive: 15:02<br>Visit: 15:02 - 16:32<br>Duration: 90 min</div>`)[0];
+                popup_4e0087e2d4621063ee1bf322728d1539.setContent(html_f2ef800ccea5fb1353515284777d911d);
+            
+        
+
+        marker_9d41b00ddb5ee3ca54998ca855fc77c3.bindPopup(popup_4e0087e2d4621063ee1bf322728d1539)
+        ;
+
+        
+    
+    
+            marker_9d41b00ddb5ee3ca54998ca855fc77c3.bindTooltip(
+                `<div>
+                     4. Fort Aguada
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_719d9d6094ea027dc5ddbf0b81afcc34 = L.circleMarker(
+                [15.4920574, 73.7740664],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_ad7e90da835bba4b0875b18a1d150699 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6474e75338a6485e7126ca268026afba = $(`<div id="html_6474e75338a6485e7126ca268026afba" style="width: 100.0%; height: 100.0%;">Nearby: Fort Aguada Lighthouse<br>Distance: 0.041 km<br>WPI: 0.842</div>`)[0];
+                popup_ad7e90da835bba4b0875b18a1d150699.setContent(html_6474e75338a6485e7126ca268026afba);
+            
+        
+
+        circle_marker_719d9d6094ea027dc5ddbf0b81afcc34.bindPopup(popup_ad7e90da835bba4b0875b18a1d150699)
+        ;
+
+        
+    
+    
+            circle_marker_719d9d6094ea027dc5ddbf0b81afcc34.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6c64491494f48814d38c9f6c34b914e3 = L.circleMarker(
+                [15.4916926, 73.7739531],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_212d88ac1a50707e94e592deebcdb40d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_625e7456c729728356e79e01a33fecb8 = $(`<div id="html_625e7456c729728356e79e01a33fecb8" style="width: 100.0%; height: 100.0%;">Nearby: Aguada fort photoshoot point<br>Distance: 0.066 km<br>WPI: 0.711</div>`)[0];
+                popup_212d88ac1a50707e94e592deebcdb40d.setContent(html_625e7456c729728356e79e01a33fecb8);
+            
+        
+
+        circle_marker_6c64491494f48814d38c9f6c34b914e3.bindPopup(popup_212d88ac1a50707e94e592deebcdb40d)
+        ;
+
+        
+    
+    
+            circle_marker_6c64491494f48814d38c9f6c34b914e3.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_35fb0d863ad766ea7b19cc0601cb4c67 = L.circleMarker(
+                [15.4928118, 73.7777471],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_551a128ba1d343e3f0946b2d3f65bba5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a994ebf95943659164fdc5059ac28dc0 = $(`<div id="html_a994ebf95943659164fdc5059ac28dc0" style="width: 100.0%; height: 100.0%;">Nearby: Aguada rocky Beach<br>Distance: 0.433 km<br>WPI: 0.781</div>`)[0];
+                popup_551a128ba1d343e3f0946b2d3f65bba5.setContent(html_a994ebf95943659164fdc5059ac28dc0);
+            
+        
+
+        circle_marker_35fb0d863ad766ea7b19cc0601cb4c67.bindPopup(popup_551a128ba1d343e3f0946b2d3f65bba5)
+        ;
+
+        
+    
+    
+            circle_marker_35fb0d863ad766ea7b19cc0601cb4c67.bindTooltip(
+                `<div>
+                     Nearby to 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_295b0adb2715f551c864f17ad97a228b = L.marker(
+                [15.4972198, 73.781824],
+                {
+}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_987dad5fed38a59bd8fe40a0d6a9209c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7141d489222dbfbe7cd35e31059b9cbf = $(`<div id="html_7141d489222dbfbe7cd35e31059b9cbf" style="width: 100.0%; height: 100.0%;">Dolphin Point<br>Arrive: 16:34<br>Visit: 16:34 - 17:34<br>Duration: 60 min</div>`)[0];
+                popup_987dad5fed38a59bd8fe40a0d6a9209c.setContent(html_7141d489222dbfbe7cd35e31059b9cbf);
+            
+        
+
+        marker_295b0adb2715f551c864f17ad97a228b.bindPopup(popup_987dad5fed38a59bd8fe40a0d6a9209c)
+        ;
+
+        
+    
+    
+            marker_295b0adb2715f551c864f17ad97a228b.bindTooltip(
+                `<div>
+                     5. Dolphin Point
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2af1b71fee348dba45dd121ba8f5eb92 = L.circleMarker(
+                [15.4972169, 73.7818865],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_b72ab36e986756524a4912dd654c64fc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_89249d43d495947ad1f24491360a1c47 = $(`<div id="html_89249d43d495947ad1f24491360a1c47" style="width: 100.0%; height: 100.0%;">Nearby: Dolphin Adventures Goa (Sinquerim Jetty)<br>Distance: 0.007 km<br>WPI: 0.76</div>`)[0];
+                popup_b72ab36e986756524a4912dd654c64fc.setContent(html_89249d43d495947ad1f24491360a1c47);
+            
+        
+
+        circle_marker_2af1b71fee348dba45dd121ba8f5eb92.bindPopup(popup_b72ab36e986756524a4912dd654c64fc)
+        ;
+
+        
+    
+    
+            circle_marker_2af1b71fee348dba45dd121ba8f5eb92.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8e6e7183c0b73a7740ba0dac22eb148e = L.circleMarker(
+                [15.4939002, 73.7819478],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_4b0c9c18cb6ef637a62f60ad9cec7e66 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d9e4e08375b7ef6deedb0d23acd93373 = $(`<div id="html_d9e4e08375b7ef6deedb0d23acd93373" style="width: 100.0%; height: 100.0%;">Nearby: St. Lawrence's Church, Sinquerim<br>Distance: 0.369 km<br>WPI: 0.814</div>`)[0];
+                popup_4b0c9c18cb6ef637a62f60ad9cec7e66.setContent(html_d9e4e08375b7ef6deedb0d23acd93373);
+            
+        
+
+        circle_marker_8e6e7183c0b73a7740ba0dac22eb148e.bindPopup(popup_4b0c9c18cb6ef637a62f60ad9cec7e66)
+        ;
+
+        
+    
+    
+            circle_marker_8e6e7183c0b73a7740ba0dac22eb148e.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4526602ee1e0341712efb777ad55200c = L.circleMarker(
+                [15.493377, 73.782929],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+    
+        var popup_691d6bbaea98c717a4b4f1cdc1d760fd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_491117da2a394d57e02729776b41a04e = $(`<div id="html_491117da2a394d57e02729776b41a04e" style="width: 100.0%; height: 100.0%;">Nearby: Aguada View Point<br>Distance: 0.443 km<br>WPI: 0.757</div>`)[0];
+                popup_691d6bbaea98c717a4b4f1cdc1d760fd.setContent(html_491117da2a394d57e02729776b41a04e);
+            
+        
+
+        circle_marker_4526602ee1e0341712efb777ad55200c.bindPopup(popup_691d6bbaea98c717a4b4f1cdc1d760fd)
+        ;
+
+        
+    
+    
+            circle_marker_4526602ee1e0341712efb777ad55200c.bindTooltip(
+                `<div>
+                     Nearby to 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_20a8167afa687479a8329d073516f408 = L.polyline(
+                [[15.518144, 73.76388], [15.518144, 73.76388], [15.518119, 73.763903], [15.518102, 73.76394], [15.518106, 73.763992], [15.518134, 73.76403], [15.518161, 73.764067], [15.518226, 73.764464], [15.518255, 73.76455], [15.518311, 73.764894], [15.518373, 73.765353], [15.518424, 73.76574], [15.51841, 73.766428], [15.518449, 73.766746], [15.518513, 73.766905], [15.518548, 73.766992], [15.518605, 73.767586], [15.518266, 73.767629], [15.517588, 73.767757], [15.517391, 73.767839], [15.517039, 73.767988], [15.516562, 73.768188], [15.516244, 73.768333], [15.515957, 73.768402], [15.51592, 73.7684], [15.515824, 73.768394], [15.515663, 73.768385], [15.515517, 73.768365], [15.515315, 73.768337], [15.514877, 73.768378], [15.514462, 73.768527], [15.514334, 73.768585], [15.513902, 73.76875], [15.513482, 73.76882], [15.513382, 73.768832], [15.513001, 73.76882], [15.512828, 73.768814], [15.51265, 73.768832], [15.51251, 73.768856], [15.512267, 73.768921], [15.512056, 73.768955], [15.511822, 73.768991], [15.511543, 73.769012], [15.511401, 73.76902], [15.511155, 73.769028], [15.510981, 73.769038], [15.51081, 73.769059], [15.510629, 73.769089], [15.510378, 73.769146], [15.510253, 73.769188], [15.509598, 73.76936], [15.509441, 73.769401], [15.509348, 73.769425], [15.509116, 73.769481], [15.508901, 73.769533], [15.508641, 73.769613], [15.508301, 73.769736], [15.508091, 73.769798], [15.507833, 73.769881], [15.507609, 73.769954], [15.507234, 73.770076], [15.507076, 73.770119], [15.50681, 73.770183], [15.506661, 73.77022], [15.506222, 73.770327], [15.505885, 73.770422], [15.505267, 73.7706], [15.504962, 73.770683], [15.504589, 73.770779], [15.504427, 73.770832], [15.503919, 73.771001], [15.503867, 73.771017], [15.503659, 73.771092], [15.503467, 73.771157], [15.503259, 73.771232], [15.503175, 73.771266], [15.503015, 73.771311], [15.50299, 73.771317], [15.50288, 73.77134], [15.50273, 73.771367], [15.502626, 73.771377], [15.502485, 73.77139], [15.502255, 73.771388], [15.502047, 73.77139], [15.501922, 73.771391], [15.501474, 73.771394], [15.501065, 73.771395], [15.500233, 73.771397], [15.499681, 73.771415], [15.499294, 73.771436], [15.499032, 73.771435], [15.498957, 73.771462], [15.498795, 73.771548], [15.498742, 73.771572], [15.498676, 73.771444], [15.498643, 73.771231], [15.498645, 73.770625], [15.498675, 73.770034], [15.498712, 73.769589], [15.498705, 73.769086], [15.498661, 73.768846], [15.49856, 73.768347], [15.498439, 73.768355], [15.498243, 73.768356], [15.498055, 73.768339], [15.497902, 73.768293], [15.497758, 73.768179], [15.497662, 73.768059], [15.497628, 73.768012], [15.497383, 73.767473], [15.497304, 73.767217], [15.497258, 73.76706], [15.497304, 73.767217], [15.497383, 73.767473], [15.497628, 73.768012], [15.497662, 73.768059], [15.497758, 73.768179], [15.497902, 73.768293], [15.498055, 73.768339], [15.498243, 73.768356], [15.498439, 73.768355], [15.49856, 73.768347], [15.498661, 73.768846], [15.498705, 73.769086], [15.498712, 73.769589], [15.498675, 73.770034], [15.498645, 73.770625], [15.498643, 73.771231], [15.498676, 73.771444], [15.498742, 73.771572], [15.49871, 73.771592], [15.498705, 73.771598], [15.498692, 73.771617], [15.498673, 73.771876], [15.498639, 73.77215], [15.498583, 73.772451], [15.498487, 73.772787], [15.498403, 73.7732], [15.498379, 73.773334], [15.498093, 73.774577], [15.498085, 73.774877], [15.498152, 73.775196], [15.4984, 73.776423], [15.498431, 73.776521], [15.498478, 73.77667], [15.498607, 73.777061], [15.498777, 73.777592], [15.498845, 73.777898], [15.498896, 73.778123], [15.498901, 73.778311], [15.498856, 73.778619], [15.498622, 73.779093], [15.49817, 73.780146], [15.497683, 73.780745], [15.497601, 73.780889], [15.497199, 73.781762], [15.497148, 73.781814], [15.497078, 73.78185], [15.496885, 73.781944], [15.496761, 73.782032], [15.496651, 73.782129], [15.496596, 73.782201], [15.496546, 73.782297], [15.496512, 73.782408], [15.496501, 73.782505], [15.496497, 73.782636], [15.496516, 73.782761], [15.496558, 73.78302], [15.496532, 73.783193], [15.49646, 73.783313], [15.49582, 73.783638], [15.49547, 73.783635], [15.495099, 73.783652], [15.494784, 73.783686], [15.494612, 73.78367], [15.494439, 73.783626], [15.494372, 73.783567], [15.494357, 73.783506], [15.494354, 73.783407], [15.494373, 73.783307], [15.494568, 73.782556], [15.494568, 73.782363], [15.494485, 73.781828], [15.49447, 73.781643], [15.494479, 73.781186], [15.494513, 73.780647], [15.494531, 73.779558], [15.494557, 73.779139], [15.494616, 73.778842], [15.494682, 73.778687], [15.494777, 73.778498], [15.494844, 73.778321], [15.494894, 73.778157], [15.494919, 73.778015], [15.494901, 73.777815], [15.494899, 73.777684], [15.494883, 73.777243], [15.494888, 73.776964], [15.494868, 73.776779], [15.494807, 73.776607], [15.494673, 73.776406], [15.494374, 73.776015], [15.49413, 73.775687], [15.493743, 73.774908], [15.49363, 73.77467], [15.493557, 73.774522], [15.493441, 73.774252], [15.493291, 73.773929], [15.493142, 73.773603], [15.493101, 73.773468], [15.493142, 73.773603], [15.493291, 73.773929], [15.493441, 73.774252], [15.493557, 73.774522], [15.49363, 73.77467], [15.493743, 73.774908], [15.49413, 73.775687], [15.494374, 73.776015], [15.494673, 73.776406], [15.494807, 73.776607], [15.494868, 73.776779], [15.494888, 73.776964], [15.494883, 73.777243], [15.494899, 73.777684], [15.494901, 73.777815], [15.494919, 73.778015], [15.494894, 73.778157], [15.494844, 73.778321], [15.494777, 73.778498], [15.494682, 73.778687], [15.494616, 73.778842], [15.494557, 73.779139], [15.494531, 73.779558], [15.494513, 73.780647], [15.494479, 73.781186], [15.49447, 73.781643], [15.494485, 73.781828], [15.494568, 73.782363], [15.494568, 73.782556], [15.494373, 73.783307], [15.494354, 73.783407], [15.494357, 73.783506], [15.494372, 73.783567], [15.494439, 73.783626], [15.494612, 73.78367], [15.494784, 73.783686], [15.495099, 73.783652], [15.49547, 73.783635], [15.49582, 73.783638], [15.49646, 73.783313], [15.496532, 73.783193], [15.496558, 73.78302], [15.496516, 73.782761], [15.496497, 73.782636], [15.496501, 73.782505], [15.496512, 73.782408], [15.496546, 73.782297], [15.496596, 73.782201], [15.496651, 73.782129], [15.496761, 73.782032], [15.496885, 73.781944], [15.497078, 73.78185], [15.497148, 73.781814], [15.49718, 73.781782]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_90e5d45a052385efec30708b10f4c9e4);
+        
+</script>
+</html>
