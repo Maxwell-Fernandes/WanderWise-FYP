@@ -69,7 +69,7 @@ def evaluate_itinerary_qa(
         indent=2,
     )
     try:
-        raw = groq_chat_json(SYSTEM_PROMPT, user)
+        raw = groq_chat_json(SYSTEM_PROMPT, user, max_tokens=500)
         data = json.loads(raw)
         ok = bool(data.get("ok", False))
         issues = data.get("issues") or []

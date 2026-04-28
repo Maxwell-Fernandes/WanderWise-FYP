@@ -119,6 +119,7 @@ def resolve_module1_interests_llm(user_preference: str) -> Module1LlmResult:
     text = groq_chat_json(
         SYSTEM_PROMPT,
         f"user_preference:\n{(user_preference or '').strip() or '(none)'}",
+        max_tokens=300,
     )
     data = json.loads(text.strip())
     if not isinstance(data, dict):
