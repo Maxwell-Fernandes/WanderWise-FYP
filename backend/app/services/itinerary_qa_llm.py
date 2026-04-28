@@ -11,39 +11,23 @@ from app.services.groq_client import groq_chat_json
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """You are a smart travel assistant reviewing a single-day Goa (India) itinerary. Stops are given in visit order (sequence 1 → N). Use names and times only; infer place types from names (beach, fort, church, temple, waterfall, spice plantation, wildlife, market, viewpoint, etc.).
+SYSTEM_PROMPT = """You are a travel QA reviewing a single-day Goa itinerary. Stops are in visit order (1→N).
 
-Geographic context:
-- North coast: Calangute, Baga, Anjuna, Vagator, Arambol — busy roads, strong midday sun on sand.
-- South coast: Colva, Benaulim, Palolem, Agonda — often quieter; same midday beach heat.
-- Central / inland: Old Goa churches, Panaji, spice farms; east: Western Ghats (Dudhsagar-area waterfalls, treks) — often better in cooler morning; long drives from far north to far south same day are taxing.
+Rules:
+1. **Order** — Flag ping-pong (deep south→far north→south) or heavy treks after beach afternoons.
+2. **Timing** — Windows must advance; flag overlaps or impossible travel.
+3. **Beach rule (HARD)** — Beaches must NOT overlap 12:00–16:00 (scorching sun).
+4. **Variety** — Flag only stark repetition (3+ similar beaches with no cultural break).
+5. **Reasonableness** — Don't nitpick minor imperfections. If plausible + beach rule holds → ok=true.
+6. **Replanning** — When ok=false, name concrete redundant/problematic stops.
 
-Evaluate the whole day and the sequence (not just one stop):
-
-1) **Order & flow** — Does the order make sense for a tourist day? Flag jarring ping-pong (e.g. deep south → far north → south again without reason), or putting a heavy trek/waterfall after a full beach afternoon when energy/sun exposure is already high, or clustering incompatible moods (e.g. many sacred sites back-to-back with loud party beaches) if it feels obviously poor.
-
-2) **Timing & pacing** — Visit windows should advance through the day (no backward time travel). Flag overlapping visit windows between consecutive or nearby stops if times imply impossible travel. Flag cramming too many long outdoor blocks in peak heat without shade breaks.
-
-3) **Beach rule (hard product rule)** — Any stop that is clearly a beach must NOT have visit time overlapping 12:00–16:00 (scorching sun). Prefer morning or late afternoon/evening for beaches.
-
-4) **Variety** — Flag only clear problems: same narrow activity repeated unreasonably (e.g. three similar beaches in a row with no cultural/nature break) or a day that ignores obvious opportunities implied by the mix (optional, only if stark).
-
-5) **Reasonableness** — You do not know exact drive minutes; use Goa common sense only. Do not nitpick minor imperfections. If the sequence is plausible and the beach rule holds, ok=true.
-
-6) **Replanning hints (when ok is false)** — List concrete stops that are redundant, harmful to the sequence, or violate rules. Use names that match or closely match the provided stop names (sequence field). The planner may remove them from the day or penalize them.
-
-Respond with a single JSON object only:
+JSON only:
 {
-  "ok": true|false,
-  "issues": ["short strings; cite sequence numbers when useful"],
+  "ok": bool,
+  "issues": ["short strings with seq#"],
   "summary": "one sentence",
-  "problematic_places": [
-    {"name": "string matching a stop name", "reason": "brief"},
-    ...
-  ]
-}
-
-When ok=true, use problematic_places: []. When ok=false, include every stop you recommend dropping or fixing (can be empty only if problems are purely ordering with no specific culprit)."""
+  "problematic_places": [{"name": "...", "reason": "brief"}]
+}"""
 
 
 def evaluate_itinerary_qa(
