@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 from typing import Any
@@ -10,6 +11,9 @@ from app.config import GROQ_API_KEY
 from app.services.groq_client import groq_chat_json
 
 logger = logging.getLogger(__name__)
+
+# In-memory cache for itinerary QA results (keyed by route hash)
+_QA_CACHE: dict[str, dict[str, Any]] = {}
 
 SYSTEM_PROMPT = """You are a travel QA reviewing a single-day Goa itinerary. Stops are in visit order (1→N).
 
@@ -38,6 +42,7 @@ def evaluate_itinerary_qa(
     Call Groq once to sanity-check the recommended route.
 
     Returns a dict with keys: ok, issues, summary, source, and problematic_places (list).
+    Results are cached by route content (name, visit times) to avoid redundant API calls.
     """
     if not GROQ_API_KEY:
         return {
@@ -47,6 +52,21 @@ def evaluate_itinerary_qa(
             "source": "skipped",
             "problematic_places": [],
         }
+
+    # Build cache key from route stops (name and timing, which define the route)
+    cache_key_data = [
+        (s.get("name"), s.get("visit_start"), s.get("visit_end"))
+        for s in route_stops
+    ]
+    cache_key = hashlib.sha256(
+        json.dumps(cache_key_data, sort_keys=True, ensure_ascii=False).encode()
+    ).hexdigest()
+
+    # Return cached result if available
+    if cache_key in _QA_CACHE:
+        cached = _QA_CACHE[cache_key].copy()
+        cached["source"] = "cache"  # Mark as from cache
+        return cached
 
     slim = []
     for i, s in enumerate(route_stops, start=1):
@@ -79,13 +99,16 @@ def evaluate_itinerary_qa(
         raw_pp = data.get("problematic_places") or []
         if not isinstance(raw_pp, list):
             raw_pp = []
-        return {
+        result = {
             "ok": ok,
             "issues": [str(x) for x in issues],
             "summary": summary,
             "source": "groq",
             "problematic_places": raw_pp,
         }
+        # Cache the result
+        _QA_CACHE[cache_key] = result.copy()
+        return result
     except Exception as exc:
         logger.warning("Itinerary QA Groq failed: %s", exc)
         return {
