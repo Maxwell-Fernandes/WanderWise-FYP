@@ -179,7 +179,7 @@ def resolve_fitness_profile(
     if module1_context and module1_context.strip():
         user_block += f"module1_structured_extraction (from Groq interest pass; honor themes and constraints):\n{module1_context.strip()}\n"
     try:
-        content = groq_chat_json(SYSTEM_PROMPT, user_block)
+        content = groq_chat_json(SYSTEM_PROMPT, user_block, max_tokens=400)
         wd, tp = _parse_llm_content(content)
         merged = merge_fitness_weights(base, wd)
         merged_tags = {**defaults, **tp}

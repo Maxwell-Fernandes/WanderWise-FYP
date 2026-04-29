@@ -10,6 +10,7 @@ import folium
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
 from app.config import EXPORTS_DIR, MAPS_DIR
 from app.services.ga_config import MIN_POIS_PER_ROUTE
@@ -228,18 +229,95 @@ def _haversine_km_array(lat_series: pd.Series, lon_series: pd.Series, lat: float
     return 6371.0 * c
 
 
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Scalar haversine distance between two points in km."""
+    lat1_r, lon1_r = np.radians(lat1), np.radians(lon1)
+    lat2_r, lon2_r = np.radians(lat2), np.radians(lon2)
+    dlat = lat1_r - lat2_r
+    dlon = lon1_r - lon2_r
+    a = np.sin(dlat / 2) ** 2 + np.cos(lat1_r) * np.cos(lat2_r) * np.sin(dlon / 2) ** 2
+    return 6371.0 * 2 * np.arcsin(np.sqrt(a))
+
+
+def _to_local_km(lat_arr: np.ndarray, lon_arr: np.ndarray) -> np.ndarray:
+    """Convert lat/lon arrays to local km coordinates centered at the mean."""
+    R = 6371.0
+    lat0, lon0 = lat_arr.mean(), lon_arr.mean()
+    x_km = (lon_arr - lon0) * np.radians(R) * np.cos(np.radians(lat0))
+    y_km = (lat_arr - lat0) * np.radians(R)
+    return np.column_stack([x_km, y_km])
+
+
+def _enforce_min_cluster_size(
+    labels: np.ndarray,
+    features_km: np.ndarray,
+    min_size: int = 4,
+    centroids_km: np.ndarray | None = None,
+) -> np.ndarray:
+    """Merge undersized clusters into their nearest large cluster."""
+    labels = labels.copy()
+    unique, counts = np.unique(labels, return_counts=True)
+    small = [c for c, n in zip(unique, counts) if n < min_size]
+    large = [c for c, n in zip(unique, counts) if n >= min_size]
+    if not small:
+        return labels
+    if not large:
+        return np.zeros_like(labels)
+    if centroids_km is None:
+        centroids_km = np.array([features_km[labels == c].mean(axis=0) for c in unique])
+    for sc in small:
+        mask = labels == sc
+        sc_centroid = centroids_km[sc]
+        nearest = min(large, key=lambda lc: float(np.linalg.norm(sc_centroid - centroids_km[lc])))
+        labels[mask] = nearest
+    remap = {old: new for new, old in enumerate(np.unique(labels))}
+    return np.array([remap[l] for l in labels])
+
+
+def _order_clusters_by_proximity(
+    labels: np.ndarray,
+    df: pd.DataFrame,
+    anchor_lat: float | None = None,
+    anchor_lon: float | None = None,
+) -> np.ndarray:
+    """Reorder cluster labels so Day 1 is closest to anchor (or northernmost)."""
+    unique = np.unique(labels)
+    centroids = {
+        c: (
+            df.loc[labels == c, "latitude"].mean(),
+            df.loc[labels == c, "longitude"].mean(),
+        )
+        for c in unique
+    }
+    if anchor_lat is not None and anchor_lon is not None:
+        ordered = sorted(
+            unique,
+            key=lambda c: _haversine_km(centroids[c][0], centroids[c][1], anchor_lat, anchor_lon),
+        )
+    else:
+        ordered = sorted(unique, key=lambda c: centroids[c][0], reverse=True)
+    day_map = {old: new + 1 for new, old in enumerate(ordered)}
+    return np.array([day_map[l] for l in labels])
+
+
 def _build_cluster_features(
     df: pd.DataFrame, anchor_lat: float | None, anchor_lon: float | None
 ) -> tuple[np.ndarray, pd.Series | None]:
-    coords = df[["latitude", "longitude"]].to_numpy()
+    coords_km = _to_local_km(
+        df["latitude"].to_numpy(dtype=float),
+        df["longitude"].to_numpy(dtype=float),
+    )
     if anchor_lat is None or anchor_lon is None:
-        return coords, None
+        return coords_km, None
 
     anchor_distance_km = _haversine_km_array(
         df["latitude"], df["longitude"], anchor_lat, anchor_lon
     )
     distance_feature = (anchor_distance_km.to_numpy() * HOTEL_DISTANCE_FEATURE_WEIGHT).reshape(-1, 1)
-    features = np.hstack([coords, distance_feature])
+    features = np.hstack([coords_km, distance_feature])
+
+    scaler = StandardScaler()
+    features = scaler.fit_transform(features)
     return features, anchor_distance_km
 
 
@@ -330,17 +408,30 @@ def _apply_travel_radius_filter(
             anchor_warning = "Anchor not found for provided hotel or region; using dataset mean."
 
     df_base = df.copy()
-    features = df_base[["latitude", "longitude"]].to_numpy()
+    coords_km = _to_local_km(
+        df_base["latitude"].to_numpy(dtype=float),
+        df_base["longitude"].to_numpy(dtype=float),
+    )
+    anchor_dist = _haversine_km_array(
+        df_base["latitude"], df_base["longitude"], anchor_lat, anchor_lon
+    ).to_numpy().reshape(-1, 1)
+    features = np.hstack([coords_km, anchor_dist * HOTEL_DISTANCE_FEATURE_WEIGHT])
+
+    scaler = StandardScaler()
+    features = scaler.fit_transform(features)
+
     labels, _, _ = perform_kmeans_clustering(features, num_days, random_state=random_state)
+    labels = _enforce_min_cluster_size(labels, coords_km, min_size=4)
+    labels = _order_clusters_by_proximity(labels, df_base, anchor_lat, anchor_lon)
     df_base["cluster"] = labels
+
     df_pop, _ = calculate_popularity_score(df_base, min_reviews=min_reviews)
-    df_norm = normalize_popularity_by_cluster(df_pop)
+    interests = _derive_positive_interests(user_preference, positive_interests)
+    df_norm = normalize_popularity_hybrid(df_pop, positive_interests=interests)
     df_norm["baseline_wpi"] = df_norm["normalized_popularity"]
     df_norm["anchor_distance_km"] = _haversine_km_array(
         df_norm["latitude"], df_norm["longitude"], anchor_lat, anchor_lon
     )
-
-    interests = _derive_positive_interests(user_preference, positive_interests)
     min_count = max(num_days * MIN_POIS_PER_ROUTE, num_days)
     min_within = num_days
     exception_cap = max(num_days, min(min_count, num_days * TRAVEL_LESS_EXCEPTION_PER_DAY))
@@ -444,6 +535,63 @@ def normalize_popularity_by_cluster(df_with_popularity: pd.DataFrame):
     
     df_normalized["normalized_popularity"] = df_normalized.apply(safe_normalize, axis=1)
     return df_normalized
+
+
+def _category_match_boost(
+    categories: list[str], positive_interests: list[str], boost_factor: float = 1.3
+) -> float:
+    """Return a multiplier for POIs whose categories match user interests."""
+    if not positive_interests or not categories:
+        return 1.0
+    cat_set = set(c.lower().strip() for c in categories)
+    int_set = set(i.lower().strip() for i in positive_interests)
+    if cat_set & int_set:
+        return boost_factor
+    for cat in cat_set:
+        for interest in int_set:
+            if interest in cat or cat in interest:
+                return 1.1
+    return 1.0
+
+
+def normalize_popularity_hybrid(
+    df_with_popularity: pd.DataFrame,
+    positive_interests: list[str] | None = None,
+    global_weight: float = 0.8,
+    cluster_weight: float = 0.2,
+    category_boost: float = 1.3,
+) -> pd.DataFrame:
+    """Hybrid popularity normalization: global blend + optional category boost."""
+    df = df_with_popularity.copy()
+
+    has_interests = positive_interests and len(positive_interests) > 0
+    if has_interests:
+        df["_boosted_score"] = df.apply(
+            lambda row: row["popularity_score"]
+            * _category_match_boost(
+                row.get("categories", []), positive_interests, category_boost
+            ),
+            axis=1,
+        )
+        score_col = "_boosted_score"
+    else:
+        score_col = "popularity_score"
+
+    global_max = df[score_col].max()
+    df["_global_norm"] = df[score_col] / global_max if global_max > 0 else 0.5
+
+    if "cluster" in df.columns:
+        cluster_max = df.groupby("cluster")[score_col].transform("max")
+        df["_cluster_norm"] = np.where(cluster_max > 0, df[score_col] / cluster_max, 0.5)
+    else:
+        df["_cluster_norm"] = df["_global_norm"]
+
+    df["normalized_popularity"] = (
+        global_weight * df["_global_norm"] + cluster_weight * df["_cluster_norm"]
+    ).clip(0.0, 1.0)
+
+    df.drop(columns=["_global_norm", "_cluster_norm", "_boosted_score"], errors="ignore", inplace=True)
+    return df
 
 
 def create_cluster_map(
@@ -584,11 +732,18 @@ def run_module2_simulation(
     labels, centroids, _ = perform_kmeans_clustering(
         features, cluster_count, random_state=random_state
     )
+    coords_km = _to_local_km(
+        df["latitude"].to_numpy(dtype=float),
+        df["longitude"].to_numpy(dtype=float),
+    )
+    labels = _enforce_min_cluster_size(labels, coords_km, min_size=4)
+    labels = _order_clusters_by_proximity(labels, df, anchor_lat, anchor_lon)
     df["cluster"] = labels
     df["day"] = labels + 1
 
     df_pop, global_mean = calculate_popularity_score(df, min_reviews=min_reviews)
-    df_norm = normalize_popularity_by_cluster(df_pop)
+    interests = _derive_positive_interests(user_preference, positive_interests)
+    df_norm = normalize_popularity_hybrid(df_pop, positive_interests=interests)
 
     if anchor_meta and "anchor_distance_km" not in df_norm.columns:
         df_norm["anchor_distance_km"] = _haversine_km_array(
@@ -627,14 +782,19 @@ def run_module2_simulation(
     with open(EXPORTS_DIR / json_name, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, default=str)
 
-    cluster_map = create_cluster_map(df_norm, centroids, anchor=anchor_meta)
+    centroids_ll = np.array([
+        [df_norm.loc[df_norm["cluster"] == c, "latitude"].mean(),
+         df_norm.loc[df_norm["cluster"] == c, "longitude"].mean()]
+        for c in sorted(df_norm["cluster"].unique())
+    ])
+    cluster_map = create_cluster_map(df_norm, centroids_ll, anchor=anchor_meta)
     cluster_map.save(MAPS_DIR / map_name)
 
     return {
         "run_id": run_id,
         "global_mean": global_mean,
         "cluster_counts": df_norm.groupby("day").size().to_dict(),
-        "centroids": centroids.tolist(),
+        "centroids": centroids_ll.tolist(),
         "places": payload["places"],
         "radius_filter": radius_filter,
         "generated_files": {

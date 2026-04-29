@@ -19,19 +19,15 @@ MAX_MENTIONED_PLACES = 8
 MAX_PLACE_FRAG_LEN = 48
 MAX_SUMMARY_LEN = 240
 
-SYSTEM_PROMPT = """Goa travel planner. Output ONE JSON object only (no markdown, no extra text).
+SYSTEM_PROMPT = """Goa travel planner. Output ONE JSON object only.
 
-Schema (omit keys you do not need; use [] for empty arrays):
-{
-    "positive_interests": ["adventure"|"beaches"|"food"|"fort"|"historical"|"nature"|"nightlife"|"peaceful"|"photography"|"relaxation"|"religious"|"scenic"|"shopping"|"water sports"],
-  "negative_interests": [same enum],
-  "themes_keywords": ["short lowercase tokens/phrases for POI text match, max 12, each max 32 chars"],
-  "mentioned_places": ["name fragments user named, max 8"],
-  "constraints": { "pace": "relaxed"|"moderate"|"packed", "avoid_strenuous": bool, "kid_friendly": bool },
-  "preference_summary": "one line <= 240 chars, distilled intent for route optimization"
-}
+Categories: adventure|beaches|food|fort|historical|nature|nightlife|peaceful|photography|relaxation|religious|scenic|shopping|water sports
 
-Rules: Map user goals to the categories only. themes_keywords = specific words (e.g. dudhsagar, spice, sunset, portuguese) not new categories. If user only dislikes things, negative_interests can be filled and positive_interests []. Example: {"positive_interests":["historical","religious"],"negative_interests":["nightlife"],"themes_keywords":["basilica","fort"],"mentioned_places":[],"constraints":{"pace":"relaxed","avoid_strenuous":true},"preference_summary":"Heritage and churches; easy pace; no nightlife."}"""
+Schema:
+{"positive_interests":[cats],"negative_interests":[cats],"themes_keywords":["short tokens, max 12, ≤32 chars"],"mentioned_places":["name fragments, max 8"],"constraints":{"pace":"relaxed|moderate|packed","avoid_strenuous":bool,"kid_friendly":bool},"preference_summary":"≤240 chars"}
+
+Rules: Map to categories only. themes_keywords = specific words (dudhsagar, sunset), not new categories. If user only dislikes things, positive_interests can be [].
+Example: {"positive_interests":["historical","religious"],"negative_interests":["nightlife"],"themes_keywords":["basilica","fort"],"mentioned_places":[],"constraints":{"pace":"relaxed","avoid_strenuous":true},"preference_summary":"Heritage and churches; easy pace; no nightlife."}"""
 
 
 def _sanitize_categories(raw: Any) -> list[str]:
@@ -123,6 +119,7 @@ def resolve_module1_interests_llm(user_preference: str) -> Module1LlmResult:
     text = groq_chat_json(
         SYSTEM_PROMPT,
         f"user_preference:\n{(user_preference or '').strip() or '(none)'}",
+        max_tokens=300,
     )
     data = json.loads(text.strip())
     if not isinstance(data, dict):

@@ -34,8 +34,21 @@ def _resolve_chat_completions_url(raw_base: str) -> str:
     return f"{base}/chat/completions"
 
 
-def groq_chat_json(system_prompt: str, user_message: str, *, timeout: int = 45) -> str:
-    """POST chat/completions; prefer JSON mode; retry once without response_format on 400."""
+def groq_chat_json(
+    system_prompt: str,
+    user_message: str,
+    *,
+    timeout: int = 45,
+    max_tokens: int = 500,
+) -> str:
+    """POST chat/completions; prefer JSON mode; retry once without response_format on 400.
+    
+    Args:
+        system_prompt: System instruction for the LLM
+        user_message: User input/data to process
+        timeout: Request timeout in seconds (default 45)
+        max_tokens: Max output tokens (default 500 for JSON responses)
+    """
     if not GROQ_API_KEY:
         raise ValueError("GROQ_API_KEY is not set")
     url = _resolve_chat_completions_url(GROQ_API_BASE)
@@ -46,6 +59,7 @@ def groq_chat_json(system_prompt: str, user_message: str, *, timeout: int = 45) 
     body: dict[str, Any] = {
         "model": GROQ_MODEL,
         "temperature": 0.2,
+        "max_tokens": max_tokens,
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_message},
