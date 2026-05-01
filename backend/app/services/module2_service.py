@@ -739,7 +739,7 @@ def run_module2_simulation(
     labels = _enforce_min_cluster_size(labels, coords_km, min_size=4)
     labels = _order_clusters_by_proximity(labels, df, anchor_lat, anchor_lon)
     df["cluster"] = labels
-    df["day"] = labels + 1
+    df["day"] = labels
 
     df_pop, global_mean = calculate_popularity_score(df, min_reviews=min_reviews)
     interests = _derive_positive_interests(user_preference, positive_interests)
