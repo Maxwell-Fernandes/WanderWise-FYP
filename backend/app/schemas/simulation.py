@@ -39,11 +39,11 @@ class Module4Request(BaseModel):
     region: Region | None = None
     min_rating: float = 3.0
     min_reviews: int = 1
-    population_size: int = 120
-    max_generations: int = 90
-    mutation_rate: float = 0.2
+    population_size: int = 150
+    max_generations: int = 100
+    mutation_rate: float = 0.3
     crossover_rate: float = 0.7
-    early_stopping_patience: int = Field(default=40, ge=5, le=200)
+    early_stopping_patience: int = Field(default=50, ge=5, le=200)
     random_state: int = 42
     use_osrm: bool = True
     use_llm_fitness_profile: bool = True
