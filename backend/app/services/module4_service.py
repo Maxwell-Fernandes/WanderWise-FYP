@@ -2818,6 +2818,12 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
             "itinerary_qa": itinerary_qa,
             "itinerary_retry_attempted": itinerary_retry_attempted,
             "itinerary_retry_details": itinerary_retry_details,
+            "cluster_poi_names": [p.name for p in pois],
+            "cluster_size": len(pois),
+            "candidate_poi_names": [
+                p.name
+                for p in (top_candidates[0].candidate_pois if top_candidates else [])
+            ],
         }
 
         if alternatives:

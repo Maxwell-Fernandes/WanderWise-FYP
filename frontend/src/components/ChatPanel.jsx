@@ -1,16 +1,27 @@
 import { useState, useRef, useEffect } from 'react'
 import { sendChatMessage } from '../services/chatApi'
 
-export default function ChatPanel({ placeNames = [] }) {
+export default function ChatPanel({ placeNames = [], clusterNamesByDay = {} }) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [selectedDay, setSelectedDay] = useState('')
   const bottomRef = useRef(null)
+
+  const dayKeys = Object.keys(clusterNamesByDay).sort()
+  const activeDayKey = selectedDay || dayKeys[0] || ''
+  const clusterPoiNames = clusterNamesByDay[activeDayKey] || []
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, open])
+
+  useEffect(() => {
+    if (dayKeys.length > 0 && !selectedDay) {
+      setSelectedDay(dayKeys[0])
+    }
+  }, [dayKeys.length])
 
   const sendMessage = async () => {
     const text = input.trim()
@@ -23,12 +34,20 @@ export default function ChatPanel({ placeNames = [] }) {
     setLoading(true)
 
     try {
-      const res = await sendChatMessage(text, messages, placeNames)
+      const res = await sendChatMessage(
+        text, messages, placeNames, clusterPoiNames, 'default', activeDayKey || null
+      )
       const reply = res?.data?.reply || 'Sorry, something went wrong.'
       const grounded = res?.data?.grounded_places || []
-      setMessages([...updatedMessages, { role: 'assistant', content: reply, grounded_places: grounded }])
+      setMessages([
+        ...updatedMessages,
+        { role: 'assistant', content: reply, grounded_places: grounded }
+      ])
     } catch {
-      setMessages([...updatedMessages, { role: 'assistant', content: 'Failed to connect to the chat service.' }])
+      setMessages([
+        ...updatedMessages,
+        { role: 'assistant', content: 'Failed to connect to the chat service.' }
+      ])
     } finally {
       setLoading(false)
     }
@@ -65,13 +84,26 @@ export default function ChatPanel({ placeNames = [] }) {
           </svg>
         </button>
       </div>
+      {dayKeys.length > 1 && (
+        <div className="chat-day-selector">
+          {dayKeys.map((dk) => (
+            <button
+              key={dk}
+              className={`chat-day-btn ${activeDayKey === dk ? 'active' : ''}`}
+              onClick={() => setSelectedDay(dk)}
+            >
+              {dk.replace('day_', 'Day ')}
+            </button>
+          ))}
+        </div>
+      )}
       <div className="chat-messages">
         {messages.length === 0 && (
           <div className="chat-empty">
             <p>Ask me about places in your itinerary!</p>
-            {placeNames.length > 0 && (
+            {clusterPoiNames.length > 0 && (
               <p className="chat-grounded-hint">
-                I have data for {placeNames.length} place{placeNames.length > 1 ? 's' : ''} in your route.
+                I have data for {clusterPoiNames.length} place{clusterPoiNames.length > 1 ? 's' : ''} in {activeDayKey ? activeDayKey.replace('day_', 'Day ') : 'your route'}.
               </p>
             )}
           </div>

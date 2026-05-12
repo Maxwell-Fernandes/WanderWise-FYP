@@ -213,6 +213,16 @@ export default function Module4SimulationPage() {
     return [...names]
   })() : []
 
+  const clusterNamesByDay = result ? (() => {
+    const clusters = {}
+    Object.entries(result.routes || {}).forEach(([dayKey, dayData]) => {
+      if (dayData?.cluster_poi_names) {
+        clusters[dayKey] = dayData.cluster_poi_names
+      }
+    })
+    return clusters
+  })() : {}
+
   return (
     <div>
       <form className="card" onSubmit={submit}>
@@ -699,7 +709,7 @@ export default function Module4SimulationPage() {
           ))}
         </>
       )}
-      <ChatPanel placeNames={routePlaceNames} />
+      <ChatPanel placeNames={routePlaceNames} clusterNamesByDay={clusterNamesByDay} />
     </div>
   )
 }

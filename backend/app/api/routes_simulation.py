@@ -208,5 +208,8 @@ def chat_message(payload: ChatRequest):
         user_message=payload.message,
         history=history,
         place_names=payload.place_names,
+        cluster_poi_names=payload.cluster_poi_names,
+        session_id=payload.session_id,
+        day_key=payload.day_key,
     )
     return {"data": _json_safe(result)}

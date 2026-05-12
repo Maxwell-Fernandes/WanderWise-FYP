@@ -75,3 +75,6 @@ class ChatRequest(BaseModel):
     message: str
     history: list[ChatMessage] = []
     place_names: list[str] = []
+    cluster_poi_names: list[str] = []
+    session_id: str = "default"
+    day_key: str | None = None
