@@ -18,6 +18,8 @@ import requests
 
 from app.config import EXPORTS_DIR, MAPS_DIR, OSRM_BASE_URL
 from app.services import ga_config as cfg
+from app.services.description_context_service import get_place_context
+from app.services.itinerary_narration_service import generate_day_narration
 from app.services.module1_service import run_module1_simulation
 from app.services.module2_service import run_module2_simulation
 from app.utils.data_loader import ensure_output_dirs
@@ -2816,6 +2818,12 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
             "itinerary_qa": itinerary_qa,
             "itinerary_retry_attempted": itinerary_retry_attempted,
             "itinerary_retry_details": itinerary_retry_details,
+            "cluster_poi_names": [p.name for p in pois],
+            "cluster_size": len(pois),
+            "candidate_poi_names": [
+                p.name
+                for p in (top_candidates[0].candidate_pois if top_candidates else [])
+            ],
         }
 
         if alternatives:
@@ -2856,6 +2864,43 @@ def run_module4_simulation(payload: Dict[str, Any]) -> Dict[str, Any]:
         "preference_ignored": preference_ignored,
         "preference_tracker": preference_tracker,
     }
+
+    # --- Enrichment chain: per-stop descriptions + per-day narration ---
+    user_pref_for_narration = payload.get("user_preference", "")
+    for day_key, day_data in routes.items():
+        if not isinstance(day_data, dict):
+            continue
+
+        # Per-stop description enrichment for all alternatives
+        all_alts = day_data.get("alternatives", []) or []
+        secondary_alts = day_data.get("secondary_itinerary", {}).get("alternatives", []) or []
+        for alt in all_alts + secondary_alts:
+            if not isinstance(alt, dict):
+                continue
+            for stop in alt.get("route", []):
+                if not isinstance(stop, dict):
+                    continue
+                ctx = get_place_context(stop.get("name", ""))
+                if ctx.get("matched"):
+                    stop["description"] = ctx["summary"]
+                    stop["best_time_hint"] = ctx["best_time_hint"]
+                    stop["entry_fee"] = ctx["entry_fee"]
+                    stop["category"] = ctx["category"]
+                    stop["source_url"] = ctx["source_url"]
+
+        # Per-day narration for the recommended route
+        rec_route = day_data.get("recommended_route")
+        if isinstance(rec_route, dict) and rec_route.get("route"):
+            try:
+                narration = generate_day_narration({
+                    "day": rec_route.get("day"),
+                    "rank": 1,
+                    "user_preference": user_pref_for_narration,
+                    "route": rec_route["route"],
+                })
+                day_data["narration"] = narration
+            except Exception as exc:
+                logger.warning("Narration generation failed for %s: %s", day_key, exc)
 
     run_id = uuid.uuid4().hex[:8]
     out_file = EXPORTS_DIR / f"optimized_routes_{run_id}.json"

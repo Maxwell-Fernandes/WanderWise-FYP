@@ -186,3 +186,91 @@ def get_many_place_contexts(places: list[dict[str, Any]]) -> list[dict[str, Any]
             )
         )
     return output
+
+
+def _load_full_json(path: Path) -> dict[str, Any] | None:
+    """Load the entire raw JSON from a description file."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if isinstance(data, dict) and data.get("error"):
+        return None
+    return data
+
+
+def get_full_description(place_name: str) -> dict[str, Any] | None:
+    """Return full description data for a place, including all rich fields.
+
+    Args:
+        place_name: The place name to look up.
+
+    Returns:
+        A dict with name, category, description, headers, accordion_sections,
+        guidelines, tags, timing_info, entry_fee, source_url, and match_score.
+        Returns None if no match is found.
+    """
+    idx, score = _best_match_index(place_name)
+    if idx is None:
+        return None
+
+    rec = _RECORDS[idx]
+
+    # Find the original file path to load full JSON
+    stem = _extract_slug(rec.source_url) or _normalize(rec.name).replace(" ", "-")
+    full_data: dict[str, Any] | None = None
+
+    for path in DESCRIPTION_DATA_DIR.rglob("*.json"):
+        if path.stem == stem:
+            full_data = _load_full_json(path)
+            break
+
+    if full_data is None:
+        # Fallback: try matching by slug against all file stems
+        for path in DESCRIPTION_DATA_DIR.rglob("*.json"):
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                url = str(data.get("url") or "")
+                if _extract_slug(url) == stem:
+                    full_data = data
+                    break
+            except Exception:
+                continue
+
+    result: dict[str, Any] = {
+        "matched": True,
+        "name": rec.name,
+        "category": rec.category,
+        "description": str((full_data or {}).get("description") or rec.summary),
+        "headers": (full_data or {}).get("headers") or [],
+        "accordion_sections": (full_data or {}).get("accordion_sections") or [],
+        "guidelines": (full_data or {}).get("guidelines") or [],
+        "tags": (full_data or {}).get("tags") or [],
+        "timing_info": rec.best_time_hint,
+        "entry_fee": rec.entry_fee,
+        "source_url": rec.source_url,
+        "match_score": round(float(score), 3),
+    }
+    return result
+
+
+def get_descriptions_for_route(place_names: list[str]) -> dict[str, dict[str, Any]]:
+    """Load full descriptions for a list of place names from a route sequence.
+
+    Args:
+        place_names: Ordered list of place names from a generated route.
+
+    Returns:
+        Dict mapping each input name to its full description data (or None if unmatched).
+    """
+    result: dict[str, dict[str, Any]] = {}
+    seen_normalized: set[str] = set()
+
+    for name in place_names:
+        norm = _normalize(name)
+        if norm in seen_normalized:
+            continue
+        seen_normalized.add(norm)
+        desc = get_full_description(name)
+        result[name] = desc
+    return result
