@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { geoapifyAutocomplete, geoapifyReverseGeocode, isWithinGoa } from '../services/geoapify'
 import { mapUrl, narrateModule4Day, runModule4 } from '../services/simulationApi'
+import ChatPanel from '../components/ChatPanel'
 
 export default function Module4SimulationPage() {
   const [numDays, setNumDays] = useState(4)
@@ -199,6 +200,18 @@ export default function Module4SimulationPage() {
   }
 
   const hasHotelSelection = Number.isFinite(hotelSelection?.lat) && Number.isFinite(hotelSelection?.lon)
+
+  const routePlaceNames = result ? (() => {
+    const names = new Set()
+    Object.values(result.routes || {}).forEach((dayData) => {
+      if (!dayData || typeof dayData !== 'object') return
+      const recRoute = dayData.recommended_route?.route || dayData.alternatives?.[0]?.route || []
+      recRoute.forEach((stop) => {
+        if (stop?.name) names.add(stop.name)
+      })
+    })
+    return [...names]
+  })() : []
 
   return (
     <div>
@@ -686,6 +699,7 @@ export default function Module4SimulationPage() {
           ))}
         </>
       )}
+      <ChatPanel placeNames={routePlaceNames} />
     </div>
   )
 }

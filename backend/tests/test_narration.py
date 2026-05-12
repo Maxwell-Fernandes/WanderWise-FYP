@@ -39,7 +39,7 @@ def test_narration_fallback_generation():
         ],
     }
     result = generate_day_narration(payload)
-    assert result["provider"] in {"fallback", "modal"}
+    assert result["provider"] in {"fallback", "modal", "groq"}
     assert isinstance(result["narration_text"], str)
     assert len(result["narration_text"]) > 20
 

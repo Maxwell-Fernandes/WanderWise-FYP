@@ -9,6 +9,7 @@ import requests
 
 from app.config import MODAL_NARRATION_URL
 from app.services.description_context_service import get_many_place_contexts
+from app.services.groq_client import groq_chat_text
 
 _NARRATION_CACHE: dict[str, dict[str, Any]] = {}
 
@@ -118,6 +119,21 @@ def _call_modal_narration(prompt: str) -> str | None:
     return None
 
 
+def _call_groq_narration(prompt: str) -> str | None:
+    try:
+        text = groq_chat_text(
+            system_prompt="You are a travel narrator for Goa itineraries. Return only narration text, no markdown or formatting.",
+            user_message=prompt,
+            max_tokens=600,
+            timeout=30,
+        )
+        if text.strip():
+            return text.strip()
+    except Exception:
+        return None
+    return None
+
+
 def generate_day_narration(payload: dict[str, Any]) -> dict[str, Any]:
     key = _cache_key(payload)
     if key in _NARRATION_CACHE:
@@ -128,8 +144,17 @@ def generate_day_narration(payload: dict[str, Any]) -> dict[str, Any]:
     prompt = _build_prompt(payload, contexts)
 
     modal_text = _call_modal_narration(prompt)
-    provider = "modal" if modal_text else "fallback"
-    narration_text = modal_text or _fallback_narration(payload, contexts)
+    if modal_text:
+        provider = "modal"
+        narration_text = modal_text
+    else:
+        groq_text = _call_groq_narration(prompt)
+        if groq_text:
+            provider = "groq"
+            narration_text = groq_text
+        else:
+            provider = "fallback"
+            narration_text = _fallback_narration(payload, contexts)
 
     result = {
         "day": payload.get("day"),

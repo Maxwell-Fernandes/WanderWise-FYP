@@ -8,11 +8,13 @@ from fastapi.responses import FileResponse
 
 from app.config import MAPS_DIR
 from app.schemas.simulation import (
+    ChatRequest,
     Module1Request,
     Module2Request,
     Module4NarrationRequest,
     Module4Request,
 )
+from app.services.chat_service import chat_response
 from app.services.itinerary_narration_service import generate_day_narration
 from app.services.module1_service import run_module1_simulation
 from app.services.module2_service import run_module2_simulation
@@ -59,6 +61,12 @@ def _sanitize_mobile_stop(stop: dict[str, Any]) -> dict[str, Any]:
                 }
             )
 
+    enriched_fields = {}
+    for key in ("description", "best_time_hint", "entry_fee", "category", "source_url"):
+        val = stop.get(key)
+        if val:
+            enriched_fields[key] = val
+
     return {
         "sequence": stop.get("sequence"),
         "poi_id": stop.get("poi_id"),
@@ -70,6 +78,7 @@ def _sanitize_mobile_stop(stop: dict[str, Any]) -> dict[str, Any]:
         "visit_end": stop.get("visit_end"),
         "visit_duration_min": stop.get("visit_duration_min"),
         "nearby_suggestions": safe_nearby,
+        **enriched_fields,
     }
 
 
@@ -190,3 +199,14 @@ def get_map(map_name: str):
     if not path.exists():
         raise HTTPException(status_code=404, detail="Map not found")
     return FileResponse(path)
+
+
+@router.post("/chat/message")
+def chat_message(payload: ChatRequest):
+    history = [msg.model_dump() for msg in payload.history]
+    result = chat_response(
+        user_message=payload.message,
+        history=history,
+        place_names=payload.place_names,
+    )
+    return {"data": _json_safe(result)}
